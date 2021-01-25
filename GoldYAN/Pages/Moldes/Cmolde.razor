@@ -1,0 +1,57 @@
+﻿@page "/cmoldes"
+@using GoldYAN.Data
+@inject IJSRuntime JsRuntime
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Moldes</h6>
+        </div>
+        <EditForm Model="@cFichaCliente" OnValidSubmit="@InsertFichaCliente">
+            <DataAnnotationsValidator />
+
+
+            <label for="nome">Código</label>
+            <InputText id="nome" @bind-Value="cFichaCliente.Nome" />
+            <ValidationMessage For="@(() => cFichaCliente.Nome)" />
+
+            <label for="codigopostal">Descrição</label>
+            <InputText id="codigopostal" @bind-Value="cFichaCliente.Codigopostal" />
+            <ValidationMessage For="@(() => cFichaCliente.Codigopostal)" />
+
+            <label for="nome">Tipo Produção</label>
+            <InputText id="nome" @bind-Value="cFichaCliente.Nome" />
+            <ValidationMessage For="@(() => cFichaCliente.Nome)" />
+
+            <label for="telefone">Tipo Peça</label>
+            <InputNumber id="telefone" @bind-Value="cFichaCliente.Telefone" />
+            <ValidationMessage For="@(() => cFichaCliente.Telefone)" />
+
+
+            <label for="email">Gaveta</label>
+            <InputText id="email" placeholder="Boas" @bind-Value="cFichaCliente.Email" />
+            <ValidationMessage For="@(() => cFichaCliente.Email)" />
+
+
+            <label for="morada">Tempo</label>
+            <InputText id="morada" @bind-Value="cFichaCliente.Morada" />
+            <ValidationMessage For="@(() => cFichaCliente.Morada)" />
+            
+            <label for="morada">Peso</label>
+            <InputText id="morada" @bind-Value="cFichaCliente.Morada" />
+            <ValidationMessage For="@(() => cFichaCliente.Morada)" />
+        </EditForm>
+    </div>
+</div>
+
+
+@code {
+
+    private Clientes cFichaCliente = new Clientes();
+
+    private async Task InsertFichaCliente()
+    {
+        // await JsRuntime.InvokeVoidAsync("setElementTextById", "resultJson", JsonSerializer.Serialize(cFichaCliente));
+    }
+
+}
