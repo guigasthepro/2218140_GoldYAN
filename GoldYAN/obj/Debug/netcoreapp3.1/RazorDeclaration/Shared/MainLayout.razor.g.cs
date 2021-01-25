@@ -83,7 +83,7 @@ using GoldYAN.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 65 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Shared\MainLayout.razor"
+#line 60 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Shared\MainLayout.razor"
  
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
 
@@ -94,10 +94,6 @@ using GoldYAN.Shared;
         if (!user.Identity.IsAuthenticated)
         {
             NavManager.NavigateTo("Identity/Account/Login");
-        }
-        else
-        {
-
         }
     }
 
