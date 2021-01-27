@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -17,15 +19,22 @@ namespace GoldYAN.Controller
         /// Recebe os presentes
         /// </summary>
         /// <returns>Presentes</returns>
+        List<Clientes> LerClientes = new List<Clientes>();
+        Clientes LerCliente = new Clientes();
+
         [HttpGet]
-        public IEnumerable<Clientes> Get()
+        public List<Clientes> Get()
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
-            var res = DBConn.GetAll<Clientes>();
+
+            LerClientes = new List<Clientes>();
 
 
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
+            var res = DBConn.GetAll<Clientes>().ToList();
+            
+            LerClientes = res;
 
-            return res;
+            return LerClientes;
         }
 
         // GET api/<PresentesController>/
@@ -39,8 +48,6 @@ namespace GoldYAN.Controller
         {
             MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
             var res = DBConn.Get<Clientes>(id);
-            
-
 
             return res;
         }

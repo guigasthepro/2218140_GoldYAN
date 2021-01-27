@@ -1,5 +1,6 @@
 ﻿@page "/cmoldes"
 @using GoldYAN.Data
+@using GoldYAN.Controller
 @inject IJSRuntime JsRuntime
 
 <div class="container-fluid">
@@ -7,39 +8,43 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Moldes</h6>
         </div>
-        <EditForm Model="@cFichaCliente" OnValidSubmit="@InsertFichaCliente">
-            <DataAnnotationsValidator />
+        <EditForm Model="@cMolde" class="form-group" OnValidSubmit="@CriarMolde">
+         
+            <div class="form-group m-2 p-1">
+                <label for="codigo">Código</label>
+                <InputText class="w-25 form-control" id="codigo" @bind-Value="cMolde.codigo" />
+                <ValidationMessage For="@(() => cMolde.codigo)" />
+            </div>
 
+            <div class="form-group m-2 p-1">
+                <label for="descricao">Descrição</label>
+                <InputText class="w-25 form-control" id="descricao" @bind-Value="cMolde.descricao" />
+                <ValidationMessage For="@(() => cMolde.descricao)" />
+            </div>
 
-            <label for="nome">Código</label>
-            <InputText id="nome" @bind-Value="cFichaCliente.Nome" />
-            <ValidationMessage For="@(() => cFichaCliente.Nome)" />
+            <div class="form-group m-2 p-1">
+                <label for="tipopeça">Tipo Peça</label>
+                <InputNumber class="w-25 form-control" id="telefone" @bind-Value="cMolde.idfproduto" />
+            </div>
 
-            <label for="codigopostal">Descrição</label>
-            <InputText id="codigopostal" @bind-Value="cFichaCliente.Codigopostal" />
-            <ValidationMessage For="@(() => cFichaCliente.Codigopostal)" />
+            <div class="form-group m-2 p-1">
+                <label for="gaveta">Gaveta</label>
+                <InputNumber class="w-25 form-control" id="gaveta" placeholder="Boas" @bind-Value="cMolde.Gaveta" />
+            </div>
 
-            <label for="nome">Tipo Produção</label>
-            <InputText id="nome" @bind-Value="cFichaCliente.Nome" />
-            <ValidationMessage For="@(() => cFichaCliente.Nome)" />
+            <div class="form-group m-2 p-1">
+                <label for="tempo">Tempo</label>
+                <InputText class="w-25 form-control" id="tempo" placeholder="Indique o tempo que demorou (minutos)" @bind-Value="cMolde.tempo" />
+                <ValidationMessage For="@(() => cMolde.tempo)" />
+            </div>
 
-            <label for="telefone">Tipo Peça</label>
-            <InputNumber id="telefone" @bind-Value="cFichaCliente.Telefone" />
-            <ValidationMessage For="@(() => cFichaCliente.Telefone)" />
-
-
-            <label for="email">Gaveta</label>
-            <InputText id="email" placeholder="Boas" @bind-Value="cFichaCliente.Email" />
-            <ValidationMessage For="@(() => cFichaCliente.Email)" />
-
-
-            <label for="morada">Tempo</label>
-            <InputText id="morada" @bind-Value="cFichaCliente.Morada" />
-            <ValidationMessage For="@(() => cFichaCliente.Morada)" />
-            
-            <label for="morada">Peso</label>
-            <InputText id="morada" @bind-Value="cFichaCliente.Morada" />
-            <ValidationMessage For="@(() => cFichaCliente.Morada)" />
+            <div class="form-group m-2 p-1">
+                <label for="peso">Peso</label>
+                <InputNumber class="w-25 form-control" id="peso" @bind-Value="cMolde.Gaveta"  />
+            </div>
+            <div class="m-3">
+                <button class="btn btn-primary float-right" type="submit">Criar Molde</button>
+            </div>
         </EditForm>
     </div>
 </div>
@@ -47,11 +52,13 @@
 
 @code {
 
-    private Clientes cFichaCliente = new Clientes();
+    private Moldes cMolde = new Moldes();
 
-    private async Task InsertFichaCliente()
+    MoldesController CM = new MoldesController();
+
+    public void CriarMolde()
     {
-        // await JsRuntime.InvokeVoidAsync("setElementTextById", "resultJson", JsonSerializer.Serialize(cFichaCliente));
+        CM.Post(cMolde);
     }
-
+    
 }

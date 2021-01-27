@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Dapper.Contrib.Extensions;
+using GoldYAN.Data;
 using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,11 +13,24 @@ namespace GoldYAN.Controller
     [ApiController]
     public class MoldesController : ControllerBase
     {
+
+        List<Moldes> LerMoldes = new List<Moldes>();
+        Moldes LerMolde = new Moldes();
+
+
         // GET: api/<MoldesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Moldes> Get()
         {
-            return new string[] { "value1", "value2" };
+            LerMoldes = new List<Moldes>();
+
+
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
+            var res = DBConn.GetAll<Moldes>().ToList();
+
+            LerMoldes = res;
+
+            return LerMoldes;
         }
 
         // GET api/<MoldesController>/5
@@ -25,8 +42,15 @@ namespace GoldYAN.Controller
 
         // POST api/<MoldesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public Moldes Post([FromBody] Moldes molde)
         {
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
+
+            var idNewRec = DBConn.Insert<Moldes>(molde);
+
+            var res = DBConn.Get<Moldes>(idNewRec);
+
+            return res;
         }
 
         // PUT api/<MoldesController>/5

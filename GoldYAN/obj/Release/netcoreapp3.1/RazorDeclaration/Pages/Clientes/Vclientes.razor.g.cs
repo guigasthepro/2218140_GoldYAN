@@ -75,6 +75,20 @@ using GoldYAN.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
+using GoldYAN.Controller;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
+using GoldYAN.Data;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/vclientes")]
     public partial class Vclientes : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -83,6 +97,28 @@ using GoldYAN.Shared;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 53 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
+       
+
+
+    List<Clientes> VCS = new List<Clientes>();
+
+    ClientesController VC = new ClientesController();
+
+    protected override async Task OnInitializedAsync()
+    {
+        VCS = VC.Get();
+
+    }
+
+
+
+
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591

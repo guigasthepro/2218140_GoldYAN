@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "v5zRAeiT9cdsde+AuVOwGkYUWbLBEYIL1pYLzeW9ul+q50zgC4AzwrmAgMQhgF47hrulp7zWNcThZJ4jp2bSmw==",
+  "dgSpecHash": "ODoeVftLyZ6Z1Ly4C/t9OURtEcEsCgUNQe5/QhHT9+j29ulsueQ9N3umSYxBwQf0SjZP0Dav0y3aXyD0PH98Ng==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Guilherme Simao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
+  "projectFilePath": "C:\\Users\\Guilherme Simao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Guilherme Simao\\.nuget\\packages\\dapper\\2.0.78\\dapper.2.0.78.nupkg.sha512",
     "C:\\Users\\Guilherme Simao\\.nuget\\packages\\dapper.contrib\\2.0.78\\dapper.contrib.2.0.78.nupkg.sha512",

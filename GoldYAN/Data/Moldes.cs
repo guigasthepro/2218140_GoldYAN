@@ -12,7 +12,7 @@ namespace GoldYAN.Data
         public string descricao { get; set; }
         public int idfproduto { get; set; }
         public int Gaveta { get; set; }
-        public DateTime tempo { get; set; }
+        public string tempo { get; set; }
         public int peso { get; set; }
     }
 }
