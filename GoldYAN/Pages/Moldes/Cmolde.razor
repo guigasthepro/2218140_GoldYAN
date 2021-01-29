@@ -43,6 +43,7 @@
                 <InputNumber class="w-25 form-control" id="peso" @bind-Value="cMolde.Gaveta"  />
             </div>
             <div class="m-3">
+                <button class="btn btn-primary float-right" style="margin-left: 5px" type="reset">Cancelar</button>
                 <button class="btn btn-primary float-right" type="submit">Criar Molde</button>
             </div>
         </EditForm>
@@ -59,6 +60,13 @@
     public void CriarMolde()
     {
         CM.Post(cMolde);
+        Esperar();
+        cMolde = new Moldes();
     }
-    
+
+    public async Task Esperar()
+    {
+        await Task.Delay(2500);
+    }
+
 }

@@ -1,9 +1,43 @@
 ﻿@page "/vmoldes"
 @using GoldYAN.Data
 @using GoldYAN.Controller
+@inject IJSRuntime JS;
+
+
+<div class="container-fluid">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Informação do molde</h6>
+    </div>
+    
+    <div class="">
+        
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Descrição do molde</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@DescricaoProduto</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
+
+
+</div>
+<br/>
+<br/>
+
 
     <div class="container-fluid">
-        
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -16,20 +50,21 @@
                             <div class="col-sm-12">
                                 <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                     <thead>
-                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">IdMolde</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Gaveta</th></tr>
+                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">IdMolde</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Gaveta</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
                                     </thead>
                                     <tfoot>
-                                        <tr><th rowspan="1" colspan="1">IdMoldes</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Gaveta</th></tr></tfoot>
+                                        <tr><th rowspan="1" colspan="1">IdMoldes</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Gaveta</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                    </tfoot>
                                     <tbody>
-                                    @foreach (var molde in @VMS)
-                                    {
-                                        <tr role="row" class="odd" id="@molde.idmolde">
-                                            <td>@molde.codigo</td>
-                                            <td>@molde.descricao</td>
-                                            <td>@molde.Gaveta</td>
-                                            <td><button class="btn btn-primary" style="margin-left:1rem">Editar</button><button class="btn btn-danger" style="margin-left:0.3rem" >Apagar</button></td>
-                                        </tr>
-                                    }
+                                        @foreach (var molde in @VMS)
+                                        {
+                                            <tr role="row" class="odd" id="@molde.idmolde" @onclick="() => DescricaoProduto = molde.descricao">
+                                                <td>@molde.codigo</td>
+                                                <td>@molde.descricao</td>
+                                                <td>@molde.Gaveta</td>
+                                                <td><button class="btn btn-primary" style="margin-left:1rem">Editar</button><button class="btn btn-danger" style="margin-left:0.3rem">Apagar</button></td>
+                                            </tr>
+                                        }
                                     </tbody>
                                 </table>
                             </div>
@@ -43,15 +78,17 @@
 
 @code {
 
+    string DescricaoProduto;
+
     List<Moldes> VMS = new List<Moldes>();
 
     MoldesController VM = new MoldesController();
 
     protected override async Task OnInitializedAsync()
-    {
-        VMS = VM.Get();
+        {
+            VMS = VM.Get();
 
-    }
+        }
 
 
     }

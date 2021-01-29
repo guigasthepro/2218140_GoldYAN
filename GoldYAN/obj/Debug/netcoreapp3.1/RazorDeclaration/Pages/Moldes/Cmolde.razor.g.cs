@@ -98,7 +98,7 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 53 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Cmolde.razor"
+#line 54 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Cmolde.razor"
        
 
     private Moldes cMolde = new Moldes();
@@ -108,8 +108,15 @@ using GoldYAN.Controller;
     public void CriarMolde()
     {
         CM.Post(cMolde);
+        Esperar();
+        cMolde = new Moldes();
     }
-    
+
+    public async Task Esperar()
+    {
+        await Task.Delay(2500);
+    }
+
 
 #line default
 #line hidden

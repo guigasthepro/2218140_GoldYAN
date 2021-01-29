@@ -98,18 +98,20 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Vmoldes.razor"
+#line 79 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Vmoldes.razor"
        
+
+    string DescricaoProduto;
 
     List<Moldes> VMS = new List<Moldes>();
 
     MoldesController VM = new MoldesController();
 
     protected override async Task OnInitializedAsync()
-    {
-        VMS = VM.Get();
+        {
+            VMS = VM.Get();
 
-    }
+        }
 
 
     
@@ -117,6 +119,7 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JS { get; set; }
     }
 }
 #pragma warning restore 1591

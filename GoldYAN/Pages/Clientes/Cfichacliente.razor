@@ -1,6 +1,8 @@
 ﻿@page "/cfichacliente"
 @using GoldYAN.Data
 @using GoldYAN.Controller
+@using Microsoft.AspNetCore.Mvc.ModelBinding
+@using Microsoft.EntityFrameworkCore
 @inject IJSRuntime JsRuntime
 
 <div class="container-fluid">
@@ -9,8 +11,8 @@
             <h6 class="m-0 font-weight-bold text-primary">Ficha do Cliente</h6>
         </div>
         <EditForm class="form-group" Model="@cFichaCliente" OnValidSubmit="@ClientCreate">
-            <DataAnnotationsValidator />
-            <div class="form-group m-2 p-1">
+        <DataAnnotationsValidator/>
+        <div class="form-group m-2 p-1">
                 <label class="" for="nome">Nome:</label>
                 <InputText class="w-25 form-control" placeholder="Nome do cliente" id="nome" @bind-Value="cFichaCliente.Nome" />
                 <ValidationMessage class="alert alert-warning" For="@(() => cFichaCliente.Nome)" />
@@ -49,8 +51,9 @@
                 <InputText class="w-25 form-control" id="Profissao" @bind-Value="cFichaCliente.Profissao" />
                 <ValidationMessage class="alert alert-warning" For="@(() => cFichaCliente.Profissao)" />
             </div>
-            <div class="m-3">
-                <button class="btn btn-primary float-right" type="submit">Criar</button>
+            <div class="form-group m-3">
+                <button type="submit" class="btn btn-primary float-right">Criar</button>
+                <button type="reset" style="margin-right: 0.5rem" class="btn btn-primary float-right">Cancelar</button>
             </div>
         </EditForm>
     </div>
@@ -67,5 +70,15 @@
     public void ClientCreate()
     {
         CC.Post(cFichaCliente);
+        Esperar();
+        cFichaCliente = new Clientes();
+
     }
+
+    public async Task Esperar()
+    {
+        await Task.Delay(2500);
+    }
+
+
 }

@@ -89,6 +89,20 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Cfichacliente.razor"
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Cfichacliente.razor"
+using Microsoft.EntityFrameworkCore;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/cfichacliente")]
     public partial class Cfichacliente : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -98,7 +112,7 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 61 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Cfichacliente.razor"
+#line 64 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Cfichacliente.razor"
        
 
     private Clientes cFichaCliente = new Clientes();
@@ -108,7 +122,17 @@ using GoldYAN.Controller;
     public void ClientCreate()
     {
         CC.Post(cFichaCliente);
+        Esperar();
+        cFichaCliente = new Clientes();
+
     }
+
+    public async Task Esperar()
+    {
+        await Task.Delay(2500);
+    }
+
+
 
 #line default
 #line hidden
