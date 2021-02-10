@@ -1,4 +1,6 @@
-﻿<h3>Unidades</h3>
+﻿@using GoldYAN.Controller
+@page "/unidades"
+<h3>Unidades</h3>
 
 <div class="container-fluid">
 
@@ -16,25 +18,22 @@
                         <div class="col-sm-12">
                             <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Email</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Contacto: activate to sort column ascending" style="width: 31px;">Localidade</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Codigo Postal</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Nif</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Profissão</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">IDUnidade</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Indice</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Email</th><th rowspan="1" colspan="1">Localidade</th><th rowspan="1" colspan="1">Codigo Postal</th><th rowspan="1" colspan="1">Nif</th><th rowspan="1" colspan="1">Profissão</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                <tr><th rowspan="1" colspan="1">IDUnidade</th><th rowspan="1" colspan="1">Indice</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach (var cliente in @VCS)
-                                    {
-                                        <tr role="row" class="odd" id="@cliente.clienteid">
-                                            <td>@cliente.Nome</td>
-                                            <td>@cliente.Telefone</td>
-                                            <td>@cliente.Email</td>
-                                            <td>@cliente.Morada</td>
-                                            <td>@cliente.Codigopostal</td>
-                                            <td>@cliente.Nif</td>
-                                            <td>@cliente.Profissao</td>
-                                            <td><button class="btn btn-primary" style="margin-left:1rem">Editar</button><button class="btn btn-danger" style="margin-left:0.3rem">Apagar</button></td>
-                                        </tr>
-                                    }
+                                @foreach (var unidade in @VUS)
+                                {
+                                    <tr role="row" class="odd" id="@unidade.idunidade">
+                                        <td>@unidade.idunidade</td>
+                                        <td>@unidade.indice</td>
+                                        <td>@unidade.descricao</td>
+
+                                        <td><button class="btn btn-primary" style="margin-left:1rem">Editar</button><button class="btn btn-danger" style="margin-left:0.3rem">Apagar</button></td>
+                                    </tr>
+                                }
 
                                 </tbody>
                             </table>
@@ -50,4 +49,13 @@
 
 @code {
 
+    List<GoldYAN.Data.Unidades> VUS = new List<GoldYAN.Data.Unidades>();
+
+    UnidadesController VU = new UnidadesController();
+
+    protected override async Task OnInitializedAsync()
+    {
+        VUS = VU.Get();
+
+    }
 }

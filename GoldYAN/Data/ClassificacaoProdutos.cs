@@ -2,11 +2,12 @@
 
 namespace GoldYAN.Data
 {
+    [Table("classificacaoprodutos")]
     public class ClassificacaoProdutos
     {
 
         [ExplicitKey]
-        public int classificacaoid { get; set; }
+        public int IDClassificacao { get; set; }
         public int codigo { get; set; }
         public string descricao { get; set; }
         public string codigoat { get; set; }

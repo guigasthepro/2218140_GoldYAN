@@ -75,13 +75,46 @@ using GoldYAN.Shared;
 #line default
 #line hidden
 #nullable disable
-    public partial class Bancos : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 2 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
+using GoldYAN.Controller;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
+using GoldYAN.Data;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/bancos")]
+    public partial class ABancos : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 48 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
+       
+
+    List<GoldYAN.Data.Bancos> VBS = new List<GoldYAN.Data.Bancos>();
+
+    BancosController VB = new BancosController();
+
+    protected override async Task OnInitializedAsync()
+    {
+        VBS = VB.Get();
+
+    }
+
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591

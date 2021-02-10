@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper.Contrib.Extensions;
+using GoldYAN.Data;
+using MySql.Data.MySqlClient;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,35 +16,84 @@ namespace GoldYAN.Controller
     public class ClassificacaoProdutosController : ControllerBase
     {
         // GET: api/<ClassificacaoProdutosController>
+
+        List<ClassificacaoProdutos> LerClassificacoes = new List<ClassificacaoProdutos>();
+        ClassificacaoProdutos LerClassificao = new ClassificacaoProdutos();
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<ClassificacaoProdutos> Get()
         {
-            return new string[] { "value1", "value2" };
+            LerClassificacoes = new List<ClassificacaoProdutos>();
+
+
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
+            var res = DBConn.GetAll<ClassificacaoProdutos>().ToList();
+
+            LerClassificacoes = res;
+
+            return LerClassificacoes;
         }
 
         // GET api/<ClassificacaoProdutosController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ClassificacaoProdutos Get(int id)
         {
-            return "value";
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
+            var res = DBConn.Get<ClassificacaoProdutos>(id);
+
+            return res;
         }
 
         // POST api/<ClassificacaoProdutosController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ClassificacaoProdutos Post([FromBody] ClassificacaoProdutos classificacaoProdutos)
         {
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
+
+            var idNewRec = DBConn.Insert<ClassificacaoProdutos>(classificacaoProdutos);
+
+            var res = DBConn.Get<ClassificacaoProdutos>(idNewRec);
+
+            return res;
         }
 
         // PUT api/<ClassificacaoProdutosController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult<ClassificacaoProdutos> Put(int id, [FromBody] ClassificacaoProdutos classificacaoProdutos)
         {
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
+
+            var recLido = DBConn.Get<ClassificacaoProdutos>(id);
+
+            if (recLido != null)
+            {
+                //recLido.Nomes = presente.Nomes;
+                //recLido.Quantidade = presente.Quantidade;
+
+                bool updated = DBConn.Update(recLido);
+
+                return Ok(recLido);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // DELETE api/<ClassificacaoProdutosController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
+            var res = DBConn.Get<ClassificacaoProdutos>(id);
+            if (res != null)
+            {
+                DBConn.Delete(res);
+            }
+            else
+            {
+
+            }
         }
     }
 }

@@ -75,6 +75,14 @@ using GoldYAN.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 1 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Materias.razor"
+using GoldYAN.Controller;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/materiais")]
     public partial class Materias : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -82,6 +90,24 @@ using GoldYAN.Shared;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 48 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Materias.razor"
+       
+
+    List<GoldYAN.Data.Materias> VMS = new List<GoldYAN.Data.Materias>();
+
+    MateriasController VM = new MateriasController();
+
+    protected override async Task OnInitializedAsync()
+    {
+        VMS = VM.Get();
+
+    }
+
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591

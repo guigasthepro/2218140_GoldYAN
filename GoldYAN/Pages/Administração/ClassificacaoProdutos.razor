@@ -1,4 +1,6 @@
-﻿<h3>ClassificacaoProdutos</h3>
+﻿@using GoldYAN.Controller
+@page "/classificacaoprodutos"
+<h3>ClassificacaoProdutos</h3>
 
 <div class="container-fluid">
 
@@ -16,22 +18,20 @@
                         <div class="col-sm-12">
                             <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Email</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Contacto: activate to sort column ascending" style="width: 31px;">Localidade</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Codigo Postal</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Nif</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Profissão</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">IDClassificação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Codigo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Contacto: activate to sort column ascending" style="width: 31px;">Codigo AT</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Inventário</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Email</th><th rowspan="1" colspan="1">Localidade</th><th rowspan="1" colspan="1">Codigo Postal</th><th rowspan="1" colspan="1">Nif</th><th rowspan="1" colspan="1">Profissão</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                    <tr><th rowspan="1" colspan="1">IDClassificação</th><th rowspan="1" colspan="1">Codigo</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Codigo AT</th><th rowspan="1" colspan="1">Inventário</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach (var cliente in @VCS)
+                                    @foreach (var cp in @VCPS)
                                     {
-                                        <tr role="row" class="odd" id="@cliente.clienteid">
-                                            <td>@cliente.Nome</td>
-                                            <td>@cliente.Telefone</td>
-                                            <td>@cliente.Email</td>
-                                            <td>@cliente.Morada</td>
-                                            <td>@cliente.Codigopostal</td>
-                                            <td>@cliente.Nif</td>
-                                            <td>@cliente.Profissao</td>
+                                        <tr role="row" class="odd" id="@cp.IDClassificacao">
+                                            <td>@cp.IDClassificacao</td>
+                                            <td>@cp.codigo</td>
+                                            <td>@cp.descricao</td>
+                                            <td>@cp.codigoat</td>
+                                            <td>@cp.inventario</td>
                                             <td><button class="btn btn-primary" style="margin-left:1rem">Editar</button><button class="btn btn-danger" style="margin-left:0.3rem">Apagar</button></td>
                                         </tr>
                                     }
@@ -48,5 +48,13 @@
 </div>
 
 @code {
+    List<GoldYAN.Data.ClassificacaoProdutos> VCPS = new List<GoldYAN.Data.ClassificacaoProdutos>();
 
+    ClassificacaoProdutosController VCP = new ClassificacaoProdutosController();
+
+    protected override async Task OnInitializedAsync()
+    {
+        VCPS = VCP.Get();
+
+    }
 }

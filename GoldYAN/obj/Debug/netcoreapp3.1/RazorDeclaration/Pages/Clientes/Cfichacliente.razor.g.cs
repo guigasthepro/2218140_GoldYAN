@@ -115,6 +115,7 @@ using Microsoft.EntityFrameworkCore;
 #line 64 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Cfichacliente.razor"
        
 
+
     private Clientes cFichaCliente = new Clientes();
 
     ClientesController CC = new ClientesController();

@@ -238,7 +238,6 @@ C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\D
 C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewImports.cshtml.g.cs
 C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewStart.cshtml.g.cs
-C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Administração\Bancos.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Administração\ClassificacaoProdutos.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Administração\CodigoPostal.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Administração\FamiliasProdutos.razor.g.cs
@@ -246,7 +245,6 @@ C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\D
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Administração\Profissoes.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Administração\Unidades.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Administração\Utilizadores.razor.g.cs
-C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Administração\Bancos.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Administração\ClassificacaoProdutos.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Administração\CodigoPostal.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Administração\FamiliasProdutos.razor.g.cs
@@ -254,3 +252,5 @@ C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\D
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Administração\Profissoes.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Administração\Unidades.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Administração\Utilizadores.razor.g.cs
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Administração\ABancos.razor.g.cs
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Administração\ABancos.razor.g.cs

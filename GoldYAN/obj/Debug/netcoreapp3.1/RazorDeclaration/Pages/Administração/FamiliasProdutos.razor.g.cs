@@ -75,6 +75,14 @@ using GoldYAN.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 1 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+using GoldYAN.Controller;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/familiaprodutos")]
     public partial class FamiliasProdutos : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -82,6 +90,24 @@ using GoldYAN.Shared;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 53 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+       
+
+    List<GoldYAN.Data.FamiliaProdutos> VFPS = new List<GoldYAN.Data.FamiliaProdutos>();
+
+    FamiliaProdutosController VFP = new FamiliaProdutosController();
+
+    protected override async Task OnInitializedAsync()
+    {
+        VFPS = VFP.Get();
+
+    }
+
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591

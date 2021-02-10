@@ -75,6 +75,14 @@ using GoldYAN.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 1 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ClassificacaoProdutos.razor"
+using GoldYAN.Controller;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/classificacaoprodutos")]
     public partial class ClassificacaoProdutos : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -82,6 +90,22 @@ using GoldYAN.Shared;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 50 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ClassificacaoProdutos.razor"
+       
+    List<GoldYAN.Data.ClassificacaoProdutos> VCPS = new List<GoldYAN.Data.ClassificacaoProdutos>();
+
+    ClassificacaoProdutosController VCP = new ClassificacaoProdutosController();
+
+    protected override async Task OnInitializedAsync()
+    {
+        VCPS = VCP.Get();
+
+    }
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591

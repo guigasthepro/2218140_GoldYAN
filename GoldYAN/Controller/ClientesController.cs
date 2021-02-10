@@ -97,11 +97,6 @@ namespace GoldYAN.Controller
             {
                 return NotFound();
             }
-
-
-
-
-
         }
         /// <summary>
         /// Dá delete ao presente escolhido

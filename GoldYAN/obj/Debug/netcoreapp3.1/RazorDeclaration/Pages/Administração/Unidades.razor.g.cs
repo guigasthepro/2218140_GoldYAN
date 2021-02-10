@@ -75,6 +75,14 @@ using GoldYAN.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 1 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Unidades.razor"
+using GoldYAN.Controller;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/unidades")]
     public partial class Unidades : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -82,6 +90,23 @@ using GoldYAN.Shared;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 50 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Unidades.razor"
+       
+
+    List<GoldYAN.Data.Unidades> VUS = new List<GoldYAN.Data.Unidades>();
+
+    UnidadesController VU = new UnidadesController();
+
+    protected override async Task OnInitializedAsync()
+    {
+        VUS = VU.Get();
+
+    }
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591
