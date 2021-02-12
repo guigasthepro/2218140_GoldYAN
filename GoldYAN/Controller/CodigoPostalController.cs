@@ -39,7 +39,7 @@ namespace GoldYAN.Controller
         [HttpGet("{id}")]
         public Codigopostal Get(int id)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
             var res = DBConn.Get<Codigopostal>(id);
 
             return res;
@@ -62,7 +62,7 @@ namespace GoldYAN.Controller
         [HttpPut("{id}")]
         public ActionResult<Codigopostal> Put(int id, [FromBody] Codigopostal codigopostal)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
 
             var recLido = DBConn.Get<Codigopostal>(id);
 
@@ -85,7 +85,7 @@ namespace GoldYAN.Controller
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
             var res = DBConn.Get<Codigopostal>(id);
             if (res != null)
             {

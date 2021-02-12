@@ -89,6 +89,27 @@ using GoldYAN.Data;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
+using System.Threading;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
+using Microsoft.Data.SqlClient;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
+using Microsoft.EntityFrameworkCore;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/bancos")]
     public partial class ABancos : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -98,23 +119,72 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 48 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
+#line 121 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
        
-
     List<GoldYAN.Data.Bancos> VBS = new List<GoldYAN.Data.Bancos>();
 
     BancosController VB = new BancosController();
+
+    Data.Bancos updateBanco = new Bancos();
+
+    bool showModal = false;
 
     protected override async Task OnInitializedAsync()
     {
         VBS = VB.Get();
 
+        foreach (var banco in @VBS)
+        {
+            updateBanco.idbanco = banco.idbanco;
+            updateBanco.codigobanco = banco.codigobanco;
+            updateBanco.nome = banco.nome;
+        }
+
+    }
+
+    public async Task Apagar(int id)
+    {
+
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            string message = VB.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+            {
+                await js.InvokeVoidAsync("alert", @message);
+            }
+        }
+    }
+
+    public async Task Update()
+    {
+        VB.Put(updateBanco.idbanco, updateBanco);
+        showModal = false;
+    }
+
+
+    void ModalShow(){
+        showModal = true;
+    }
+    void ModalCancel() {
+        showModal = false;
+    }
+
+    void ModalOk()
+    {
+        Console.WriteLine("Modal ok");
+        showModal = false;
     }
 
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
     }
 }
 #pragma warning restore 1591

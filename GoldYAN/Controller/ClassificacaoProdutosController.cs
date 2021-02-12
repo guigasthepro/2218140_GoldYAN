@@ -38,7 +38,7 @@ namespace GoldYAN.Controller
         [HttpGet("{id}")]
         public ClassificacaoProdutos Get(int id)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
             var res = DBConn.Get<ClassificacaoProdutos>(id);
 
             return res;
@@ -61,7 +61,7 @@ namespace GoldYAN.Controller
         [HttpPut("{id}")]
         public ActionResult<ClassificacaoProdutos> Put(int id, [FromBody] ClassificacaoProdutos classificacaoProdutos)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
 
             var recLido = DBConn.Get<ClassificacaoProdutos>(id);
 
@@ -84,7 +84,7 @@ namespace GoldYAN.Controller
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
             var res = DBConn.Get<ClassificacaoProdutos>(id);
             if (res != null)
             {

@@ -128,10 +128,7 @@ using Microsoft.EntityFrameworkCore;
 
     }
 
-    public async Task Esperar()
-    {
-        await Task.Delay(2500);
-    }
+    public async Task Esperar() => await Task.Delay(2500);
 
 
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
+using Microsoft.AspNetCore.Authorization;
 using MySql.Data.MySqlClient;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,6 +14,7 @@ namespace GoldYAN.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
 
     public class BancosController : ControllerBase
     {
@@ -39,7 +41,7 @@ namespace GoldYAN.Controller
         [HttpGet("{id}")]
         public Bancos Get(int id)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
             var res = DBConn.Get<Bancos>(id);
 
             return res;
@@ -62,14 +64,14 @@ namespace GoldYAN.Controller
         [HttpPut("{id}")]
         public ActionResult<Bancos> Put(int id, [FromBody] Bancos banco)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
 
             var recLido = DBConn.Get<Bancos>(id);
 
             if (recLido != null)
             {
-                //recLido.Nomes = presente.Nomes;
-                //recLido.Quantidade = presente.Quantidade;
+                recLido.codigobanco = banco.codigobanco;
+                recLido.nome = banco.nome;
 
                 bool updated = DBConn.Update(recLido);
 
@@ -83,17 +85,25 @@ namespace GoldYAN.Controller
 
         // DELETE api/<BancosController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public string Delete(int id)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = painatal; Uid = root; Pwd =; ");
-            var res = DBConn.Get<Bancos>(id);
-            if (res != null)
+            try
             {
-                DBConn.Delete(res);
+                MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
+                var res = DBConn.Get<Bancos>(id);
+                if (res != null)
+                {
+                    DBConn.Delete(res);
+                    return "Item foi apagado com sucesso";
+                }
+                else
+                {
+                    return "Não podes apagar o que não há para apagar!";
+                }
             }
-            else
+            catch (Exception e)
             {
-
+                return "Ocorreu um erro ao tentar apagar";
             }
         }
     }
