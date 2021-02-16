@@ -8,7 +8,6 @@ namespace GoldYAN.Data
     {
         [ExplicitKey]
         public int idcodigopostal { get; set; }
-        [Write(false)]
         public string descricao { get; set; }
     }
 }

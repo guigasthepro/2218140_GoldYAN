@@ -1,5 +1,61 @@
 ﻿@using GoldYAN.Controller
+@inject IJSRuntime js
 @page "/familiaprodutos"
+
+@if (showModal)
+{
+    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Atualizar Informação</h4>
+                    <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <EditForm Model="@updateFP" OnValidSubmit="@Update">
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">ID da Unidade:</label>
+                            <InputNumber class="w-25 form-control" id="telefone" @bind-Value="updateFP.idunidade" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="email">Tipo:</label>
+                            <InputText class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="updateFP.tipo" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Codigo:</label>
+                            <InputText class="w-25 form-control" id="telefone" @bind-Value="updateFP.codigo" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="email">Nome:</label>
+                            <InputText class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="updateFP.nome" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="email">Descrição:</label>
+                            <InputText class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="updateFP.descricao" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="email">DescriçãoEQ</label>
+                            <InputText class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="updateFP.descricaoeq" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="email">Toque:</label>
+                            <InputNumber class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="updateFP.toque" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Atualizar</button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 
 <AuthorizeView Roles="Admin">
     <Authorized>
@@ -36,7 +92,7 @@
                                                     <td>@fp.descricao</td>
                                                     <td>@fp.descricaoeq</td>
                                                     <td>@fp.toque</td>
-                                                    <td><button class="btn btn-primary" style="margin-left:1rem">Editar</button><button class="btn btn-danger" style="margin-left:0.3rem">Apagar</button></td>
+                                                    <td><button class="btn btn-primary" @onclick="@ModalShow" style="margin-left:1rem">Editar</button><button class="btn btn-danger" @onclick="() => Apagar(fp.idfproduto)" style="margin-left:0.3rem">Apagar</button></td>
                                                 </tr>
                                             }
 
@@ -64,10 +120,67 @@
 
     FamiliaProdutosController VFP = new FamiliaProdutosController();
 
+    Data.FamiliaProdutos updateFP = new Data.FamiliaProdutos();
+
+    bool showModal = false;
+
     protected override async Task OnInitializedAsync()
     {
         VFPS = VFP.Get();
+        @foreach (var fp in @VFPS)
+        {
 
+            updateFP.idfproduto = fp.idfproduto;
+            updateFP.idunidade = fp.idunidade;
+            updateFP.tipo = fp.tipo;
+            updateFP.codigo = fp.codigo;
+            updateFP.nome = fp.nome;
+            updateFP.descricao = fp.descricao;
+            updateFP.descricaoeq = fp.descricaoeq;
+            updateFP.toque = fp.toque;
+
+        }
+
+    }
+
+    public async Task Apagar(int id)
+    {
+
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            string message = VFP.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+            {
+                await js.InvokeVoidAsync("alert", @message);
+            }
+        }
+    }
+
+    public async Task Update()
+    {
+        VFP.Put(updateFP.idfproduto, updateFP);
+        showModal = false;
+    }
+
+
+    void ModalShow()
+    {
+        showModal = true;
+    }
+    void ModalCancel()
+    {
+        showModal = false;
+    }
+
+    void ModalOk()
+    {
+        Console.WriteLine("Modal ok");
+        showModal = false;
     }
 
 }

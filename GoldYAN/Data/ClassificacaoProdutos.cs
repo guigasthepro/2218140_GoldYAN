@@ -11,6 +11,6 @@ namespace GoldYAN.Data
         public int codigo { get; set; }
         public string descricao { get; set; }
         public string codigoat { get; set; }
-        public bool inventario { get; set; }
+        public int inventario { get; set; }
     }
 }

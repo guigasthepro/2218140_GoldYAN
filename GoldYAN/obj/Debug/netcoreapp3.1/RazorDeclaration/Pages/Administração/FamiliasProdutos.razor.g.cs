@@ -91,23 +91,95 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 61 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+#line 117 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
        
 
     List<GoldYAN.Data.FamiliaProdutos> VFPS = new List<GoldYAN.Data.FamiliaProdutos>();
 
     FamiliaProdutosController VFP = new FamiliaProdutosController();
 
+    Data.FamiliaProdutos updateFP = new Data.FamiliaProdutos();
+
+    bool showModal = false;
+
     protected override async Task OnInitializedAsync()
     {
         VFPS = VFP.Get();
+        
 
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 130 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+         foreach (var fp in @VFPS)
+        {
+
+            updateFP.idfproduto = fp.idfproduto;
+            updateFP.idunidade = fp.idunidade;
+            updateFP.tipo = fp.tipo;
+            updateFP.codigo = fp.codigo;
+            updateFP.nome = fp.nome;
+            updateFP.descricao = fp.descricao;
+            updateFP.descricaoeq = fp.descricaoeq;
+            updateFP.toque = fp.toque;
+
+        }
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 142 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+         
+
+    }
+
+    public async Task Apagar(int id)
+    {
+
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            string message = VFP.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+            {
+                await js.InvokeVoidAsync("alert", @message);
+            }
+        }
+    }
+
+    public async Task Update()
+    {
+        VFP.Put(updateFP.idfproduto, updateFP);
+        showModal = false;
+    }
+
+
+    void ModalShow()
+    {
+        showModal = true;
+    }
+    void ModalCancel()
+    {
+        showModal = false;
+    }
+
+    void ModalOk()
+    {
+        Console.WriteLine("Modal ok");
+        showModal = false;
     }
 
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
     }
 }
 #pragma warning restore 1591

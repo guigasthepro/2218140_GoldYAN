@@ -119,7 +119,7 @@ using Microsoft.EntityFrameworkCore;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 121 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
+#line 118 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
        
     List<GoldYAN.Data.Bancos> VBS = new List<GoldYAN.Data.Bancos>();
 

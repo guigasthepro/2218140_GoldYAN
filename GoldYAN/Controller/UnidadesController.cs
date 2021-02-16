@@ -69,8 +69,9 @@ namespace GoldYAN.Controller
 
             if (recLido != null)
             {
-                //recLido.Nomes = presente.Nomes;
-                //recLido.Quantidade = presente.Quantidade;
+                recLido.idunidade = unidade.idunidade;
+                recLido.indice = unidade.indice;
+                recLido.descricao = unidade.descricao;
 
                 bool updated = DBConn.Update(recLido);
 
@@ -84,17 +85,18 @@ namespace GoldYAN.Controller
 
         // DELETE api/<UnidadesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public string Delete(int id)
         {
             MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
             var res = DBConn.Get<Unidades>(id);
             if (res != null)
             {
                 DBConn.Delete(res);
+                return "Sucesso!";
             }
             else
             {
-
+                return "Erro";
             }
         }
     }

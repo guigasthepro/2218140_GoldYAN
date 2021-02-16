@@ -91,23 +91,76 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 56 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Profissoes.razor"
+#line 92 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Profissoes.razor"
        
 
     List<GoldYAN.Data.Profissoes> VPS = new List<GoldYAN.Data.Profissoes>();
 
     ProfissoesController VP = new ProfissoesController();
 
+    Data.Profissoes updateP = new Data.Profissoes();
+
+    bool showModal = false;
+
     protected override async Task OnInitializedAsync()
     {
         VPS = VP.Get();
 
+        foreach (var profissao in @VPS)
+        {
+           updateP.idprofissao = profissao.idprofissao;
+           updateP.codigo = profissao.codigo;
+           updateP.nome = profissao.nome;
+
+        }
+
+    }
+
+    public async Task Apagar(int id)
+    {
+
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            string message = VP.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+            {
+                await js.InvokeVoidAsync("alert", @message);
+            }
+        }
+    }
+
+    public async Task Update()
+    {
+        VP.Put(updateP.idprofissao, updateP);
+        showModal = false;
+    }
+
+
+    void ModalShow()
+    {
+        showModal = true;
+    }
+    void ModalCancel()
+    {
+        showModal = false;
+    }
+
+    void ModalOk()
+    {
+        Console.WriteLine("Modal ok");
+        showModal = false;
     }
 
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
     }
 }
 #pragma warning restore 1591

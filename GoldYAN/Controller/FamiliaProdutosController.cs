@@ -67,8 +67,13 @@ namespace GoldYAN.Controller
 
             if (recLido != null)
             {
-                //recLido.Nomes = presente.Nomes;
-                //recLido.Quantidade = presente.Quantidade;
+                recLido.idfproduto = familiaProdutos.idfproduto;
+                recLido.idunidade = familiaProdutos.idunidade;
+                recLido.tipo = familiaProdutos.tipo;
+                recLido.codigo = familiaProdutos.codigo;
+                recLido.nome = familiaProdutos.nome;
+                recLido.descricao = familiaProdutos.descricao;
+                recLido.descricaoeq = familiaProdutos.descricaoeq;
 
                 bool updated = DBConn.Update(recLido);
 
@@ -82,17 +87,18 @@ namespace GoldYAN.Controller
 
         // DELETE api/<FamiliaProdutosController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public string Delete(int id)
         {
             MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
             var res = DBConn.Get<FamiliaProdutos>(id);
             if (res != null)
             {
                 DBConn.Delete(res);
+                return "Sucesso";
             }
             else
             {
-
+                return "Erro";
             }
         }
     }

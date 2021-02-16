@@ -1,5 +1,37 @@
 ﻿@using GoldYAN.Controller
+@inject IJSRuntime js
+
 @page "/codigopostal"
+
+@if (showModal)
+{
+    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Atualizar Informação</h4>
+                    <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <EditForm Model="@updateCP" OnValidSubmit="@Update">
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Descrição:</label>
+                            <InputText class="w-25 form-control" id="telefone" @bind-Value="updateCP.descricao" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Atualizar</button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 <AuthorizeView Roles="Admin">
     <Authorized>
@@ -10,7 +42,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Listagem de Clientes</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Listagem de Codigo Postais</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -30,7 +62,7 @@
                                                 <tr role="row" class="odd" id="@cp.idcodigopostal">
                                                     <td>@cp.idcodigopostal</td>
                                                     <td>@cp.descricao</td>
-                                                    <td><button class="btn btn-primary" style="margin-left:1rem">Editar</button><button class="btn btn-danger" style="margin-left:0.3rem">Apagar</button></td>
+                                                    <td><button class="btn btn-primary" @onclick="@ModalShow" style="margin-left:1rem">Editar</button><button class="btn btn-danger" @onclick="() => Apagar(cp.idcodigopostal)" style="margin-left:0.3rem">Apagar</button></td>
                                                 </tr>
                                             }
 
@@ -58,9 +90,61 @@
 
     CodigoPostalController VCP = new CodigoPostalController();
 
+    Data.Codigopostal updateCP = new Data.Codigopostal();
+
+    bool showModal = false;
+
     protected override async Task OnInitializedAsync()
     {
         VCPS = VCP.Get();
 
+        foreach (var cp in @VCPS)
+        {
+            updateCP.idcodigopostal = cp.idcodigopostal;
+            updateCP.descricao = cp.descricao;
+        }
+
     }
+
+    public async Task Apagar(int id)
+    {
+
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            string message = VCP.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+            {
+                await js.InvokeVoidAsync("alert", @message);
+            }
+        }
+    }
+
+    public async Task Update()
+    {
+        VCP.Put(updateCP.idcodigopostal, updateCP);
+        showModal = false;
+    }
+
+
+    void ModalShow()
+    {
+        showModal = true;
+    }
+    void ModalCancel()
+    {
+        showModal = false;
+    }
+
+    void ModalOk()
+    {
+        Console.WriteLine("Modal ok");
+        showModal = false;
+    }
+
+
 }

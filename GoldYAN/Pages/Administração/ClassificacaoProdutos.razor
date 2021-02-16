@@ -1,5 +1,52 @@
 ﻿@using GoldYAN.Controller
+@using GoldYAN.Data
 @page "/classificacaoprodutos"
+@inject IJSRuntime js
+
+
+@if (showModal)
+{
+    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Atualizar Informação</h4>
+                    <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <EditForm Model="@updateCP" OnValidSubmit="@Update">
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Descrição:</label>
+                            <InputText class="w-25 form-control" id="telefone" @bind-Value="updateCP.descricao" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="email">Codigo:</label>
+                            <InputNumber class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="updateCP.codigo" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Codigo AT:</label>
+                            <InputText class="w-25 form-control" id="telefone" @bind-Value="updateCP.codigoat" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="email">Inentário:</label>
+                            <InputNumber class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="updateCP.inventario" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Atualizar</button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
 
 <AuthorizeView Roles="Admin, Administração">
     <Authorized>
@@ -10,7 +57,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Listagem de Clientes</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Listagem de Classificações</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -33,7 +80,7 @@
                                                     <td>@cp.descricao</td>
                                                     <td>@cp.codigoat</td>
                                                     <td>@cp.inventario</td>
-                                                    <td><button class="btn btn-primary" style="margin-left:1rem">Editar</button><button class="btn btn-danger" style="margin-left:0.3rem">Apagar</button></td>
+                                                    <td><button class="btn btn-primary" @onclick="@ModalShow" style="margin-left:1rem">Editar</button><button class="btn btn-danger" @onclick="() => Apagar(cp.IDClassificacao)" style="margin-left:0.3rem">Apagar</button></td>
                                                 </tr>
                                             }
 
@@ -60,9 +107,63 @@
 
     ClassificacaoProdutosController VCP = new ClassificacaoProdutosController();
 
+    Data.ClassificacaoProdutos updateCP = new Data.ClassificacaoProdutos();
+
+    bool showModal = false;
+
     protected override async Task OnInitializedAsync()
     {
         VCPS = VCP.Get();
 
+        foreach (var banco in @VCPS)
+        {
+            updateCP.IDClassificacao = banco.IDClassificacao;
+            updateCP.descricao = banco.descricao;
+            updateCP.codigo = banco.codigo;
+            updateCP.codigoat = banco.codigoat;
+            updateCP.inventario = banco.inventario;
+        }
+
     }
+
+    public async Task Apagar(int id)
+    {
+
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            string message = VCP.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+            {
+                await js.InvokeVoidAsync("alert", @message);
+            }
+        }
+    }
+
+    public async Task Update()
+    {
+        VCP.Put(updateCP.IDClassificacao, updateCP);
+        showModal = false;
+    }
+
+
+    void ModalShow()
+    {
+        showModal = true;
+    }
+    void ModalCancel()
+    {
+        showModal = false;
+    }
+
+    void ModalOk()
+    {
+        Console.WriteLine("Modal ok");
+        showModal = false;
+    }
+
 }

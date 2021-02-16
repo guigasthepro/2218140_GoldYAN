@@ -91,22 +91,75 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 57 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Unidades.razor"
+#line 93 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Unidades.razor"
        
 
     List<GoldYAN.Data.Unidades> VUS = new List<GoldYAN.Data.Unidades>();
 
     UnidadesController VU = new UnidadesController();
 
+    Data.Unidades updateU = new Data.Unidades();
+
+    bool showModal = false;
+
     protected override async Task OnInitializedAsync()
     {
         VUS = VU.Get();
 
+        foreach (var unidades in @VUS)
+        {
+            updateU.idunidade = unidades.idunidade;
+            updateU.descricao = unidades.descricao;
+            updateU.indice = unidades.indice;
+        }
+
     }
+
+    public async Task Apagar(int id)
+    {
+
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            string message = VU.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+            {
+                await js.InvokeVoidAsync("alert", @message);
+            }
+        }
+    }
+
+    public async Task Update()
+    {
+        VU.Put(updateU.idunidade, updateU);
+        showModal = false;
+    }
+
+
+    void ModalShow()
+    {
+        showModal = true;
+    }
+    void ModalCancel()
+    {
+        showModal = false;
+    }
+
+    void ModalOk()
+    {
+        Console.WriteLine("Modal ok");
+        showModal = false;
+    }
+
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
     }
 }
 #pragma warning restore 1591

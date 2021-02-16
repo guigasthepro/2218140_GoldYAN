@@ -82,6 +82,13 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ClassificacaoProdutos.razor"
+using GoldYAN.Data;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/classificacaoprodutos")]
     public partial class ClassificacaoProdutos : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -91,21 +98,76 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 58 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ClassificacaoProdutos.razor"
+#line 105 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ClassificacaoProdutos.razor"
        
     List<GoldYAN.Data.ClassificacaoProdutos> VCPS = new List<GoldYAN.Data.ClassificacaoProdutos>();
 
     ClassificacaoProdutosController VCP = new ClassificacaoProdutosController();
 
+    Data.ClassificacaoProdutos updateCP = new Data.ClassificacaoProdutos();
+
+    bool showModal = false;
+
     protected override async Task OnInitializedAsync()
     {
         VCPS = VCP.Get();
 
+        foreach (var banco in @VCPS)
+        {
+            updateCP.IDClassificacao = banco.IDClassificacao;
+            updateCP.descricao = banco.descricao;
+            updateCP.codigo = banco.codigo;
+            updateCP.codigoat = banco.codigoat;
+            updateCP.inventario = banco.inventario;
+        }
+
     }
+
+    public async Task Apagar(int id)
+    {
+
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            string message = VCP.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+            {
+                await js.InvokeVoidAsync("alert", @message);
+            }
+        }
+    }
+
+    public async Task Update()
+    {
+        VCP.Put(updateCP.IDClassificacao, updateCP);
+        showModal = false;
+    }
+
+
+    void ModalShow()
+    {
+        showModal = true;
+    }
+    void ModalCancel()
+    {
+        showModal = false;
+    }
+
+    void ModalOk()
+    {
+        Console.WriteLine("Modal ok");
+        showModal = false;
+    }
+
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
     }
 }
 #pragma warning restore 1591
