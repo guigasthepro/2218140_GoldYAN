@@ -1,4 +1,5 @@
 ﻿using Dapper.Contrib.Extensions;
+using Microsoft.CodeAnalysis.Operations;
 
 namespace GoldYAN.Data
 {
@@ -6,11 +7,14 @@ namespace GoldYAN.Data
     public class Produtos
     {
         [ExplicitKey]
-        public int produtoid { get; set; }
+        public int idproduto { get; set; }
+        public int familiaproduto { get; set; }
+        public int tipoproduto { get; set; }
         public int idfornecedor{ get; set; }
         public int idfabrico { get; set; }
-        public string alcunha { get; set; }
+        public string codigo { get; set; }
         public string nome { get; set; }
+        public string descricao { get; set; }
         public int quantidade{ get; set; }
         public string contrastaria { get; set; }
         public int preco { get; set; }
@@ -19,5 +23,8 @@ namespace GoldYAN.Data
         public int feitio { get; set; }
         public int feitiograma { get; set; }
         public int cotacao { get; set; }
+        public int gaveta { get; set; }
+        public string tempo { get; set; }
+        public double peso { get; set; }
     }
 }

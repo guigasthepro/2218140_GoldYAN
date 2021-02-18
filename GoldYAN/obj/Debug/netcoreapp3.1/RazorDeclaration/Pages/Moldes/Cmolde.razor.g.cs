@@ -98,15 +98,26 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Cmolde.razor"
+#line 60 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Cmolde.razor"
        
 
     private Moldes cMolde = new Moldes();
 
+    List<TipoProduto> TP = new List<TipoProduto>();
+
     MoldesController CM = new MoldesController();
+
+    public string idtp  { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        TP = CM.GetSelect();
+        idtp = cMolde.familiaproduto.ToString();
+    }
 
     public void CriarMolde()
     {
+        cMolde.tipoproduto = 1;
         CM.Post(cMolde);
         Esperar();
         cMolde = new Moldes();

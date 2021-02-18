@@ -58,10 +58,10 @@
                                     <tbody>
                                         @foreach (var molde in @VMS)
                                         {
-                                            <tr role="row" class="odd" id="@molde.idmolde" @onclick="() => DescricaoProduto = molde.descricao">
+                                            <tr role="row" class="odd" id="@molde.idproduto" @onclick="() => DescricaoProduto = molde.descricao">
                                                 <td>@molde.codigo</td>
                                                 <td>@molde.descricao</td>
-                                                <td>@molde.Gaveta</td>
+                                                <td>@molde.gaveta</td>
                                                 <td><button class="btn btn-primary" style="margin-left:1rem">Editar</button><button class="btn btn-danger" style="margin-left:0.3rem">Apagar</button></td>
                                             </tr>
                                         }

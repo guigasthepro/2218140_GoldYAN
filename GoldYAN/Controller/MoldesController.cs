@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Dapper;
 using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ namespace GoldYAN.Controller
     [ApiController]
     public class MoldesController : ControllerBase
     {
-
+        List<TipoProduto> lerProdutos = new List<TipoProduto>();
         List<Moldes> LerMoldes = new List<Moldes>();
         Moldes LerMolde = new Moldes();
 
@@ -24,13 +25,24 @@ namespace GoldYAN.Controller
         {
             LerMoldes = new List<Moldes>();
 
+            string sql = "Select idproduto, familiaproduto, tipoproduto, codigo, descricao, gaveta, tempo, peso FROM produtos Where familiaproduto = 1 ";
 
             MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.GetAll<Moldes>().ToList();
+            var res = DBConn.Query<Moldes>(sql).ToList();
 
             LerMoldes = res;
 
             return LerMoldes;
+        }
+
+        [HttpGet]
+        public List<TipoProduto> GetSelect()
+        {
+            lerProdutos = new List<TipoProduto>();
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
+            var res = DBConn.GetAll<TipoProduto>().ToList();
+            lerProdutos = res;
+            return lerProdutos;
         }
 
         // GET api/<MoldesController>/5

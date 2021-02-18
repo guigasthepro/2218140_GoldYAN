@@ -24,12 +24,18 @@
 
             <div class="form-group m-2 p-1">
                 <label for="tipopeça">Tipo Peça</label>
-                <InputNumber class="w-25 form-control" id="telefone" @bind-Value="cMolde.idfproduto" />
+                <InputSelect id="tipopeça" @bind-Value="@idtp" class="form-control">
+                    @foreach (var tp in TP)
+                    {
+
+                        <option value="@tp.idtipoproduto">@tp.descricao</option>
+                    }
+                </InputSelect>
             </div>
 
             <div class="form-group m-2 p-1">
                 <label for="gaveta">Gaveta</label>
-                <InputNumber class="w-25 form-control" id="gaveta" placeholder="Boas" @bind-Value="cMolde.Gaveta" />
+                <InputNumber class="w-25 form-control" id="gaveta" placeholder="Boas" @bind-Value="cMolde.gaveta" />
             </div>
 
             <div class="form-group m-2 p-1">
@@ -40,7 +46,7 @@
 
             <div class="form-group m-2 p-1">
                 <label for="peso">Peso</label>
-                <InputNumber class="w-25 form-control" id="peso" @bind-Value="cMolde.Gaveta"  />
+                <InputNumber class="w-25 form-control" id="peso" @bind-Value="cMolde.peso"  />
             </div>
             <div class="m-3">
                 <button class="btn btn-primary float-right" style="margin-left: 5px" type="reset">Cancelar</button>
@@ -55,10 +61,20 @@
 
     private Moldes cMolde = new Moldes();
 
+    List<TipoProduto> TP = new List<TipoProduto>();
+
     MoldesController CM = new MoldesController();
+
+    public string idtp  { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        TP = CM.GetSelect();
+    }
 
     public void CriarMolde()
     {
+        cMolde.tipoproduto = 1;
         CM.Post(cMolde);
         Esperar();
         cMolde = new Moldes();
