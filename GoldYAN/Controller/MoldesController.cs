@@ -4,6 +4,7 @@ using Dapper;
 using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,6 +19,14 @@ namespace GoldYAN.Controller
         List<Moldes> LerMoldes = new List<Moldes>();
         Moldes LerMolde = new Moldes();
 
+        private readonly IConfiguration configuration;
+        private string connectionString;
+        public MoldesController(IConfiguration configRoot)
+        {
+            configuration = configRoot; // atribuir as configurações ao campo privado
+            connectionString = configuration["ConnectionStrings:DefaultConnection"];
+        }
+
 
         // GET: api/<MoldesController>
         [HttpGet]
@@ -27,10 +36,11 @@ namespace GoldYAN.Controller
 
             string sql = "Select idproduto, familiaproduto, tipoproduto, codigo, descricao, gaveta, tempo, peso FROM produtos Where familiaproduto = 1 ";
 
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.Query<Moldes>(sql).ToList();
-
-            LerMoldes = res;
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Query<Moldes>(sql).ToList();
+                LerMoldes = res;
+            }
 
             return LerMoldes;
         }
@@ -39,10 +49,13 @@ namespace GoldYAN.Controller
         public List<TipoProduto> GetSelect()
         {
             lerProdutos = new List<TipoProduto>();
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.GetAll<TipoProduto>().ToList();
-            lerProdutos = res;
-            return lerProdutos;
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.GetAll<TipoProduto>().ToList();
+                lerProdutos = res;
+                return lerProdutos;
+            }
         }
 
         // GET api/<MoldesController>/5
@@ -56,13 +69,12 @@ namespace GoldYAN.Controller
         [HttpPost]
         public Moldes Post([FromBody] Moldes molde)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-
-            var idNewRec = DBConn.Insert<Moldes>(molde);
-
-            var res = DBConn.Get<Moldes>(idNewRec);
-
-            return res;
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var idNewRec = DBConn.Insert<Moldes>(molde);
+                var res = DBConn.Get<Moldes>(idNewRec);
+                return res;
+            }
         }
 
         // PUT api/<MoldesController>/5

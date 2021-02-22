@@ -1,5 +1,6 @@
 using GoldYAN.Areas.Identity;
 using GoldYAN.Data;
+using GoldYAN.Controller;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -40,7 +41,7 @@ namespace GoldYAN
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-            services.AddSingleton<WeatherForecastService>();
+            services.AddScoped<BancosController>();
             services.AddHttpContextAccessor();
         }
 

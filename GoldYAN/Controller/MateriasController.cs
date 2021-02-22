@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using MySql.Data.MySqlClient;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,17 +21,25 @@ namespace GoldYAN.Controller
         List<Materias> LerMaterias = new List<Materias>();
         Materias LerMateria = new Materias();
 
+        private readonly IConfiguration configuration;
+        private string connectionString;
+        public MateriasController(IConfiguration configRoot)
+        {
+            configuration = configRoot; // atribuir as configurações ao campo privado
+            connectionString = configuration["ConnectionStrings:DefaultConnection"];
+        }
+
         [HttpGet]
         public List<Materias> Get()
         {
             LerMaterias = new List<Materias>();
 
 
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.GetAll<Materias>().ToList();
-
-            LerMaterias = res;
-
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.GetAll<Materias>().ToList();
+                LerMaterias = res;
+            }
             return LerMaterias;
         }
 
@@ -38,47 +47,48 @@ namespace GoldYAN.Controller
         [HttpGet("{id}")]
         public Materias Get(int id)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.Get<Materias>(id);
-
-            return res;
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Get<Materias>(id);
+                return res;
+            }
         }
 
         // POST api/<MateriasController>
         [HttpPost]
         public Materias Post([FromBody] Materias materias)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-
-            var idNewRec = DBConn.Insert<Materias>(materias);
-
-            var res = DBConn.Get<Materias>(idNewRec);
-
-            return res;
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var idNewRec = DBConn.Insert<Materias>(materias);
+                var res = DBConn.Get<Materias>(idNewRec);
+                return res;
+            }
         }
 
         // PUT api/<MateriasController>/5
         [HttpPut("{id}")]
         public ActionResult<Materias> Put(int id, [FromBody] Materias materias)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-
-            var recLido = DBConn.Get<Materias>(id);
-
-            if (recLido != null)
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
+                var recLido = DBConn.Get<Materias>(id);
 
-                recLido.idmateria = materias.idmateria;
-                recLido.nome = materias.nome;
-                recLido.alcunha = materias.alcunha;
+                if (recLido != null)
+                {
 
-                bool updated = DBConn.Update(recLido);
+                    recLido.idmateria = materias.idmateria;
+                    recLido.nome = materias.nome;
+                    recLido.alcunha = materias.alcunha;
 
-                return Ok(recLido);
-            }
-            else
-            {
-                return NotFound();
+                    bool updated = DBConn.Update(recLido);
+
+                    return Ok(recLido);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
         }
 
@@ -86,16 +96,18 @@ namespace GoldYAN.Controller
         [HttpDelete("{id}")]
         public string Delete(int id)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.Get<Materias>(id);
-            if (res != null)
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                DBConn.Delete(res);
-                return "Sucesso";
-            }
-            else
-            {
-                return "Erro";
+                var res = DBConn.Get<Materias>(id);
+                if (res != null)
+                {
+                    DBConn.Delete(res);
+                    return "Sucesso";
+                }
+                else
+                {
+                    return "Erro";
+                }
             }
         }
     }

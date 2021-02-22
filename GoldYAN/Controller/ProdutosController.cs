@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,6 +11,15 @@ namespace GoldYAN.Controller
     public class ProdutosController : ControllerBase
     {
         // GET: api/<ProdutosController>
+
+        private readonly IConfiguration configuration;
+        private string connectionString;
+        public ProdutosController(IConfiguration configRoot)
+        {
+            configuration = configRoot; // atribuir as configurações ao campo privado
+            connectionString = configuration["ConnectionStrings:DefaultConnection"];
+        }
+
         [HttpGet]
         public IEnumerable<string> Get()
         {

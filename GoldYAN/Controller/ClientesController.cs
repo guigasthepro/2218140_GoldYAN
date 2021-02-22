@@ -4,6 +4,7 @@ using System.Linq;
 using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -22,17 +23,25 @@ namespace GoldYAN.Controller
         List<Clientes> LerClientes = new List<Clientes>();
         Clientes LerCliente = new Clientes();
 
+        private readonly IConfiguration configuration;
+        private string connectionString;
+        public ClientesController(IConfiguration configRoot)
+        {
+            configuration = configRoot; // atribuir as configurações ao campo privado
+            connectionString = configuration["ConnectionStrings:DefaultConnection"];
+        }
+
         [HttpGet]
         public List<Clientes> Get()
         {
 
             LerClientes = new List<Clientes>();
 
-
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.GetAll<Clientes>().ToList();
-            
-            LerClientes = res;
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.GetAll<Clientes>().ToList();
+                LerClientes = res;
+            }
 
             return LerClientes;
         }
@@ -46,10 +55,11 @@ namespace GoldYAN.Controller
         [HttpGet("{id}")]
         public Clientes Get(int id)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.Get<Clientes>(id);
-
-            return res;
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Get<Clientes>(id);
+                return res;
+            }
         }
 
 
@@ -62,13 +72,12 @@ namespace GoldYAN.Controller
         [HttpPost]
         public Clientes Post([FromBody] Clientes cliente)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-
-            var idNewRec = DBConn.Insert<Clientes>(cliente);
-
-            var res = DBConn.Get<Clientes>(idNewRec);
-
-            return res;
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var idNewRec = DBConn.Insert<Clientes>(cliente);
+                var res = DBConn.Get<Clientes>(idNewRec);
+                return res;
+            }
         }
         /// <summary>
         /// Dá update ao id do presente
@@ -80,22 +89,24 @@ namespace GoldYAN.Controller
         [HttpPut("{id}")]
         public ActionResult<Clientes> Put(int id, [FromBody] Clientes cliente)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-
-            var recLido = DBConn.Get<Clientes>(id);
-
-            if (recLido != null)
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                //recLido.Nomes = presente.Nomes;
-                //recLido.Quantidade = presente.Quantidade;
 
-                bool updated = DBConn.Update(recLido);
+                var recLido = DBConn.Get<Clientes>(id);
 
-                return Ok(recLido);
-            }
-            else
-            {
-                return NotFound();
+                if (recLido != null)
+                {
+                    //recLido.Nomes = presente.Nomes;
+                    //recLido.Quantidade = presente.Quantidade;
+
+                    bool updated = DBConn.Update(recLido);
+
+                    return Ok(recLido);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
         }
         /// <summary>
@@ -106,17 +117,18 @@ namespace GoldYAN.Controller
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            MySqlConnection  DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.Get<Clientes>(id);
-            if (res != null)
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                DBConn.Delete(res);
-            }
-            else
-            {
+                var res = DBConn.Get<Clientes>(id);
+                if (res != null)
+                {
+                    DBConn.Delete(res);
+                }
+                else
+                {
 
+                }
             }
-
         }
     }
 }

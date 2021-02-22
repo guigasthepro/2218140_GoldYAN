@@ -7,6 +7,7 @@ using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using MySql.Data.MySqlClient;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,16 +22,25 @@ namespace GoldYAN.Controller
         List<Profissoes> LerProfissoes = new List<Profissoes>();
         Profissoes LerProfissoe = new Profissoes();
 
+        private readonly IConfiguration configuration;
+        private string connectionString;
+        public ProfissoesController(IConfiguration configRoot)
+        {
+            configuration = configRoot; // atribuir as configurações ao campo privado
+            connectionString = configuration["ConnectionStrings:DefaultConnection"];
+        }
+
         [HttpGet]
         public List<Profissoes> Get()
         {
             LerProfissoes = new List<Profissoes>();
 
 
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.GetAll<Profissoes>().ToList();
-
-            LerProfissoes = res;
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.GetAll<Profissoes>().ToList();
+                LerProfissoes = res;
+            }
 
             return LerProfissoes;
         }
@@ -39,45 +49,46 @@ namespace GoldYAN.Controller
         [HttpGet("{id}")]
         public Profissoes Get(int id)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.Get<Profissoes>(id);
-
-            return res;
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Get<Profissoes>(id);
+                return res;
+            }
         }
 
         // POST api/<ProfissoesController>
         [HttpPost]
         public Profissoes Post([FromBody] Profissoes profissoes)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-
-            var idNewRec = DBConn.Insert<Profissoes>(profissoes);
-
-            var res = DBConn.Get<Profissoes>(idNewRec);
-
-            return res;
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var idNewRec = DBConn.Insert<Profissoes>(profissoes);
+                var res = DBConn.Get<Profissoes>(idNewRec);
+                return res;
+            }
         }
 
         // PUT api/<ProfissoesController>/5
         [HttpPut("{id}")]
         public ActionResult<Profissoes> Put(int id, [FromBody] Profissoes profissoes)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-
-            var recLido = DBConn.Get<Profissoes>(id);
-
-            if (recLido != null)
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                recLido.codigo = profissoes.codigo;
-                recLido.nome = profissoes.nome;
+                var recLido = DBConn.Get<Profissoes>(id);
 
-                bool updated = DBConn.Update(recLido);
+                if (recLido != null)
+                {
+                    recLido.codigo = profissoes.codigo;
+                    recLido.nome = profissoes.nome;
 
-                return Ok(recLido);
-            }
-            else
-            {
-                return NotFound();
+                    bool updated = DBConn.Update(recLido);
+
+                    return Ok(recLido);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
         }
 
@@ -85,16 +96,18 @@ namespace GoldYAN.Controller
         [HttpDelete("{id}")]
         public string Delete(int id)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.Get<Profissoes>(id);
-            if (res != null)
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                DBConn.Delete(res);
-                return "Sucesso";
-            }
-            else
-            {
-                return "Erro";
+                var res = DBConn.Get<Profissoes>(id);
+                if (res != null)
+                {
+                    DBConn.Delete(res);
+                    return "Sucesso";
+                }
+                else
+                {
+                    return "Erro";
+                }
             }
         }
     }

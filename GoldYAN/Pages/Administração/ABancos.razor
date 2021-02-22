@@ -5,6 +5,7 @@
 @using Microsoft.Data.SqlClient
 @using Microsoft.EntityFrameworkCore
 @inject IJSRuntime js
+@inject BancosController VB
 
 
 @if (showModal)
@@ -117,8 +118,6 @@
 
 @code {
     List<GoldYAN.Data.Bancos> VBS = new List<GoldYAN.Data.Bancos>();
-
-    BancosController VB = new BancosController();
 
     Data.Bancos updateBanco = new Bancos();
 

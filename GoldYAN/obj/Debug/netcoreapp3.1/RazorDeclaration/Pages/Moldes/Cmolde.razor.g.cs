@@ -112,7 +112,6 @@ using GoldYAN.Controller;
     protected override async Task OnInitializedAsync()
     {
         TP = CM.GetSelect();
-        idtp = cMolde.familiaproduto.ToString();
     }
 
     public void CriarMolde()

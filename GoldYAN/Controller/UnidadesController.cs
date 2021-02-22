@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using MySql.Data.MySqlClient;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,18 +22,24 @@ namespace GoldYAN.Controller
         List<Unidades> LerUnidades = new List<Unidades>();
         Unidades LerUnidade = new Unidades();
 
+        private readonly IConfiguration configuration;
+        private string connectionString;
+        public UnidadesController(IConfiguration configRoot)
+        {
+            configuration = configRoot; // atribuir as configurações ao campo privado
+            connectionString = configuration["ConnectionStrings:DefaultConnection"];
+        }
 
         [HttpGet]
         public List<Unidades> Get()
         {
             LerUnidades = new List<Unidades>();
 
-
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.GetAll<Unidades>().ToList();
-
-            LerUnidades = res;
-
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.GetAll<Unidades>().ToList();
+                LerUnidades = res;
+            }
             return LerUnidades;
         }
 
@@ -40,46 +47,47 @@ namespace GoldYAN.Controller
         [HttpGet("{id}")]
         public Unidades Get(int id)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.Get<Unidades>(id);
-
-            return res;
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Get<Unidades>(id);
+                return res;
+            }
         }
 
         // POST api/<UnidadesController>
         [HttpPost]
         public Unidades Post([FromBody] Unidades unidades)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-
-            var idNewRec = DBConn.Insert<Unidades>(unidades);
-
-            var res = DBConn.Get<Unidades>(idNewRec);
-
-            return res;
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var idNewRec = DBConn.Insert<Unidades>(unidades);
+                var res = DBConn.Get<Unidades>(idNewRec);
+                return res;
+            }
         }
 
         // PUT api/<UnidadesController>/5
         [HttpPut("{id}")]
         public ActionResult<Unidades> Put(int id, [FromBody] Unidades unidade)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-
-            var recLido = DBConn.Get<Unidades>(id);
-
-            if (recLido != null)
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                recLido.idunidade = unidade.idunidade;
-                recLido.indice = unidade.indice;
-                recLido.descricao = unidade.descricao;
+                var recLido = DBConn.Get<Unidades>(id);
 
-                bool updated = DBConn.Update(recLido);
+                if (recLido != null)
+                {
+                    recLido.idunidade = unidade.idunidade;
+                    recLido.indice = unidade.indice;
+                    recLido.descricao = unidade.descricao;
 
-                return Ok(recLido);
-            }
-            else
-            {
-                return NotFound();
+                    bool updated = DBConn.Update(recLido);
+
+                    return Ok(recLido);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
         }
 
@@ -87,16 +95,18 @@ namespace GoldYAN.Controller
         [HttpDelete("{id}")]
         public string Delete(int id)
         {
-            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
-            var res = DBConn.Get<Unidades>(id);
-            if (res != null)
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                DBConn.Delete(res);
-                return "Sucesso!";
-            }
-            else
-            {
-                return "Erro";
+                var res = DBConn.Get<Unidades>(id);
+                if (res != null)
+                {
+                    DBConn.Delete(res);
+                    return "Sucesso!";
+                }
+                else
+                {
+                    return "Erro";
+                }
             }
         }
     }

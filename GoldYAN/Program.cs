@@ -15,7 +15,12 @@ namespace GoldYAN
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            //CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).ConfigureAppConfiguration((hostingContext, config) =>
+            {
+                config.AddEnvironmentVariables() // variáveis do ambiente de execução
+                      .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true); // ficheiro de configurações
+            }).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
