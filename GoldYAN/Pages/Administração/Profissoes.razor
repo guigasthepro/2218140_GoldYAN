@@ -1,6 +1,7 @@
 ﻿@using GoldYAN.Controller
 @page "/profissoes"
 @inject IJSRuntime js
+@inject ProfissoesController VP 
 
 
 @if (showModal)
@@ -92,8 +93,6 @@
 @code {
 
     List<GoldYAN.Data.Profissoes> VPS = new List<GoldYAN.Data.Profissoes>();
-
-    ProfissoesController VP = new ProfissoesController();
 
     Data.Profissoes updateP = new Data.Profissoes();
 

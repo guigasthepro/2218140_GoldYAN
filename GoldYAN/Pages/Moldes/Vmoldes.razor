@@ -2,6 +2,7 @@
 @using GoldYAN.Data
 @using GoldYAN.Controller
 @inject IJSRuntime JS;
+@inject MoldesController VM 
 
 
 <div class="container-fluid">
@@ -81,8 +82,6 @@
     string DescricaoProduto;
 
     List<Moldes> VMS = new List<Moldes>();
-
-    MoldesController VM = new MoldesController();
 
     protected override async Task OnInitializedAsync()
         {

@@ -91,12 +91,10 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 88 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Materias.razor"
+#line 89 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Materias.razor"
        
 
     List<GoldYAN.Data.Materias> VMS = new List<GoldYAN.Data.Materias>();
-
-    MateriasController VM = new MateriasController();
 
     Data.Materias updateM = new Data.Materias();
 
@@ -158,6 +156,7 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private MateriasController VM { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
     }
 }

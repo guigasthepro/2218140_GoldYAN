@@ -2,6 +2,7 @@
 @using GoldYAN.Data
 @page "/classificacaoprodutos"
 @inject IJSRuntime js
+@inject ClassificacaoProdutosController VCP 
 
 
 @if (showModal)
@@ -104,8 +105,6 @@
 
 @code {
     List<GoldYAN.Data.ClassificacaoProdutos> VCPS = new List<GoldYAN.Data.ClassificacaoProdutos>();
-
-    ClassificacaoProdutosController VCP = new ClassificacaoProdutosController();
 
     Data.ClassificacaoProdutos updateCP = new Data.ClassificacaoProdutos();
 

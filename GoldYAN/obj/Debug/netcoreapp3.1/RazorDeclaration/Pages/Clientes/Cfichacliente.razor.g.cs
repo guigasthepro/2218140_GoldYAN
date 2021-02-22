@@ -112,13 +112,11 @@ using Microsoft.EntityFrameworkCore;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 64 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Cfichacliente.razor"
+#line 65 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Cfichacliente.razor"
        
 
 
     private Clientes cFichaCliente = new Clientes();
-
-    ClientesController CC = new ClientesController();
 
     public void ClientCreate()
     {
@@ -135,6 +133,7 @@ using Microsoft.EntityFrameworkCore;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClientesController CC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
     }
 }

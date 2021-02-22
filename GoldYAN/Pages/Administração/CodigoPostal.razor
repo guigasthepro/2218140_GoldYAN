@@ -1,5 +1,6 @@
 ﻿@using GoldYAN.Controller
 @inject IJSRuntime js
+@inject CodigoPostalController VCP
 
 @page "/codigopostal"
 
@@ -87,8 +88,6 @@
 @code {
 
     List<GoldYAN.Data.Codigopostal> VCPS = new List<GoldYAN.Data.Codigopostal>();
-
-    CodigoPostalController VCP = new CodigoPostalController();
 
     Data.Codigopostal updateCP = new Data.Codigopostal();
 

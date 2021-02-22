@@ -91,12 +91,10 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 93 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Unidades.razor"
+#line 94 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Unidades.razor"
        
 
     List<GoldYAN.Data.Unidades> VUS = new List<GoldYAN.Data.Unidades>();
-
-    UnidadesController VU = new UnidadesController();
 
     Data.Unidades updateU = new Data.Unidades();
 
@@ -159,6 +157,7 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private UnidadesController VU { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
     }
 }

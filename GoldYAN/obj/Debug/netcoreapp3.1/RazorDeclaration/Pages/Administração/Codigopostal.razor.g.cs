@@ -91,12 +91,10 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 87 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\CodigoPostal.razor"
+#line 88 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\CodigoPostal.razor"
        
 
     List<GoldYAN.Data.Codigopostal> VCPS = new List<GoldYAN.Data.Codigopostal>();
-
-    CodigoPostalController VCP = new CodigoPostalController();
 
     Data.Codigopostal updateCP = new Data.Codigopostal();
 
@@ -159,6 +157,7 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private CodigoPostalController VCP { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
     }
 }

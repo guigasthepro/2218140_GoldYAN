@@ -7,7 +7,7 @@ namespace GoldYAN.Data
     public class Clientes
     {
         [ExplicitKey]
-        public int clienteid { get; set; }
+        public int idcliente { get; set; }
         [Required]
         public string Nome { get; set; }
         [Required]

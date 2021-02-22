@@ -91,12 +91,10 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 117 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+#line 118 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
        
 
     List<GoldYAN.Data.FamiliaProdutos> VFPS = new List<GoldYAN.Data.FamiliaProdutos>();
-
-    FamiliaProdutosController VFP = new FamiliaProdutosController();
 
     Data.FamiliaProdutos updateFP = new Data.FamiliaProdutos();
 
@@ -111,7 +109,7 @@ using GoldYAN.Controller;
 #line hidden
 #nullable disable
 #nullable restore
-#line 130 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+#line 129 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
          foreach (var fp in @VFPS)
         {
 
@@ -130,7 +128,7 @@ using GoldYAN.Controller;
 #line hidden
 #nullable disable
 #nullable restore
-#line 142 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+#line 141 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
          
 
     }
@@ -179,6 +177,7 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private FamiliaProdutosController VFP { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
     }
 }

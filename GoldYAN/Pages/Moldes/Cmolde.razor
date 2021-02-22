@@ -2,6 +2,7 @@
 @using GoldYAN.Data
 @using GoldYAN.Controller
 @inject IJSRuntime JsRuntime
+@inject MoldesController CM 
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -62,8 +63,6 @@
     private Moldes cMolde = new Moldes();
 
     List<TipoProduto> TP = new List<TipoProduto>();
-
-    MoldesController CM = new MoldesController();
 
     public string idtp  { get; set; }
 

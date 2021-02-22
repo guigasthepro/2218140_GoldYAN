@@ -98,14 +98,12 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 60 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Cmolde.razor"
+#line 61 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Cmolde.razor"
        
 
     private Moldes cMolde = new Moldes();
 
     List<TipoProduto> TP = new List<TipoProduto>();
-
-    MoldesController CM = new MoldesController();
 
     public string idtp  { get; set; }
 
@@ -131,6 +129,7 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private MoldesController CM { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
     }
 }

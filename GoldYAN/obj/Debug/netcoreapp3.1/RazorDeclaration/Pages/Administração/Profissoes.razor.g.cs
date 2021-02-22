@@ -91,12 +91,10 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 92 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Profissoes.razor"
+#line 93 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Profissoes.razor"
        
 
     List<GoldYAN.Data.Profissoes> VPS = new List<GoldYAN.Data.Profissoes>();
-
-    ProfissoesController VP = new ProfissoesController();
 
     Data.Profissoes updateP = new Data.Profissoes();
 
@@ -160,6 +158,7 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ProfissoesController VP { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
     }
 }

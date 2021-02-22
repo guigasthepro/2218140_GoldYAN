@@ -1,6 +1,7 @@
 ﻿@using GoldYAN.Controller
 @inject IJSRuntime js
 @page "/materiais"
+@inject MateriasController VM
 
 @if (showModal)
 {
@@ -88,8 +89,6 @@
 @code {
 
     List<GoldYAN.Data.Materias> VMS = new List<GoldYAN.Data.Materias>();
-
-    MateriasController VM = new MateriasController();
 
     Data.Materias updateM = new Data.Materias();
 

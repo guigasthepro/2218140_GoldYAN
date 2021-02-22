@@ -98,11 +98,9 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 105 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ClassificacaoProdutos.razor"
+#line 106 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ClassificacaoProdutos.razor"
        
     List<GoldYAN.Data.ClassificacaoProdutos> VCPS = new List<GoldYAN.Data.ClassificacaoProdutos>();
-
-    ClassificacaoProdutosController VCP = new ClassificacaoProdutosController();
 
     Data.ClassificacaoProdutos updateCP = new Data.ClassificacaoProdutos();
 
@@ -167,6 +165,7 @@ using GoldYAN.Data;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClassificacaoProdutosController VCP { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
     }
 }

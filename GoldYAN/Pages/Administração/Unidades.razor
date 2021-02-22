@@ -1,6 +1,7 @@
 ﻿@using GoldYAN.Controller
 @page "/unidades"
 @inject IJSRuntime js
+@inject UnidadesController VU
 
 
 @if (showModal)
@@ -93,8 +94,6 @@
 @code {
 
     List<GoldYAN.Data.Unidades> VUS = new List<GoldYAN.Data.Unidades>();
-
-    UnidadesController VU = new UnidadesController();
 
     Data.Unidades updateU = new Data.Unidades();
 

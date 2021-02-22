@@ -32,16 +32,35 @@ namespace GoldYAN
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            try 
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddRoles<IdentityRole>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
+            }
+            catch(Exception ex)
+            {
+
+            }
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddScoped<BancosController>();
+            services.AddScoped<ClassificacaoProdutosController>();
+            services.AddScoped<ClientesController>();
+            services.AddScoped<CodigoPostalController>();
+            services.AddScoped<EncomendasController>();
+            services.AddScoped<FamiliaProdutosController>();
+            services.AddScoped<FornecedoresController>();
+            services.AddScoped<MateriasController>();
+            services.AddScoped<ModelosController>();
+            services.AddScoped<MoldesController>();
+            services.AddScoped<ProdutosController>();
+            services.AddScoped<ProfissoesController>();
+            services.AddScoped<UnidadesController>();
             services.AddHttpContextAccessor();
         }
 

@@ -1,6 +1,7 @@
 ﻿@using GoldYAN.Controller
 @inject IJSRuntime js
 @page "/familiaprodutos"
+@inject FamiliaProdutosController VFP
 
 @if (showModal)
 {
@@ -117,8 +118,6 @@
 @code {
 
     List<GoldYAN.Data.FamiliaProdutos> VFPS = new List<GoldYAN.Data.FamiliaProdutos>();
-
-    FamiliaProdutosController VFP = new FamiliaProdutosController();
 
     Data.FamiliaProdutos updateFP = new Data.FamiliaProdutos();
 

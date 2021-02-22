@@ -98,27 +98,32 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 53 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
+#line 54 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
        
 
 
     List<Clientes> VCS = new List<Clientes>();
 
-    ClientesController VC = new ClientesController();
+    public string pesquisa { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         VCS = VC.Get();
+        StateHasChanged();
 
     }
 
-
+    public async Task Pesquisar(string valor)
+    {
+        VCS = VC.PesquisarClientes(valor);
+    }
 
 
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClientesController VC { get; set; }
     }
 }
 #pragma warning restore 1591
