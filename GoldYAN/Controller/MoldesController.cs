@@ -34,7 +34,7 @@ namespace GoldYAN.Controller
         {
             LerMoldes = new List<Moldes>();
 
-            string sql = "Select idproduto, familiaproduto, tipoproduto, codigo, descricao, gaveta, tempo, peso FROM produtos Where familiaproduto = 1 ";
+            string sql = "Select idproduto, tipoproduto, codigo, descricao, gaveta, tempo, peso FROM produtos Where tipoproduto = 1 ";
 
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {

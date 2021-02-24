@@ -22,18 +22,6 @@
                 <InputText class="w-25 form-control" id="descricao" @bind-Value="cMolde.descricao" />
                 <ValidationMessage For="@(() => cMolde.descricao)" />
             </div>
-
-            <div class="form-group m-2 p-1">
-                <label for="tipopeça">Tipo Peça</label>
-                <InputSelect id="tipopeça" @bind-Value="@idtp" class="form-control">
-                    @foreach (var tp in TP)
-                    {
-
-                        <option value="@tp.idtipoproduto">@tp.descricao</option>
-                    }
-                </InputSelect>
-            </div>
-
             <div class="form-group m-2 p-1">
                 <label for="gaveta">Gaveta</label>
                 <InputNumber class="w-25 form-control" id="gaveta" placeholder="Boas" @bind-Value="cMolde.gaveta" />

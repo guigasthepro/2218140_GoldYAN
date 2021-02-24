@@ -9,7 +9,6 @@ namespace GoldYAN.Data
     {
         [ExplicitKey]
         public int idproduto { get; set; }
-        public int familiaproduto { get; set; }
         public int tipoproduto { get; set; }
         public string codigo { get; set; }
         public string descricao { get; set; }
