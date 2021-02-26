@@ -91,14 +91,17 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 94 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Unidades.razor"
+#line 128 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Unidades.razor"
        
 
     List<GoldYAN.Data.Unidades> VUS = new List<GoldYAN.Data.Unidades>();
 
     Data.Unidades updateU = new Data.Unidades();
 
+    Data.Unidades criarU = new Data.Unidades();
+
     bool showModal = false;
+    bool showModal2 = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -137,6 +140,14 @@ using GoldYAN.Controller;
         showModal = false;
     }
 
+    public async Task Criar()
+    {
+        var resultado = VU.Post(criarU);
+        StateHasChanged();
+        showModal2 = false;
+        VUS = VU.Get();
+
+    }
 
     void ModalShow()
     {
@@ -145,6 +156,14 @@ using GoldYAN.Controller;
     void ModalCancel()
     {
         showModal = false;
+    }
+    void ModalShow2()
+    {
+        showModal2 = true;
+    }
+    void ModalCancel2()
+    {
+        showModal2 = false;
     }
 
     void ModalOk()

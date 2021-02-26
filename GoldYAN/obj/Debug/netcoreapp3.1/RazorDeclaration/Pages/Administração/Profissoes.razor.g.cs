@@ -91,14 +91,17 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 93 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Profissoes.razor"
+#line 127 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Profissoes.razor"
        
 
     List<GoldYAN.Data.Profissoes> VPS = new List<GoldYAN.Data.Profissoes>();
 
     Data.Profissoes updateP = new Data.Profissoes();
 
+    Data.Profissoes criarP = new Data.Profissoes();
+
     bool showModal = false;
+    bool showModal2 = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -106,9 +109,9 @@ using GoldYAN.Controller;
 
         foreach (var profissao in @VPS)
         {
-           updateP.idprofissao = profissao.idprofissao;
-           updateP.codigo = profissao.codigo;
-           updateP.nome = profissao.nome;
+            updateP.idprofissao = profissao.idprofissao;
+            updateP.codigo = profissao.codigo;
+            updateP.nome = profissao.nome;
 
         }
 
@@ -138,6 +141,16 @@ using GoldYAN.Controller;
         showModal = false;
     }
 
+    public async Task Criar()
+    {
+        var resultado = VP.Post(criarP);
+        StateHasChanged();
+        showModal2 = false;
+        VPS = VP.Get();
+
+    }
+
+
 
     void ModalShow()
     {
@@ -146,6 +159,15 @@ using GoldYAN.Controller;
     void ModalCancel()
     {
         showModal = false;
+    }
+
+    void ModalShow2()
+    {
+        showModal2 = true;
+    }
+    void ModalCancel2()
+    {
+        showModal2 = false;
     }
 
     void ModalOk()

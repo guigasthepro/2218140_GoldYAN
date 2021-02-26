@@ -34,6 +34,36 @@
     </div>
 }
 
+@if (showModal2)
+{
+    <div class="modal fade show" id="myModal" style="display:block; background-color:rgba(128, 128, 128, 0.5);" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Inserir novo código</h4>
+                    <button type="button" class="close" @onclick="@ModalCancel2">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <EditForm Model="@criarCP" OnValidSubmit="@Criar">
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Descrição:</label>
+                            <InputText class="w-25 form-control" id="telefone" @bind-Value="criarCP.descricao" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Inserir Codigo Postal</button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 <AuthorizeView Roles="Admin">
     <Authorized>
         <div class="container-fluid">
@@ -43,7 +73,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Listagem de Codigo Postais</h6>
+                    <h6 class="m-0 font-weight-bold text-primary" style="display: inline;">Listagem de Codigo Postais</h6><button type="submit" @onclick="@ModalShow2" class="btn btn-success btn-sm float-right">Inserir Codigo Postal</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -91,7 +121,10 @@
 
     Data.Codigopostal updateCP = new Data.Codigopostal();
 
+    Data.Codigopostal criarCP = new Data.Codigopostal();
+
     bool showModal = false;
+    bool showModal2 = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -129,6 +162,15 @@
         showModal = false;
     }
 
+    public async Task Criar()
+    {
+        var resultado = VCP.Post(criarCP);
+        StateHasChanged();
+        showModal2 = false;
+        VCPS = VCP.Get();
+
+    }
+
 
     void ModalShow()
     {
@@ -137,6 +179,15 @@
     void ModalCancel()
     {
         showModal = false;
+    }
+
+    void ModalShow2()
+    {
+        showModal2 = true;
+    }
+    void ModalCancel2()
+    {
+        showModal2 = false;
     }
 
     void ModalOk()

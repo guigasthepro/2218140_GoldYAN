@@ -91,14 +91,17 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 118 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+#line 173 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
        
 
     List<GoldYAN.Data.FamiliaProdutos> VFPS = new List<GoldYAN.Data.FamiliaProdutos>();
 
     Data.FamiliaProdutos updateFP = new Data.FamiliaProdutos();
 
+    Data.FamiliaProdutos criarFP = new Data.FamiliaProdutos();
+
     bool showModal = false;
+    bool showModal2 = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -109,7 +112,7 @@ using GoldYAN.Controller;
 #line hidden
 #nullable disable
 #nullable restore
-#line 129 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+#line 187 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
          foreach (var fp in @VFPS)
         {
 
@@ -128,7 +131,7 @@ using GoldYAN.Controller;
 #line hidden
 #nullable disable
 #nullable restore
-#line 141 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+#line 199 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
          
 
     }
@@ -157,6 +160,15 @@ using GoldYAN.Controller;
         showModal = false;
     }
 
+    public async Task Criar()
+    {
+        var resultado = VFP.Post(criarFP);
+        StateHasChanged();
+        showModal2 = false;
+        VFPS = VFP.Get();
+
+    }
+
 
     void ModalShow()
     {
@@ -165,6 +177,15 @@ using GoldYAN.Controller;
     void ModalCancel()
     {
         showModal = false;
+    }
+
+    void ModalShow2()
+    {
+        showModal2 = true;
+    }
+    void ModalCancel2()
+    {
+        showModal2 = false;
     }
 
     void ModalOk()

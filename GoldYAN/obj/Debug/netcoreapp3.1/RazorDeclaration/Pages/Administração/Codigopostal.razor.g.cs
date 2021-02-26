@@ -91,14 +91,17 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 88 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\CodigoPostal.razor"
+#line 118 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\CodigoPostal.razor"
        
 
     List<GoldYAN.Data.Codigopostal> VCPS = new List<GoldYAN.Data.Codigopostal>();
 
     Data.Codigopostal updateCP = new Data.Codigopostal();
 
+    Data.Codigopostal criarCP = new Data.Codigopostal();
+
     bool showModal = false;
+    bool showModal2 = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -136,6 +139,15 @@ using GoldYAN.Controller;
         showModal = false;
     }
 
+    public async Task Criar()
+    {
+        var resultado = VCP.Post(criarCP);
+        StateHasChanged();
+        showModal2 = false;
+        VCPS = VCP.Get();
+
+    }
+
 
     void ModalShow()
     {
@@ -144,6 +156,15 @@ using GoldYAN.Controller;
     void ModalCancel()
     {
         showModal = false;
+    }
+
+    void ModalShow2()
+    {
+        showModal2 = true;
+    }
+    void ModalCancel2()
+    {
+        showModal2 = false;
     }
 
     void ModalOk()

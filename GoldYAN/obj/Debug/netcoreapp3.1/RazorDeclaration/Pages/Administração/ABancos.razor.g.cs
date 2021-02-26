@@ -119,13 +119,16 @@ using Microsoft.EntityFrameworkCore;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 119 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
+#line 155 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
        
     List<GoldYAN.Data.Bancos> VBS = new List<GoldYAN.Data.Bancos>();
 
     Data.Bancos updateBanco = new Bancos();
 
+    Data.Bancos criarBanco = new Bancos();
+
     bool showModal = false;
+    bool showModal2 = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -164,13 +167,33 @@ using Microsoft.EntityFrameworkCore;
         showModal = false;
     }
 
+    public async Task Criar()
+    {
+        var resultado = VB.Post(criarBanco);
+        StateHasChanged();
+        showModal2 = false;
+        VBS = VB.Get();
+        
+    }
 
-    void ModalShow(){
+
+    void ModalShow()
+    {
         showModal = true;
     }
-    void ModalCancel() {
+    void ModalCancel()
+    {
         showModal = false;
     }
+    void ModalShow2()
+    {
+        showModal2 = true;
+    }
+    void ModalCancel2()
+    {
+        showModal2 = false;
+    }
+
 
     void ModalOk()
     {

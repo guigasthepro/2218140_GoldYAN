@@ -98,13 +98,17 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 106 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ClassificacaoProdutos.razor"
+#line 147 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ClassificacaoProdutos.razor"
        
     List<GoldYAN.Data.ClassificacaoProdutos> VCPS = new List<GoldYAN.Data.ClassificacaoProdutos>();
 
     Data.ClassificacaoProdutos updateCP = new Data.ClassificacaoProdutos();
 
+    Data.ClassificacaoProdutos criarCP = new Data.ClassificacaoProdutos();
+
     bool showModal = false;
+    bool showModal2 = false;
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -145,6 +149,15 @@ using GoldYAN.Data;
         showModal = false;
     }
 
+    public async Task Criar()
+    {
+        var resultado = VCP.Post(criarCP);
+        StateHasChanged();
+        showModal2 = false;
+        VCPS = VCP.Get();
+
+    }
+
 
     void ModalShow()
     {
@@ -153,6 +166,14 @@ using GoldYAN.Data;
     void ModalCancel()
     {
         showModal = false;
+    }
+    void ModalShow2()
+    {
+        showModal2 = true;
+    }
+    void ModalCancel2()
+    {
+        showModal2 = false;
     }
 
     void ModalOk()

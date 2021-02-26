@@ -2,7 +2,7 @@
 @using GoldYAN.Data
 @page "/classificacaoprodutos"
 @inject IJSRuntime js
-@inject ClassificacaoProdutosController VCP 
+@inject ClassificacaoProdutosController VCP
 
 
 @if (showModal)
@@ -47,6 +47,47 @@
     </div>
 }
 
+@if (showModal2)
+{
+    <div class="modal fade show" id="myModal" style="display:block; background-color:rgba(128, 128, 128, 0.5);" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Inserir nova classificação</h4>
+                    <button type="button" class="close" @onclick="@ModalCancel2">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <EditForm Model="@criarCP" OnValidSubmit="@Criar">
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Descrição:</label>
+                            <InputText class="w-25 form-control" id="telefone" @bind-Value="criarCP.descricao" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="email">Codigo:</label>
+                            <InputNumber class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="criarCP.codigo" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Codigo AT:</label>
+                            <InputText class="w-25 form-control" id="telefone" @bind-Value="criarCP.codigoat" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="email">Inentário:</label>
+                            <InputNumber class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="criarCP.inventario" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" @onclick="@ModalCancel2">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Inserir Classificação</button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 
 <AuthorizeView Roles="Admin, Administração">
@@ -58,7 +99,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Listagem de Classificações</h6>
+                    <h6 class="m-0 font-weight-bold text-primary" style="display: inline;">Listagem de Classificações</h6><button type="submit" @onclick="@ModalShow2" class="btn btn-success btn-sm float-right">Inserir Classificação Produto</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -108,7 +149,11 @@
 
     Data.ClassificacaoProdutos updateCP = new Data.ClassificacaoProdutos();
 
+    Data.ClassificacaoProdutos criarCP = new Data.ClassificacaoProdutos();
+
     bool showModal = false;
+    bool showModal2 = false;
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -149,6 +194,15 @@
         showModal = false;
     }
 
+    public async Task Criar()
+    {
+        var resultado = VCP.Post(criarCP);
+        StateHasChanged();
+        showModal2 = false;
+        VCPS = VCP.Get();
+
+    }
+
 
     void ModalShow()
     {
@@ -157,6 +211,14 @@
     void ModalCancel()
     {
         showModal = false;
+    }
+    void ModalShow2()
+    {
+        showModal2 = true;
+    }
+    void ModalCancel2()
+    {
+        showModal2 = false;
     }
 
     void ModalOk()

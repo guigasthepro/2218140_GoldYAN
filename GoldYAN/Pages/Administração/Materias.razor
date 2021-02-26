@@ -37,6 +37,41 @@
     </div>
 }
 
+@if (showModal2)
+{
+    <div class="modal fade show" id="myModal" style="display:block; background-color:rgba(128, 128, 128, 0.5);" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Inserir nova matéria</h4>
+                    <button type="button" class="close" @onclick="@ModalCancel2">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <EditForm Model="@criarM" OnValidSubmit="@Criar">
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Alcunha:</label>
+                            <InputText class="w-25 form-control" id="telefone" @bind-Value="criarM.alcunha" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="email">Nome:</label>
+                            <InputText class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="criarM.nome" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Criar Matéria</button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
 <AuthorizeView Roles="Admin">
     <Authorized>
         <div class="container-fluid">
@@ -44,7 +79,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Listagem de Clientes</h6>
+                    <h6 class="m-0 font-weight-bold text-primary"style="display: inline;">Listagem das Matérias</h6><button type="submit" @onclick="@ModalShow2" class="btn btn-success btn-sm float-right">Inserir Materia</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -92,7 +127,10 @@
 
     Data.Materias updateM = new Data.Materias();
 
+    Data.Materias criarM = new Data.Materias();
+
     bool showModal = false;
+    bool showModal2 = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -100,9 +138,9 @@
 
         foreach (var materia in @VMS)
         {
-          updateM.idmateria = materia.idmateria;
-          updateM.alcunha = materia.alcunha;
-          updateM.nome = materia.nome;
+            updateM.idmateria = materia.idmateria;
+            updateM.alcunha = materia.alcunha;
+            updateM.nome = materia.nome;
         }
 
     }
@@ -131,6 +169,15 @@
         showModal = false;
     }
 
+    public async Task Criar()
+    {
+        var resultado = VM.Post(criarM);
+        StateHasChanged();
+        showModal2 = false;
+        VMS = VM.Get();
+
+    }
+
 
     void ModalShow()
     {
@@ -139,6 +186,15 @@
     void ModalCancel()
     {
         showModal = false;
+    }
+
+    void ModalShow2()
+    {
+        showModal2 = true;
+    }
+    void ModalCancel2()
+    {
+        showModal2 = false;
     }
 
     void ModalOk()

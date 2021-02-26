@@ -91,14 +91,17 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 89 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Materias.razor"
+#line 124 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Materias.razor"
        
 
     List<GoldYAN.Data.Materias> VMS = new List<GoldYAN.Data.Materias>();
 
     Data.Materias updateM = new Data.Materias();
 
+    Data.Materias criarM = new Data.Materias();
+
     bool showModal = false;
+    bool showModal2 = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -106,9 +109,9 @@ using GoldYAN.Controller;
 
         foreach (var materia in @VMS)
         {
-          updateM.idmateria = materia.idmateria;
-          updateM.alcunha = materia.alcunha;
-          updateM.nome = materia.nome;
+            updateM.idmateria = materia.idmateria;
+            updateM.alcunha = materia.alcunha;
+            updateM.nome = materia.nome;
         }
 
     }
@@ -137,6 +140,15 @@ using GoldYAN.Controller;
         showModal = false;
     }
 
+    public async Task Criar()
+    {
+        var resultado = VM.Post(criarM);
+        StateHasChanged();
+        showModal2 = false;
+        VMS = VM.Get();
+
+    }
+
 
     void ModalShow()
     {
@@ -145,6 +157,15 @@ using GoldYAN.Controller;
     void ModalCancel()
     {
         showModal = false;
+    }
+
+    void ModalShow2()
+    {
+        showModal2 = true;
+    }
+    void ModalCancel2()
+    {
+        showModal2 = false;
     }
 
     void ModalOk()
