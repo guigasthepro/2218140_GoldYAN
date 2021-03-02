@@ -17,7 +17,7 @@ namespace GoldYAN.Data
         [Computed]
         public string nome { get; set; }
         [Computed]
-        public int telefone { get; set; }
+        public string telefone { get; set; }
         public string criadopor { get; set; }
         public string apontamentos { get; set; }
         public string idestado { get; set; }

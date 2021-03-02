@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using MySql.Data.MySqlClient;
@@ -34,9 +35,11 @@ namespace GoldYAN.Controller
         {
             LerCodigos = new List<Codigopostal>();
 
+            string sql = "SELECT * FROM codigopostal LIMIT 150";
+
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                var res = DBConn.GetAll<Codigopostal>().ToList();
+                var res = DBConn.Query<Codigopostal>(sql).ToList();
                 LerCodigos = res;
             }
 

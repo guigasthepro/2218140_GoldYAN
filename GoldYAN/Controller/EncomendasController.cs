@@ -42,7 +42,6 @@ namespace GoldYAN.Controller
 
             return LerCodigos;
         }
-
         public List<EncomendasComputed> GetWithInner()
         {
             lerEncomendasComputed = new List<EncomendasComputed>();

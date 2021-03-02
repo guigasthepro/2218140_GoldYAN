@@ -80,10 +80,10 @@
             Readonly = false;
         }
 
-        <div disable="@Readonly" class="m-3 form-group">
+        <div class="m-3 form-group">
             <div class="form-inline">
                 <label for="nome">Código:</label>
-                <BlazoredTypeahead SearchMethod="ProcurarServicos" oninput="this.value = this.value.toUpperCase()" @bind-Value="servicos" Placeholder="Pesquisar Serviço">
+                <BlazoredTypeahead SearchMethod="ProcurarServicos" DisableClear="true" EnableDropDown="true"  Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="servicos" Placeholder="Pesquisar Serviço">
                     <SelectedTemplate>
                         @context.codigo
                     </SelectedTemplate>
@@ -163,14 +163,14 @@
                     <div class="col-sm-12">
                         <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;table-layout: fixed;">
                             <thead>
-                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Código</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Apontamentos</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Preço</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Data de Entrega</th></tr>
+                            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Código</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Apontamentos</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Preço</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Data de Entrega</th></tr>
                             </thead>
                             <tfoot>
-                                <tr><th rowspan="1" colspan="1">Código</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Apontamento</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Preço</th><th rowspan="1" colspan="1">Data de entrega</th></tr>
+                            <tr><th rowspan="1" colspan="1">Código</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Apontamento</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Preço</th><th rowspan="1" colspan="1">Data de entrega</th></tr>
                             </tfoot>
                             <tbody>
-                                @foreach (var encomenda in ListaEncomendas)
-                                {
+                            @foreach (var encomenda in ListaEncomendas)
+                            {
                                 <tr style="height: 1em;">
                                     <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.codigo">@encomenda.codigo</td>
                                     <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.descricao">@encomenda.descricao</td>
@@ -179,7 +179,7 @@
                                     <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.precounitario">@encomenda.precounitario</td>
                                     <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.datadeentrega">@encomenda.datadeentrega</td>
                                 </tr>
-                                }
+                            }
                             </tbody>
                         </table>
                     </div>
@@ -187,6 +187,8 @@
             </div>
         </div>
         <button type="button" @onclick="CriarEncomenda" class="btn btn-success">Criar Encomenda</button>
+
+
     </div>
 </div>
 
@@ -222,6 +224,7 @@
         Cliente.idcliente = 0;
         ListaClientes = CC.Get();
         ListaServicos = SC.GetAll();
+        servicos.idservico = 0;
         encomendas.datadeentrega = DateTime.Today;
     }
 
@@ -240,28 +243,35 @@
 
     private async Task AdicionarLista()
     {
-        i++;
+        if (servicos.idservico == 0)
+        {
+            await js.InvokeVoidAsync("alert", "Impossivél adicionar o serviço, por favor verifique os campos!");
+        }
+        else
+        {
+            i++;
 
-        cabecalhos.idcliente = Cliente.idcliente;
-        encomendas.linha = i;
-        encomendas.idservico = servicos.idservico;
-        encomendas.descricao = servicos.descricao;
-        encomendas.codigo = servicos.codigo;
-        encomendas.precounitario = servicos.custo;
-        encomendas.precototal = encomendas.precounitario * encomendas.quantidade;
+            cabecalhos.idcliente = Cliente.idcliente;
+            encomendas.linha = i;
+            encomendas.idservico = servicos.idservico;
+            encomendas.descricao = servicos.descricao;
+            encomendas.codigo = servicos.codigo;
+            encomendas.precounitario = servicos.custo;
+            encomendas.precototal = encomendas.precounitario * encomendas.quantidade;
 
-        //Vai buscar o utilizador que está logado
-        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        var user = authState.User;
-        cabecalhos.criadopor = user.Identity.Name;
+    //Vai buscar o utilizador que está logado
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+            cabecalhos.criadopor = user.Identity.Name;
 
-        ListaEncomendas.Add(encomendas);
+            ListaEncomendas.Add(encomendas);
 
 
-        encomendas = new Encomendas();
-        encomendas.datadeentrega = DateTime.Today;
+            encomendas = new Encomendas();
+            servicos = new Servicos();
+            encomendas.datadeentrega = DateTime.Today;
+        }
 
-        // await JsRuntime.InvokeVoidAsync("setElementTextById", "resultJson", JsonSerializer.Serialize(cFichaCliente));
     }
 
     public async Task CriarEncomenda()

@@ -98,11 +98,12 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
+#line 48 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
        
 
 
     List<Clientes> VCS = new List<Clientes>();
+    public string Filter { get; set; }
 
     public string pesquisa { get; set; }
 
@@ -116,6 +117,18 @@ using GoldYAN.Data;
     public async Task Pesquisar(string valor)
     {
         VCS = VC.PesquisarClientes(valor);
+    }
+
+    public bool IsVisible(Clientes cliente)
+    {
+        if (string.IsNullOrEmpty(Filter))
+            return true;
+
+        if (cliente.Nome.Contains(Filter) || cliente.Email.ToString().Contains(Filter) || cliente.Telefone.ToString().Contains(Filter) || cliente.Nif.ToString().Contains(Filter))
+
+            return true;
+
+        return false;
     }
 
 

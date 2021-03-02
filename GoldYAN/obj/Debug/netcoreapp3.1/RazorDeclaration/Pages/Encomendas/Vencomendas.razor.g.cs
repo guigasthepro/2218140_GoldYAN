@@ -89,6 +89,13 @@ using GoldYAN.Data;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Vencomendas.razor"
+using Microsoft.EntityFrameworkCore.Internal;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/vencomendas")]
     public partial class Vencomendas : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -98,16 +105,26 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 55 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Vencomendas.razor"
+#line 56 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Vencomendas.razor"
        
-
     List<EncomendasComputed> VEC = new List<EncomendasComputed>();
+    public string Filter { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         VEC = EC.GetWithInner();
     }
 
+    public bool IsVisible(EncomendasComputed encomendas)
+    {
+        if (string.IsNullOrEmpty(Filter))
+            return true;
+
+        if (encomendas.nome.Contains(Filter) || encomendas.telefone.ToString().Contains(Filter) || encomendas.idwithlinha.ToString().Contains(Filter) || encomendas.data.ToString().Contains(Filter))
+            return true;
+
+        return false;
+    }
 
 #line default
 #line hidden

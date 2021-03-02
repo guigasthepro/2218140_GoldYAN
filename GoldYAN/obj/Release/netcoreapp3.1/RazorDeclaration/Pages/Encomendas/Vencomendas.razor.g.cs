@@ -100,7 +100,7 @@ using GoldYAN.Data;
 #nullable restore
 #line 55 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Vencomendas.razor"
        
-
+    public string pesquisaencomenda { get; set; }
     List<EncomendasComputed> VEC = new List<EncomendasComputed>();
 
     protected override async Task OnInitializedAsync()
@@ -108,6 +108,10 @@ using GoldYAN.Data;
         VEC = EC.GetWithInner();
     }
 
+    public async Task PesquisaEncomendas(string searchtext)
+    {
+
+    }
 
 #line default
 #line hidden

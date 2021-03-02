@@ -112,7 +112,7 @@ using Blazored.Typeahead;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 195 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Cencomenda.razor"
+#line 197 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Cencomenda.razor"
        
 
     Data.Servicos servicos = new Servicos();
@@ -143,6 +143,7 @@ using Blazored.Typeahead;
         Cliente.idcliente = 0;
         ListaClientes = CC.Get();
         ListaServicos = SC.GetAll();
+        servicos.idservico = 0;
         encomendas.datadeentrega = DateTime.Today;
     }
 
@@ -161,28 +162,35 @@ using Blazored.Typeahead;
 
     private async Task AdicionarLista()
     {
-        i++;
+        if (servicos.idservico == 0)
+        {
+            await js.InvokeVoidAsync("alert", "Impossivél adicionar o serviço, por favor verifique os campos!");
+        }
+        else
+        {
+            i++;
 
-        cabecalhos.idcliente = Cliente.idcliente;
-        encomendas.linha = i;
-        encomendas.idservico = servicos.idservico;
-        encomendas.descricao = servicos.descricao;
-        encomendas.codigo = servicos.codigo;
-        encomendas.precounitario = servicos.custo;
-        encomendas.precototal = encomendas.precounitario * encomendas.quantidade;
+            cabecalhos.idcliente = Cliente.idcliente;
+            encomendas.linha = i;
+            encomendas.idservico = servicos.idservico;
+            encomendas.descricao = servicos.descricao;
+            encomendas.codigo = servicos.codigo;
+            encomendas.precounitario = servicos.custo;
+            encomendas.precototal = encomendas.precounitario * encomendas.quantidade;
 
-        //Vai buscar o utilizador que está logado
-        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        var user = authState.User;
-        cabecalhos.criadopor = user.Identity.Name;
+    //Vai buscar o utilizador que está logado
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+            cabecalhos.criadopor = user.Identity.Name;
 
-        ListaEncomendas.Add(encomendas);
+            ListaEncomendas.Add(encomendas);
 
 
-        encomendas = new Encomendas();
-        encomendas.datadeentrega = DateTime.Today;
+            encomendas = new Encomendas();
+            servicos = new Servicos();
+            encomendas.datadeentrega = DateTime.Today;
+        }
 
-        // await JsRuntime.InvokeVoidAsync("setElementTextById", "resultJson", JsonSerializer.Serialize(cFichaCliente));
     }
 
     public async Task CriarEncomenda()
