@@ -21,7 +21,7 @@
                     <EditForm Model="@updateCP" OnValidSubmit="@Update">
                         <div class="form-group m-3 p-1">
                             <label for="telefone">Descrição:</label>
-                            <InputText class="w-25 form-control" id="telefone" @bind-Value="updateCP.descricao" />
+                            <InputText class="w-25 form-control" id="telefone" @bind-Value="updateCP.desig_postal" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -51,7 +51,7 @@
                     <EditForm Model="@criarCP" OnValidSubmit="@Criar">
                         <div class="form-group m-3 p-1">
                             <label for="telefone">Descrição:</label>
-                            <InputText class="w-25 form-control" id="telefone" @bind-Value="criarCP.descricao" />
+                            <InputText class="w-25 form-control" id="telefone" @bind-Value="criarCP.desig_postal" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -90,11 +90,14 @@
                                         <tbody>
                                             @foreach (var cp in @VCPS)
                                             {
-                                                <tr role="row" class="odd" id="@cp.idcodigopostal">
-                                                    <td>@cp.idcodigopostal</td>
-                                                    <td>@cp.descricao</td>
-                                                    <td><button class="btn btn-primary" @onclick="@ModalShow" style="margin-left:1rem">Editar</button><button class="btn btn-danger" @onclick="() => Apagar(cp.idcodigopostal)" style="margin-left:0.3rem">Apagar</button></td>
-                                                </tr>
+                                            <tr role="row" class="odd" id="@cp.idcodigopostal">
+                                                <td>@cp.idcodigopostal</td>
+                                                <td>@cp.nome_localidade</td>
+                                                <td>@cp.num_cod_postal</td>
+                                                <td>@cp.ext_cod_postal</td>
+                                                <td>@cp.desig_postal</td>
+                                                <td><button class="btn btn-primary" @onclick="@ModalShow" style="margin-left:1rem">Editar</button><button class="btn btn-danger" @onclick="() => Apagar(cp.idcodigopostal)" style="margin-left:0.3rem">Apagar</button></td>
+                                            </tr>
                                             }
 
                                         </tbody>
@@ -133,7 +136,10 @@
         foreach (var cp in @VCPS)
         {
             updateCP.idcodigopostal = cp.idcodigopostal;
-            updateCP.descricao = cp.descricao;
+            updateCP.nome_localidade = cp.nome_localidade;
+            updateCP.num_cod_postal = cp.num_cod_postal;
+            updateCP.ext_cod_postal = cp.ext_cod_postal;
+            updateCP.desig_postal = cp.desig_postal;
         }
 
     }

@@ -13,71 +13,92 @@ namespace GoldYAN.Pages.Encomendas
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 1 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 2 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
-using Microsoft.AspNetCore.Components.Authorization;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 4 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 5 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 6 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 7 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 8 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 9 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Cencomenda.razor"
+#line 2 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Cencomenda.razor"
 using GoldYAN.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Cencomenda.razor"
+using GoldYAN.Controller;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Cencomenda.razor"
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Cencomenda.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Cencomenda.razor"
+using Blazored.Typeahead;
 
 #line default
 #line hidden
@@ -91,22 +112,115 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 130 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Cencomenda.razor"
-           
+#line 195 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Cencomenda.razor"
+       
 
-        private Clientes cFichaCliente = new Clientes();
+    Data.Servicos servicos = new Servicos();
+    Data.Encomendas encomendas = new Encomendas();
+    Clientes Cliente = new Clientes();
+    Data.Cabecalho cabecalhos = new Cabecalho();
+    List<Encomendas> ListaEncomendas = new List<Encomendas>();
+    List<Cabecalho> ListaCabecalhos = new List<Cabecalho>();
+    List<Servicos> ListaServicos = new List<Servicos>();
+    List<Clientes> ListaClientes = new List<Clientes>();
+    bool Readonly = true;
+    int i;
 
-        private async Task InsertFichaCliente()
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        //Cleaning Lists And Class Objects
+        ListaClientes = new List<Clientes>();
+        ListaServicos = new List<Servicos>();
+        ListaEncomendas = new List<Encomendas>();
+        Cliente = new Clientes();
+        servicos = new Servicos();
+        encomendas = new Encomendas();
+        cabecalhos = new Cabecalho();
+
+
+        Cliente.idcliente = 0;
+        ListaClientes = CC.Get();
+        ListaServicos = SC.GetAll();
+        encomendas.datadeentrega = DateTime.Today;
+    }
+
+    private async Task<IEnumerable<Clientes>> ProcurarClientes(string searchText)
+    {
+        return await Task.FromResult(ListaClientes.Where(h => h.Nome.ToLower().Contains(searchText.ToLower()) || h.Telefone.ToLower().Contains(searchText.ToLower()) || h.Email.ToLower().Contains(searchText.ToLower()) || h.Morada.ToLower().Contains(searchText.ToLower())));
+    }
+
+    private async Task<IEnumerable<Servicos>> ProcurarServicos(string searchText)
+    {
+        encomendas.quantidade = 1;
+        return await Task.FromResult(ListaServicos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+
+
+    private async Task AdicionarLista()
+    {
+        i++;
+
+        cabecalhos.idcliente = Cliente.idcliente;
+        encomendas.linha = i;
+        encomendas.idservico = servicos.idservico;
+        encomendas.descricao = servicos.descricao;
+        encomendas.codigo = servicos.codigo;
+        encomendas.precounitario = servicos.custo;
+        encomendas.precototal = encomendas.precounitario * encomendas.quantidade;
+
+        //Vai buscar o utilizador que está logado
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        cabecalhos.criadopor = user.Identity.Name;
+
+        ListaEncomendas.Add(encomendas);
+
+
+        encomendas = new Encomendas();
+        encomendas.datadeentrega = DateTime.Today;
+
+        // await JsRuntime.InvokeVoidAsync("setElementTextById", "resultJson", JsonSerializer.Serialize(cFichaCliente));
+    }
+
+    public async Task CriarEncomenda()
+    {
+        if (ListaEncomendas.Count != 0)
         {
-            // await JsRuntime.InvokeVoidAsync("setElementTextById", "resultJson", JsonSerializer.Serialize(cFichaCliente));
+            var resultado = CEC.Post(cabecalhos);
+            await Task.Delay(1000);
+
+            for (int i = 0; i < ListaEncomendas.Count; i++)
+            {
+                ListaEncomendas[i].idencomenda = resultado.idencomenda;
+                EC.Post(ListaEncomendas[i]);
+            }
+            StateHasChanged();
+            OnInitializedAsync();
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Impossível criar a encomenda, por favor, insira bem os dados da encomenda!");
         }
 
-    
+
+
+    }
+
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private CabecalhoController CEC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private EncomendasController EC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ServicosController SC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClientesController CC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
     }
 }
 #pragma warning restore 1591

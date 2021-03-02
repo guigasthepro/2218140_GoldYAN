@@ -13,70 +13,70 @@ namespace GoldYAN.Pages.Administração
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 1 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 2 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 3 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 4 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 5 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 6 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 7 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 8 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 9 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\CodigoPostal.razor"
+#line 1 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\CodigoPostal.razor"
 using GoldYAN.Controller;
 
 #line default
@@ -91,14 +91,17 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 88 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\CodigoPostal.razor"
+#line 121 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\CodigoPostal.razor"
        
 
     List<GoldYAN.Data.Codigopostal> VCPS = new List<GoldYAN.Data.Codigopostal>();
 
     Data.Codigopostal updateCP = new Data.Codigopostal();
 
+    Data.Codigopostal criarCP = new Data.Codigopostal();
+
     bool showModal = false;
+    bool showModal2 = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -107,7 +110,10 @@ using GoldYAN.Controller;
         foreach (var cp in @VCPS)
         {
             updateCP.idcodigopostal = cp.idcodigopostal;
-            updateCP.descricao = cp.descricao;
+            updateCP.nome_localidade = cp.nome_localidade;
+            updateCP.num_cod_postal = cp.num_cod_postal;
+            updateCP.ext_cod_postal = cp.ext_cod_postal;
+            updateCP.desig_postal = cp.desig_postal;
         }
 
     }
@@ -136,6 +142,15 @@ using GoldYAN.Controller;
         showModal = false;
     }
 
+    public async Task Criar()
+    {
+        var resultado = VCP.Post(criarCP);
+        StateHasChanged();
+        showModal2 = false;
+        VCPS = VCP.Get();
+
+    }
+
 
     void ModalShow()
     {
@@ -144,6 +159,15 @@ using GoldYAN.Controller;
     void ModalCancel()
     {
         showModal = false;
+    }
+
+    void ModalShow2()
+    {
+        showModal2 = true;
+    }
+    void ModalCancel2()
+    {
+        showModal2 = false;
     }
 
     void ModalOk()

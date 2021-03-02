@@ -46,10 +46,10 @@ namespace GoldYAN.Controller
 
             return LerClientes;
         }
-
+        [HttpGet]
         public List<Clientes> PesquisarClientes(string valor)
         {
-            string sql = $"SELECT idcliente, nome, telefone, email, morada FROM pages WHERE idcliente LIKE '%{valor}%' OR nome LIKE '%{valor}%' OR telefone LIKE '%{valor}%' OR email LIKE '%{valor}%' OR morada LIKE '%{valor}%';";
+            string sql = $"SELECT nome, telefone, email, morada FROM clientes WHERE nome LIKE '%{valor}%' OR telefone LIKE '%{valor}%' OR email LIKE '%{valor}%' OR morada LIKE '%{valor}%';";
 
 
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))

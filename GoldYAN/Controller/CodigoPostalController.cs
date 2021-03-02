@@ -77,7 +77,10 @@ namespace GoldYAN.Controller
                 if (recLido != null)
                 {
                     recLido.idcodigopostal = codigopostal.idcodigopostal;
-                    recLido.descricao = codigopostal.descricao;
+                    recLido.nome_localidade = codigopostal.nome_localidade;
+                    recLido.num_cod_postal = codigopostal.num_cod_postal;
+                    recLido.ext_cod_postal = codigopostal.ext_cod_postal;
+                    recLido.desig_postal = codigopostal.desig_postal;
 
                     bool updated = DBConn.Update(recLido);
 

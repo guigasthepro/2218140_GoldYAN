@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Guilherme Simao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj": {}
+    "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Guilherme Simao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj": {
+    "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Guilherme Simao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
+        "projectUniqueName": "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
         "projectName": "GoldYAN",
-        "projectPath": "C:\\Users\\Guilherme Simao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
-        "packagesPath": "C:\\Users\\Guilherme Simao\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Guilherme Simao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\obj\\",
+        "projectPath": "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
+        "packagesPath": "C:\\Users\\GuilhermeSimao\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Guilherme Simao\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\GuilhermeSimao\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -44,6 +40,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Blazored.Typeahead": {
+              "target": "Package",
+              "version": "[4.5.1, )"
+            },
             "Dapper": {
               "target": "Package",
               "version": "[2.0.78, )"
@@ -51,6 +51,10 @@
             "Dapper.Contrib": {
               "target": "Package",
               "version": "[2.0.78, )"
+            },
+            "DapperExtensions": {
+              "target": "Package",
+              "version": "[1.6.3, )"
             },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
@@ -101,7 +105,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

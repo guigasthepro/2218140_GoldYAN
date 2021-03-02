@@ -7,10 +7,10 @@ namespace GoldYAN.Data
     {   
         [ExplicitKey]
         public int idservico { get; set; }
-        public int idfornecedor { get; set; }
-        public int idunidade { get; set; }
-        public string alcunha { get; set; }
-        public string nomeservico { get; set; }
+        public string codigo { get; set; }
+        public string? idfornecedor { get; set; }
+        public int? idunidade { get; set; }
+        public string descricao { get; set; }
         public double custo  { get; set; }
     }
 }
