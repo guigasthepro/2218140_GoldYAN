@@ -80,8 +80,8 @@
             <!-- Page Heading -->
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Listagem de Encomendas</h6>
+                <div class="card-header py-3"> 
+                    <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Listagem de Profissões</h6> <button type="submit" @onclick="@ModalShow2" class="btn btn-success btn-sm float-right">Inserir nova profissão</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
@@ -100,11 +100,13 @@
                                             {
                                                 if (!IsVisible(profissao))
                                                     continue;
-                                                <tr style="height: 1em;">
-                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@profissao.idprofissao">@profissao.idprofissao</td>
-                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@profissao.codigo">@profissao.codigo</td>
-                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@profissao.nome">@profissao.nome</td>
-                                                </tr>
+                                            <tr style="height: 1em;">
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@profissao.idprofissao">@profissao.idprofissao</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@profissao.codigo">@profissao.codigo</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@profissao.nome">@profissao.nome</td>
+                                                <td><button class="btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem">Editar</button><button class="btn-sm btn-danger" @onclick="() => Apagar(profissao.idprofissao)" style="margin-left:0.3rem">Apagar</button></td>
+
+                                            </tr>
                                             }
                                         </tbody>
                                     </table>

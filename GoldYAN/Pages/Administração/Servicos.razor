@@ -99,8 +99,8 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Listagem de Encomendas</h6>
-                </div>
+                    <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Listagem de Serviços</h6> <button type="submit" @onclick="@ModalShow2" class="btn btn-success btn-sm float-right">Inserir novo serviço</button>
+                </div> 
                 <div class="card-body">
                     <div class="table-responsive-sm">
                         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -111,7 +111,7 @@
                                             <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">IDEncomenda</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">IDCliente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Data</th></tr>
                                         </thead>
                                         <tfoot>
-                                            <tr><th rowspan="1" colspan="1">IdEncomenda</th><th rowspan="1" colspan="1">IDCliente</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Data</th></tr>
+                                            <tr><th rowspan="1" colspan="1">IDEncomenda</th><th rowspan="1" colspan="1">IDCliente</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Data</th></tr>
                                         </tfoot>
                                         <tbody>
                                             @foreach (var servico in @VSS)
@@ -123,7 +123,7 @@
                                                 <td style=" overflow: hidden; white-space: nowrap; " title="@servico.codigo">@servico.codigo</td>
                                                 <td style=" overflow: hidden; white-space: nowrap; " title="@servico.descricao">@servico.descricao</td>
                                                 <td style=" overflow: hidden; white-space: nowrap; " title="@servico.idfornecedor">@servico.idfornecedor</td>
-                                                <td><button class="btn btn-primary" @onclick="@ModalShow" style="margin-left: 1rem">Editar</button><button class="btn btn-danger" @onclick="() => Apagar(servico.idservico)" style="margin-left: 0.3rem">Apagar</button></td>
+                                                <td><button class="btn-sm btn-primary" @onclick="@ModalShow" style="margin-left: 1rem">Editar</button><button class="btn-sm btn-danger" @onclick="() => Apagar(servico.idservico)" style="margin-left: 0.3rem">Apagar</button></td>
                                             </tr>
                                             }
                                         </tbody>

@@ -122,7 +122,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Listagem de Familias</h6>
+                    <h6 class="m-0 font-weight-bold text-primary" style="display: inline;">Listagem de Familias</h6> <button type="submit" @onclick="@ModalShow2" class="btn btn-success btn-sm float-right">Inserir nova familia</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
@@ -142,7 +142,6 @@
                                                 if (!IsVisible(fp))
                                                     continue;
                                             <tr style="height: 1em;">
-                                                <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@fp.idfproduto">@fp.idfproduto</td>
                                                 <td style=" overflow: hidden; white-space: nowrap; " title="@fp.idfproduto">@fp.idfproduto</td>
                                                 <td style=" overflow: hidden; white-space: nowrap; " title="@fp.idunidade">@fp.idunidade</td>
                                                 <td style=" overflow: hidden; white-space: nowrap; " title="@fp.tipo">@fp.tipo</td>
@@ -151,6 +150,7 @@
                                                 <td style=" overflow: hidden; white-space: nowrap; " title="@fp.descricao">@fp.descricao</td>
                                                 <td style=" overflow: hidden; white-space: nowrap; " title="@fp.descricaoeq">@fp.descricaoeq</td>
                                                 <td style=" overflow: hidden; white-space: nowrap; " title="@fp.toque">@fp.toque</td>
+                                                <td><button class="btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem">Editar</button><button class="btn-sm btn-danger" @onclick="() => Apagar(fp.idfproduto)" style="margin-left:0.3rem">Apagar</button></td>
                                             </tr>
                                             }
                                         </tbody>

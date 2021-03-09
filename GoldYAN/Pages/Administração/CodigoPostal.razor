@@ -72,8 +72,8 @@
             <!-- Page Heading -->
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Listagem de Codigo</h6>
+                <div class="card-header py-3"> 
+                    <h6 class="m-0 font-weight-bold text-primary" style="display: inline;" >Listagem de Codigo</h6> <button type="submit" @onclick="@ModalShow2" class="btn btn-success btn-sm float-right">Inserir Codigo Postal</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
@@ -92,13 +92,13 @@
                                             {
                                                 if (!IsVisible(cp))
                                                     continue;
-                                                <tr style="height: 1em;">
-                                                    <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@cp.idcodigopostal">@cp.idcodigopostal</td>
-                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@cp.nome_localidade">@cp.nome_localidade</td>
-                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@cp.num_cod_postal">@cp.num_cod_postal</td>
-                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@cp.ext_cod_postal">@cp.ext_cod_postal</td>
-                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@cp.desig_postal">@cp.desig_postal</td>
-                                                </tr>
+                                            <tr style="height: 1em;">
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@cp.nome_localidade">@cp.nome_localidade</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@cp.num_cod_postal">@cp.num_cod_postal</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@cp.ext_cod_postal">@cp.ext_cod_postal</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@cp.desig_postal">@cp.desig_postal</td>
+                                                <td><button class="btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem">Editar</button><button class="btn-sm btn-danger" @onclick="() => Apagar(cp.idcodigopostal)" style="margin-left:0.3rem">Apagar</button></td>
+                                            </tr>
                                             }
                                         </tbody>
                                     </table>
@@ -108,50 +108,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="container-fluid">
-
-
-            <!--https://datatables.net-->
-            <!-- DataTales Example -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary" style="display: inline;">Listagem de Codigo Postais</h6><button type="submit" @onclick="@ModalShow2" class="btn btn-success btn-sm float-right">Inserir Codigo Postal</button>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Mostrar X Clientes <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select></label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Procurar:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
-                                <div class="col-sm-12">
-                                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style=" display: block; height: 500px; overflow-y: scroll; ">
-                                        <thead>
-                                            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Nome da Localidade</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Numero Codigo Postal</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Codigo Postal Externo</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Designação Postal</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Ações</th></tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr><th rowspan="1" colspan="1">Nome da Localidade</th><th rowspan="1" colspan="1">Numero Codigo Postal</th><th rowspan="1" colspan="1">Codigo Postal Externo</th><th rowspan="1" colspan="1">Designação Postal</th><th rowspan="1" colspan="1">Ações</th></tr>
-                                        </tfoot>
-                                        <tbody>
-                                            @foreach (var cp in @VCPS)
-                                            {
-                                                <tr role="row" class="odd" id="@cp.idcodigopostal">
-                                                    <td>@cp.nome_localidade</td>
-                                                    <td>@cp.num_cod_postal</td>
-                                                    <td>@cp.ext_cod_postal</td>
-                                                    <td>@cp.desig_postal</td>
-                                                    <td><button class="btn btn-primary" @onclick="@ModalShow" style="margin-left:1rem">Editar</button><button class="btn btn-danger" @onclick="() => Apagar(cp.idcodigopostal)" style="margin-left:0.3rem">Apagar</button></td>
-                                                </tr>
-                                            }
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </Authorized>
     <NotAuthorized>
