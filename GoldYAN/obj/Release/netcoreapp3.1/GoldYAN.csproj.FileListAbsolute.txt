@@ -520,3 +520,13 @@ C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Re
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\GoldYAN.dll
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\GoldYAN.pdb
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\GoldYAN.genruntimeconfig.cache
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\bin\Release\netcoreapp3.1\Blazored.Typeahead.dll
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\bin\Release\netcoreapp3.1\DapperExtensions.dll
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\bin\Release\netcoreapp3.1\Microsoft.AspNetCore.Authorization.dll
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\bin\Release\netcoreapp3.1\Microsoft.AspNetCore.Components.dll
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\bin\Release\netcoreapp3.1\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\bin\Release\netcoreapp3.1\Microsoft.AspNetCore.Components.Web.dll
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\bin\Release\netcoreapp3.1\Microsoft.AspNetCore.Metadata.dll
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\bin\Release\netcoreapp3.1\Microsoft.JSInterop.dll
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Administração\Servicos.razor.g.cs
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Administração\Servicos.razor.g.cs

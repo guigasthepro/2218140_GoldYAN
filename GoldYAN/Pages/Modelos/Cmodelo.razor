@@ -1,0 +1,301 @@
+﻿@page "/cmodelo"
+
+@using GoldYAN.Data
+@using GoldYAN.Controller
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IJSRuntime JsRuntime
+@inject ClientesController CC
+@inject ServicosController SC
+@inject EncomendasController EC
+@inject CabecalhoController CEC
+@inject IJSRuntime js
+@inject NavigationManager NavigationManager
+@using Blazored.Typeahead
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Cabeçalho Encomenda</h6>
+        </div>
+
+        <div class="form-row p-sm-1">
+            <label for="nome" class="col-sm-auto col-form-label">Cliente:</label>
+            <div class="col-sm-5">
+                <BlazoredTypeahead SearchMethod="ProcurarClientes" oninput="this.value = this.value.toUpperCase()" @bind-Value="Cliente" Placeholder="Pesquisar cliente">
+                    <SelectedTemplate>
+                        @context.Nome (ID: @context.idcliente)
+                    </SelectedTemplate>
+                    <ResultTemplate>@context.Nome</ResultTemplate>
+                </BlazoredTypeahead>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Dados Do Cliente</h6>
+        </div>
+        <div class="m-3 form-group">
+            <div class="form-inline">
+                <label for="nome">Nome:</label> &nbsp;
+                <input class="col-8 form-control" disabled="true" type="text" value="@Cliente.Nome" />
+            </div>
+            <br />
+            <div class="form-inline">
+                <label for="Telefone">Telefone:</label>&nbsp;
+                <input class="col-sm-2 form-control" disabled="true" type="text" value="@Cliente.Telefone" />&nbsp;&nbsp;
+                <label for="Nif">Nif:</label>&nbsp;
+                <input class="col-sm-2 form-control" disabled="true" type="text" value="@Cliente.Nif" />
+
+            </div>
+            <br />
+            <div class="form-inline">
+                <label for="Email">Email:</label>&nbsp;
+                <input class="col-sm-5 form-control" disabled="true" type="text" value="@Cliente.Email" />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Formulário Encomenda</h6>
+        </div>
+
+        @if (Cliente.idcliente == 0)
+        {
+            <div class="col-sm-4 alert-warning">
+                <h5 class="m-1 text-danger">Selecione primeiro o cliente!</h5>
+            </div>
+        }
+        else
+        {
+            Readonly = false;
+        }
+
+        <div class="m-3 form-group">
+            <div class="form-inline">
+                <label for="nome">Código:</label>
+                <BlazoredTypeahead SearchMethod="ProcurarServicos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="servicos" Placeholder="Pesquisar Serviço">
+                    <SelectedTemplate>
+                        @context.codigo
+                    </SelectedTemplate>
+                    <ResultTemplate>@context.codigo => @context.descricao</ResultTemplate>
+                </BlazoredTypeahead>
+            </div>
+        </div>
+
+        <EditForm Model="@encomendas" OnValidSubmit="@AdicionarLista">
+            <DataAnnotationsValidator />
+
+
+            @*<div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="telefone">Referência de Modelo:</label> &nbsp
+                        <InputText id="telefone" class="form-control" @bind-Value="" />
+                    </div>
+                </div>*@
+
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="Descricao">Descrição:</label> &nbsp
+                    <InputText id="Descricao" class="form-control" disabled="true" placeholder="Ainda não selecionado" @bind-Value="servicos.descricao" />
+                </div>
+            </div>
+
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="Quantidade">Quantidade:</label> &nbsp
+                    <InputNumber id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="encomendas.quantidade" />
+                </div>
+            </div>
+
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="peso">Peso:</label> &nbsp
+                    <InputText id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="encomendas.peso" />
+                </div>
+            </div>
+
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="preco">Preco:</label> &nbsp
+                    <InputNumber id="preco" class="form-control" placeholder="Preço do serviço" disabled="@Readonly" @bind-Value="servicos.custo" />
+                </div>
+            </div>
+
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="apontamentos">Apontamentos:</label> &nbsp
+                    <InputText id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="encomendas.apontamentos" />
+                </div>
+            </div>
+
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="datadeentrega">Data de Entrega:</label> &nbsp
+                    <InputDate id="datadeentrega" class="form-control" disabled="@Readonly" @bind-Value="encomendas.datadeentrega" />
+                </div>
+            </div>
+
+            <div class="m-3 form-group">
+                <button type="submit" class="btn btn-primary">Adicionar</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Sumário da Encomenda</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;table-layout: fixed;">
+                            <thead>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Código</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Apontamentos</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Preço</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Data de Entrega</th></tr>
+                            </thead>
+                            <tfoot>
+                                <tr><th rowspan="1" colspan="1">Código</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Apontamento</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Preço</th><th rowspan="1" colspan="1">Data de entrega</th></tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var encomenda in ListaEncomendas)
+                                {
+                                    <tr style="height: 1em;">
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.codigo">@encomenda.codigo</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.descricao">@encomenda.descricao</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.apontamentos">@encomenda.apontamentos</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.peso">@encomenda.peso</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.precounitario">@encomenda.precounitario</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.datadeentrega">@encomenda.datadeentrega</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" @onclick="CriarEncomenda" class="btn btn-success">Criar Encomenda</button>
+
+
+    </div>
+</div>
+
+
+
+@code {
+
+        Data.Servicos servicos = new Servicos();
+        Data.Encomendas encomendas = new Encomendas();
+        Clientes Cliente = new Clientes();
+        Data.Cabecalho cabecalhos = new Cabecalho();
+        List<Encomendas> ListaEncomendas = new List<Encomendas>();
+        List<Cabecalho> ListaCabecalhos = new List<Cabecalho>();
+        List<Servicos> ListaServicos = new List<Servicos>();
+        List<Clientes> ListaClientes = new List<Clientes>();
+        bool Readonly = true;
+        int i;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        //Cleaning Lists And Class Objects
+        ListaClientes = new List<Clientes>();
+        ListaServicos = new List<Servicos>();
+        ListaEncomendas = new List<Encomendas>();
+        Cliente = new Clientes();
+        servicos = new Servicos();
+        encomendas = new Encomendas();
+        cabecalhos = new Cabecalho();
+
+
+        Cliente.idcliente = 0;
+        ListaClientes = CC.Get();
+        ListaServicos = SC.GetAll();
+        servicos.idservico = 0;
+        encomendas.datadeentrega = DateTime.Today;
+    }
+
+    private async Task<IEnumerable<Clientes>> ProcurarClientes(string searchText)
+    {
+        return await Task.FromResult(ListaClientes.Where(h => h.Nome.ToLower().Contains(searchText.ToLower()) || h.Telefone.ToLower().Contains(searchText.ToLower()) || h.Email.ToLower().Contains(searchText.ToLower()) || h.Morada.ToLower().Contains(searchText.ToLower())));
+    }
+
+    private async Task<IEnumerable<Servicos>> ProcurarServicos(string searchText)
+    {
+        encomendas.quantidade = 1;
+        return await Task.FromResult(ListaServicos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+
+
+    private async Task AdicionarLista()
+    {
+        if (servicos.idservico == 0)
+        {
+            await js.InvokeVoidAsync("alert", "Impossivél adicionar o serviço, por favor verifique os campos!");
+        }
+        else
+        {
+            i++;
+
+            cabecalhos.idcliente = Cliente.idcliente;
+            encomendas.linha = i;
+            encomendas.idservico = servicos.idservico;
+            encomendas.descricao = servicos.descricao;
+            encomendas.codigo = servicos.codigo;
+            encomendas.precounitario = servicos.custo;
+            encomendas.precototal = encomendas.precounitario * encomendas.quantidade;
+
+            //Vai buscar o utilizador que está logado
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+            cabecalhos.criadopor = user.Identity.Name;
+
+            ListaEncomendas.Add(encomendas);
+
+
+            encomendas = new Encomendas();
+            servicos = new Servicos();
+            encomendas.datadeentrega = DateTime.Today;
+        }
+
+    }
+
+    public async Task CriarEncomenda()
+    {
+        if (ListaEncomendas.Count != 0)
+        {
+            var resultado = CEC.Post(cabecalhos);
+            await Task.Delay(1000);
+
+            for (int i = 0; i < ListaEncomendas.Count; i++)
+            {
+                ListaEncomendas[i].idencomenda = resultado.idencomenda;
+                EC.Post(ListaEncomendas[i]);
+            }
+            StateHasChanged();
+            OnInitializedAsync();
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Impossível criar a encomenda, por favor, insira bem os dados da encomenda!");
+        }
+    }
+}
+
+
+

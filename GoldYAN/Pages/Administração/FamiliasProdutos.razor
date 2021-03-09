@@ -115,21 +115,21 @@
 
 <AuthorizeView Roles="Admin">
     <Authorized>
+
         <div class="container-fluid">
 
-
-            <!--https://datatables.net-->
+            <!-- Page Heading -->
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary" style="display: inline;">Listagem das Familias de Produto</h6><button type="submit" @onclick="@ModalShow2" class="btn btn-success btn-sm float-right">Inserir Familia Produto</button>
+                    <h6 class="m-0 font-weight-bold text-primary">Listagem de Familias</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table-responsive-sm">
                         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Mostrar X Clientes <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select></label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Procurar:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
+                            <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Pesquisar Encomenda:<input type="search" @bind="Filter" @bind:event="oninput" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
                                 <div class="col-sm-12">
-                                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                         <thead>
                                             <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">IDFamiliaProduto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">IDUnidade</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Tipo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Contacto: activate to sort column ascending" style="width: 31px;">Codigo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Nome</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Descrição</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">DescriçãoEQ</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">toque</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
                                         </thead>
@@ -139,19 +139,20 @@
                                         <tbody>
                                             @foreach (var fp in @VFPS)
                                             {
-                                                <tr role="row" class="odd" id="@fp.idfproduto">
-                                                    <td>@fp.idfproduto</td>
-                                                    <td>@fp.idunidade</td>
-                                                    <td>@fp.tipo</td>
-                                                    <td>@fp.codigo</td>
-                                                    <td>@fp.nome</td>
-                                                    <td>@fp.descricao</td>
-                                                    <td>@fp.descricaoeq</td>
-                                                    <td>@fp.toque</td>
-                                                    <td><button class="btn btn-primary" @onclick="@ModalShow" style="margin-left:1rem">Editar</button><button class="btn btn-danger" @onclick="() => Apagar(fp.idfproduto)" style="margin-left:0.3rem">Apagar</button></td>
-                                                </tr>
+                                                if (!IsVisible(fp))
+                                                    continue;
+                                            <tr style="height: 1em;">
+                                                <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@fp.idfproduto">@fp.idfproduto</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.idfproduto">@fp.idfproduto</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.idunidade">@fp.idunidade</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.tipo">@fp.tipo</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.codigo">@fp.codigo</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.nome">@fp.nome</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.descricao">@fp.descricao</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.descricaoeq">@fp.descricaoeq</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.toque">@fp.toque</td>
+                                            </tr>
                                             }
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -160,7 +161,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </Authorized>
     <NotAuthorized>
@@ -258,4 +258,16 @@
         showModal = false;
     }
 
+    public string Filter { get; set; }
+
+    public bool IsVisible(Data.FamiliaProdutos fmp)
+    {
+        if (string.IsNullOrEmpty(Filter))
+            return true;
+
+        if (fmp.descricao.Contains(Filter) || fmp.descricaoeq.ToString().Contains(Filter) || fmp.codigo.ToString().Contains(Filter))
+            return true;
+
+        return false;
+    }
 }

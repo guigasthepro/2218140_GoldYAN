@@ -1162,3 +1162,7 @@ C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Re
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\win-x64\GoldYAN.dll
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\win-x64\GoldYAN.pdb
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\win-x64\GoldYAN.genruntimeconfig.cache
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\bin\Release\netcoreapp3.1\win-x64\Blazored.Typeahead.dll
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\bin\Release\netcoreapp3.1\win-x64\DapperExtensions.dll
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\win-x64\RazorDeclaration\Pages\Administração\Servicos.razor.g.cs
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\win-x64\Razor\Pages\Administração\Servicos.razor.g.cs
