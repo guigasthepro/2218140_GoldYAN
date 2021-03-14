@@ -1,12 +1,265 @@
-﻿@page "/vmodelo" 
+﻿@page "/vmodelo"
 @using GoldYAN.Controller
 @using GoldYAN.Data
 @using Microsoft.EntityFrameworkCore.Internal
-@inject IJSRuntime JsRuntime
-@inject ClientesController CC
-@inject ServicosController SC
-@inject EncomendasController EC
-@inject CabecalhoController CEC
+
+
+@if (showModal)
+{
+
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Cabeçalho Modelo</h6>
+            </div>
+            <EditForm Model="@cm" OnValidSubmit="@AtualizarLista">
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="Descricao">Referência do Modelo:</label> &nbsp
+                        <InputText id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.idmodelo" />
+                    </div>
+                </div>
+
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="Descricao">Descrição:</label> &nbsp
+                        <InputText id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.descricao" />
+                    </div>
+                </div>
+            </EditForm>
+
+            <div class="m-3 form-group ">
+                <div class="form-inline">
+                    <label for="nome" class="">Tipo de Produto:</label>
+                    <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar cliente">
+                        <SelectedTemplate>
+                            @context.codigo (Desc: @context.descricao)
+                        </SelectedTemplate>
+                        <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
+                    </BlazoredTypeahead>
+                </div>
+            </div>
+
+            <div class="m-3 form-group ">
+                <div class="form-inline">
+                    <label for="nome" class="">Tipo de Peça:</label>
+                    <BlazoredTypeahead class="" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar cliente">
+                        <SelectedTemplate>
+                            @context.codigo (Desc: @context.descricao)
+                        </SelectedTemplate>
+                        <ResultTemplate> @context.codigo + @context.descricao </ResultTemplate>
+                    </BlazoredTypeahead>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Formulário Modelos</h6>
+                @if (!String.IsNullOrEmpty(cm.idmodelo) && cm.idtipodepeca == 0 && cm.idtipoproduto == 0 && !String.IsNullOrEmpty(cm.descricao))
+                {
+                    <h6 class="m-1 float-right text-danger" style="display: inline;">Preencha primeiro o cabeçalho do modelo!</h6>
+                }
+                else
+                {
+                    Readonly = false;
+                }
+
+            </div>
+
+
+
+            <EditForm Model="m">
+                <div class="m-3 form-group col-sm-5">
+                    <div class="form-inline">
+                        <label for="Descricao">Componente:</label> &nbsp
+                        <InputSelect @bind-Value="@m.formadepesquisa">
+                            <option selected>------</option>
+                            <option>Molde</option>
+                            <option>Serviço</option>
+                            <option>Produtos</option>
+                        </InputSelect>
+                    </div>
+                </div>
+            </EditForm>
+
+
+            @if (m.formadepesquisa == "Molde")
+            {
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="nome">Molde:</label>
+                        <BlazoredTypeahead SearchMethod="ProcurarMoldes" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="mlds" Placeholder="Pesquisar Serviço">
+                            <SelectedTemplate>
+                                @context.descricao
+                            </SelectedTemplate>
+                            <ResultTemplate> @context.codigo + @context.descricao</ResultTemplate>
+                        </BlazoredTypeahead>
+                    </div>
+                </div>
+            }
+            else if (m.formadepesquisa == "Serviço")
+            {
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="nome">Serviço:</label>
+                        <BlazoredTypeahead SearchMethod="ProcurarServicos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="servicos" Placeholder="Pesquisar Serviço">
+                            <SelectedTemplate>
+                                @context.descricao
+                            </SelectedTemplate>
+                            <ResultTemplate>@context.codigo + @context.descricao</ResultTemplate>
+                        </BlazoredTypeahead>
+                    </div>
+                </div>
+            }
+            else if (m.formadepesquisa == "Produtos")
+            {
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="nome">Produtos:</label>
+                        <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Serviço">
+                            <SelectedTemplate>
+                                @context.codigo
+                            </SelectedTemplate>
+                            <ResultTemplate>@context.codigo + @context.descricao</ResultTemplate>
+                        </BlazoredTypeahead>
+                    </div>
+                </div>
+            }
+            else
+            {
+            }
+
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="datadeentrega">Colaborador:</label> &nbsp
+                    <BlazoredTypeahead SearchMethod="ProcurarColaboradores" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="cl" Placeholder="Pesquisar Serviço">
+                        <SelectedTemplate>
+                            @context.codigo : @context.descricao
+                        </SelectedTemplate>
+                        <ResultTemplate>@context.codigo : @context.descricao</ResultTemplate>
+                    </BlazoredTypeahead>
+                </div>
+            </div>
+
+
+            <EditForm Model="@m" OnValidSubmit="@AtualizarLista">
+                <DataAnnotationsValidator />
+
+                @*<div class="m-3 form-group">
+                        <div class="form-inline">
+                            <label for="telefone">Referência de Modelo:</label> &nbsp
+                            <InputText id="telefone" class="form-control" @bind-Value="" />
+                        </div>
+                    </div>*@
+
+
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="Quantidade">Quantidade:</label> &nbsp
+                        <InputNumber id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="m.quantidade" />
+                    </div>
+                </div>
+
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="peso">Peso:</label> &nbsp
+                        <InputNumber id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="m.peso" />
+                    </div>
+                </div>
+
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="preco">Preco:</label> &nbsp
+                        <InputNumber id="preco" class="form-control" placeholder="Preço do serviço" disabled="@Readonly" @bind-Value="m.preco" />
+                    </div>
+                </div>
+
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="apontamentos">Valor Total:</label> &nbsp
+                        <InputNumber id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="m.valortotal" />
+                    </div>
+                </div>
+
+
+
+                <div class="m-3 form-group">
+                    <button type="submit" class="btn btn-primary">Alterar</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Sumário da Encomenda</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;table-layout: fixed;">
+                                <thead>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Código</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Apontamentos</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Preço</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Data de Entrega</th></tr>
+                                </thead>
+                                <tfoot>
+                                    <tr><th rowspan="1" colspan="1">Componente</th><th rowspan="1" colspan="1">Colaborador</th><th rowspan="1" colspan="1">Classificação</th><th rowspan="1" colspan="1">Código</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Qtd.</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Valor.Un.</th><th rowspan="1" colspan="1">Valor Total</th></tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach (var modelo in listaModelos)
+                                    {
+                                        <tr @onclick="() => LoadData(modelo.idmodelo)" style="height: 1em;">
+                                            @if (modelo.idmolde != 0)
+                                            {
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">Molde</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">@modelo.idmolde</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@modelo.preco</td>
+
+                                            }
+                                            else if (modelo.idservico != 0)
+                                            {
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">Servico</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">@modelo.idservico</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@modelo.preco</td>
+                                            }
+                                            else
+                                            {
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">Produto</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">@modelo.idproduto</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
+                                                <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@modelo.preco</td>
+                                            }
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" @onclick="Update" class="btn btn-success">Salvar</button>
+        </div>
+    </div>
+}
+
 
 <div class="container-fluid">
 
@@ -14,62 +267,187 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Listagem de Encomendas</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Listagem de Modelos</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive-sm">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Pesquisar Encomenda:<input type="search" @bind="Filter" @bind:event="oninput" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
+                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Pesquisar Modelo:<input type="search" @bind="Filter" @bind:event="oninput" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">IDEncomenda</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">IDCliente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Data</th></tr>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">IDModelo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">IDTipoDePeça</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">IDTipoDeProduto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Data Criação</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">IdEncomenda</th><th rowspan="1" colspan="1">IDCliente</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Data</th></tr>
+                                <tr><th rowspan="1" colspan="1">IDModelo</th><th rowspan="1" colspan="1">IDTipoDePeça</th><th rowspan="1" colspan="1">IDTipoDeProduto</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Data Criação</th></tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach (var encomenda in VEC)
-                                    {
-                                        if (!IsVisible(encomenda))
-                                            continue;
-                                        encomenda.idwithlinha = encomenda.idencomenda.ToString() + "/" + encomenda.linha.ToString();
+                                @foreach (var modelos in LCM)
+                                {
+                                    if (!IsVisible(modelos))
+                                        continue;
+                                    <tr @onclick="() => LoadData(modelos.idmodelo)" style="height: 1em;">
+                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@modelos.idmodelo">@modelos.idmodelo</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@modelos.idtipodepeca">@modelos.idtipodepeca</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@modelos.idtipoproduto">@modelos.idtipoproduto</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@modelos.descricao">@modelos.descricao</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@modelos.datacriacao">@modelos.datacriacao</td>
+                                        <td><button class="btn btn-primary btn-sm" @onclick="@ModalShow" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" @onclick="() => Apagar(modelos.idmodelo)" style="margin-left: 0.3rem">Apagar</button></td>
 
-                                        <tr style="height: 1em;">
-                                            <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idwithlinha">@encomenda.idwithlinha</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idcliente">@encomenda.idcliente</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.nome">@encomenda.nome</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.telefone">@encomenda.telefone</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.data">@encomenda.data</td>
-                                        </tr>
-                                    }
+                                    </tr>
+                                }
                                 </tbody>
                             </table>
                         </div>
-                    </div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
+
 @code {
-    List<EncomendasComputed> VEC = new List<EncomendasComputed>();
+
+
+    // Invoking classes
+    Data.Servicos servicos = new Servicos();
+    Data.Moldes mlds = new Moldes();
+    Data.Produtos produtos = new Produtos();
+    Data.CabecalhosModelos cm = new CabecalhosModelos();
+    Data.Modelos m = new Modelos();
+    Data.Colaboradores cl = new Colaboradores();
+    Data.TipoDePeca dtdp = new TipoDePeca();
+    Data.TipoProduto dtp = new TipoProduto();
+
+
+
+    //Invoking lists
+    List<Servicos> ListaServicos = new List<Servicos>();
+    List<Produtos> listaProdutos = new List<Produtos>();
+    List<Moldes> listaMoldes = new List<Moldes>();
+    List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
+    List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
+    List<Modelos> listaModelos = new List<Modelos>();
+    List<Colaboradores> colaboradores = new List<Colaboradores>();
+
+    bool FichaModelo = false;
+
+    bool showModal = false;
+    bool showModal2 = false;
+    bool Readonly = true;
+    bool ReadonlyCabecalho = true;
+    int i;
+    string formadepesquisa;
+
+
+    Data.CabecalhosModelos updateCm = new CabecalhosModelos();
+    Data.Modelos updateM = new Modelos();
+
+    List<CabecalhosModelos> LCM = new List<CabecalhosModelos>();
+    List<Modelos> LM = new List<Modelos>();
+
     public string Filter { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        VEC = EC.GetWithInner();
+        LCM = CMC.GetAll();
+
+
+        colaboradores = colaboradoresController.GetAll();
+        listaMoldes = MoldesController.Get();
+        listaTipoDePecas = TPC.GetAll();
+        listaTipoProdutos = TPRC.GetAll();
+        ListaServicos = SC.GetAll();
     }
 
-    public bool IsVisible(EncomendasComputed encomendas)
+    public bool IsVisible(CabecalhosModelos cmodelos)
     {
         if (string.IsNullOrEmpty(Filter))
             return true;
 
-        if (encomendas.nome.Contains(Filter) || encomendas.telefone.ToString().Contains(Filter) || encomendas.idwithlinha.ToString().Contains(Filter) || encomendas.data.ToString().Contains(Filter))
+        if (cmodelos.descricao.Contains(Filter) || cmodelos.idmodelo.ToString().Contains(Filter) || cmodelos.criadopor.ToString().Contains(Filter) || cmodelos.datacriacao.ToString().Contains(Filter))
             return true;
 
         return false;
     }
+
+    public void OpenFichaModelo()
+    {
+
+    }
+    void ModalShow()
+    {
+        showModal = true;
+    }
+    void ModalCancel()
+    {
+        showModal = false;
+    }
+
+    public async Task AtualizarLista()
+    {
+
+    }
+
+    public async Task LoadData(string id)
+    {
+        LM = MC.GetAllQuery(id);
+    }
+
+    public async Task Apagar(string id)
+    {
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            string message = CMC.Delete(id);
+            message += MC.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+            {
+                await js.InvokeVoidAsync("alert", @message);
+            }
+        }
+    }
+
+    public async Task Update()
+    {
+
+        CMC.Put(cm.idmodelo, cm);
+        foreach (var modelos in listaModelos)
+        {
+
+        }
+        showModal = false;
+    }
+
+    private async Task<IEnumerable<TipoDePeca>> ProcurarPecas(string searchText)
+    {
+        return await Task.FromResult(listaTipoDePecas.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower()) || h.idpeca.ToString().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Moldes>> ProcurarMoldes(string searchText)
+    {
+        return await Task.FromResult(listaMoldes.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower()) || h.idmolde.ToString().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Servicos>> ProcurarServicos(string searchText)
+    {
+        return await Task.FromResult(ListaServicos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<TipoProduto>> ProcurarProdutos(string searchText)
+    {
+        return await Task.FromResult(listaTipoProdutos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
+    {
+        return await Task.FromResult(colaboradores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
 }

@@ -4,16 +4,16 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace GoldYAN.Data
 {
-    [Table ("produtos")]
+    [Table ("molde")]
     public class Moldes
     {
         [ExplicitKey]
-        public int idproduto { get; set; }
-        public int tipoproduto { get; set; }
+        public int idmolde { get; set; }
         public string codigo { get; set; }
         public string descricao { get; set; }
+        public string tipodepeça { get; set; }
         public int gaveta { get; set; }
-        public string tempo { get; set; }
-        public int peso { get; set; }
+        public string peso { get; set; }
+        public string tipoproduto { get; set; }
     }
 }

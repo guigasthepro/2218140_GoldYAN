@@ -34,11 +34,11 @@ namespace GoldYAN.Controller
         {
             LerMoldes = new List<Moldes>();
 
-            string sql = "Select idproduto, tipoproduto, codigo, descricao, gaveta, tempo, peso FROM produtos Where tipoproduto = 1 ";
+            string sql = "Select idproduto,codigo, descricao, gaveta, tempo, peso FROM produtos Where tipoproduto = 1 ";
 
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                var res = DBConn.Query<Moldes>(sql).ToList();
+                var res = DBConn.GetAll<Moldes>().ToList();
                 LerMoldes = res;
             }
 

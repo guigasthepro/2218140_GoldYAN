@@ -536,3 +536,9 @@ C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\D
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Modelos\Cmodelo.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Modelos\Vmodelo.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Oficina\Oficina.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Modelos\Cmodelo.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Modelos\Vmodelo.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Oficina\Oficina.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Modelos\Cmodelo.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Modelos\Vmodelo.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Oficina\Oficina.razor.g.cs

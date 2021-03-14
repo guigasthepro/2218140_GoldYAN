@@ -10,7 +10,7 @@ namespace GoldYAN.Data
     public class TipoProduto
     {
         [ExplicitKey]
-         public int idtipoproduto { get; set; }
+         public int? idtipoproduto { get; set; }
          public string codigo { get; set; }
          public string descricao { get; set; }
     }

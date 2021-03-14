@@ -1,6 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Dapper;
+using Dapper.Contrib.Extensions;
+using GoldYAN.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,7 +15,8 @@ namespace GoldYAN.Controller
     [ApiController]
     public class ModelosController : ControllerBase
     {
-        // GET: api/<Modelos>
+        List<Modelos> LerCodigos = new List<Modelos>();
+        Modelos LerCodigo = new Modelos();
 
         private readonly IConfiguration configuration;
         private string connectionString;
@@ -21,34 +27,76 @@ namespace GoldYAN.Controller
         }
 
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Modelos> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            LerCodigos = new List<Modelos>();
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.GetAll<Modelos>().ToList();
+                LerCodigos = res;
+            }
+
+            return LerCodigos;
         }
 
-        // GET api/<Modelos>/5
+        [HttpGet]
+        public List<Modelos> GetAllQuery(string id)
+        {
+            string query = $"SELECT * FROM `modelos` WHERE idmodelo = '{id}'";
+
+            LerCodigos = new List<Modelos>();
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Query<Modelos>(query).ToList();
+                LerCodigos = res;
+            }
+
+            return LerCodigos;
+        }
+
+
+        // GET api/<CodigoPostalController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Modelos Get(int id)
         {
-            return "value";
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Get<Modelos>(id);
+                return res;
+            }
         }
 
-        // POST api/<Modelos>
+        // POST api/<CodigoPostalController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public Modelos Post([FromBody] Modelos encomenda)
         {
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var idNewRec = DBConn.Insert<Modelos>(encomenda);
+                var res = DBConn.Get<Modelos>(idNewRec);
+                return res;
+            }
         }
 
-        // PUT api/<Modelos>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<Modelos>/5
+        // DELETE api/<CodigoPostalController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public string Delete(string id)
         {
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Get<Modelos>(id);
+                if (res != null)
+                {
+                    DBConn.Delete(res);
+                    return "Item foi apagado com sucesso";
+                }
+                else
+                {
+                    return "Item foi apagado com sucesso";
+                }
+            }
         }
     }
 }
