@@ -10,7 +10,7 @@ namespace GoldYAN.Data
     public class TipoDePeca
     {
         [ExplicitKey]
-        public int? idpeca { get; set; }
+        public int idpeca { get; set; }
         public string codigo { get; set; }
         public string descricao { get; set; }
     }

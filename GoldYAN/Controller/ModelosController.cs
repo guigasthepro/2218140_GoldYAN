@@ -59,7 +59,7 @@ namespace GoldYAN.Controller
 
         // GET api/<CodigoPostalController>/5
         [HttpGet("{id}")]
-        public Modelos Get(int id)
+        public Modelos Get(string id)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {

@@ -15,8 +15,8 @@ namespace GoldYAN.Data
         [Required]
         [ExplicitKey]
         public string idmodelo { get; set; }
-        public int? idtipoproduto { get; set; }
-        public int? idtipodepeca { get; set; }
+        public int idtipoproduto { get; set; }
+        public int idtipodepeca { get; set; }
         public string descricao { get; set; }
         public DateTime datacriacao { get; set; }
         public string criadopor { get; set; }

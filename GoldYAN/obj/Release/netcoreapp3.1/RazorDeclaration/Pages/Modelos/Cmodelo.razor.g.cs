@@ -7,91 +7,97 @@
 namespace GoldYAN.Pages.Modelos
 {
     #line hidden
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 1 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 2 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 3 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 4 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 5 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 6 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 7 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 8 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 9 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 10 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Blazored.Typeahead;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
+#line 3 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
 using GoldYAN.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
+#line 4 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
 using GoldYAN.Controller;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
+using System;
 
 #line default
 #line hidden
@@ -105,35 +111,40 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 226 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
+#line 264 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
        
-        // Invoking classes
-        Data.Servicos servicos = new Servicos();
-        Data.CabecalhosModelos cm = new CabecalhosModelos();
-        Data.Modelos m = new Modelos();
-        Data.TipoDePeca dtdp = new TipoDePeca();
-        Data.TipoProduto dtp = new TipoProduto();
-
-
-        //Invoking lists
-        List<Servicos> ListaServicos = new List<Servicos>();
-        List<Produtos> listaProdutos = new List<Produtos>();
-        List<Moldes> listaMoldes = new List<Moldes>();
-        List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();    
-        List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
-        List<Modelos> listaModelos = new List<Modelos>();
+    // Invoking classes
+    Data.Servicos servicos = new Servicos();
+    Data.Moldes mlds = new Moldes();
+    Data.Produtos produtos = new Produtos();
+    Data.CabecalhosModelos cm = new CabecalhosModelos();
+    Data.Modelos m = new Modelos();
+    Data.Colaboradores cl = new Colaboradores();
+    Data.TipoDePeca dtdp = new TipoDePeca();
+    Data.TipoProduto dtp = new TipoProduto();
 
 
 
-        
+    //Invoking lists
+    List<Servicos> ListaServicos = new List<Servicos>();
+    List<Produtos> listaProdutos = new List<Produtos>();
+    List<Moldes> listaMoldes = new List<Moldes>();
+    List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
+    List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
+    List<Modelos> listaModelos = new List<Modelos>();
+    List<Colaboradores> colaboradores = new List<Colaboradores>();
 
 
 
-        //Utilitie Stuff
-        bool Readonly = true;
-        bool ReadonlyCabecalho = true;
-        int i;
-        string formadepesquisa;
+
+
+
+
+    //Utilitie Stuff
+    bool Readonly = true;
+    bool ReadonlyCabecalho = true;
+    int i;
+    string formadepesquisa;
 
 
     protected override async Task OnInitializedAsync()
@@ -143,7 +154,10 @@ using GoldYAN.Controller;
         ListaServicos = new List<Servicos>();
         servicos = new Servicos();
 
-
+        colaboradores = colaboradoresController.GetAll();
+        listaMoldes = MoldesController.Get();
+        listaTipoDePecas = TPC.GetAll();
+        listaTipoProdutos = TPRC.GetAll();
         ListaServicos = SC.GetAll();
         servicos.idservico = 0;
     }
@@ -151,6 +165,11 @@ using GoldYAN.Controller;
     private async Task<IEnumerable<TipoDePeca>> ProcurarPecas(string searchText)
     {
         return await Task.FromResult(listaTipoDePecas.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower()) || h.idpeca.ToString().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Moldes>> ProcurarMoldes(string searchText)
+    {
+        return await Task.FromResult(listaMoldes.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower()) || h.idmolde.ToString().Contains(searchText.ToLower())).ToList());
     }
 
     private async Task<IEnumerable<Servicos>> ProcurarServicos(string searchText)
@@ -163,24 +182,33 @@ using GoldYAN.Controller;
         return await Task.FromResult(listaTipoProdutos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
+    private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
+    {
+        return await Task.FromResult(colaboradores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
 
     private async Task AdicionarLista()
     {
-        if (servicos.idservico == 0)
-        {
-            await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
-        }
-        else
+        if (mlds.idmolde != 0 || servicos.idservico != 0 || produtos.idproduto != 0)
         {
             i++;
 
+            m.linha = i;
+            m.idmolde = mlds.idmolde;
+            m.idservico = servicos.idservico;
+            m.idproduto = produtos.idproduto;
 
+            listaModelos.Add(m);
 
-            //Vai buscar o utilizador que está logado
-            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-            var user = authState.User;
-
+            m = new Modelos();
             servicos = new Servicos();
+            produtos = new Produtos();
+            mlds = new Moldes();
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
         }
 
     }
@@ -189,6 +217,15 @@ using GoldYAN.Controller;
     {
         if (listaModelos.Count != 0)
         {
+            //Vai buscar o utilizador que está logado
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+            cm.idtipoproduto = dtp.idtipoproduto;
+            cm.idtipodepeca = dtdp.idpeca;
+            cm.criadopor = user.Identity.Name;
+            cm.datacriacao = DateTime.Now;
+
+
             var resultado = CMC.Post(cm);
             await Task.Delay(1000);
 
@@ -209,13 +246,18 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private BancosController VB { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private EncomendasController EC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClientesController CC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private MoldesController MoldesController { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private TipoProdutoController TPRC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private TipoPecaController TPC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ModelosController MC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ColaboradoresController colaboradoresController { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private CabecalhoModeloController CMC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ServicosController SC { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
     }
 }

@@ -60,9 +60,13 @@ namespace GoldYAN.Controller
 
         // GET api/<MoldesController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Moldes Get(int id)
         {
-            return "value";
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Get<Moldes>(id);
+                return res;
+            }
         }
 
         // POST api/<MoldesController>

@@ -9272,20 +9272,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\GuilhermeSimao\\.nuget\\packages\\": {}
+    "C:\\Users\\Guilherme Simao\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
+      "projectUniqueName": "C:\\Users\\Guilherme Simao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
       "projectName": "GoldYAN",
-      "projectPath": "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
-      "packagesPath": "C:\\Users\\GuilhermeSimao\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\obj\\",
+      "projectPath": "C:\\Users\\Guilherme Simao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
+      "packagesPath": "C:\\Users\\Guilherme Simao\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Guilherme Simao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\GuilhermeSimao\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Guilherme Simao\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -9375,7 +9380,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   },

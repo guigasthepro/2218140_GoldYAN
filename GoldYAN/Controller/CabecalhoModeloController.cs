@@ -44,7 +44,7 @@ namespace GoldYAN.Controller
 
         // GET api/<CodigoPostalController>/5
         [HttpGet("{id}")]
-        public CabecalhosModelos Get(int id)
+        public CabecalhosModelos Get(string id)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
