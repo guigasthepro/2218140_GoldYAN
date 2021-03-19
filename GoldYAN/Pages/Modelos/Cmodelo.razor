@@ -14,14 +14,14 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Descricao">Referência do Modelo:</label> &nbsp
-                    <InputText id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.idmodelo" />
+                    <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.idmodelo" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Descricao">Descrição:</label> &nbsp
-                    <InputText id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.descricao" />
+                    <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.descricao" />
                 </div>
             </div>
         </EditForm>
@@ -57,16 +57,16 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary" style="display:inline;" >Formulário Modelos</h6>
-            @if (!String.IsNullOrEmpty(cm.idmodelo) && cm.idtipodepeca == 0 && cm.idtipoproduto == 0 && !String.IsNullOrEmpty(cm.descricao) )
-            {
-                <h6 class="m-1 float-right text-danger" style="display: inline;">Preencha primeiro o cabeçalho do modelo!</h6>
-            }
-            else
-            {
-                Readonly = false;
-            }
-
+            <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Formulário Modelos</h6>
+            @if (dtdp.idpeca == 0 || dtp.idtipoproduto == 0)
+        {
+            <h6 class="m-1 float-right text-danger" style="display: inline;">Preencha primeiro o cabeçalho do modelo!</h6>
+        }
+        else
+        {
+            Readonly = false;
+        }
+       
         </div>
 
  
@@ -173,14 +173,14 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="preco">Preco:</label> &nbsp
-                    <InputNumber id="preco" class="form-control" placeholder="Preço do serviço" disabled="@Readonly" @bind-Value="m.preco" />
+                    <InputNumber id="preco" class="form-control" placeholder="@cl.valor" disabled="@Readonly" @bind-Value="m.preco" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="apontamentos">Valor Total:</label> &nbsp
-                    <InputNumber id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="m.valortotal" />
+                    <InputNumber id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly"  @bind-Value="m.valortotal" />
                 </div>
             </div>
 
@@ -204,10 +204,10 @@
                     <div class="col-sm-12">
                         <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;table-layout: fixed;">
                             <thead>
-                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Código</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Apontamentos</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Preço</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Data de Entrega</th></tr>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 90px;">Componente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 100px;">Colaborador</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Classificação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Código</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Qtd.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 30px;">Valor.Un.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Valor Total</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Ações</th></tr>
                             </thead>
                             <tfoot>
-                                <tr><th rowspan="1" colspan="1">Componente</th><th rowspan="1" colspan="1">Colaborador</th><th rowspan="1" colspan="1">Classificação</th><th rowspan="1" colspan="1">Código</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Qtd.</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Valor.Un.</th><th rowspan="1" colspan="1">Valor Total</th></tr>
+                                <tr><th rowspan="1" colspan="1">Componente</th><th rowspan="1" colspan="1">Colaborador</th><th rowspan="1" colspan="1">Classificação</th><th rowspan="1" colspan="1">Código</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Qtd.</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Valor.Un.</th><th rowspan="1" colspan="1">Valor Total</th><th rowspan="1" colspan="1">Ações</th></tr>
                             </tfoot>
                             <tbody>
                                 @foreach (var modelo in listaModelos)
@@ -218,10 +218,14 @@
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">Molde</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">@modelo.idmolde</td>
+                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@modelo.preco</td>
+                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@cl.valor</td>
+                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
+                                        <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
+
 
                                     }
                                     else if (modelo.idservico != 0)
@@ -229,20 +233,28 @@
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">Servico</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">@modelo.idservico</td>
+                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@modelo.preco</td>
+                                        <td style="overflow: hidden; white-space: nowrap;" title="@cl.valor">@cl.valor</td>
+                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
+                                        <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
+
                                     }
                                     else
                                     {
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">Produto</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">@modelo.idproduto</td>
+                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@modelo.preco</td>
+                                        <td style="overflow: hidden; white-space: nowrap;" title="@cl.valor">@cl.valor</td>
+                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
+                                        <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
+
                                     }
 
                                 </tr>
@@ -282,10 +294,6 @@
     List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
     List<Modelos> listaModelos = new List<Modelos>();
     List<Colaboradores> colaboradores = new List<Colaboradores>();
-
-
-
-
 
 
 
@@ -334,19 +342,23 @@
     private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
     {
         return await Task.FromResult(colaboradores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+        m.preco = cl.valor;
     }
 
 
     private async Task AdicionarLista()
     {
-        if (mlds.idmolde != 0 || servicos.idservico != 0 || produtos.idproduto != 0)
+        if (mlds.idmolde != 0 )
         {
             i++;
 
             m.linha = i;
             m.idmolde = mlds.idmolde;
-            m.idservico = servicos.idservico;
-            m.idproduto = produtos.idproduto;
+            m.descricao = mlds.descricao;
+            m.codigo = mlds.codigo;
+
+
+            m.preco = cl.valor;
 
             listaModelos.Add(m);
 
@@ -354,6 +366,53 @@
             servicos = new Servicos();
             produtos = new Produtos();
             mlds = new Moldes();
+            cl = new Colaboradores();
+
+
+        }
+        else if(servicos.idservico != 0)
+        {
+            i++;
+
+            m.linha = i;
+            m.idmolde = mlds.idmolde;
+            m.preco = cl.valor;
+
+            m.idservico = servicos.idservico;
+            m.descricao = servicos.descricao;
+            m.codigo = servicos.codigo;
+
+            listaModelos.Add(m);
+
+            m = new Modelos();
+            servicos = new Servicos();
+            produtos = new Produtos();
+            mlds = new Moldes();
+            cl = new Colaboradores();
+
+
+        }
+        else if (produtos.idproduto != 0)
+        {
+            i++;
+
+            m.linha = i;
+            m.idmolde = mlds.idmolde;
+            m.preco = cl.valor;
+
+            m.idproduto = produtos.idproduto;
+            m.descricao = produtos.descricao;
+            m.codigo = produtos.codigo;
+
+            listaModelos.Add(m);
+
+            m = new Modelos();
+            servicos = new Servicos();
+            produtos = new Produtos();
+            mlds = new Moldes();
+            cl = new Colaboradores();
+
+
         }
         else
         {
@@ -380,9 +439,19 @@
 
             for (int i = 0; i < listaModelos.Count; i++)
             {
-                listaModelos[i].idmodelo = resultado.idmodelo;
+                listaModelos[i].idmodelo = cm.idmodelo;
                 MC.Post(listaModelos[i]);
             }
+
+            m = new Modelos();
+            servicos = new Servicos();
+            produtos = new Produtos();
+            mlds = new Moldes();
+            cl = new Colaboradores();
+            cm = new CabecalhosModelos();
+            dtp = new TipoProduto();
+            dtdp = new TipoDePeca();
+
             StateHasChanged();
             OnInitializedAsync();
         }

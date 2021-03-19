@@ -41,14 +41,14 @@
         <div class="m-3 form-group">
             <div class="form-inline">
                 <label for="nome">Nome:</label> &nbsp;
-                <input class="col-8 form-control" disabled="true" type="text" value="@Cliente.Nome" />
+                <input class="col-8 form-control" disabled="true" oninput="this.value = this.value.toUpperCase()" type="text" value="@Cliente.Nome" />
             </div>
             <br />
             <div class="form-inline">
                 <label for="Telefone">Telefone:</label>&nbsp;
-                <input class="col-sm-2 form-control" disabled="true" type="text" value="@Cliente.Telefone" />&nbsp;&nbsp;
+                <input class="col-sm-2 form-control" disabled="true" oninput="this.value = this.value.toUpperCase()" type="text" value="@Cliente.Telefone" />&nbsp;&nbsp;
                 <label for="Nif">Nif:</label>&nbsp;
-                <input class="col-sm-2 form-control" disabled="true" type="text" value="@Cliente.Nif" />
+                <input class="col-sm-2 form-control" disabled="true" oninput="this.value = this.value.toUpperCase()" type="text" value="@Cliente.Nif" />
 
             </div>
             <br />
@@ -66,24 +66,23 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Formulário Encomenda</h6>
+            <h6 class="m-0 font-weight-bold text-primary" style="display: inline;">Formulário Encomenda</h6>
+            @if (Cliente.idcliente == 0)
+            {
+                <div class="col-sm-4 float-right">
+                    <h6 class="m-1 float-right text-danger" style="display: inline;">Selecione primeiro o cliente!</h6>
+                </div>
+            }
+            else
+            {
+                Readonly = false;
+            }
         </div>
-
-        @if (Cliente.idcliente == 0)
-        {
-        <div class="col-sm-4 alert-warning">
-            <h5 class="m-1 text-danger">Selecione primeiro o cliente!</h5>
-        </div>
-        }
-        else
-        {
-            Readonly = false;
-        }
 
         <div class="m-3 form-group">
             <div class="form-inline">
                 <label for="nome">Código:</label>
-                <BlazoredTypeahead SearchMethod="ProcurarServicos" DisableClear="true" EnableDropDown="true"  Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="servicos" Placeholder="Pesquisar Serviço">
+                <BlazoredTypeahead SearchMethod="ProcurarServicos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="servicos" Placeholder="Pesquisar Serviço">
                     <SelectedTemplate>
                         @context.codigo
                     </SelectedTemplate>
@@ -106,7 +105,7 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Descricao">Descrição:</label> &nbsp
-                    <InputText id="Descricao" class="form-control" disabled="true" placeholder="Ainda não selecionado" @bind-Value="servicos.descricao" />
+                    <InputText id="Descricao" oninput="this.value = this.value.toUpperCase()" class="form-control" disabled="true" placeholder="Ainda não selecionado" @bind-Value="servicos.descricao" />
                 </div>
             </div>
 
@@ -158,40 +157,139 @@
             <h6 class="m-0 font-weight-bold text-primary">Sumário da Encomenda</h6>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive-sm">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="col-sm-12">
-                        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;table-layout: fixed;">
-                            <thead>
-                            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Código</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Apontamentos</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Preço</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Data de Entrega</th></tr>
-                            </thead>
-                            <tfoot>
-                            <tr><th rowspan="1" colspan="1">Código</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Apontamento</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Preço</th><th rowspan="1" colspan="1">Data de entrega</th></tr>
-                            </tfoot>
-                            <tbody>
-                            @foreach (var encomenda in ListaEncomendas)
-                            {
-                                <tr style="height: 1em;">
-                                    <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.codigo">@encomenda.codigo</td>
-                                    <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.descricao">@encomenda.descricao</td>
-                                    <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.apontamentos">@encomenda.apontamentos</td>
-                                    <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.peso">@encomenda.peso</td>
-                                    <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.precounitario">@encomenda.precounitario</td>
-                                    <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.datadeentrega">@encomenda.datadeentrega</td>
-                                </tr>
-                            }
-                            </tbody>
-                        </table>
+                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"></div></div></div><div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                <thead>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Código</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Apontamentos</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Preço</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Data de Entrega</th></tr>
+                                </thead>
+                                <tfoot>
+                                    <tr><th rowspan="1" colspan="1">Código</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Apontamento</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Preço</th><th rowspan="1" colspan="1">Data de entrega</th></tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach (var encomenda in ListaEncomendas)
+                                    {
+                                        <tr @ondblclick="() => EditarEncomenda(encomenda.linha)" style="height: 1em;">
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.codigo">@encomenda.codigo</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.descricao">@encomenda.descricao</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.apontamentos">@encomenda.apontamentos</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.peso">@encomenda.peso</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.precounitario">@encomenda.precounitario</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.datadeentrega">@encomenda.datadeentrega</td>
+                                            <td><button class="btn btn-primary btn-sm" @onclick="() => EditarEncomenda(encomenda.linha)" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" @onclick="() => Apagar(encomenda.linha)" style="margin-left: 0.3rem">Apagar</button></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" @onclick="CriarEncomenda" class="btn btn-success">Criar Encomenda</button>
+        </div>
+    </div>
+</div>
+
+@if (showModal)
+{
+
+    <div class="modal fade show" id="myModal" style="display:block; position:fixed; overflow-y:auto;" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Atualizar Informação</h4>
+                    <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Formulário Encomenda</h6>
+                        </div>
+
+
+                        <div class="m-3 form-group">
+                            <div class="form-inline">
+                                <label for="nome">Código:</label>
+                                <BlazoredTypeahead SearchMethod="ProcurarServicos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="servicos" Placeholder="Pesquisar Serviço">
+                                    <SelectedTemplate>
+                                        @context.codigo
+                                    </SelectedTemplate>
+                                    <ResultTemplate>@context.codigo => @context.descricao</ResultTemplate>
+                                </BlazoredTypeahead>
+                            </div>
+                        </div>
+
+                        <EditForm Model="@encomendas" OnValidSubmit="@AtualizarLista">
+                            <DataAnnotationsValidator />
+
+
+                            @*<div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="telefone">Referência de Modelo:</label> &nbsp
+                                        <InputText id="telefone" class="form-control" @bind-Value="" />
+                                    </div>
+                                </div>*@
+
+                            <div class="m-3 form-group">
+                                <div class="form-inline">
+                                    <label for="Descricao">Descrição:</label> &nbsp
+                                    <InputText id="Descricao" class="form-control" disabled="true" placeholder="Ainda não selecionado" @bind-Value="servicos.descricao" />
+                                </div>
+                            </div>
+
+                            <div class="m-3 form-group">
+                                <div class="form-inline">
+                                    <label for="Quantidade">Quantidade:</label> &nbsp
+                                    <InputNumber id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="encomendas.quantidade" />
+                                </div>
+                            </div>
+
+                            <div class="m-3 form-group">
+                                <div class="form-inline">
+                                    <label for="peso">Peso:</label> &nbsp
+                                    <InputText id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="encomendas.peso" />
+                                </div>
+                            </div>
+
+                            <div class="m-3 form-group">
+                                <div class="form-inline">
+                                    <label for="preco">Preco:</label> &nbsp
+                                    <InputNumber id="preco" class="form-control" placeholder="Preço do serviço" disabled="@Readonly" @bind-Value="servicos.custo" />
+                                </div>
+                            </div>
+
+                            <div class="m-3 form-group">
+                                <div class="form-inline">
+                                    <label for="apontamentos">Apontamentos:</label> &nbsp
+                                    <InputText id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="encomendas.apontamentos" />
+                                </div>
+                            </div>
+
+                            <div class="m-3 form-group">
+                                <div class="form-inline">
+                                    <label for="datadeentrega">Data de Entrega:</label> &nbsp
+                                    <InputDate id="datadeentrega" class="form-control" disabled="@Readonly" @bind-Value="encomendas.datadeentrega" />
+                                </div>
+                            </div>
+
+                            <div class="m-3 form-group">
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+                            </div>
+                        </EditForm>
                     </div>
                 </div>
             </div>
         </div>
-        <button type="button" @onclick="CriarEncomenda" class="btn btn-success">Criar Encomenda</button>
-
-
     </div>
-</div>
 
+
+
+}
 
 
 @code {
@@ -206,6 +304,7 @@
     List<Clientes> ListaClientes = new List<Clientes>();
     bool Readonly = true;
     int i;
+    bool showModal = false;
 
 
     protected override async Task OnInitializedAsync()
@@ -219,7 +318,6 @@
         servicos = new Servicos();
         encomendas = new Encomendas();
         cabecalhos = new Cabecalho();
-
 
         Cliente.idcliente = 0;
         ListaClientes = CC.Get();
@@ -259,7 +357,7 @@
             encomendas.precounitario = servicos.custo;
             encomendas.precototal = encomendas.precounitario * encomendas.quantidade;
 
-    //Vai buscar o utilizador que está logado
+            //Vai buscar o utilizador que está logado
             var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
             var user = authState.User;
             cabecalhos.criadopor = user.Identity.Name;
@@ -296,6 +394,36 @@
 
 
 
+    }
+
+    public async Task EditarEncomenda(int linha)
+    {
+        servicos = SC.Get(ListaEncomendas[linha - 1].idservico);
+        encomendas = ListaEncomendas[linha - 1];
+        showModal = true;
+    }
+
+    public async Task AtualizarLista()
+    {
+        encomendas.idservico = servicos.idservico;
+        encomendas.descricao = servicos.descricao;
+        encomendas.codigo = servicos.codigo;
+        encomendas.precounitario = servicos.custo;
+        encomendas.precototal = encomendas.precounitario * encomendas.quantidade;
+
+        ListaEncomendas.RemoveAt(encomendas.linha - 1);
+        ListaEncomendas.Insert(encomendas.linha - 1, encomendas);
+        showModal = false;
+    }
+
+    public async Task Apagar(int linha)
+    {
+        ListaEncomendas.RemoveAt(linha - 1);
+    }
+
+    public async Task ModalCancel()
+    {
+        showModal = false;
     }
 
 }

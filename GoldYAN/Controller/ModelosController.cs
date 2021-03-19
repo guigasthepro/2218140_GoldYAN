@@ -40,7 +40,7 @@ namespace GoldYAN.Controller
             return LerCodigos;
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public List<Modelos> GetAllQuery(string id)
         {
             string query = $"SELECT * FROM `modelos` WHERE idmodelo = '{id}'";
@@ -54,6 +54,22 @@ namespace GoldYAN.Controller
             }
 
             return LerCodigos;
+        }
+
+
+        [HttpGet("{id}")]
+        public List<Modelos> GetSingleQuery(string id, int linha)
+        {
+            string query = $"SELECT * FROM `modelos` WHERE idmodelo = '{id}' AND linha = '{linha}'";
+
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Query<Modelos>(query).ToList();
+                return res;
+            }
+
+
         }
 
 
@@ -77,6 +93,30 @@ namespace GoldYAN.Controller
                 var idNewRec = DBConn.Insert<Modelos>(encomenda);
                 var res = DBConn.Get<Modelos>(idNewRec);
                 return res;
+            }
+        }
+
+        [HttpPut]
+        public ActionResult<Modelos> Put(string id, int linha, [FromBody] Modelos cmodelos)
+        {
+            string getsql = $"SELECT* FROM `modelos` WHERE idmodelo = '{id}' AND linha = '{linha}';";
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var recLido = DBConn.Query<Modelos>(getsql).ToList();
+
+                if (recLido != null)
+                {
+                    
+
+                    bool updated = DBConn.Update(recLido);
+
+                    return Ok(recLido);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
         }
 

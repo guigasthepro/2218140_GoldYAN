@@ -65,6 +65,7 @@ namespace GoldYAN.Controller
             }
         }
 
+        [HttpPut]
         public ActionResult<CabecalhosModelos> Put(string id, [FromBody] CabecalhosModelos cmodelos)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))

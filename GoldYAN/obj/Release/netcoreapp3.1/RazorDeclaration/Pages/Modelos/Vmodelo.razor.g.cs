@@ -181,7 +181,9 @@ using Microsoft.EntityFrameworkCore.Internal;
     public void OpenFichaModelo(string id)
     {
         cm = CMC.Get(id);
-        LM = MC.GetAllQuery(id);
+        dtp = TPRC.Get(cm.idtipoproduto);
+        dtdp = TPC.Get(cm.idtipodepeca);
+        listaModelos = MC.GetAllQuery(id);
         showModal = true;
     }
     void ModalShow()
@@ -198,13 +200,13 @@ using Microsoft.EntityFrameworkCore.Internal;
 
     }
 
-    public async Task LoadData(int i)
+    public async Task LoadData(string id, int linha)
     {
-        m = listaModelos[i];
-        servicos = SC.Get(listaModelos[i].idservico);
-        cl = colaboradoresController.Get(listaModelos[i].idcolaborador);
-        //produtos = p
-        mlds = MoldesController.Get(listaModelos[i].idmolde);
+        m = MC.GetSingleQuery(id, linha);   
+        servicos = SC.Get(m.idservico);
+        cl = colaboradoresController.Get(m.idcolaborador);
+        ////produtos = p
+        mlds = MoldesController.Get(m.idmolde);
 
     }
 

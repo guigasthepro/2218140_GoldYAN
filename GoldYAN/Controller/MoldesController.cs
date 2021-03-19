@@ -45,19 +45,6 @@ namespace GoldYAN.Controller
             return LerMoldes;
         }
 
-        [HttpGet]
-        public List<TipoProduto> GetSelect()
-        {
-            lerProdutos = new List<TipoProduto>();
-
-            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
-            {
-                var res = DBConn.GetAll<TipoProduto>().ToList();
-                lerProdutos = res;
-                return lerProdutos;
-            }
-        }
-
         // GET api/<MoldesController>/5
         [HttpGet("{id}")]
         public Moldes Get(int id)

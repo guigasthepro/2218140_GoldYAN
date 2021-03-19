@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Awr/etriEcygddLWqKX74zRGpWZYu+x8zTlaycWyIaJiHAZlXswfKRjWfm1Y0t1N60b8eSTahUBadZ/ieIkodA==",
+  "dgSpecHash": "g52xcELUuKja3xQG2dvf0wmpMGGxIK1+7NroJLP8xZreLGh31nl+Rb94k94JFNikzvSDTRMrnvs+M80jFmO3OA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Guilherme Simao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
+  "projectFilePath": "C:\\Users\\Guilherme Simao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Guilherme Simao\\.nuget\\packages\\blazored.typeahead\\4.5.1\\blazored.typeahead.4.5.1.nupkg.sha512",
     "C:\\Users\\Guilherme Simao\\.nuget\\packages\\dapper\\2.0.78\\dapper.2.0.78.nupkg.sha512",

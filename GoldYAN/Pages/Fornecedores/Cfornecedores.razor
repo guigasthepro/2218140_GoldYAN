@@ -5,74 +5,99 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Cabeçalho Encomenda</h6>
-        </div>
-        <EditForm Model="@cFichaCliente" OnValidSubmit="@InsertFichaCliente">
-            <DataAnnotationsValidator />
-
-
-            <label for="nome">Codigo</label>
-            <InputText id="nome" class="form-control" @bind-Value="cFichaCliente.Nome" />
-            <ValidationMessage For="@(() => cFichaCliente.Nome)" />
-
-
-            <label for="telefone">Nome</label>
-            <InputText id="telefone" class="form-control" @bind-Value="cFichaCliente.Telefone" />
-            <ValidationMessage For="@(() => cFichaCliente.Telefone)" />
-
-
-            <label for="morada">Sobrenome</label>
-            <InputText id="morada" class="form-control" @bind-Value="cFichaCliente.Morada" />
-            <ValidationMessage For="@(() => cFichaCliente.Morada)" />
-        </EditForm>
-    </div>
-</div>
-
-
-<div class="container-fluid">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Formulario Encomenda</h6>
         </div>
-        <EditForm Model="@cFichaCliente" OnValidSubmit="@InsertFichaCliente">
+        <EditForm Model="@cfornecedor" OnValidSubmit="@CriarFornecedor">
             <DataAnnotationsValidator />
 
-            <label for="nome">Denominação</label>
-            <InputText id="nome" class="form-control" @bind-Value="cFichaCliente.Nome" />
-            <ValidationMessage For="@(() => cFichaCliente.Nome)" />
 
-            <label for="telefone">Telefone</label>
-            <InputText id="telefone" class="form-control" @bind-Value="cFichaCliente.Telefone" />
-            <ValidationMessage For="@(() => cFichaCliente.Telefone)" />
+            @*<div class="m-3 form-group">
+            <div class="form-inline">
+                <label for="telefone">Referência de Modelo:</label> &nbsp
+                <InputText id="telefone" class="form-control" @bind-Value="" />
+            </div>
+        </div>*@
 
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="Descricao">Codigo Fornecedor:</label> &nbsp
+                    <InputText id="Descricao" oninput="this.value = this.value.toUpperCase()" class="form-control"  placeholder="Ainda não selecionado" @bind-Value="cfornecedor.codigo" />
+                </div>
+            </div>
 
-            <label for="email">Telemovel</label>
-            <InputText id="email" class="form-control" placeholder="Boas" @bind-Value="cFichaCliente.Email" />
-            <ValidationMessage For="@(() => cFichaCliente.Email)" />
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="Quantidade">Nome Fornecedor:</label> &nbsp
+                    <InputText id="Quantidade" class="form-control" placeholder="Quantidade"  @bind-Value="cfornecedor.nome" />
+                </div>
+            </div>
 
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="peso">Contacto:</label> &nbsp
+                    <InputText id="peso" class="form-control" placeholder="Peso"  @bind-Value="cfornecedor.contacto" />
+                </div>
+            </div>
 
-            <label for="morada">Morada</label>
-            <InputText id="morada" class="form-control" @bind-Value="cFichaCliente.Morada" />
-            <ValidationMessage For="@(() => cFichaCliente.Morada)" />
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="preco">Nif:</label> &nbsp
+                    <InputText id="preco" class="form-control" placeholder="Preço do serviço"  @bind-Value="cfornecedor.nif" />
+                </div>
+            </div>
 
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="apontamentos">Morada:</label> &nbsp
+                    <InputText id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" oninput="this.value = this.value.toUpperCase()" @bind-Value="cfornecedor.morada" />
+                </div>
+            </div>
 
-            <label for="moradaopcional">Codigo Postal</label>
-            <InputText id="moradaopcional" class="form-control" @bind-Value="cFichaCliente.Moradaopcional" />
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="datadeentrega">Localização:</label> &nbsp
+                    <InputText id="datadeentrega" class="form-control"  @bind-Value="cfornecedor.localizaçao" />
+                </div>
+            </div>
 
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="datadeentrega">Código Postal:</label> &nbsp
+                    <InputText id="datadeentrega" class="form-control"  @bind-Value="cfornecedor.codigopostal" />
+                </div>
+            </div>
 
-            <label for="codigopostal">Pais</label>
-            <InputText id="codigopostal" class="form-control" @bind-Value="cFichaCliente.Codigopostal" />
-            <ValidationMessage For="@(() => cFichaCliente.Codigopostal)" />
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="datadeentrega">Telefone:</label> &nbsp
+                    <InputText id="datadeentrega" class="form-control"  @bind-Value="cfornecedor.telefone" />
+                </div>
+            </div>
 
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="datadeentrega">Telemovel:</label> &nbsp
+                    <InputText id="datadeentrega" class="form-control"  @bind-Value="cfornecedor.telemovel" />
+                </div>
+            </div>
 
-            <label for="codigopostal">Email</label>
-            <InputText id="codigopostal" class="form-control" @bind-Value="cFichaCliente.Codigopostal" />
-            <ValidationMessage For="@(() => cFichaCliente.Codigopostal)" />
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="datadeentrega">Nome Vendedor:</label> &nbsp
+                    <InputText id="datadeentrega" class="form-control"  @bind-Value="cfornecedor.nomevendedor" />
+                </div>
+            </div>
 
-            <label for="codigopostal">Apontamentos</label>
-            <InputText id="codigopostal" class="form-control" @bind-Value="cFichaCliente.Codigopostal" />
-            <ValidationMessage For="@(() => cFichaCliente.Codigopostal)" />
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="datadeentrega">Telemovel Vendedor:</label> &nbsp
+                    <InputText id="datadeentrega" class="form-control"  @bind-Value="cfornecedor.telemovelvendedor" />
+                </div>
+            </div>
+
+            <div class="m-3 form-group">
+                <button type="submit" class="btn btn-primary">Adicionar</button>
+            </div>
         </EditForm>
     </div>
 </div>
@@ -80,11 +105,29 @@
 
 @code {
 
-    private Clientes cFichaCliente = new Clientes();
+    Fornecedores cfornecedor = new Fornecedores();
 
     private async Task InsertFichaCliente()
     {
         // await JsRuntime.InvokeVoidAsync("setElementTextById", "resultJson", JsonSerializer.Serialize(cFichaCliente));
     }
+
+    public async Task CriarFornecedor()
+    {
+        var resultado = FC.Post(cfornecedor);
+        if (resultado != null)
+        {
+            await js.InvokeVoidAsync("alert", "Fornecedor Criado Com Sucesso");
+            cfornecedor = new Fornecedores();
+
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Impossivél adicionar o serviço, por favor verifique os campos!");
+
+        }
+    }
+
+
 
 }
