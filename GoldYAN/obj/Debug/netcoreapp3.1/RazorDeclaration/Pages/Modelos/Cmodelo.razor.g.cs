@@ -82,6 +82,20 @@ using Blazored.Typeahead;
 #line hidden
 #nullable disable
 #nullable restore
+#line 13 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+using System.IO;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+using BlazorInputFile;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
 using GoldYAN.Data;
 
@@ -111,7 +125,7 @@ using System;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 276 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
+#line 283 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
        
     // Invoking classes
     Data.Servicos servicos = new Servicos();
@@ -183,6 +197,16 @@ using System;
         return await Task.FromResult(colaboradores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
         m.preco = cl.valor;
     }
+
+    //IFileListEntry file;
+    //async Task HandleSelectedFile(IFileListEntry[] files)
+    //{
+    //    file = files.FirstOrDefault()
+    //    if(file != null)
+    //    {
+
+    //    }
+    //}
 
 
     private async Task AdicionarLista()

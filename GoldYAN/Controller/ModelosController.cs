@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using MySql.Data.MySqlClient;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,12 +21,15 @@ namespace GoldYAN.Controller
         List<Modelos> LerCodigos = new List<Modelos>();
         Modelos LerCodigo = new Modelos();
 
+
+        private readonly IHostEnvironment _environment;
         private readonly IConfiguration configuration;
         private string connectionString;
-        public ModelosController(IConfiguration configRoot)
+        public ModelosController(IConfiguration configRoot, IHostEnvironment environment)
         {
             configuration = configRoot; // atribuir as configurações ao campo privado
             connectionString = configuration["ConnectionStrings:DefaultConnection"];
+            _environment = environment;
         }
 
         [HttpGet]
@@ -84,12 +90,24 @@ namespace GoldYAN.Controller
             }
         }
 
+
         // POST api/<CodigoPostalController>
         [HttpPost]
         public Modelos Post([FromBody] Modelos encomenda)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
+                string imgname = encomenda.Image.FileName;
+                string extension = Path.GetExtension(imgname);
+
+                string newFileName = $"{Guid.NewGuid()}{extension}";
+                string filePath = Path.Combine(_environment.ContentRootPath, "Images", newFileName);
+
+                using(var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                {
+                     encomenda.Image.CopyToAsync(fileStream);
+                }
+
                 var idNewRec = DBConn.Insert<Modelos>(encomenda);
                 var res = DBConn.Get<Modelos>(idNewRec);
                 return res;

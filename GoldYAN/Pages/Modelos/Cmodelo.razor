@@ -149,11 +149,11 @@
             <DataAnnotationsValidator />
 
             @*<div class="m-3 form-group">
-                <div class="form-inline">
-                    <label for="telefone">Referência de Modelo:</label> &nbsp
-                    <InputText id="telefone" class="form-control" @bind-Value="" />
-                </div>
-            </div>*@
+            <div class="form-inline">
+                <label for="telefone">Referência de Modelo:</label> &nbsp
+                <InputText id="telefone" class="form-control" @bind-Value="" />
+            </div>
+        </div>*@
 
 
             <div class="m-3 form-group">
@@ -180,7 +180,14 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="apontamentos">Valor Total:</label> &nbsp
-                    <InputNumber id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly"  @bind-Value="m.valortotal" />
+                    <InputNumber id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="m.valortotal" />
+                </div>
+            </div>
+
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="apontamentos">Imagem</label> &nbsp
+                    <InputFile id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="m.Image" />
                 </div>
             </div>
 
@@ -344,6 +351,16 @@
         return await Task.FromResult(colaboradores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
         m.preco = cl.valor;
     }
+
+    //IFileListEntry file;
+    //async Task HandleSelectedFile(IFileListEntry[] files)
+    //{
+    //    file = files.FirstOrDefault()
+    //    if(file != null)
+    //    {
+
+    //    }
+    //}
 
 
     private async Task AdicionarLista()
