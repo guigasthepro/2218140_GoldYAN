@@ -74,8 +74,9 @@
 
     private Clientes cFichaCliente = new Clientes();
 
-    public void ClientCreate()
+    public async Task ClientCreate()
     {
+        cFichaCliente.Datacriacao = DateTime.Today.Date;
         CC.Post(cFichaCliente);
         Esperar();
         cFichaCliente = new Clientes();

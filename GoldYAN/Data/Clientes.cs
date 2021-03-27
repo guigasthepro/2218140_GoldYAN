@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Dapper.Contrib.Extensions;
 
 namespace GoldYAN.Data
@@ -22,5 +23,6 @@ namespace GoldYAN.Data
         [Required]
         public int Nif { get; set; }
         public string Profissao { get; set; }
+        public string Datacriacao { get; set; }
     }
 }

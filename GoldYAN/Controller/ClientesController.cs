@@ -59,6 +59,19 @@ namespace GoldYAN.Controller
             }
         }
 
+        [HttpGet]
+        public List<Clientes> InfoCliente(string valor)
+        {
+            string sql = $"SELECT * FROM clientes WHERE datacriacao LIKE '%{valor}%' ";
+
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Query<Clientes>(sql).ToList();
+                return res;
+            }
+        }
+
         // GET api/<PresentesController>/
         /// <summary>
         /// Recebe apenas o presente daquele id
