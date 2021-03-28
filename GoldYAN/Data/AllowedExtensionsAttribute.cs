@@ -15,19 +15,19 @@ namespace GoldYAN.Data
             _extensions = extensions;
         }
 
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            var file = value as IFormFile;
-            var extension = Path.GetExtension(file.FileName);
-            if (file != null)
-            {
-                if (!_extensions.Contains(extension.ToLower()))
-                {
-                    return new ValidationResult(GetErrorMessage());
-                }
-            }
-            return ValidationResult.Success;
-        }
+        //protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        //{
+        //    var file = value as IFormFile;
+        //    var extension = Path.GetExtension(file.FileName);
+        //    if (file != null)
+        //    {
+        //        if (!_extensions.Contains(extension.ToLower()))
+        //        {
+        //            return new ValidationResult(GetErrorMessage());
+        //        }
+        //    }
+        //    return ValidationResult.Success;
+        //}
 
         public string GetErrorMessage()
         {

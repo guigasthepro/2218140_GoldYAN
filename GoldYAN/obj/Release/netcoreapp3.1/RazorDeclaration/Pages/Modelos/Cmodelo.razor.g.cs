@@ -219,7 +219,7 @@ using System;
             m.idmolde = mlds.idmolde;
             m.descricao = mlds.descricao;
             m.codigo = mlds.codigo;
-
+            m.idcolaborador = cl.idcolaborador;
 
             m.preco = cl.valor;
 
@@ -232,6 +232,7 @@ using System;
             cl = new Colaboradores();
 
 
+
         }
         else if(servicos.idservico != 0)
         {
@@ -240,7 +241,7 @@ using System;
             m.linha = i;
             m.idmolde = mlds.idmolde;
             m.preco = cl.valor;
-
+            m.idcolaborador = cl.idcolaborador;
             m.idservico = servicos.idservico;
             m.descricao = servicos.descricao;
             m.codigo = servicos.codigo;
@@ -262,7 +263,7 @@ using System;
             m.linha = i;
             m.idmolde = mlds.idmolde;
             m.preco = cl.valor;
-
+            m.idcolaborador = cl.idcolaborador;
             m.idproduto = produtos.idproduto;
             m.descricao = produtos.descricao;
             m.codigo = produtos.codigo;
@@ -314,7 +315,8 @@ using System;
             cm = new CabecalhosModelos();
             dtp = new TipoProduto();
             dtdp = new TipoDePeca();
-
+            listaModelos = new List<Modelos>();
+            Readonly = true;
             StateHasChanged();
             OnInitializedAsync();
         }

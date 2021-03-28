@@ -97,7 +97,7 @@
                     </EditForm>
 
 
-                    @if (m.formadepesquisa == "Molde")
+                    @if (m.formadepesquisa == "Molde" || m.idmolde.HasValue)
                     {
                         <div class="m-3 form-group">
                             <div class="form-inline">
@@ -111,7 +111,7 @@
                             </div>
                         </div>
                     }
-                    else if (m.formadepesquisa == "Serviço")
+                    else if (m.formadepesquisa == "Serviço" || m.idservico.HasValue)
                     {
                         <div class="m-3 form-group">
                             <div class="form-inline">
@@ -125,7 +125,7 @@
                             </div>
                         </div>
                     }
-                    else if (m.formadepesquisa == "Produtos")
+                    else if (m.formadepesquisa == "Produtos" || m.idproduto.HasValue)
                     {
                         <div class="m-3 form-group">
                             <div class="form-inline">
@@ -146,7 +146,7 @@
                     <div class="m-3 form-group">
                         <div class="form-inline">
                             <label for="datadeentrega">Colaborador:</label> &nbsp
-                            <BlazoredTypeahead SearchMethod="ProcurarColaboradores" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="cl" Placeholder="Pesquisar Serviço">
+                            <BlazoredTypeahead SearchMethod="ProcurarColaboradores" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="cl" Placeholder="Pesquisar Colaborador">
                                 <SelectedTemplate>
                                     @context.codigo : @context.descricao
                                 </SelectedTemplate>
@@ -225,7 +225,7 @@
                                                 @foreach (var modelo in listaModelos)
                                                 {
                                                     <tr style="height: 1em;">
-                                                        @if (modelo.idmolde != 0)
+                                                        @if (modelo.idmolde.HasValue)
                                                         {
                                                             <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">Molde</td>
                                                             <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
@@ -238,9 +238,9 @@
 
 
                                                         }
-                                                        else if (modelo.idservico != 0)
+                                                        else if (modelo.idservico.HasValue)
                                                         {
-                                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">Servico</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">Serviço</td>
                                                             <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
                                                             <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">@modelo.idservico</td>
                                                             <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
@@ -423,19 +423,21 @@
 
         m = listaModelos[linha - 1];
 
-        if(m.idmolde != 0)
-        {
-            servicos = SC.Get(m.idservico.Value);
+        js.InvokeVoidAsync("console.log", $"{m}");
 
-        }
-        else if(m.idservico != 0)
-        {
 
-        }
-        else if(m.idproduto != 0)
+        if(m.idmolde.HasValue)
         {
             mlds = MoldesController.Get(m.idmolde.Value);
 
+        }
+        else if(m.idservico.HasValue)
+        {
+            servicos = SC.Get(m.idservico.Value);
+        }
+        else if(m.idproduto != 0)
+        {
+            //mlds = .Get(m.idmolde.Value);
         }
         cl = colaboradoresController.Get(m.idcolaborador);
 
@@ -465,7 +467,7 @@
         CMC.Put(cm.idmodelo, cm);
         foreach (var modelos in listaModelos)
         {
-
+            a
         }
         showModal = false;
     }

@@ -28,8 +28,8 @@ namespace GoldYAN.Data
         [Required(ErrorMessage = "A quantidade não pode ser nula")]
         public double? valortotal { get; set; }
         [Computed] public string formadepesquisa { get; set; }
-        [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png", ".bmp" })]
-        public IFormFile Image { get; set; }
+        //[AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png", ".bmp" })]
+        //public IFormFile Image { get; set; }
 
 
     }

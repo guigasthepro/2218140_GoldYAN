@@ -220,19 +220,21 @@ using Microsoft.EntityFrameworkCore.Internal;
 
         m = listaModelos[linha - 1];
 
-        if(m.idmolde != 0)
-        {
-            servicos = SC.Get(m.idservico.Value);
+        js.InvokeVoidAsync("console.log", $"{m}");
 
-        }
-        else if(m.idservico != 0)
-        {
 
-        }
-        else if(m.idproduto != 0)
+        if(m.idmolde.HasValue)
         {
             mlds = MoldesController.Get(m.idmolde.Value);
 
+        }
+        else if(m.idservico.HasValue)
+        {
+            servicos = SC.Get(m.idservico.Value);
+        }
+        else if(m.idproduto != 0)
+        {
+            //mlds = .Get(m.idmolde.Value);
         }
         cl = colaboradoresController.Get(m.idcolaborador);
 

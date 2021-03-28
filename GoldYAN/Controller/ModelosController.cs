@@ -97,16 +97,16 @@ namespace GoldYAN.Controller
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                string imgname = encomenda.Image.FileName;
-                string extension = Path.GetExtension(imgname);
+                //string imgname = encomenda.Image.FileName;
+                //string extension = Path.GetExtension(imgname);
 
-                string newFileName = $"{Guid.NewGuid()}{extension}";
-                string filePath = Path.Combine(_environment.ContentRootPath, "Images", newFileName);
+                //string newFileName = $"{Guid.NewGuid()}{extension}";
+                //string filePath = Path.Combine(_environment.ContentRootPath, "Images", newFileName);
 
-                using(var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-                {
-                     encomenda.Image.CopyToAsync(fileStream);
-                }
+                //using(var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                //{
+                //     encomenda.Image.CopyToAsync(fileStream);
+                //}
 
                 var idNewRec = DBConn.Insert<Modelos>(encomenda);
                 var res = DBConn.Get<Modelos>(idNewRec);

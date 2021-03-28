@@ -141,7 +141,7 @@ using Microsoft.EntityFrameworkCore;
 
     public async Task ClientCreate()
     {
-        cFichaCliente.Datacriacao = DateTime.Today.Date;
+        cFichaCliente.Datacriacao = DateTime.Now.ToShortDateString();
         CC.Post(cFichaCliente);
         Esperar();
         cFichaCliente = new Clientes();

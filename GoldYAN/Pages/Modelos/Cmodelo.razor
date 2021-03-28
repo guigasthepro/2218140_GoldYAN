@@ -184,12 +184,12 @@
                 </div>
             </div>
 
-            <div class="m-3 form-group">
+            @*<div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="apontamentos">Imagem</label> &nbsp
                     <InputFile id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="m.Image" />
                 </div>
-            </div>
+            </div>*@
 
 
 
@@ -220,7 +220,7 @@
                                 @foreach (var modelo in listaModelos)
                                 {
                                 <tr style="height: 1em;">
-                                    @if (modelo.idmolde != 0)
+                                    @if (modelo.idmolde.HasValue)
                                     {
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">Molde</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
@@ -235,7 +235,7 @@
 
 
                                     }
-                                    else if (modelo.idservico != 0)
+                                    else if (modelo.idservico.HasValue)
                                     {
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">Servico</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
@@ -373,7 +373,7 @@
             m.idmolde = mlds.idmolde;
             m.descricao = mlds.descricao;
             m.codigo = mlds.codigo;
-
+            m.idcolaborador = cl.idcolaborador;
 
             m.preco = cl.valor;
 
@@ -386,15 +386,15 @@
             cl = new Colaboradores();
 
 
+
         }
         else if(servicos.idservico != 0)
         {
             i++;
 
             m.linha = i;
-            m.idmolde = mlds.idmolde;
             m.preco = cl.valor;
-
+            m.idcolaborador = cl.idcolaborador;
             m.idservico = servicos.idservico;
             m.descricao = servicos.descricao;
             m.codigo = servicos.codigo;
@@ -414,9 +414,8 @@
             i++;
 
             m.linha = i;
-            m.idmolde = mlds.idmolde;
             m.preco = cl.valor;
-
+            m.idcolaborador = cl.idcolaborador;
             m.idproduto = produtos.idproduto;
             m.descricao = produtos.descricao;
             m.codigo = produtos.codigo;
@@ -468,7 +467,8 @@
             cm = new CabecalhosModelos();
             dtp = new TipoProduto();
             dtdp = new TipoDePeca();
-
+            listaModelos = new List<Modelos>();
+            Readonly = true;
             StateHasChanged();
             OnInitializedAsync();
         }
