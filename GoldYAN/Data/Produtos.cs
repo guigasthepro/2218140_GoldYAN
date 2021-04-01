@@ -6,25 +6,18 @@ namespace GoldYAN.Data
     [Table("produtos")]
     public class Produtos
     {
-        [ExplicitKey]
         public int idproduto { get; set; }
-        public int familiaproduto { get; set; }
-        public int tipoproduto { get; set; }
-        public int idfornecedor{ get; set; }
-        public int idfabrico { get; set; }
-        public string codigo { get; set; }
-        public string nome { get; set; }
-        public string descricao { get; set; }
-        public int quantidade{ get; set; }
-        public string contrastaria { get; set; }
-        public int preco { get; set; }
-        public int pvp { get; set; }
-        public int customedio { get; set; }
-        public int feitio { get; set; }
-        public int feitiograma { get; set; }
-        public int cotacao { get; set; }
-        public int gaveta { get; set; }
-        public string tempo { get; set; }
+        public int idlinha { get; set; }
+        public int ?idservico { get; set; }
+        public int ?idprodutos { get; set; }
+        [Computed] public string descricao { get; set; }
+        public int idcolaborador { get; set; }
+        public double quantidade { get; set; }
+        public double custo { get; set; }
         public double peso { get; set; }
+        public double custototal { get; set; }
+        public double customedio { get; set; }
+        public string datacriacao { get; set; }
+
     }
 }

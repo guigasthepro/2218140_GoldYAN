@@ -20,10 +20,10 @@
     <hr class="sidebar-divider">
 
     <!-- Heading -->
-    <div class="sidebar-heading">
-        Interface
-    </div>
-    <!-- Nav Item - Pages Collapse Menu -->
+<div class="sidebar-heading">
+    Interface
+</div>
+    <AuthorizeView Roles="atendimento, Admin">
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClientes" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
@@ -49,7 +49,9 @@
             </div>
         </div>
     </li>
+    </AuthorizeView>
 
+    <AuthorizeView Roles="oficina, Admin">
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOficina" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
@@ -61,6 +63,8 @@
             </div>
         </div>
     </li>
+    </AuthorizeView>
+
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">

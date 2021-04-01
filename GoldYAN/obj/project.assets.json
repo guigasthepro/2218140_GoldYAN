@@ -9310,20 +9310,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\GuilhermeSimao\\.nuget\\packages\\": {}
+    "C:\\Users\\RuiPires\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\GuilhermeSimao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
+      "projectUniqueName": "C:\\Users\\RuiPires\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
       "projectName": "GoldYAN",
-      "projectPath": "C:\\Users\\GuilhermeSimao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
-      "packagesPath": "C:\\Users\\GuilhermeSimao\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\GuilhermeSimao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\obj\\",
+      "projectPath": "C:\\Users\\RuiPires\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
+      "packagesPath": "C:\\Users\\RuiPires\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\RuiPires\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\GuilhermeSimao\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\RuiPires\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -9417,7 +9425,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -9426,7 +9434,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'DapperExtensions 1.6.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "message": "O pacote 'DapperExtensions 1.6.3' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto '.NETCoreApp,Version=v3.1'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
       "libraryId": "DapperExtensions",
       "targetGraphs": [
         ".NETCoreApp,Version=v3.1"

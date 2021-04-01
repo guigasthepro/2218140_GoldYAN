@@ -13,99 +13,106 @@ namespace GoldYAN.Pages.Clientes
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 1 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 2 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 3 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 4 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 5 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 6 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 7 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 8 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 9 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 10 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Blazored.Typeahead;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 13 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.IO;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 14 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using BlazorInputFile;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
+#line 2 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
 using GoldYAN.Controller;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
+#line 3 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
 using GoldYAN.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
+using System.Net;
 
 #line default
 #line hidden
@@ -119,25 +126,24 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 48 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
+#line 50 "C:\Users\RuiPires\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
        
 
 
     List<Clientes> VCS = new List<Clientes>();
     public string Filter { get; set; }
-
     public string pesquisa { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        VCS = VC.Get();
+        VCS = CC.Get();
         StateHasChanged();
 
     }
 
     public async Task Pesquisar(string valor)
     {
-        VCS = VC.PesquisarClientes(valor);
+        VCS = CC.PesquisarClientes(valor);
     }
 
     public bool IsVisible(Clientes cliente)
@@ -152,12 +158,19 @@ using GoldYAN.Data;
         return false;
     }
 
+    public async Task Apagar(int id)
+    {
+        var res = CC.Delete(id);
+    }
+
+    public async Task ShowModal(int id)
+    {
+    }
 
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClientesController VC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private BancosController VB { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EncomendasController EC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClientesController CC { get; set; }

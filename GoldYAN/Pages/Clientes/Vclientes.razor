@@ -1,7 +1,8 @@
 ﻿@page "/vclientes"
 @using GoldYAN.Controller
 @using GoldYAN.Data
-@inject ClientesController VC
+@using System.Net
+
 
 <div class="container-fluid">
 
@@ -34,6 +35,7 @@
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@cliente.Telefone">@cliente.Telefone</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@cliente.Morada">@cliente.Morada</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@cliente.Nif">@cliente.Nif</td>
+                                            <td><button class="btn btn-primary btn-sm" @onclick="() => ShowModal(cliente.idcliente)" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" @onclick="() => Apagar(cliente.idcliente)" style="margin-left: 0.3rem">Apagar</button></td>
                                         </tr>
                                     }
                                 </tbody>
@@ -50,19 +52,18 @@
 
     List<Clientes> VCS = new List<Clientes>();
     public string Filter { get; set; }
-
     public string pesquisa { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        VCS = VC.Get();
+        VCS = CC.Get();
         StateHasChanged();
 
     }
 
     public async Task Pesquisar(string valor)
     {
-        VCS = VC.PesquisarClientes(valor);
+        VCS = CC.PesquisarClientes(valor);
     }
 
     public bool IsVisible(Clientes cliente)
@@ -77,5 +78,13 @@
         return false;
     }
 
+    public async Task Apagar(int id)
+    {
+        var res = CC.Delete(id);
+    }
+
+    public async Task ShowModal(int id)
+    {
+    }
 
 }
