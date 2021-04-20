@@ -13,98 +13,98 @@ namespace GoldYAN.Pages.Administração
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 1 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 2 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 3 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 4 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 5 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 6 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 7 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 8 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 9 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 10 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Blazored.Typeahead;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 11 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 13 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.IO;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 14 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using BlazorInputFile;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\CodigoPostal.razor"
+#line 1 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\Pages\Administração\CodigoPostal.razor"
 using GoldYAN.Controller;
 
 #line default
@@ -119,7 +119,7 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 120 "C:\Users\RuiPires\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\CodigoPostal.razor"
+#line 120 "C:\Users\Guilherme Simao\Downloads\2218140_GoldYAN (1)\2218140_GoldYAN (1)\2218140_GoldYAN\2218140_GoldYAN\GoldYAN\Pages\Administração\CodigoPostal.razor"
        
 
     List<GoldYAN.Data.Codigopostal> VCPS = new List<GoldYAN.Data.Codigopostal>();
@@ -224,6 +224,11 @@ using GoldYAN.Controller;
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private CodigoPostalController VCP { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private FabricoController FBCC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private CabecalhoFabricoController CFC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClassificacaoProdutosController CPC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private UnidadesController UC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private BancosController VB { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EncomendasController EC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClientesController CC { get; set; }
@@ -233,6 +238,8 @@ using GoldYAN.Controller;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private TipoProdutoController TPRC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private TipoPecaController TPC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ModelosController MC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ProdutosController PC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private CabecalhoProdutosController CAPC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ColaboradoresController colaboradoresController { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private CabecalhoModeloController CMC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ServicosController SC { get; set; }

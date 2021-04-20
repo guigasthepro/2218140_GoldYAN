@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 
 namespace GoldYAN.Areas.Identity.Pages.Account
 {
+    //[Authorize(Roles="Admin")]
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
@@ -46,6 +47,11 @@ namespace GoldYAN.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [Display(Name = "Name")]
+            [DataType(DataType.Text)]
+            public string UserName { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -60,6 +66,12 @@ namespace GoldYAN.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            //[Required]
+            [Display(Name = "Name")]
+            [DataType(DataType.Text)]
+            public string RoleID { get; set; }
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -74,11 +86,20 @@ namespace GoldYAN.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new IdentityUser { UserName = Input.UserName, Email = Input.Email};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    try
+                    {
+                        var result1 = await _userManager.AddToRoleAsync(user, "Administrador");
+
+                    }
+                    catch
+                    {
+                        _userManager.DeleteAsync(user);
+                    }
+                    _logger.LogInformation("Foi criado um novo utilizador!");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -89,7 +110,7 @@ namespace GoldYAN.Areas.Identity.Pages.Account
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        $"Por favor confirma a tua conta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicando aqui</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

@@ -158,7 +158,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        VCPS = VCP.Get();
+        VCPS = VCP.GetAll();
 
         foreach (var banco in @VCPS)
         {
@@ -200,7 +200,7 @@
         var resultado = VCP.Post(criarCP);
         StateHasChanged();
         showModal2 = false;
-        VCPS = VCP.Get();
+        VCPS = VCP.GetAll();
 
     }
 

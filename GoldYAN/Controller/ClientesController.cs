@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
@@ -142,7 +141,7 @@ namespace GoldYAN.Controller
         /// <param name="id"></param>
         // DELETE api/<PresentesController>/5
         [HttpDelete("{id}")]
-        public ActionResult<Clientes> Delete(int id)
+        public void Delete(int id)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
@@ -150,11 +149,10 @@ namespace GoldYAN.Controller
                 if (res != null)
                 {
                     DBConn.Delete(res);
-                    return Ok();
                 }
                 else
                 {
-                    return NotFound();
+
                 }
             }
         }

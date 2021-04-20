@@ -140,7 +140,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        VUS = VU.Get();
+        VUS = VU.GetAll();
 
         foreach (var unidades in @VUS)
         {
@@ -180,7 +180,7 @@
         var resultado = VU.Post(criarU);
         StateHasChanged();
         showModal2 = false;
-        VUS = VU.Get();
+        VUS = VU.GetAll();
 
     }
 

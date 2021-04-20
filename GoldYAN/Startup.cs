@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 
 namespace GoldYAN
 {
+    [System.Runtime.InteropServices.Guid("57E63CA2-37BA-43F1-B1E3-2BE7B7AB47C2")]
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -36,9 +37,15 @@ namespace GoldYAN
             {
                 services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
-                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+                services.Configure<IdentityOptions>(option =>
+                {
+                    option.User.AllowedUserNameCharacters = "abcdefghijklmnopqrst1JRuYcDcmXWky8CyvW79pq1qxePi72FucuiG89- ._@+ ";
+                    option.User.RequireUniqueEmail = true;
+                });
             }
             catch(Exception ex)
             {
@@ -68,6 +75,10 @@ namespace GoldYAN
             services.AddScoped<TipoPecaController>();
             services.AddScoped<TipoProdutoController>();
             services.AddScoped<ColaboradoresController>();
+            services.AddScoped<CabecalhoProdutosController>();
+            services.AddScoped<CabecalhoFabricoController>();
+            services.AddScoped<FabricoController>();
+            services.AddScoped<ComprasController>();
             services.AddHttpContextAccessor();
         }
 

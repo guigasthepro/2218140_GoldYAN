@@ -31,7 +31,7 @@ namespace GoldYAN.Controller
         }
 
         [HttpGet]
-        public List<Unidades> Get()
+        public List<Unidades> GetAll()
         {
             LerUnidades = new List<Unidades>();
 

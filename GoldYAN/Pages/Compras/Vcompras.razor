@@ -3,12 +3,10 @@
 
 <div class="container-fluid">
 
-    <!-- Page Heading -->
-
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Historico De Compras</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Lista de Produtos</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -17,92 +15,26 @@
                         <div class="col-sm-12">
                             <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">IdFornecedor</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Fornecedor</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Documento</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Tipo Documento</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Total</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Data Criado</th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">IdProduto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Produto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Ref.Fornecedor</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Data Criação</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                <tr><th rowspan="1" colspan="1">IdFornecedor</th><th rowspan="1" colspan="1">Fornecedor</th><th rowspan="1" colspan="1">Documento</th><th rowspan="1" colspan="1">Tipo Documento</th><th rowspan="1" colspan="1">Total</th><th rowspan="1" colspan="1">Data Compra</th></tr>
+                                    <tr><th rowspan="1" colspan="1">IDFabrico</th><th rowspan="1" colspan="1">IDProduto</th><th rowspan="1" colspan="1">IDEncomenda</th><th rowspan="1" colspan="1">Data da Criação</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">Airi Satou</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>33</td>
-                                        <td>2008/11/28</td>
-                                        <td>$162,700</td>
+                                    @*@foreach (var compras in listaCompras)
+                                    {
+                                        if (!IsVisible(fabrico))
+                                            continue;
+                                    <tr @ondblclick="() => OpenFichaProduto(compras.idfatura)" style="height: 1em;">
+                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@compras.idfatura">@compras.idfatura</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@compras.idfornecedor">@compras.idfornecedor</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@compras.numero">@compras.numero</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@compras.preco">@compras.preco</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@compras.datacriacao">@compras.datacriacao</td>
+                                        <td><button class="btn btn-primary btn-sm" @onclick="() => OpenFichaProduto(compras.idproduto)" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" @onclick="() => Apagar(compras.idproduto)" style="margin-left: 0.3rem">Apagar</button></td>
+
                                     </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">Angelica Ramos</td>
-                                        <td>Chief Executive Officer (CEO)</td>
-                                        <td>London</td>
-                                        <td>47</td>
-                                        <td>2009/10/09</td>
-                                        <td>$1,200,000</td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">Ashton Cox</td>
-                                        <td>Junior Technical Author</td>
-                                        <td>San Francisco</td>
-                                        <td>66</td>
-                                        <td>2009/01/12</td>
-                                        <td>$86,000</td>
-                                    </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">Bradley Greer</td>
-                                        <td>Software Engineer</td>
-                                        <td>London</td>
-                                        <td>41</td>
-                                        <td>2012/10/13</td>
-                                        <td>$132,000</td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">Brenden Wagner</td>
-                                        <td>Software Engineer</td>
-                                        <td>San Francisco</td>
-                                        <td>28</td>
-                                        <td>2011/06/07</td>
-                                        <td>$206,850</td>
-                                    </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">Brielle Williamson</td>
-                                        <td>Integration Specialist</td>
-                                        <td>New York</td>
-                                        <td>61</td>
-                                        <td>2012/12/02</td>
-                                        <td>$372,000</td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">Bruno Nash</td>
-                                        <td>Software Engineer</td>
-                                        <td>London</td>
-                                        <td>38</td>
-                                        <td>2011/05/03</td>
-                                        <td>$163,500</td>
-                                    </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">Caesar Vance</td>
-                                        <td>Pre-Sales Support</td>
-                                        <td>New York</td>
-                                        <td>21</td>
-                                        <td>2011/12/12</td>
-                                        <td>$106,450</td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">Cara Stevens</td>
-                                        <td>Sales Assistant</td>
-                                        <td>New York</td>
-                                        <td>46</td>
-                                        <td>2011/12/06</td>
-                                        <td>$145,600</td>
-                                    </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">Cedric Kelly</td>
-                                        <td>Senior Javascript Developer</td>
-                                        <td>Edinburgh</td>
-                                        <td>22</td>
-                                        <td>2012/03/29</td>
-                                        <td>$433,060</td>
-                                    </tr>
+                                    }*@
                                 </tbody>
                             </table>
                         </div>
@@ -115,5 +47,124 @@
 </div>
 
 @code {
+    Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
+    Data.Colaboradores cl = new Colaboradores();
+    Data.Fornecedores fornecedores = new Data.Fornecedores();
+
+    List<Fornecedores> listaFornecedores = new List<Fornecedores>();
+    List<CabecalhoProdutos> listaCabecalhoProdutos = new List<CabecalhoProdutos>();
+    List<Colaboradores> colaboradores = new List<Colaboradores>();
+    List<Compras> listaCompras = new List<Compras>();
+
+    //For input values
+    List<Data.Produtos> LCP = new List<Produtos>();
+
+    bool FichaModelo = false;
+
+    bool showModal = false;
+    bool Readonly = true;
+    bool ReadonlyCabecalho = true;
+    int i;
+    string formadepesquisa;
+    public string Filter { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        //listaCabecalhoFabrico = CFC.GetAll();
+
+    }
+
+    public bool IsVisible(Compras compras)
+    {
+        if (string.IsNullOrEmpty(Filter))
+            return true;
+
+        if (compras.apontamentos.Equals(Filter) || compras.idfatura.ToString().Contains(Filter) || compras.idfornecedor.ToString().Contains(Filter))
+            return true;
+
+        return false;
+    }
+
+    public void OpenFichaProduto(int id)
+    {
+        ////cm = CMC.Get(id);
+        //dtp = TPRC.Get(cm.idtipoproduto.Value);
+        //dtdp = TPC.Get(cm.idtipodepeca.Value);
+        ////listaModelos = MC.GetAllQuery(id);
+        //showModal = true;
+    }
+    void ModalShow()
+    {
+        showModal = true;
+    }
+    void ModalCancel()
+    {
+        showModal = false;
+    }
+
+
+    public async Task LoadData(int linha)
+    {
+
+        //m = listaProdutos[linha - 1];
+
+        //js.InvokeVoidAsync("console.log", $"{m}");
+
+
+        //if (m.idmolde.HasValue)
+        //{
+        //    mlds = MoldesController.Get(m.idmolde.Value);
+
+        //}
+        //else if (m.idservico.HasValue)
+        //{
+        //    servicos = SC.Get(m.idservico.Value);
+        //}
+        //else if (m.idproduto != 0)
+        //{
+        //    //mlds = .Get(m.idmolde.Value);
+        //}
+        //cl = colaboradoresController.Get(m.idcolaborador);
+
+    }
+
+    public async Task Apagar(int id)
+    {
+        //bool confirmation;
+
+        //confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        //if (confirmation)
+        //{
+        //    string message = CMC.Delete(id);
+        //    message += MC.Delete(id);
+        //    OnInitializedAsync();
+        //    Task.Delay(1000);
+        //    {
+        //        await js.InvokeVoidAsync("alert", @message);
+        //    }
+        //}
+    }
+
+    public async Task Update()
+    {
+
+        //CMC.Put(cm.idmodelo, cm);
+        //foreach (var modelos in listaModelos)
+        //{
+        //}
+        //showModal = false;
+    }
+
+    private async Task<IEnumerable<CabecalhoProdutos>> ProcurarProdutos(string searchText)
+    {
+        return await Task.FromResult(listaCabecalhoProdutos.Where(h => h.idproduto.ToString().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
+    {
+        return await Task.FromResult(colaboradores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
 
 }

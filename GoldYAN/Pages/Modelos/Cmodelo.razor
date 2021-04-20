@@ -31,9 +31,9 @@
                 <label for="nome" class="">Tipo de Produto:</label>
                 <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarProdutos"  oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar cliente">
                         <SelectedTemplate>
-                            @context.codigo (Desc: @context.descricao)
+                            @context.idtipoproduto (Desc: @context.descricao)
                         </SelectedTemplate>
-                        <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
+                        <ResultTemplate>@context.idtipoproduto + @context.descricao </ResultTemplate>
                     </BlazoredTypeahead>
             </div>
         </div>
@@ -121,9 +121,9 @@
                     <label for="nome">Produtos:</label>
                     <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Serviço">
                         <SelectedTemplate>
-                            @context.codigo
+                            @context.idproduto
                         </SelectedTemplate>
-                        <ResultTemplate>@context.codigo + @context.descricao</ResultTemplate>
+                        <ResultTemplate>@context.idtipoproduto + @context.descricao</ResultTemplate>
                     </BlazoredTypeahead>
                 </div>
             </div>
@@ -418,7 +418,6 @@
             m.idcolaborador = cl.idcolaborador;
             m.idproduto = produtos.idproduto;
             m.descricao = produtos.descricao;
-            m.codigo = produtos.codigo;
 
             listaModelos.Add(m);
 

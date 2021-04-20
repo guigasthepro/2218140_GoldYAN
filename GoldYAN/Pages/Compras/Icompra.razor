@@ -6,126 +6,316 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Cabeçalho Compra</h6>
+            <h6 style="display: inline" class="m-0 font-weight-bold text-primary">Cabeçalho Fabrico</h6>
         </div>
-        <EditForm Model="@cFichaCliente" OnValidSubmit="@InsertFichaCliente">
-            <DataAnnotationsValidator />
 
-
-            <label for="nome">Fornecedor</label>
-            <InputText id="nome" class="form-control" @bind-Value="cFichaCliente.Nome" />
-            <ValidationMessage For="@(() => cFichaCliente.Nome)" />
-
-
-            <label for="telefone">Numero</label>
-            <InputNumber id="telefone" class="form-control" @bind-Value="cFichaCliente.Telefone" />
-            <ValidationMessage For="@(() => cFichaCliente.Telefone)" />
-
-
-            <label for="morada">Pagamento</label>
-            <InputSelect @bind-Value="cFichaCliente">
-                <option>Pronto Pagamento</option>
-                <option>Pagamento 15 dias</option>
-                <option>Pagamento 30 dias</option>
-                <option>Pagamento 60 dias</option>
-                <option>Pagamento 90 dias</option>
-                <option>Parcial 30+60</option>
-            </InputSelect>
-
-
-            <label for="moradaopcional">Data</label>
-            <InputText id="moradaopcional" class="form-control" @bind-Value="cFichaCliente.Nome"/>
-
-
-            <label for="codigopostal">Vencimento</label>
-            <InputText id="codigopostal" class="form-control" @bind-Value="cFichaCliente.Codigopostal" />
-            <ValidationMessage For="@(() => cFichaCliente.Codigopostal)" />
-        </EditForm>
-    </div>
-</div>
-
-
-<div class="container-fluid">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Formulario Compra</h6>
-        </div>
-        <EditForm Model="@cFichaCliente" OnValidSubmit="@InsertFichaCliente">
-            <DataAnnotationsValidator />
-
-            <label for="nome">Código</label>
-            <InputText id="nome" class="form-control" @bind-Value="cFichaCliente.Nome" />
-            <ValidationMessage For="@(() => cFichaCliente.Nome)" />
-
-            <label for="telefone">Descrição</label>
-            <InputNumber id="telefone" class="form-control" @bind-Value="cFichaCliente.Telefone" />
-            <ValidationMessage For="@(() => cFichaCliente.Telefone)" />
-
-
-            <label for="email">Quantidade</label>
-            <InputText id="email" class="form-control" placeholder="Boas" @bind-Value="cFichaCliente.Email" />
-            <ValidationMessage For="@(() => cFichaCliente.Email)" />
-
-
-            <label for="morada">Preço Unitário</label>
-            <InputText id="morada" class="form-control" @bind-Value="cFichaCliente.Morada" />
-            <ValidationMessage For="@(() => cFichaCliente.Morada)" />
-
-
-            <label for="moradaopcional">Preço Total</label>
-            <InputText id="moradaopcional" class="form-control" @bind-Value="cFichaCliente.Moradaopcional" />
-
-
-            <label for="codigopostal">Apontamentos</label>
-            <InputText id="codigopostal" class="form-control" @bind-Value="cFichaCliente.Codigopostal" />
-            <ValidationMessage For="@(() => cFichaCliente.Codigopostal)" />
-        </EditForm>
-    </div>
-</div>
-
-<div class="container-fluid">
-
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Stock</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="col-sm-12">
-                        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                            <thead>
-                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Codigo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Quantidade</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Preço Unitário</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Preço total</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Apontamentos</th></tr>
-                            </thead>
-                            <tfoot>
-                                <tr><th rowspan="1" colspan="1">Código</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Quantidade</th><th rowspan="1" colspan="1">Preço Unitário</th><th rowspan="1" colspan="1">Preço total</th><th rowspan="1" colspan="1">Apontamentos</th></tr>
-                            </tfoot>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div class="m-3 form-group ">
+            <div class="form-inline">
+                <label for="nome" class="">Fornecedor:</label>
+                <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarFornecedores" oninput="this.value = this.value.toUpperCase()" @bind-Value="fornecedores" Placeholder="Pesquisar peça">
+                    <SelectedTemplate>
+                        @context.idfornecedor (Desc: @context.nome)
+                    </SelectedTemplate>
+                    <ResultTemplate> @context.idfornecedor + @context.nome </ResultTemplate>
+                </BlazoredTypeahead>
             </div>
         </div>
+
+        <EditForm Model="@CCompra">
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="Descricao">Numero:</label> &nbsp
+                    <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" disabled="true" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCompra.numero" />
+                </div>
+            </div>
+
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="Descricao">Data Transação:</label> &nbsp
+                    <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" disabled="true" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCompra.datacriacao" />
+                </div>
+            </div>
+        </EditForm>
     </div>
 </div>
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 style="display: inline" class="m-0 font-weight-bold text-primary">Cabeçalho Produto</h6><div style="display: inline" class="float-right"><button class="btn btn-primary btn-sm" style="display: inline; margin-right: 5px" @onclick="CriarProdutoNovo">Produto Novo</button><button class="btn btn-success btn-sm" @onclick="UsarProdutoExistente">Produto Existente</button></div>
+        </div>
+
+        @if (ProdutoNovo)
+        {
+            <EditForm Model="@CCP">
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="Descricao">ID:</label> &nbsp
+                        <InputNumber oninput="this.value = this.value.toUpperCase()" disabled="true" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.idproduto" />
+                    </div>
+                </div>
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="Descricao">Descrição:</label> &nbsp
+                        <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.descricao" />
+                    </div>
+                </div>
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="Descricao">Descrição2:</label> &nbsp
+                        <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.apontamentos" />
+                    </div>
+                </div>
+            </EditForm>
+
+            <div class="m-3 form-group ">
+                <div class="form-inline">
+                    <label for="nome" class="">Classificação de Produto:</label>
+                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarClassificação" oninput="this.value = this.value.toUpperCase()" @bind-Value="ecp" Placeholder="Pesquisar classificação">
+                        <SelectedTemplate>
+                            @context.codigo (Desc: @context.descricao)
+                        </SelectedTemplate>
+                        <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
+                    </BlazoredTypeahead>
+                </div>
+            </div>
+
+            <div class="m-3 form-group ">
+                <div class="form-inline">
+                    <label for="nome" class="">Tipo de Produto:</label>
+                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarTipoProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo de produto">
+                        <SelectedTemplate>
+                            @context.codigo (Desc: @context.descricao)
+                        </SelectedTemplate>
+                        <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
+                    </BlazoredTypeahead>
+                </div>
+            </div>
+
+            <div class="m-3 form-group ">
+                <div class="form-inline">
+                    <label for="nome" class="">Tipo de Peça:</label>
+                    <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar peça">
+                        <SelectedTemplate>
+                            @context.codigo (Desc: @context.descricao)
+                        </SelectedTemplate>
+                        <ResultTemplate> @context.codigo + @context.descricao </ResultTemplate>
+                    </BlazoredTypeahead>
+                </div>
+            </div>
+
+        }
+        else
+        {
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="nome">Produto:</label>
+                    <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="CCP" Placeholder="Pesquisar Serviço">
+                        <SelectedTemplate>
+                            @context.idproduto + @context.descricao
+                        </SelectedTemplate>
+                        <NotFoundTemplate>
+                        </NotFoundTemplate>
+                        <ResultTemplate>@context.idproduto + @context.descricao</ResultTemplate>
+                    </BlazoredTypeahead>
+                </div>
+            </div>
+        }
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
 
 
 @code {
 
-    private Clientes cFichaCliente = new Clientes();
+    //Declaration of needed objects
+    Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
+    Data.Colaboradores cl = new Colaboradores();
+    Data.TipoDePeca dtdp = new TipoDePeca();
+    Data.TipoProduto dtp = new TipoProduto();
+    Data.Fornecedores fornecedores = new Data.Fornecedores();
+    Data.ClassificacaoProdutos ecp = new Data.ClassificacaoProdutos();
+    Data.Compras CCompra = new Data.Compras();
 
-    public void variables()
+    Data.IDMaximo IDMaximo = new Data.IDMaximo();
+
+
+    // Declaration of needed lists
+    List<Unidades> listaUnidades = new List<Unidades>();
+    List<ClassificacaoProdutos> listaClassificacaoProdutos = new List<ClassificacaoProdutos>();
+    List<Fornecedores> listaFornecedores = new List<Fornecedores>();
+    List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
+    List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
+    List<Colaboradores> colaboradores = new List<Colaboradores>();
+    List<CabecalhoProdutos> listaCabecalhoProduto = new List<CabecalhoProdutos>();
+
+    //For input values
+    List<Data.Produtos> LCP = new List<Produtos>();
+    List<Data.Fabrico> LCFP = new List<Fabrico>();
+
+    // General variables
+    bool Readonly = false;
+    int i;
+    string formadepesquisa;
+    bool ProdutoNovo = true;
+
+    // Function that always runs when someone enter in the page
+    protected override async Task OnInitializedAsync()
     {
-        string data;
-        data = DateTime.Now.ToString();
 
+        // Values that the program search in database
+        listaFornecedores = FC.GetAll();
+        listaClassificacaoProdutos = CPC.GetAll();
+        listaUnidades = UC.GetAll();
+        listaTipoDePecas = TPC.GetAll();
+        listaTipoProdutos = TPRC.GetAll();
+        listaCabecalhoProduto = CAPC.GetAll();
+
+        // Initial Values in CFabrico Page
+        var res = CAPC.GetMaxID();
+        JsRuntime.InvokeVoidAsync("console.log", res);
+        CCP.idproduto = 6;
+        CCompra.datacriacao = DateTime.Now.ToShortDateString();
 
     }
 
-    private async Task InsertFichaCliente()
+    // Function that creates the product if new and creates also the cabecalhofabrico and fabrico
+    public async Task CriarProduto()
     {
-    // await JsRuntime.InvokeVoidAsync("setElementTextById", "resultJson", JsonSerializer.Serialize(cFichaCliente));
+        if (LCP.Count != 0)
+        {
+            if (ProdutoNovo)
+            {
+                //Vai buscar o utilizador que está logado
+                var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+                var user = authState.User;
+                CCP.idclassificação = ecp.IDClassificacao;
+                CCP.idtipodeproduto = dtp.idtipoproduto;
+                CCP.idtipodepeca = dtdp.idpeca;
+
+                var resultado = CAPC.Post(CCP);
+                await Task.Delay(1000);
+
+                for (int i = 0; i < LCP.Count; i++)
+                {
+
+                    LCP[i].linha = i;
+                    PC.Post(LCP[i]);
+                    FBCC.Post(LCFP[i]);
+                }
+
+                cl = new Colaboradores();
+                CCP = new CabecalhoProdutos();
+                dtp = new TipoProduto();
+                dtdp = new TipoDePeca();
+                LCP = new List<Produtos>();
+                Readonly = false;
+                StateHasChanged();
+                OnInitializedAsync();
+            }
+            else
+            {
+                await Task.Delay(1000);
+
+                for (int i = 0; i < LCFP.Count; i++)
+                {
+                    //Product List
+
+                    // Fabrico List
+                    FBCC.Post(LCFP[i]);
+
+
+                }
+
+                cl = new Colaboradores();
+                CCP = new CabecalhoProdutos();
+                dtp = new TipoProduto();
+                dtdp = new TipoDePeca();
+                LCP = new List<Produtos>();
+                Readonly = false;
+                StateHasChanged();
+                OnInitializedAsync();
+            }
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Impossível criar a encomenda, por favor, insira bem os dados da encomenda!");
+        }
+    }
+
+    // Function that does the selecting in the selected buttons
+    public async Task CriarProdutoNovo()
+    {
+
+        CCP = new CabecalhoProdutos();
+        LCP = new List<Produtos>();
+        ProdutoNovo = true;
+        listaCabecalhoProduto = CAPC.GetAll();
+        CCP.idproduto = 6;
+    }
+
+    // Function that does the selecting in the selected buttons
+    public async Task UsarProdutoExistente()
+    {
+        CCP = new CabecalhoProdutos();
+        LCP = new List<Produtos>();
+        ProdutoNovo = false;
+    }
+
+    // Add the compost to a list
+
+
+    public async Task EditarComposto(int linha)
+    {
+    }
+
+    public async Task ApagarComposto(int linha)
+    {
+        //LCP.Remove(listaProdutos[linha - 1]);
+    }
+
+    private async Task<IEnumerable<Unidades>> ProcurarUnidades(string searchText)
+    {
+        return await Task.FromResult(listaUnidades.Where(h => h.indice.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<ClassificacaoProdutos>> ProcurarClassificação(string searchText)
+    {
+        return await Task.FromResult(listaClassificacaoProdutos.Where(h => h.codigoat.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<TipoDePeca>> ProcurarPecas(string searchText)
+    {
+        return await Task.FromResult(listaTipoDePecas.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower()) || h.idpeca.ToString().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Fornecedores>> ProcurarFornecedores(string searchText)
+    {
+        return await Task.FromResult(listaFornecedores.Where(h => h.contacto.ToLower().Contains(searchText.ToLower()) || h.nome.ToLower().Contains(searchText.ToLower()) || h.nomevendedor.ToString().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<TipoProduto>> ProcurarTipoProdutos(string searchText)
+    {
+        return await Task.FromResult(listaTipoProdutos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<CabecalhoProdutos>> ProcurarProdutos(string searchText)
+    {
+        return await Task.FromResult(listaCabecalhoProduto.Where(h => h.descricao.ToLower().Contains(searchText.ToLower()) || h.idproduto.Equals(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
+    {
+        return await Task.FromResult(colaboradores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
 }

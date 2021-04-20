@@ -42,6 +42,7 @@ namespace GoldYAN.Controller
 
             return LerCodigos;
         }
+        [HttpGet]
         public List<EncomendasComputed> GetWithInner()
         {
             lerEncomendasComputed = new List<EncomendasComputed>();

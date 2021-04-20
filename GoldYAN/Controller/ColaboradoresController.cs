@@ -7,6 +7,9 @@ using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,8 +17,12 @@ namespace GoldYAN.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Admin")]
     public class ColaboradoresController : ControllerBase
     {
+
+        private readonly UserManager<IdentityUser> _userManager;
+
         // GET: CabecalhoController
         List<Colaboradores> LerCodigos = new List<Colaboradores>();
         Colaboradores LerCodigo = new Colaboradores();
@@ -82,6 +89,12 @@ namespace GoldYAN.Controller
                     return "Item foi apagado com sucesso";
                 }
             }
+        }
+
+        public async Task LockoutUser()
+        {
+            
+           // _userManager.SetLockoutEndDateAsync();
         }
     }
 }

@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-
+using Dapper.Contrib.Extensions;
+using GoldYAN.Data;
+using MySql.Data.MySqlClient;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace GoldYAN.Controller
@@ -10,7 +14,10 @@ namespace GoldYAN.Controller
     [ApiController]
     public class ProdutosController : ControllerBase
     {
-        // GET: api/<ProdutosController>
+        // GET: api/<FamiliaProdutosController>
+
+        List<Produtos> lerFamilias = new List<Produtos>();
+        Produtos LerFamilia = new Produtos();
 
         private readonly IConfiguration configuration;
         private string connectionString;
@@ -21,34 +28,92 @@ namespace GoldYAN.Controller
         }
 
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Produtos> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            lerFamilias = new List<Produtos>();
+
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+
+                var res = DBConn.GetAll<Produtos>().ToList();
+                lerFamilias = res;
+            }
+            return lerFamilias;
         }
 
-        // GET api/<ProdutosController>/5
+        // GET api/<FamiliaProdutosController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Produtos Get(int id)
         {
-            return "value";
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Get<Produtos>(id);
+                return res;
+            }
         }
 
-        // POST api/<ProdutosController>
+        // POST api/<FamiliaProdutosController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public Produtos Post([FromBody] Produtos familiaProdutos)
         {
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+
+                var idNewRec = DBConn.Insert<Produtos>(familiaProdutos);
+                var res = DBConn.Get<Produtos>(idNewRec);
+                return res;
+            }
         }
 
-        // PUT api/<ProdutosController>/5
+        // PUT api/<FamiliaProdutosController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult<Produtos> Put(int id, [FromBody] Produtos familiaProdutos)
         {
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+
+                var recLido = DBConn.Get<Produtos>(id);
+
+                if (recLido != null)
+                {
+                    recLido.idcolaborador = familiaProdutos.idcolaborador;
+                    recLido.idprodutos = familiaProdutos.idprodutos;
+                    recLido.idservico = familiaProdutos.idservico;
+                    recLido.peso = familiaProdutos.peso;
+                    recLido.custo = familiaProdutos.custo;
+                    recLido.custototal = familiaProdutos.custototal;
+                    recLido.customedio = familiaProdutos.customedio;
+                    recLido.descricao = familiaProdutos.descricao;
+                    recLido.quantidade = familiaProdutos.quantidade;          
+
+
+                    bool updated = DBConn.Update(recLido);
+
+                    return Ok(recLido);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
         }
 
-        // DELETE api/<ProdutosController>/5
+        // DELETE api/<FamiliaProdutosController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public string Delete(int id)
         {
+            MySqlConnection DBConn = new MySqlConnection("Server = localhost; Database = goldyan; Uid = root; Pwd =; ");
+            var res = DBConn.Get<Produtos>(id);
+            if (res != null)
+            {
+                DBConn.Delete(res);
+                return "Sucesso";
+            }
+            else
+            {
+                return "Erro";
+            }
         }
     }
 }

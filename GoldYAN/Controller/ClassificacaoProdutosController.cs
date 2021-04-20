@@ -32,7 +32,7 @@ namespace GoldYAN.Controller
 
 
         [HttpGet]
-        public List<ClassificacaoProdutos> Get()
+        public List<ClassificacaoProdutos> GetAll()
         {
             LerClassificacoes = new List<ClassificacaoProdutos>();
 

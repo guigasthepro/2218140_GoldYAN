@@ -127,7 +127,7 @@
                     }
                     else if (m.formadepesquisa == "Produtos" || m.idproduto.HasValue)
                     {
-                        <div class="m-3 form-group">
+                        @*<div class="m-3 form-group">
                             <div class="form-inline">
                                 <label for="nome">Produtos:</label>
                                 <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Serviço">
@@ -137,7 +137,7 @@
                                     <ResultTemplate>@context.codigo + @context.descricao</ResultTemplate>
                                 </BlazoredTypeahead>
                             </div>
-                        </div>
+                        </div>*@
                     }
                     else
                     {
@@ -467,7 +467,7 @@
         CMC.Put(cm.idmodelo, cm);
         foreach (var modelos in listaModelos)
         {
-        }    //
+        }
         showModal = false;
     }
 
