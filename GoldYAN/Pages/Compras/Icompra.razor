@@ -47,82 +47,119 @@
 
         @if (ProdutoNovo)
         {
-            <EditForm Model="@CCP">
-                <div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="Descricao">ID:</label> &nbsp
-                        <InputNumber oninput="this.value = this.value.toUpperCase()" disabled="true" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.idproduto" />
+    <EditForm Model="@CCP">
+        <div class="m-3 form-group">
+            <div class="form-inline">
+                <label for="Descricao">ID:</label> &nbsp
+                <InputNumber oninput="this.value = this.value.toUpperCase()" disabled="true" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.idproduto" />
+            </div>
+        </div>
+        <div class="m-3 form-group">
+            <div class="form-inline">
+                <label for="Descricao">Descrição:</label> &nbsp
+                <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.descricao" />
+            </div>
+        </div>
+        <div class="m-3 form-group">
+            <div class="form-inline">
+                <label for="Descricao">Descrição2:</label> &nbsp
+                <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.apontamentos" />
+            </div>
+        </div>
+    </EditForm>
+
+                    <div class="m-3 form-group ">
+                        <div class="form-inline">
+                            <label for="nome" class="">Classificação de Produto:</label>
+                            <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarClassificação" oninput="this.value = this.value.toUpperCase()" @bind-Value="ecp" Placeholder="Pesquisar classificação">
+                                <SelectedTemplate>
+                                    @context.codigo (Desc: @context.descricao)
+                                </SelectedTemplate>
+                                <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
+                            </BlazoredTypeahead>
+                        </div>
                     </div>
-                </div>
-                <div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="Descricao">Descrição:</label> &nbsp
-                        <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.descricao" />
-                    </div>
-                </div>
-                <div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="Descricao">Descrição2:</label> &nbsp
-                        <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.apontamentos" />
-                    </div>
-                </div>
-            </EditForm>
 
-            <div class="m-3 form-group ">
-                <div class="form-inline">
-                    <label for="nome" class="">Classificação de Produto:</label>
-                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarClassificação" oninput="this.value = this.value.toUpperCase()" @bind-Value="ecp" Placeholder="Pesquisar classificação">
-                        <SelectedTemplate>
-                            @context.codigo (Desc: @context.descricao)
-                        </SelectedTemplate>
-                        <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
-                    </BlazoredTypeahead>
-                </div>
-            </div>
+                                    <div class="m-3 form-group ">
+                                        <div class="form-inline">
+                                            <label for="nome" class="">Tipo de Produto:</label>
+                                            <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarTipoProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo de produto">
+                                                <SelectedTemplate>
+                                                    @context.codigo (Desc: @context.descricao)
+                                                </SelectedTemplate>
+                                                <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
+                                            </BlazoredTypeahead>
+                                        </div>
+                                    </div>
 
-            <div class="m-3 form-group ">
-                <div class="form-inline">
-                    <label for="nome" class="">Tipo de Produto:</label>
-                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarTipoProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo de produto">
-                        <SelectedTemplate>
-                            @context.codigo (Desc: @context.descricao)
-                        </SelectedTemplate>
-                        <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
-                    </BlazoredTypeahead>
-                </div>
-            </div>
+                                                    <div class="m-3 form-group ">
+                                                        <div class="form-inline">
+                                                            <label for="nome" class="">Tipo de Peça:</label>
+                                                            <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar peça">
+                                                                <SelectedTemplate>
+                                                                    @context.codigo (Desc: @context.descricao)
+                                                                </SelectedTemplate>
+                                                                <ResultTemplate> @context.codigo + @context.descricao </ResultTemplate>
+                                                            </BlazoredTypeahead>
+                                                        </div>
+                                                    </div>
 
-            <div class="m-3 form-group ">
-                <div class="form-inline">
-                    <label for="nome" class="">Tipo de Peça:</label>
-                    <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar peça">
-                        <SelectedTemplate>
-                            @context.codigo (Desc: @context.descricao)
-                        </SelectedTemplate>
-                        <ResultTemplate> @context.codigo + @context.descricao </ResultTemplate>
-                    </BlazoredTypeahead>
-                </div>
-            </div>
+                                                                    <EditForm Model="@CCP">
 
-        }
-        else
-        {
-            <div class="m-3 form-group">
-                <div class="form-inline">
-                    <label for="nome">Produto:</label>
-                    <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="CCP" Placeholder="Pesquisar Serviço">
-                        <SelectedTemplate>
-                            @context.idproduto + @context.descricao
-                        </SelectedTemplate>
-                        <NotFoundTemplate>
-                        </NotFoundTemplate>
-                        <ResultTemplate>@context.idproduto + @context.descricao</ResultTemplate>
-                    </BlazoredTypeahead>
-                </div>
-            </div>
-        }
+                                                                        <div class="m-3 form-group">
+                                                                            <div class="form-inline">
+                                                                                <label for="Descricao">Quantidade:</label> &nbsp
+                                                                                <InputNumber oninput="this.value = this.value.toUpperCase()" disabled="true" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.stock" />
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="m-3 form-group">
+                                                                            <div class="form-inline">
+                                                                                <label for="Descricao">Preco:</label> &nbsp
+                                                                                <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.preco" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </EditForm>
+
+                                                                                    <button @onclick="AdicionarComposto">Adicionar</button> }
+                                                                                                else
+                                                                                                {
+
+                                                                                    <div class="m-3 form-group">
+                                                                                        <div class="form-inline">
+                                                                                            <label for="nome">Produto:</label>
+                                                                                            <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="CCP" Placeholder="Pesquisar Serviço">
+                                                                                                <SelectedTemplate>
+                                                                                                    @context.idproduto + @context.descricao
+                                                                                                </SelectedTemplate>
+                                                                                                <NotFoundTemplate>
+                                                                                                </NotFoundTemplate>
+                                                                                                <ResultTemplate>@context.idproduto + @context.descricao</ResultTemplate>
+                                                                                            </BlazoredTypeahead>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                                    <EditForm Model="@CCP">
+
+                                                                                                        <div class="m-3 form-group">
+                                                                                                            <div class="form-inline">
+                                                                                                                <label for="Descricao">Quantidade:</label> &nbsp
+                                                                                                                <InputNumber oninput="this.value = this.value.toUpperCase()" disabled="true" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.updatestock" />
+                                                                                                            </div>
+
+                                                                                                        </div>
+                                                                                                        <div class="m-3 form-group">
+                                                                                                            <div class="form-inline">
+                                                                                                                <label for="Descricao">Preco:</label> &nbsp
+                                                                                                                <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.preco" />
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </EditForm>
+
+                                                                                                                    <button @onclick="AdicionarComposto">Adicionar</button>}
 
 
+        <button @onclick="AdicionarComposto">Adicionar</button>
 
 
 
@@ -159,7 +196,7 @@
     List<CabecalhoProdutos> listaCabecalhoProduto = new List<CabecalhoProdutos>();
 
     //For input values
-    List<Data.Produtos> LCP = new List<Produtos>();
+    List<Data.CabecalhoProdutos> LCP = new List<CabecalhoProdutos>();
     List<Data.Fabrico> LCFP = new List<Fabrico>();
 
     // General variables
@@ -188,6 +225,27 @@
 
     }
 
+
+    public async Task AdicionarComposto()
+    {
+        if(ProdutoNovo)
+        {
+            CCP.idclassificação = ecp.IDClassificacao;
+            CCP.idtipodeproduto = dtp.idtipoproduto;
+            CCP.idtipodepeca = dtdp.idpeca;
+            LCP.Add(CCP);
+        }
+        else
+        {
+            CCP.idclassificação = ecp.IDClassificacao;
+            CCP.idtipodeproduto = dtp.idtipoproduto;
+            CCP.idtipodepeca = dtdp.idpeca;
+            CCP.stocktotal = CCP.stock + CCP.updatestock;
+            CCP.stock = CCP.stocktotal;
+            LCP.Add(CCP);
+        }
+    }
+
     // Function that creates the product if new and creates also the cabecalhofabrico and fabrico
     public async Task CriarProduto()
     {
@@ -202,22 +260,28 @@
                 CCP.idtipodeproduto = dtp.idtipoproduto;
                 CCP.idtipodepeca = dtdp.idpeca;
 
-                var resultado = CAPC.Post(CCP);
+                var resultado = ComprasC.Post(CCompra);
                 await Task.Delay(1000);
 
                 for (int i = 0; i < LCP.Count; i++)
                 {
-
-                    LCP[i].linha = i;
-                    PC.Post(LCP[i]);
-                    FBCC.Post(LCFP[i]);
+                    if(LCP[i].produtonovo)
+                    {
+                        LCP[i].idcompra = resultado.idfatura;
+                        CAPC.Post(LCP[i]);
+                    }
+                    else
+                    {
+                        LCP[i].idcompra = resultado.idfatura;
+                        CAPC.Put(LCP[i].idproduto, LCP[i]);
+                    }
                 }
 
                 cl = new Colaboradores();
                 CCP = new CabecalhoProdutos();
                 dtp = new TipoProduto();
                 dtdp = new TipoDePeca();
-                LCP = new List<Produtos>();
+                LCP = new List<CabecalhoProdutos>();
                 Readonly = false;
                 StateHasChanged();
                 OnInitializedAsync();
@@ -240,7 +304,7 @@
                 CCP = new CabecalhoProdutos();
                 dtp = new TipoProduto();
                 dtdp = new TipoDePeca();
-                LCP = new List<Produtos>();
+                LCP = new List<CabecalhoProdutos>();
                 Readonly = false;
                 StateHasChanged();
                 OnInitializedAsync();
@@ -255,19 +319,14 @@
     // Function that does the selecting in the selected buttons
     public async Task CriarProdutoNovo()
     {
-
         CCP = new CabecalhoProdutos();
-        LCP = new List<Produtos>();
         ProdutoNovo = true;
-        listaCabecalhoProduto = CAPC.GetAll();
-        CCP.idproduto = 6;
     }
 
     // Function that does the selecting in the selected buttons
     public async Task UsarProdutoExistente()
     {
         CCP = new CabecalhoProdutos();
-        LCP = new List<Produtos>();
         ProdutoNovo = false;
     }
 

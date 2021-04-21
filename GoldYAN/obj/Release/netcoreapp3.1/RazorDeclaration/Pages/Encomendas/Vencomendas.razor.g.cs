@@ -56,41 +56,48 @@ using Microsoft.AspNetCore.Components.Web;
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
-using Microsoft.JSInterop;
+using Microsoft.AspNetCore.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 8 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
-using GoldYAN;
+using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 9 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
-using GoldYAN.Shared;
+using GoldYAN;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 10 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+using GoldYAN.Shared;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Blazored.Typeahead;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 14 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.IO;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 15 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using BlazorInputFile;
 
 #line default
@@ -111,7 +118,7 @@ using GoldYAN.Data;
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Vencomendas.razor"
+#line 5 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Vencomendas.razor"
 using Microsoft.EntityFrameworkCore.Internal;
 
 #line default
@@ -126,14 +133,29 @@ using Microsoft.EntityFrameworkCore.Internal;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 56 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Vencomendas.razor"
-       
+#line 154 "C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Vencomendas.razor"
+        
+
+    //Lists
+
+    List<Localizacoes> listLocalizacoes = new List<Localizacoes>();
+    List<Estados> listEstados = new List<Estados>();
     List<EncomendasComputed> VEC = new List<EncomendasComputed>();
+
+    // Object Classes
+    Data.Estados estado = new Data.Estados();
+    Data.Localizacoes localizacao = new Data.Localizacoes();
+
+
     public string Filter { get; set; }
+    bool showModal = false;
+    bool showModal2 = false;
+    int EncomendaID = 0;
 
     protected override async Task OnInitializedAsync()
     {
         VEC = EC.GetWithInner();
+
     }
 
     public bool IsVisible(EncomendasComputed encomendas)
@@ -147,6 +169,75 @@ using Microsoft.EntityFrameworkCore.Internal;
         return false;
     }
 
+    private async Task<IEnumerable<Localizacoes>> ProcurarLocalizacao(string searchText)
+    {
+        return await Task.FromResult(listLocalizacoes.Where(h => h.idlocalizacao.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Estados>> ProcurarEstado(string searchText)
+    {
+        return await Task.FromResult(listEstados.Where(h => h.idestados.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+
+    public async Task AbrirModalLocalizacao(int id)
+    {
+        listLocalizacoes = LocalizacaoC.GetAll();
+        EncomendaID = id;
+        showModal = true;
+    }
+
+    public async Task AbrirModalEstado(int id)
+    {
+        listEstados = EstadosC.GetAll();
+        EncomendaID = id;
+        showModal2 = true;
+
+    }
+
+
+    public async Task LancarLocalizacao()
+    {
+        var resultado = CabecalhoEncomendasC.LancarLocalizacoes(EncomendaID, localizacao.descricao);
+        if(resultado != null)
+        {
+            await js.InvokeVoidAsync("alert", "Localizacao lancado com sucesso");
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Localizacao nao foi lancada");
+        }
+        EncomendaID = new int();
+        showModal = false;
+    }
+
+    public async Task LancarEstado()
+    {
+        var resultado = CabecalhoEncomendasC.LancarEstado(EncomendaID, estado.descricao);
+        if (resultado != null)
+        {
+            await js.InvokeVoidAsync("alert", "Localizacao lancado com sucesso");
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Localizacao nao foi lancada");
+        }
+        EncomendaID = new int();
+        showModal2 = false;
+    }
+
+    public async Task ModalCancel()
+    {
+        showModal = false;
+    }
+
+    public async Task ModalCancel2()
+    {
+        showModal2 = false;
+    }
+
+    
+
 #line default
 #line hidden
 #nullable disable
@@ -155,6 +246,11 @@ using Microsoft.EntityFrameworkCore.Internal;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ServicosController SC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClientesController CC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private FabricoController FBCC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private CabecalhoFabricoController CFC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClassificacaoProdutosController CPC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private UnidadesController UC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private BancosController VB { get; set; }
@@ -166,6 +262,7 @@ using Microsoft.EntityFrameworkCore.Internal;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private TipoPecaController TPC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ModelosController MC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ProdutosController PC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private CabecalhoController CabecalhoEncomendasC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private CabecalhoProdutosController CAPC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ColaboradoresController colaboradoresController { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private CabecalhoModeloController CMC { get; set; }

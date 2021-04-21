@@ -22,7 +22,7 @@
         <div class="form-row p-sm-1">
             <label for="nome" class="col-sm-auto col-form-label">Cliente:</label>
             <div class="col-sm-5">
-                <BlazoredTypeahead SearchMethod="ProcurarClientes" oninput="this.value = this.value.toUpperCase()" @bind-Value="Cliente" Placeholder="Pesquisar cliente">
+                <BlazoredTypeahead SearchMethod="ProcurarClientes" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="Cliente" Placeholder="Pesquisar cliente">
                     <SelectedTemplate>
                         @context.Nome (ID: @context.idcliente)
                     </SelectedTemplate>

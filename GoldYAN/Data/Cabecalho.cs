@@ -15,6 +15,8 @@ namespace GoldYAN.Data
         [ExplicitKey]
         public int idencomenda { get; set; }
         public int idcliente { get; set; }
+        public string localizacao { get; set; }
+        public string estado { get; set; }
         public string criadopor { get; set; }
 
 

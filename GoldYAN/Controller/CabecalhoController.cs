@@ -64,6 +64,52 @@ namespace GoldYAN.Controller
             }
         }
 
+        [HttpPut("{id}")]
+        public ActionResult<Cabecalho> LancarLocalizacoes(int id, [FromBody] string localizacoes)
+        {
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+
+                var recLido = DBConn.Get<Cabecalho>(id);
+
+                if (recLido != null)
+                {
+                    recLido.localizacao = localizacoes;
+
+                    bool updated = DBConn.Update(recLido);
+
+                    return Ok(recLido);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Cabecalho> LancarEstado(int id, [FromBody] string estado)
+        {
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+
+                var recLido = DBConn.Get<Cabecalho>(id);
+
+                if (recLido != null)
+                {
+                    recLido.estado = estado;
+
+                    bool updated = DBConn.Update(recLido);
+
+                    return Ok(recLido);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+        }
+
         // DELETE api/<CodigoPostalController>/5
         [HttpDelete("{id}")]
         public string Delete(int id)

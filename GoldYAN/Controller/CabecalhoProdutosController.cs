@@ -84,6 +84,27 @@ namespace GoldYAN.Controller
             }
         }
 
+        public ActionResult<CabecalhoProdutos> Put(int id, [FromBody] CabecalhoProdutos familiaProdutos)
+        {
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+
+                var recLido = DBConn.Get<CabecalhoProdutos>(id);
+
+                if (recLido != null)
+                {
+
+                    bool updated = DBConn.Update(recLido);
+
+                    return Ok(recLido);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+        }
+
         // DELETE api/<CodigoPostalController>/5
         [HttpDelete("{id}")]
         public string Delete(int id)

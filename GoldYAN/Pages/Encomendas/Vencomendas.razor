@@ -1,12 +1,98 @@
 ﻿@page "/vencomendas"
 @using GoldYAN.Controller
 @using GoldYAN.Data
+
 @using Microsoft.EntityFrameworkCore.Internal
 @inject IJSRuntime JsRuntime
 @inject ClientesController CC
 @inject ServicosController SC
 @inject EncomendasController EC
 @inject CabecalhoController CEC
+
+
+
+
+
+@if (showModal)
+{
+<div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Lançar Localização</h4>
+                <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div class="form-row p-sm-1">
+                    <label for="nome" class="col-sm-auto col-form-label">Localizacao:</label>
+                    <div class="col-sm-5">
+                        <BlazoredTypeahead SearchMethod="ProcurarLocalizacao" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="localizacao" Placeholder="Pesquisar cliente">
+                            <SelectedTemplate>
+                                @context.idlocalizacao (ID: @context.descricao)
+                            </SelectedTemplate>
+                            <ResultTemplate>@context.idlocalizacao (ID: @context.descricao)</ResultTemplate>
+                        </BlazoredTypeahead>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" @onclick="LancarLocalizacao" class="btn btn-primary">Lancar</button>
+            </div>
+
+        </div>
+    </div>
+</div>}
+
+@if (showModal2)
+{
+<div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Lançar Estado</h4>
+                <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div class="form-row p-sm-1">
+                    <label for="nome" class="col-sm-auto col-form-label">Estado:</label>
+                    <div class="col-sm-5">
+                        <BlazoredTypeahead SearchMethod="ProcurarEstado" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="estado" Placeholder="Pesquisar cliente">
+                            <SelectedTemplate>
+                                @context.idestados (ID: @context.descricao)
+                            </SelectedTemplate>
+                            <ResultTemplate>@context.idestados (ID: @context.descricao)</ResultTemplate>
+                        </BlazoredTypeahead>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" @onclick="LancarEstado" class="btn btn-primary">Lancar</button>
+            </div>
+        </div>
+    </div>
+</div>}
+
+
+
+
+
+
+
 
 <div class="container-fluid">
 
@@ -29,32 +115,32 @@
                                     <tr><th rowspan="1" colspan="1">IdEncomenda</th><th rowspan="1" colspan="1">IDCliente</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Data</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
-                                @foreach(var encomenda in VEC)
-                                {
-                                    if (!IsVisible(encomenda))
-                                        continue;
-                                    encomenda.idwithlinha = encomenda.idencomenda.ToString() + "/" + encomenda.linha.ToString();
+                                    @foreach (var encomenda in VEC)
+                                    {
+                                        if (!IsVisible(encomenda))
+                                            continue;
+                                        encomenda.idwithlinha = encomenda.idencomenda.ToString() + "/" + encomenda.linha.ToString();
 
-                                    <tr style="height: 1em;">
-                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idwithlinha">@encomenda.idwithlinha</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idcliente">@encomenda.idcliente</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.nome">@encomenda.nome</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.telefone">@encomenda.telefone</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.data">@encomenda.data</td>
-                                        <td align="center">
-                                            <div class="dropdown no-arrow">
-                                                <a class="btn dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fas fa-cog fa-sm fa-fw text-gray-400"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                                    <div class="dropdown-header">Ações:</div>
-                                                    <li class="dropdown-item" style="list-style:none"><a class="btn btn-sm btn-warning" href="#"><i class="fas fa-check">&nbsp;</i>Lançar Localização</a></li>
-                                                    <li class="dropdown-item" style="list-style:none"><a class="btn btn-sm btn-danger" href="#"><i class="fas fa-check">&nbsp;</i> Lançar Estado</a></li>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                }
+                        <tr style="height: 1em;">
+                            <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idwithlinha">@encomenda.idwithlinha</td>
+                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idcliente">@encomenda.idcliente</td>
+                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.nome">@encomenda.nome</td>
+                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.telefone">@encomenda.telefone</td>
+                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.data">@encomenda.data</td>
+                            <td align="center">
+                                <div class="dropdown no-arrow">
+                                    <a class="btn dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-cog fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Ações:</div>
+                                        <li class="dropdown-item" style="list-style:none" @onclick="() => AbrirModalLocalizacao(encomenda.idencomenda)"><a class="btn btn-sm btn-warning" href="#"><i class="fas fa-check">&nbsp;</i>Lançar Localização</a></li>
+                                        <li class="dropdown-item" style="list-style:none" @onclick="() => AbrirModalEstado(encomenda.idencomenda)" ><a class="btn btn-sm btn-danger" href="#"><i class="fas fa-check">&nbsp;</i> Lançar Estado</a></li>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+}
                                 </tbody>
                             </table>
                         </div>
@@ -65,13 +151,28 @@
     </div>
 </div>
 
-@code {
+@code { 
+
+    //Lists
+
+    List<Localizacoes> listLocalizacoes = new List<Localizacoes>();
+    List<Estados> listEstados = new List<Estados>();
     List<EncomendasComputed> VEC = new List<EncomendasComputed>();
+
+    // Object Classes
+    Data.Estados estado = new Data.Estados();
+    Data.Localizacoes localizacao = new Data.Localizacoes();
+
+
     public string Filter { get; set; }
+    bool showModal = false;
+    bool showModal2 = false;
+    int EncomendaID = 0;
 
     protected override async Task OnInitializedAsync()
     {
         VEC = EC.GetWithInner();
+
     }
 
     public bool IsVisible(EncomendasComputed encomendas)
@@ -84,4 +185,72 @@
 
         return false;
     }
-}
+
+    private async Task<IEnumerable<Localizacoes>> ProcurarLocalizacao(string searchText)
+    {
+        return await Task.FromResult(listLocalizacoes.Where(h => h.idlocalizacao.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Estados>> ProcurarEstado(string searchText)
+    {
+        return await Task.FromResult(listEstados.Where(h => h.idestados.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+
+    public async Task AbrirModalLocalizacao(int id)
+    {
+        listLocalizacoes = LocalizacaoC.GetAll();
+        EncomendaID = id;
+        showModal = true;
+    }
+
+    public async Task AbrirModalEstado(int id)
+    {
+        listEstados = EstadosC.GetAll();
+        EncomendaID = id;
+        showModal2 = true;
+
+    }
+
+
+    public async Task LancarLocalizacao()
+    {
+        var resultado = CabecalhoEncomendasC.LancarLocalizacoes(EncomendaID, localizacao.descricao);
+        if(resultado != null)
+        {
+            await js.InvokeVoidAsync("alert", "Localizacao lancado com sucesso");
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Localizacao nao foi lancada");
+        }
+        EncomendaID = new int();
+        showModal = false;
+    }
+
+    public async Task LancarEstado()
+    {
+        var resultado = CabecalhoEncomendasC.LancarEstado(EncomendaID, estado.descricao);
+        if (resultado != null)
+        {
+            await js.InvokeVoidAsync("alert", "Localizacao lancado com sucesso");
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Localizacao nao foi lancada");
+        }
+        EncomendaID = new int();
+        showModal2 = false;
+    }
+
+    public async Task ModalCancel()
+    {
+        showModal = false;
+    }
+
+    public async Task ModalCancel2()
+    {
+        showModal2 = false;
+    }
+
+    }
