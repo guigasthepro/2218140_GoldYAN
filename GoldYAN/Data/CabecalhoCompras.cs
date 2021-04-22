@@ -11,5 +11,6 @@ namespace GoldYAN.Data
         public int numero { get; set; }
         public string apontamentos { get; set; }
         public string datacriacao { get; set; }
+        [Computed] public bool produtonovo { get; set; }
     }
 }

@@ -13,112 +13,112 @@ namespace GoldYAN.Pages.Compras
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 1 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 2 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 3 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 4 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 5 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 6 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 7 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 8 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 9 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 10 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 11 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Blazored.Typeahead;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 13 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Controller;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 14 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.IO;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 15 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using BlazorInputFile;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
+#line 2 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
 using GoldYAN.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
+#line 3 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
 using System.ComponentModel.DataAnnotations;
 
 #line default
@@ -133,7 +133,7 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 182 "C:\Users\gsimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
+#line 241 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
        
 
     //Declaration of needed objects
@@ -145,8 +145,12 @@ using System.ComponentModel.DataAnnotations;
     Data.ClassificacaoProdutos ecp = new Data.ClassificacaoProdutos();
     Data.CabecalhoCompras CCompra = new Data.CabecalhoCompras();
     Data.Compras Compra = new Data.Compras();
-
     Data.IDMaximo IDMaximo = new Data.IDMaximo();
+
+
+
+
+
 
 
     // Declaration of needed lists
@@ -158,15 +162,36 @@ using System.ComponentModel.DataAnnotations;
     List<Colaboradores> colaboradores = new List<Colaboradores>();
     List<CabecalhoProdutos> listaCabecalhoProduto = new List<CabecalhoProdutos>();
 
+
+
+
+
+
+
+
     //For input values
     List<Data.CabecalhoProdutos> LCP = new List<CabecalhoProdutos>();
     List<Data.Compras> LC = new List<Data.Compras>();
+
+
+
+
+
+
+
 
     // General variables
     bool Readonly = false;
     int i;
     string formadepesquisa;
     bool ProdutoNovo = true;
+    public string Filter { get; set; }
+
+
+
+
+
+
 
     // Function that always runs when someone enter in the page
     protected override async Task OnInitializedAsync()
@@ -183,96 +208,141 @@ using System.ComponentModel.DataAnnotations;
         // Initial Values in CFabrico Page
         var res = CAPC.GetMaxID();
         JsRuntime.InvokeVoidAsync("console.log", res);
-        CCP.idproduto = 6;
+        CCP.idproduto = 8;
         CCompra.datacriacao = DateTime.Now.ToShortDateString();
 
     }
+
+
+
+
+
+
+    public bool IsVisible(CabecalhoProdutos produtos)
+    {
+        if (string.IsNullOrEmpty(Filter))
+            return true;
+
+        if (produtos.idproduto.Equals(Filter) || produtos.descricao.ToString().Contains(Filter) || produtos.apontamentos.ToString().Contains(Filter))
+            return true;
+
+        return false;
+    }
+
+
+
+
+
 
 
     public async Task AdicionarComposto()
     {
         if(ProdutoNovo)
         {
+            i++;
             CCP.idclassificação = ecp.IDClassificacao;
             CCP.idtipodeproduto = dtp.idtipoproduto;
             CCP.idtipodepeca = dtdp.idpeca;
-            Compra.;
-            CP.Add(CCP);
+            Compra.quantidade =  CCP.stock.Value;
+            CCP.stocktotal = CCP.stock + CCP.updatestock;
+            CCP.stock = CCP.stocktotal;
+            Compra.idproduto = CCP.idproduto;
+            Compra.linha = i;
+            Compra.preco = CCP.preco.Value;
+            LCP.Add(CCP);
+            LC.Add(Compra);
 
         }
         else
         {
+            i++;
             CCP.idclassificação = ecp.IDClassificacao;
             CCP.idtipodeproduto = dtp.idtipoproduto;
             CCP.idtipodepeca = dtdp.idpeca;
+            Compra.quantidade = CCP.stock.Value;
             CCP.stocktotal = CCP.stock + CCP.updatestock;
             CCP.stock = CCP.stocktotal;
+            Compra.idproduto = CCP.idproduto;
+            Compra.linha = i;
+            Compra.preco = CCP.preco.Value;
             LCP.Add(CCP);
+            LC.Add(Compra);
+
         }
     }
+
+
+
+
+
+
 
     // Function that creates the product if new and creates also the cabecalhofabrico and fabrico
     public async Task CriarProduto()
     {
         if (LCP.Count != 0)
         {
-            if (ProdutoNovo)
+
+            if (CCompra.produtonovo)
             {
-                //Vai buscar o utilizador que está logado
-                var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-                var user = authState.User;
-                CCP.idclassificação = ecp.IDClassificacao;
-                CCP.idtipodeproduto = dtp.idtipoproduto;
-                CCP.idtipodepeca = dtdp.idpeca;
 
                 var resultado = CComprasC.Post(CCompra);
-                await Task.Delay(1000);
 
-                for (int i = 0; i < LCP.Count; i++)
+                if(LCP.Count > 1)
                 {
-                    if(LCP[i].produtonovo)
+                    for (int i = 0; i < LCP.Count; i++)
                     {
-                        LCP[i].idcompra = resultado.idcompra;
                         CAPC.Post(LCP[i]);
+
+                        LC[i].idcompra = resultado.idcompra;
+
+                        ComprasC.Post(LC[i]);
                     }
-                    else
-                    {
-                        LCP[i].idcompra = resultado.idcompra;
-                        CAPC.Put(LCP[i].idproduto, LCP[i]);
-                    }
+
+                }
+                else
+                {
+                    CAPC.Post(LCP[0]);
+
+                    LC[0].idcompra = resultado.idcompra;
+
+                    ComprasC.Post(LC[0]);
                 }
 
-                cl = new Colaboradores();
-                CCP = new CabecalhoProdutos();
-                dtp = new TipoProduto();
-                dtdp = new TipoDePeca();
-                LCP = new List<CabecalhoProdutos>();
-                Readonly = false;
-                StateHasChanged();
-                OnInitializedAsync();
             }
             else
             {
-                await Task.Delay(1000);
 
-                for (int i = 0; i < .Count; i++)
+                var resultado = CComprasC.Post(CCompra);
+
+                if (LCP.Count > 1)
                 {
-                    //Product List
+                    for (int i = 0; i < LCP.Count; i++)
+                    {
+                        CAPC.Put(LCP[i].idproduto,LCP[i]);
 
-                    // Fabrico List
+                        LC[i].idcompra = resultado.idcompra;
 
+                        ComprasC.Post(LC[i]);
+                    }
 
                 }
+                else
+                {
+                    CAPC.Put(LCP[0].idproduto, LCP[0]);
 
-                cl = new Colaboradores();
-                CCP = new CabecalhoProdutos();
-                dtp = new TipoProduto();
-                dtdp = new TipoDePeca();
-                LCP = new List<CabecalhoProdutos>();
-                Readonly = false;
-                StateHasChanged();
-                OnInitializedAsync();
+                    LC[0].idcompra = resultado.idcompra;
+
+                    ComprasC.Post(LC[0]);
+                }
+
+
             }
+
+
+
+
+
         }
         else
         {
@@ -280,31 +350,88 @@ using System.ComponentModel.DataAnnotations;
         }
     }
 
+
+
+
+
+
+
+
     // Function that does the selecting in the selected buttons
     public async Task CriarProdutoNovo()
     {
         CCP = new CabecalhoProdutos();
         ProdutoNovo = true;
+        CCP.produtonovo = true;
+        CCompra.produtonovo = true;
     }
+
+
+
+
+
+
 
     // Function that does the selecting in the selected buttons
     public async Task UsarProdutoExistente()
     {
         CCP = new CabecalhoProdutos();
         ProdutoNovo = false;
+        CCP.produtonovo = false;
+        CCompra.produtonovo = false;
     }
 
-    // Add the compost to a list
+
+
+
 
 
     public async Task EditarComposto(int linha)
     {
     }
 
+
+
+
+
     public async Task ApagarComposto(int linha)
     {
         //LCP.Remove(listaProdutos[linha - 1]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private async Task<IEnumerable<Unidades>> ProcurarUnidades(string searchText)
     {

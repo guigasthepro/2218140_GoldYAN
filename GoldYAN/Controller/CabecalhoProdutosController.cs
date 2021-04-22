@@ -93,6 +93,8 @@ namespace GoldYAN.Controller
 
                 if (recLido != null)
                 {
+                    recLido.preco = familiaProdutos.preco;
+                    recLido.stock = familiaProdutos.stock;
 
                     bool updated = DBConn.Update(recLido);
 
