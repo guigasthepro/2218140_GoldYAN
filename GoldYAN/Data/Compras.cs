@@ -1,16 +1,17 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace GoldYAN.Data
 {
-    [Table("compras")]
     public class Compras
     {
-        [ExplicitKey]
-        public int idfatura { get; set; }
-        public int idfornecedor { get; set; }
-        public int numero { get; set; }
-        public string apontamentos { get; set; }
-        public float preco { get; set; }
-        public string datacriacao { get; set; }
+        public int idcompra { get; set; }
+        public int linha { get; set; }
+        public int idproduto { get; set; }
+        public int quantidade { get; set; }
+        public int preco { get; set; }
+
     }
 }

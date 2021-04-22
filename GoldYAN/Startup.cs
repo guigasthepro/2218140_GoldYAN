@@ -78,6 +78,7 @@ namespace GoldYAN
             services.AddScoped<CabecalhoProdutosController>();
             services.AddScoped<CabecalhoFabricoController>();
             services.AddScoped<FabricoController>();
+            services.AddScoped<CabecalhoComprasController>();
             services.AddScoped<ComprasController>();
             services.AddScoped<LocalizacaoController>();
             services.AddScoped<EstadosController>();

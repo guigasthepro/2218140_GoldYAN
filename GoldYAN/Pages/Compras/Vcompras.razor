@@ -54,7 +54,7 @@
     List<Fornecedores> listaFornecedores = new List<Fornecedores>();
     List<CabecalhoProdutos> listaCabecalhoProdutos = new List<CabecalhoProdutos>();
     List<Colaboradores> colaboradores = new List<Colaboradores>();
-    List<Compras> listaCompras = new List<Compras>();
+    List<CabecalhoCompras> listaCompras = new List<CabecalhoCompras>();
 
     //For input values
     List<Data.Produtos> LCP = new List<Produtos>();
@@ -75,12 +75,12 @@
 
     }
 
-    public bool IsVisible(Compras compras)
+    public bool IsVisible(CabecalhoCompras compras)
     {
         if (string.IsNullOrEmpty(Filter))
             return true;
 
-        if (compras.apontamentos.Equals(Filter) || compras.idfatura.ToString().Contains(Filter) || compras.idfornecedor.ToString().Contains(Filter))
+        if (compras.apontamentos.Equals(Filter) || compras.idcompra.ToString().Contains(Filter) || compras.idfornecedor.ToString().Contains(Filter))
             return true;
 
         return false;

@@ -7,23 +7,24 @@ using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
-
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace GoldYAN.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ComprasController : ControllerBase
+    public class CabecalhoComprasController : ControllerBase
     {
         // GET: api/<ComprasController>
 
-        List<Compras> LerClassificacoes = new List<Compras>();
-        Compras LerClassificao = new Compras();
+        List<CabecalhoCompras> LerClassificacoes = new List<CabecalhoCompras>();
+        CabecalhoCompras LerClassificao = new CabecalhoCompras();
 
         private readonly IConfiguration configuration;
         private string connectionString;
-        public ComprasController(IConfiguration configRoot)
+        public CabecalhoComprasController(IConfiguration configRoot)
         {
             configuration = configRoot; // atribuir as configurações ao campo privado
             connectionString = configuration["ConnectionStrings:DefaultConnection"];
@@ -31,13 +32,13 @@ namespace GoldYAN.Controller
 
 
         [HttpGet]
-        public List<Compras> GetAll()
+        public List<CabecalhoCompras> GetAll()
         {
-            LerClassificacoes = new List<Compras>();
+            LerClassificacoes = new List<CabecalhoCompras>();
 
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                var res = DBConn.GetAll<Compras>().ToList();
+                var res = DBConn.GetAll<CabecalhoCompras>().ToList();
 
                 LerClassificacoes = res;
             }
@@ -47,11 +48,11 @@ namespace GoldYAN.Controller
 
         // GET api/<ClassificacaoProdutosController>/5
         [HttpGet("{id}")]
-        public Compras Get(int id)
+        public CabecalhoCompras Get(int id)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                var res = DBConn.Get<Compras>(id);
+                var res = DBConn.Get<CabecalhoCompras>(id);
 
                 return res;
             }
@@ -59,13 +60,13 @@ namespace GoldYAN.Controller
 
         // POST api/<ClassificacaoProdutosController>
         [HttpPost]
-        public Compras Post([FromBody] Compras classificacaoProdutos)
+        public CabecalhoCompras Post([FromBody] CabecalhoCompras classificacaoProdutos)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                var idNewRec = DBConn.Insert<Compras>(classificacaoProdutos);
+                var idNewRec = DBConn.Insert<CabecalhoCompras>(classificacaoProdutos);
 
-                var res = DBConn.Get<Compras>(idNewRec);
+                var res = DBConn.Get<CabecalhoCompras>(idNewRec);
 
                 return res;
             }
@@ -74,12 +75,12 @@ namespace GoldYAN.Controller
 
         // PUT api/<ClassificacaoProdutosController>/5
         [HttpPut("{id}")]
-        public ActionResult<Compras> Put(int id, [FromBody] Compras classificacaoProdutos)
+        public ActionResult<CabecalhoCompras> Put(int id, [FromBody] CabecalhoCompras classificacaoProdutos)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
 
-                var recLido = DBConn.Get<Compras>(id);
+                var recLido = DBConn.Get<CabecalhoCompras>(id);
 
                 if (recLido != null)
                 {
@@ -102,7 +103,7 @@ namespace GoldYAN.Controller
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                var res = DBConn.Get<Compras>(id);
+                var res = DBConn.Get<CabecalhoCompras>(id);
                 if (res != null)
                 {
                     DBConn.Delete(res);
