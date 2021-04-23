@@ -1656,3 +1656,7 @@ C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netc
 C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\GoldYAN.Views.pdb
 C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\GoldYAN.csproj.CopyComplete
 C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\GoldYAN.genruntimeconfig.cache
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Fabrico\Cfabrico.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Fabrico\Vfabrico.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Fabrico\Cfabrico.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Fabrico\Vfabrico.razor.g.cs

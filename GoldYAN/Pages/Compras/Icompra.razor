@@ -195,7 +195,7 @@
                                 <tbody>
                                     @foreach (var produtos in LCP)
                                     {
-                                        if (!IsVisibleProdutos(produtos))
+                                        if (!IsVisible(produtos))
                                             continue;
                                         <tr style="height: 1em;">
                                             <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@produtos.produtonovo">@produtos.produtonovo</td>
