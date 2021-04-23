@@ -424,6 +424,82 @@
         LCP.Remove(listaProdutos[linha-1]);
     }
 
+
+    public async Task CriarProduto()
+    {
+        if (LCP.Count != 0)
+        {
+
+            if (CCompra.produtonovo)
+            {
+
+                CCompra.idfornecedor = fornecedores.idfornecedor;
+
+                var resultado = CComprasC.Post(CCompra);
+
+                if (LCP.Count > 1)
+                {
+                    for (int i = 0; i < LCP.Count; i++)
+                    {
+                        CAPC.Post(LCP[i]);
+
+                        LC[i].idcompra = resultado.idcompra;
+
+                        ComprasC.Post(LC[i]);
+                    }
+
+                }
+                else
+                {
+                    CAPC.Post(LCP[0]);
+
+                    LC[0].idcompra = resultado.idcompra;
+
+                    ComprasC.Post(LC[0]);
+                }
+
+            }
+            else
+            {
+
+                var resultado = CComprasC.Post(CCompra);
+
+                if (LCP.Count > 1)
+                {
+                    for (int i = 0; i < LCP.Count; i++)
+                    {
+                        CAPC.Put(LCP[i].idproduto, LCP[i]);
+
+                        LC[i].idcompra = resultado.idcompra;
+
+                        ComprasC.Post(LC[i]);
+                    }
+
+                }
+                else
+                {
+                    CAPC.Put(LCP[0].idproduto, LCP[0]);
+
+                    LC[0].idcompra = resultado.idcompra;
+
+                    ComprasC.Post(LC[0]);
+                }
+
+
+            }
+
+
+
+
+
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Impossível criar a encomenda, por favor, insira bem os dados da encomenda!");
+        }
+    }
+
+
     private async Task<IEnumerable<Unidades>> ProcurarUnidades(string searchText)
     {
         return await Task.FromResult(listaUnidades.Where(h => h.indice.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
