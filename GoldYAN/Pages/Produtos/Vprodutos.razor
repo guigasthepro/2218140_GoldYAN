@@ -30,18 +30,7 @@
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodeproduto">@produtos.idtipodeproduto</td>
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.descricao">@produtos.descricao</td>
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.apontamentos">@produtos.apontamentos</td>
-                                        <td align="center">
-                                            <div class="dropdown no-arrow">
-                                                <a class="btn dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fas fa-cog fa-sm fa-fw text-gray-400"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                                    <div class="dropdown-header">Ações:</div>
-                                                    <li @onclick="() => OpenFichaProduto(produtos.idproduto)" class="dropdown-item" style="list-style:none"><a class="btn btn-sm btn-warning"  href="#"><i class="fas fa-trash"></i>Editar</a></li>
-                                                    <li @onclick="() => Apagar(produtos.idproduto)" class="dropdown-item" style="list-style:none"><a class="btn btn-sm btn-danger" href="#"><i class="fas fa-trash"></i> Apagar</a></li       >
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td><button @onclick="() => OpenFichaProduto(produtos.idproduto)" class="btn btn-primary btn-sm"  style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(produtos.idproduto)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
                                     </tr>
                                     }
                                 </tbody>

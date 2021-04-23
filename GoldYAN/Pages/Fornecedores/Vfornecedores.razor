@@ -31,7 +31,7 @@
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.telefone">@fornecedor.telefone</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.nif">@fornecedor.nif</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.morada">@fornecedor.morada</td>
-                                            <td><button class="btn btn-primary btn-sm" @onclick="() => ShowModal(fornecedor.idfornecedor)" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" @onclick="() => Apagar(fornecedor.idfornecedor)" style="margin-left: 0.3rem">Apagar</button></td>
+                                            <td><button class="btn btn-primary btn-sm" @onclick="() => ShowModal(fornecedor.idfornecedor)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(fornecedor.idfornecedor)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
                                         </tr>
                                     }
                                 </tbody>

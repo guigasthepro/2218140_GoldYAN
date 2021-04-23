@@ -7,7 +7,7 @@
 @if (showModal)
 {
 
-<div class="modal fade show" id="myModal" style="display:block; position:fixed; overflow-y:auto;" aria-modal="true" role="dialog">
+<div class="modal modal-lg fade show" id="myModal" style="display:block; position:fixed; overflow-y:auto;" aria-modal="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
@@ -234,7 +234,7 @@
                                                             <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
                                                             <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
                                                             <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@modelo.preco</td>
-                                                            <td><button class="btn btn-primary btn-sm" @onclick="() => LoadData(modelo.idmodelo, modelo.linha)" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" @onclick="() => listaModelos.RemoveAt(modelo.linha - 1)" style="margin-left: 0.3rem">Apagar</button></td>
+                                                            <td><button class="btn btn-primary btn-sm" @onclick="() => LoadData(modelo.idmodelo, modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => listaModelos.RemoveAt(modelo.linha - 1)" style="margin-left: 0.3rem"><i></i></button></td>
 
 
                                                         }
@@ -314,8 +314,7 @@
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@modelos.idtipoproduto">@modelos.idtipoproduto</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@modelos.descricao">@modelos.descricao</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@modelos.datacriacao">@modelos.datacriacao</td>
-                                            <td><button class="btn btn-primary btn-sm" @onclick="() => OpenFichaModelo(modelos.idmodelo)" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" @onclick="() => Apagar(modelos.idmodelo)" style="margin-left: 0.3rem">Apagar</button></td>
-
+                                            <td><button @onclick="() => OpenFichaModelo(modelos.idmodelo)" class="btn btn-primary btn-sm"  style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(modelos.idmodelo)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
                                         </tr>
                                     }
                                 </tbody>

@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 style="display: inline" class="m-0 font-weight-bold text-primary">Cabeçalho Fabrico</h6>
+            <h6 style="display: inline" class="m-0 font-weight-bold text-primary">Cabeçalho Compra</h6>
         </div>
 
         <div class="m-3 form-group ">
@@ -204,18 +204,6 @@
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodeproduto">@produtos.idtipodeproduto</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.descricao">@produtos.descricao</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.apontamentos">@produtos.apontamentos</td>
-                                            <td align="center">
-                                                <div class="dropdown no-arrow">
-                                                    <a class="btn dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fas fa-cog fa-sm fa-fw text-gray-400"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                                        <div class="dropdown-header">Ações:</div>
-                                                        <li class="dropdown-item" style="list-style:none"><a class="btn btn-sm btn-warning" href="#"><i class="fas fa-trash"></i>Editar</a></li>
-                                                        <li class="dropdown-item" style="list-style:none"><a class="btn btn-sm btn-danger" href="#"><i class="fas fa-trash"></i> Apagar</a></li>
-                                                    </div>
-                                                </div>
-                                            </td>
                                         </tr>
                                     }
                                 </tbody>
@@ -353,6 +341,7 @@
             Compra.idproduto = CCP.idproduto;
             Compra.linha = i;
             Compra.preco = CCP.preco.Value;
+            
             LCP.Add(CCP);
             LC.Add(Compra);
 
@@ -389,6 +378,8 @@
 
             if (CCompra.produtonovo)
             {
+
+                CCompra.idfornecedor = fornecedores.idfornecedor;
 
                 var resultado = CComprasC.Post(CCompra);
 

@@ -109,42 +109,42 @@
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">IDEncomenda</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">IDCliente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Data</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">Ações</th></tr>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">IDEncomenda</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">IDCliente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Data</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">IdEncomenda</th><th rowspan="1" colspan="1">IDCliente</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Data</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                <tr><th rowspan="1" colspan="1">IdEncomenda</th><th rowspan="1" colspan="1">IDCliente</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Data</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach (var encomenda in VEC)
-                                    {
-                                        if (!IsVisible(encomenda))
-                                            continue;
-                                        encomenda.idwithlinha = encomenda.idencomenda.ToString() + "/" + encomenda.linha.ToString();
+                                @foreach (var encomenda in VEC)
+                                {
+                                    if (!IsVisible(encomenda))
+                                        continue;
+                                    encomenda.idwithlinha = encomenda.idencomenda.ToString() + "/" + encomenda.linha.ToString();
 
-                        <tr style="height: 1em;">
-                            <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idwithlinha">@encomenda.idwithlinha</td>
-                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idcliente">@encomenda.idcliente</td>
-                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.nome">@encomenda.nome</td>
-                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.telefone">@encomenda.telefone</td>
-                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.data">@encomenda.data</td>
-                            <td align="center">
-                                <div class="dropdown no-arrow">
-                                    <a class="btn dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-cog fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Ações:</div>
-                                        <li class="dropdown-item" style="list-style:none" @onclick="() => AbrirModalLocalizacao(encomenda.idencomenda)"><a class="btn btn-sm btn-warning" href="#"><i class="fas fa-check">&nbsp;</i>Lançar Localização</a></li>
-                                        <li class="dropdown-item" style="list-style:none" @onclick="() => AbrirModalEstado(encomenda.idencomenda)" ><a class="btn btn-sm btn-danger" href="#"><i class="fas fa-check">&nbsp;</i> Lançar Estado</a></li>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-}
+                                    <tr style="height: 1em;" @ondblclick="OnInitializedAsync">
+                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idwithlinha">@encomenda.idwithlinha</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idcliente">@encomenda.idcliente</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.nome">@encomenda.nome</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.telefone">@encomenda.telefone</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.data">@encomenda.data</td>
+                                        <td align="center">
+                                            <div class="dropdown no-arrow">
+                                                <a class="btn dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-cog fa-sm fa-fw text-gray-400"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                                    <div class="dropdown-header">Ações:</div>
+                                                    <li class="dropdown-item" style="list-style:none" @onclick="() => AbrirModalLocalizacao(encomenda.idencomenda)"><a class="btn btn-sm btn-warning" href="#"><i class="fas fa-check">&nbsp;</i>Lançar Localização</a></li>
+                                                    <li class="dropdown-item" style="list-style:none" @onclick="() => AbrirModalEstado(encomenda.idencomenda)" ><a class="btn btn-sm btn-danger" href="#"><i class="fas fa-check">&nbsp;</i> Lançar Estado</a></li>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
                                 </tbody>
                             </table>
                         </div>
-                    </div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div>
+                    </div>
                 </div>
             </div>
         </div>
