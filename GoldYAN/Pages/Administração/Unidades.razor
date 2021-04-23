@@ -82,7 +82,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Listagem de Unidades</h6> <button type="submit" @onclick="@ModalShow2" class="btn btn-success btn-sm float-right">Inserir nova unidade</button>
+                    <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Listagem de Unidades</h6> <button type="submit" @onclick="@ModalShow2" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i>Inserir nova unidade</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
@@ -106,7 +106,7 @@
                                                 <td style=" overflow: hidden; white-space: nowrap; " title="@unidade.idunidade">@unidade.idunidade</td>
                                                 <td style=" overflow: hidden; white-space: nowrap; " title="@unidade.indice">@unidade.indice</td>
                                                 <td style=" overflow: hidden; white-space: nowrap; " title="@unidade.descricao">@unidade.descricao</td>
-                                                <td><button class="btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem">Editar</button><button class="btn-sm btn-danger" @onclick="() => Apagar(unidade.idunidade)" style="margin-left:0.3rem">Apagar</button></td>
+                                                <td><button class="btn btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(unidade.idunidade)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
                                             </tr>
                                             }
                                         </tbody>
