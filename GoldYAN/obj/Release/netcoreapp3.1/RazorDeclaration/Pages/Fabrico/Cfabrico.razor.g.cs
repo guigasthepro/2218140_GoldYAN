@@ -13,106 +13,113 @@ namespace GoldYAN.Pages.Fabrico
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 1 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 2 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 3 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 4 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 5 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 6 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 7 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 8 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 9 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 10 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 11 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Blazored.Typeahead;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 13 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Controller;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 14 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.IO;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 15 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using BlazorInputFile;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Cfabrico.razor"
+#line 2 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Cfabrico.razor"
 using GoldYAN.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Cfabrico.razor"
+           [Authorize]
 
 #line default
 #line hidden
@@ -126,7 +133,7 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 316 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Cfabrico.razor"
+#line 304 "C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Cfabrico.razor"
        
 
     //Declaration of needed objects
@@ -144,6 +151,9 @@ using GoldYAN.Data;
     Data.Fabrico F = new Data.Fabrico();
     Data.Unidades unidade = new Data.Unidades();
     Data.IDMaximo IDMaximo = new Data.IDMaximo();
+    Data.HistoricoStock hStock = new Data.HistoricoStock();
+    Data.Produtos RProduto = new Data.Produtos();
+    Data.CabecalhoProdutos UProduto = new Data.CabecalhoProdutos();
 
     // Declaration of needed lists
     List<Unidades> listaUnidades = new List<Unidades>();
@@ -161,7 +171,7 @@ using GoldYAN.Data;
     List<Data.Produtos> LCP = new List<Produtos>();
     List<Data.Fabrico> LCFP = new List<Fabrico>();
 
-    // General variables 
+    // General variables
     bool Readonly = false;
     int i;
     string formadepesquisa;
@@ -184,7 +194,6 @@ using GoldYAN.Data;
         // Initial Values in CFabrico Page
         var res = CAPC.GetMaxID();
         JsRuntime.InvokeVoidAsync("console.log", res);
-        CCP.idproduto = 6;
         CF.datacriacao = DateTime.Now.ToShortDateString();
 
     }
@@ -194,7 +203,7 @@ using GoldYAN.Data;
     {
         if (LCP.Count != 0)
         {
-            if(ProdutoNovo)
+            if (ProdutoNovo)
             {
                 //Vai buscar o utilizador que está logado
                 var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
@@ -204,10 +213,18 @@ using GoldYAN.Data;
                 CCP.idunidade = unidade.idunidade;
                 CCP.idtipodeproduto = dtp.idtipoproduto;
                 CCP.idtipodepeca = dtdp.idpeca;
+                hStock.tipocomponente = "Fabrico";
+                hStock.idcomponente = CCP.idproduto;
+                hStock.tipo = "Entrada";
+                hStock.idprodutoalterado = CCP.idproduto;
+                hStock.stockinicial = 0;
+                hStock.stockfinal = CCP.stock.Value;
+                hStockC.Post(hStock);
+                hStock = new HistoricoStock();
 
                 var resultado = CAPC.Post(CCP);
                 await Task.Delay(1000);
-                CF.idproduto =CCP.idproduto;
+                CF.idproduto = resultado.idproduto;
                 var resultado2 = CFC.Post(CF);
                 await Task.Delay(1000);
 
@@ -215,8 +232,24 @@ using GoldYAN.Data;
                 {
 
                     LCP[i].linha = i;
+                    //Changes used product stock
+
+                    UProduto = CAPC.Get(LCP[i].idproduto);
+                    hStock.stockinicial = UProduto.stock.Value;
+                    UProduto.stock = UProduto.stock - LCP[i].quantidade;
+                    CAPC.Put(UProduto.idproduto, UProduto);
+                    hStock.stockfinal = UProduto.stock.Value;
+                    UProduto = new CabecalhoProdutos();
+                    // Adds to history
+                    hStock.tipocomponente = "Fabrico";
+                    hStock.idcomponente = LCP[i].idproduto;
+                    hStock.tipo = "Saida";
+                    hStock.idprodutoalterado = resultado.idproduto;
+                    hStock.stockfinal = UProduto.stock.Value;
+                    hStockC.Post(hStock);
+                    hStock = new HistoricoStock();
                     PC.Post(LCP[i]);
-                    LCFP[i].idfabrico = CF.idfabrico;
+                    LCFP[i].idfabrico = resultado2.idfabrico;
                     FBCC.Post(LCFP[i]);
                 }
 
@@ -243,9 +276,25 @@ using GoldYAN.Data;
                     //Product List
 
                     // Fabrico List
+                    //Changes used product stock
+
+                    UProduto = CAPC.Get(LCFP[i].idprodutos.Value);
+                    hStock.stockinicial = UProduto.stock.Value;
+                    UProduto.stock = UProduto.stock - LCFP[i].quantidade;
+                    CAPC.Put(UProduto.idproduto, UProduto);
+                    hStock.stockfinal = UProduto.stock.Value;
+                    UProduto = new CabecalhoProdutos();
+                    // Adds to history
+                    hStock.tipocomponente = "Fabrico";
+                    hStock.idcomponente = LCFP[i].idprodutos.Value;
+                    hStock.tipo = "Saida";
+                    hStock.idprodutoalterado = CCP.idproduto;
+                    hStock.stockfinal = UProduto.stock.Value;
+                    hStockC.Post(hStock);
+                    hStock = new HistoricoStock();
+
                     LCFP[i].idfabrico = CF.idfabrico;
                     FBCC.Post(LCFP[i]);
-
 
                 }
 
@@ -464,7 +513,7 @@ using GoldYAN.Data;
 
     private async Task<IEnumerable<Fornecedores>> ProcurarFornecedores(string searchText)
     {
-        return await Task.FromResult(listaFornecedores.Where(h => h.contacto.ToLower().Contains(searchText.ToLower()) || h.nome.ToLower().Contains(searchText.ToLower()) || h.nomevendedor.ToString().Contains(searchText.ToLower())).ToList());
+        return await Task.FromResult(listaFornecedores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.nome.ToLower().Contains(searchText.ToLower()) || h.nomevendedor.ToString().Contains(searchText.ToLower())).ToList());
     }
 
     private async Task<IEnumerable<Servicos>> ProcurarServicos(string searchText)
@@ -498,6 +547,7 @@ using GoldYAN.Data;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

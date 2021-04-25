@@ -2,6 +2,7 @@
 @inject IJSRuntime js
 @page "/familiaprodutos"
 @inject FamiliaProdutosController VFP
+@attribute [Authorize]
 
 @if (showModal)
 {
@@ -141,17 +142,17 @@
                                             {
                                                 if (!IsVisible(fp))
                                                     continue;
-                                            <tr style="height: 1em;">
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.idfproduto">@fp.idfproduto</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.idunidade">@fp.idunidade</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.tipo">@fp.tipo</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.codigo">@fp.codigo</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.nome">@fp.nome</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.descricao">@fp.descricao</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.descricaoeq">@fp.descricaoeq</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@fp.toque">@fp.toque</td>
-                                                <td><button class="btn btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(fp.idfproduto)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
-                                            </tr>
+                                                <tr style="height: 1em;">
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@fp.idfproduto">@fp.idfproduto</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@fp.idunidade">@fp.idunidade</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@fp.tipo">@fp.tipo</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@fp.codigo">@fp.codigo</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@fp.nome">@fp.nome</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@fp.descricao">@fp.descricao</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@fp.descricaoeq">@fp.descricaoeq</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@fp.toque">@fp.toque</td>
+                                                    <td><button class="btn btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(fp.idfproduto)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                </tr>
                                             }
                                         </tbody>
                                     </table>

@@ -117,6 +117,13 @@ using GoldYAN.Data;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ClassificacaoProdutos.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/classificacaoprodutos")]
     public partial class ClassificacaoProdutos : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,7 +133,7 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 148 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ClassificacaoProdutos.razor"
+#line 149 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ClassificacaoProdutos.razor"
        
     List<GoldYAN.Data.ClassificacaoProdutos> VCPS = new List<GoldYAN.Data.ClassificacaoProdutos>();
 
@@ -229,6 +236,7 @@ using GoldYAN.Data;
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClassificacaoProdutosController VCP { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

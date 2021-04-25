@@ -124,6 +124,13 @@ using Microsoft.EntityFrameworkCore.Internal;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Vmodelo.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/vmodelo")]
     public partial class Vmodelo : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -133,7 +140,7 @@ using Microsoft.EntityFrameworkCore.Internal;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 340 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Vmodelo.razor"
+#line 341 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Vmodelo.razor"
        
 
 
@@ -304,6 +311,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

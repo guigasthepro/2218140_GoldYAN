@@ -117,6 +117,13 @@ using GoldYAN.Data;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/vclientes")]
     public partial class Vclientes : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,12 +133,15 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 50 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
+#line 133 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
        
 
 
     List<Clientes> VCS = new List<Clientes>();
+
+    Data.Clientes EClientes = new Clientes();
     public string Filter { get; set; }
+    bool showModal = false;
 
     public string pesquisa { get; set; }
 
@@ -159,12 +169,36 @@ using GoldYAN.Data;
         return false;
     }
 
+    public async Task Apagar(int id)
+    {
+        VC.Delete(id);
+    }
+
+    public async Task Editar()
+    {
+        VC.Put(EClientes.idcliente, EClientes);
+        showModal = false;
+        OnInitializedAsync();
+    }
+
+    public async Task ModalCancel()
+    {
+        showModal = false;
+    }
+
+    public async Task AbrirModal(int id)
+    {
+        EClientes = VC.Get(id);
+        showModal = true;
+
+    }
 
 
 #line default
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClientesController VC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

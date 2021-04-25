@@ -117,6 +117,13 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Vmoldes.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/vmoldes")]
     public partial class Vmoldes : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,12 +133,13 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 50 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Vmoldes.razor"
+#line 55 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Vmoldes.razor"
        
 
     string DescricaoProduto;
     string Filter;
-
+    bool showModal = false;
+    Data.Moldes Emolde = new Moldes();
     List<Moldes> VMS = new List<Moldes>();
 
     protected override async Task OnInitializedAsync()
@@ -151,14 +159,28 @@ using GoldYAN.Controller;
         return false;
     }
 
+    public async Task LoadModal(int id)
+    {
+        Emolde = VM.Get(id);
+    }
 
-    
+    public async Task FecharModal()
+    {
+        showModal = false;
+    }
+
+    public async Task Update()
+    {
+        VM.Put(Emolde.idmolde,Emolde);
+
+    }
 
 #line default
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private MoldesController VM { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JS { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

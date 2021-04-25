@@ -122,8 +122,15 @@ namespace GoldYAN.Controller
 
                 if (recLido != null)
                 {
-                    //recLido.Nomes = presente.Nomes;
-                    //recLido.Quantidade = presente.Quantidade;
+
+                    recLido.Morada = cliente.Morada;
+                    recLido.Moradaopcional = cliente.Moradaopcional;
+                    recLido.Nif = cliente.Nif;
+                    recLido.Nome = cliente.Nome;
+                    recLido.Telefone = cliente.Telefone;
+                    recLido.Codigopostal = cliente.Codigopostal;
+                    recLido.Email = cliente.Email;
+                    recLido.Profissao = cliente.Profissao;
 
                     bool updated = DBConn.Update(recLido);
 

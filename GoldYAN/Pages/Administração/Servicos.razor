@@ -6,6 +6,7 @@
 @using Microsoft.EntityFrameworkCore
 @inject IJSRuntime js
 @inject ServicosController SC
+@attribute [Authorize]
 
 
 @if (showModal)
@@ -100,7 +101,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Listagem de Serviços</h6> <button type="submit" @onclick="@ModalShow2" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i>Inserir novo serviço</button>
-                </div> 
+                </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
                         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -119,12 +120,12 @@
                                                 if (!IsVisible(servico))
                                                     continue;
 
-                                            <tr style="height: 1em;">
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@servico.codigo">@servico.codigo</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@servico.descricao">@servico.descricao</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@servico.idfornecedor">@servico.idfornecedor</td>
-                                                <td><button class="btn btn-sm btn-primary" @onclick="@ModalShow" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(servico.idservico)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
-                                            </tr>
+                                                <tr style="height: 1em;">
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@servico.codigo">@servico.codigo</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@servico.descricao">@servico.descricao</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@servico.idfornecedor">@servico.idfornecedor</td>
+                                                    <td><button class="btn btn-sm btn-primary" @onclick="@ModalShow" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(servico.idservico)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                </tr>
                                             }
                                         </tbody>
                                     </table>

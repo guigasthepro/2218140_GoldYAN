@@ -82,6 +82,8 @@ namespace GoldYAN
             services.AddScoped<ComprasController>();
             services.AddScoped<LocalizacaoController>();
             services.AddScoped<EstadosController>();
+            services.AddScoped<HistoricoStockController>();
+
             services.AddHttpContextAccessor();
         }
 

@@ -2,6 +2,90 @@
 @using GoldYAN.Controller
 @using GoldYAN.Data
 @inject ClientesController VC
+@attribute [Authorize]
+
+@if (showModal)
+{
+    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Lançar Localização</h4>
+                    <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+
+                    <div class="container-fluid">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Ficha do Cliente</h6>
+                            </div>
+                            <EditForm class="form-group" Model="@EClientes" OnValidSubmit="@Editar">
+                                <DataAnnotationsValidator />
+                                <div class="form-group form-inline m-3 p-1">
+                                    <label class="" for="nome">Nome:</label> &nbsp;
+                                    <InputText class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" placeholder="Nome do cliente" id="nome" @bind-Value="EClientes.Nome" />
+                                </div>
+                                <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Nome)" />
+
+                                <div class="form-group form-inline m-3 p-1">
+                                    <label for="telefone">Telefone:</label> &nbsp;
+                                    <InputText class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="telefone" @bind-Value="EClientes.Telefone" />
+                                </div>
+                                <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Telefone)" />
+
+                                <div class="form-group form-inline m-3 p-1">
+                                    <label for="email">Email:</label> &nbsp;
+                                    <InputText class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="email" placeholder="Boas" @bind-Value="EClientes.Email" />
+                                </div>
+                                <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Email)" />
+
+                                <div class="form-group form-inline m-3 p-1">
+                                    <label for="morada">Morada:</label> &nbsp;
+                                    <InputText class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="morada" @bind-Value="EClientes.Morada" />
+                                </div>
+                                <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Morada)" />
+
+                                <div class="form-group form-inline m-3 p-1">
+                                    <label for="moradaopcional">Morada Opcional:</label> &nbsp;
+                                    <InputText class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="moradaopcional" @bind-Value="EClientes.Moradaopcional" />
+                                </div>
+                                <div class="form-group form-inline m-3 p-1">
+                                    <label for="codigopostal">Codigo Postal:</label> &nbsp;
+                                    <InputText class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="codigopostal" @bind-Value="EClientes.Codigopostal" />
+                                </div>
+                                <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Codigopostal)" />
+
+                                <div class="form-group form-inline m-3 p-1">
+                                    <label for="nif">Nif:</label> &nbsp;
+                                    <InputNumber class="w-25 form-control" id="nif" @bind-Value="EClientes.Nif" />
+                                </div>
+                                <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Nif)" />
+
+                                <div class="form-group form-inline m-3 p-1">
+                                    <label for="Profissao">Profissão</label> &nbsp;
+                                    <InputText class="w-25  form-control" oninput="this.value = this.value.toUpperCase()" id="Profissao" @bind-Value="EClientes.Profissao" />
+                                </div>
+                                <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Profissao)" />
+                            </EditForm>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" @onclick="Editar" class="btn btn-primary">Editar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>}
+
 
 <div class="container-fluid">
 
@@ -14,7 +98,7 @@
         <div class="card-body">
             <div class="table-responsive-sm">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Pesquisar Encomenda:<input type="search" @bind="Filter" @bind:event="oninput" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
+                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Pesquisar Cliente:<input type="search" @bind="Filter" @bind:event="oninput" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
@@ -34,14 +118,13 @@
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@cliente.Telefone">@cliente.Telefone</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@cliente.Morada">@cliente.Morada</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@cliente.Nif">@cliente.Nif</td>
-                                            <td><button class="btn btn-primary btn-sm"  style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
-
+                                            <td><button class="btn btn-primary btn-sm" @onclick="() => AbrirModal(cliente.idcliente)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(cliente.idcliente)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
-                    </div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div>
+                    </div>>
                 </div>
             </div>
         </div>
@@ -51,7 +134,10 @@
 
 
     List<Clientes> VCS = new List<Clientes>();
+
+    Data.Clientes EClientes = new Clientes();
     public string Filter { get; set; }
+    bool showModal = false;
 
     public string pesquisa { get; set; }
 
@@ -79,5 +165,28 @@
         return false;
     }
 
+    public async Task Apagar(int id)
+    {
+        VC.Delete(id);
+    }
+
+    public async Task Editar()
+    {
+        VC.Put(EClientes.idcliente, EClientes);
+        showModal = false;
+        OnInitializedAsync();
+    }
+
+    public async Task ModalCancel()
+    {
+        showModal = false;
+    }
+
+    public async Task AbrirModal(int id)
+    {
+        EClientes = VC.Get(id);
+        showModal = true;
+
+    }
 
 }

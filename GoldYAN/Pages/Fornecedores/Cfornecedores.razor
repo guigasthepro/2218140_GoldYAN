@@ -1,6 +1,7 @@
 ﻿@page "/Cfornecedores"
 @using GoldYAN.Data
 @inject IJSRuntime JsRuntime
+@attribute [Authorize]
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -12,37 +13,37 @@
 
 
             @*<div class="m-3 form-group">
-            <div class="form-inline">
-                <label for="telefone">Referência de Modelo:</label> &nbsp
-                <InputText id="telefone" class="form-control" @bind-Value="" />
-            </div>
-        </div>*@
+                    <div class="form-inline">
+                        <label for="telefone">Referência de Modelo:</label> &nbsp
+                        <InputText id="telefone" class="form-control" @bind-Value="" />
+                    </div>
+                </div>*@
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Descricao">Codigo Fornecedor:</label> &nbsp
-                    <InputText id="Descricao" oninput="this.value = this.value.toUpperCase()" class="form-control"  placeholder="Ainda não selecionado" @bind-Value="cfornecedor.codigo" />
+                    <InputText id="Descricao" oninput="this.value = this.value.toUpperCase()" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cfornecedor.codigo" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Quantidade">Nome Fornecedor:</label> &nbsp
-                    <InputText id="Quantidade" class="form-control" placeholder="Quantidade"  @bind-Value="cfornecedor.nome" />
+                    <InputText id="Quantidade" class="form-control" placeholder="Quantidade" @bind-Value="cfornecedor.nome" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="peso">Contacto:</label> &nbsp
-                    <InputText id="peso" class="form-control" placeholder="Peso"  @bind-Value="cfornecedor.contacto" />
+                    <InputText id="peso" class="form-control" placeholder="Peso" @bind-Value="cfornecedor.contacto" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="preco">Nif:</label> &nbsp
-                    <InputText id="preco" class="form-control" placeholder="Preço do serviço"  @bind-Value="cfornecedor.nif" />
+                    <InputText id="preco" class="form-control" placeholder="Preço do serviço" @bind-Value="cfornecedor.nif" />
                 </div>
             </div>
 
@@ -56,42 +57,42 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="datadeentrega">Localização:</label> &nbsp
-                    <InputText id="datadeentrega" class="form-control"  @bind-Value="cfornecedor.localizaçao" />
+                    <InputText id="datadeentrega" class="form-control" @bind-Value="cfornecedor.localizaçao" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="datadeentrega">Código Postal:</label> &nbsp
-                    <InputText id="datadeentrega" class="form-control"  @bind-Value="cfornecedor.codigopostal" />
+                    <InputText id="datadeentrega" class="form-control" @bind-Value="cfornecedor.codigopostal" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="datadeentrega">Telefone:</label> &nbsp
-                    <InputText id="datadeentrega" class="form-control"  @bind-Value="cfornecedor.telefone" />
+                    <InputText id="datadeentrega" class="form-control" @bind-Value="cfornecedor.telefone" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="datadeentrega">Telemovel:</label> &nbsp
-                    <InputText id="datadeentrega" class="form-control"  @bind-Value="cfornecedor.telemovel" />
+                    <InputText id="datadeentrega" class="form-control" @bind-Value="cfornecedor.telemovel" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="datadeentrega">Nome Vendedor:</label> &nbsp
-                    <InputText id="datadeentrega" class="form-control"  @bind-Value="cfornecedor.nomevendedor" />
+                    <InputText id="datadeentrega" class="form-control" @bind-Value="cfornecedor.nomevendedor" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="datadeentrega">Telemovel Vendedor:</label> &nbsp
-                    <InputText id="datadeentrega" class="form-control"  @bind-Value="cfornecedor.telemovelvendedor" />
+                    <InputText id="datadeentrega" class="form-control" @bind-Value="cfornecedor.telemovelvendedor" />
                 </div>
             </div>
 

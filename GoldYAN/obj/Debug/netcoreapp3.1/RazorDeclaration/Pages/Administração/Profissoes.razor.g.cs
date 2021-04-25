@@ -117,6 +117,13 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Profissoes.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/profissoes")]
     public partial class Profissoes : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,7 +133,7 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 128 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Profissoes.razor"
+#line 129 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Profissoes.razor"
        
 
     List<GoldYAN.Data.Profissoes> VPS = new List<GoldYAN.Data.Profissoes>();
@@ -229,6 +236,7 @@ using GoldYAN.Controller;
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ProfissoesController VP { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

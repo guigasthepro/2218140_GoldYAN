@@ -8,6 +8,7 @@
 @inject ServicosController SC
 @inject EncomendasController EC
 @inject CabecalhoController CEC
+@attribute [Authorize]
 
 
 
@@ -111,12 +112,6 @@
                             <EditForm Model="@CF">
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
-                                        <label for="Descricao">ID:</label> &nbsp
-                                        <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CF.idfabrico" />
-                                    </div>
-                                </div>
-                                <div class="m-3 form-group">
-                                    <div class="form-inline">
                                         <label for="Descricao">Data Transação:</label> &nbsp
                                         <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" disabled="true" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CF.datacriacao" />
                                     </div>
@@ -144,12 +139,6 @@
                                         <div class="form-inline">
                                             <label for="Descricao">Descrição:</label> &nbsp
                                             <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.descricao" />
-                                        </div>
-                                    </div>
-                                    <div class="m-3 form-group">
-                                        <div class="form-inline">
-                                            <label for="Descricao">Descrição2:</label> &nbsp
-                                            <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.apontamentos" />
                                         </div>
                                     </div>
                                 </EditForm>
@@ -330,11 +319,11 @@
                                 </div>
 
                                 @*<div class="m-3 form-group">
-                        <div class="form-inline">
-                            <label for="apontamentos">Imagem</label> &nbsp
-                            <InputFile id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="m.Image" />
-                        </div>
-                    </div>*@
+                                        <div class="form-inline">
+                                            <label for="apontamentos">Imagem</label> &nbsp
+                                            <InputFile id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="m.Image" />
+                                        </div>
+                                    </div>*@
 
                                 <div class="m-3 form-group">
                                     <button type="submit" class="btn btn-primary">Adicionar</button>
@@ -507,6 +496,9 @@
     Data.Fabrico F = new Data.Fabrico();
     Data.Unidades unidade = new Data.Unidades();
     Data.IDMaximo IDMaximo = new Data.IDMaximo();
+    Data.HistoricoStock hStock = new Data.HistoricoStock();
+    Data.Produtos RProduto = new Data.Produtos();
+    Data.CabecalhoProdutos UProduto = new Data.CabecalhoProdutos();
 
     // Declaration of needed lists
     List<Unidades> listaUnidades = new List<Unidades>();
@@ -558,6 +550,15 @@
                 CCP.idtipodeproduto = dtp.idtipoproduto;
                 CCP.idtipodepeca = dtdp.idpeca;
 
+                hStock.tipocomponente = "Fabrico";
+                hStock.idcomponente = CCP.idproduto;
+                hStock.tipo = "Entrada";
+                hStock.idprodutoalterado = CCP.idproduto;
+                hStock.stockinicial = 0;
+                hStock.stockfinal = CCP.stock.Value;
+                hStockC.Post(hStock);
+                hStock = new HistoricoStock();
+
                 var resultado = CAPC.Post(CCP);
                 await Task.Delay(1000);
                 CF.idproduto = CCP.idproduto;
@@ -569,6 +570,22 @@
                 {
 
                     LCP[i].linha = i;
+
+                    UProduto = CAPC.Get(LCP[i].idproduto);
+                    hStock.stockinicial = UProduto.stock.Value;
+                    UProduto.stock = UProduto.stock - LCP[i].quantidade;
+                    CAPC.Put(UProduto.idproduto, UProduto);
+                    hStock.stockfinal = UProduto.stock.Value;
+                    UProduto = new CabecalhoProdutos();
+                    // Adds to history
+                    hStock.tipocomponente = "Fabrico";
+                    hStock.idcomponente = LCP[i].idproduto;
+                    hStock.tipo = "Saida";
+                    hStock.idprodutoalterado = CCP.idproduto;
+                    hStock.stockfinal = UProduto.stock.Value;
+                    hStockC.Post(hStock);
+                    hStock = new HistoricoStock();
+
                     PC.Post(LCP[i]);
                     LCFP[i].idfabrico = CF.idfabrico;
                     FBCC.Post(LCFP[i]);
@@ -595,7 +612,20 @@
                 for (int i = 0; i < LCFP.Count; i++)
                 {
                     //Product List
-
+                    UProduto = CAPC.Get(LCFP[i].idprodutos.Value);
+                    hStock.stockinicial = UProduto.stock.Value;
+                    UProduto.stock = UProduto.stock - LCFP[i].quantidade;
+                    CAPC.Put(UProduto.idproduto, UProduto);
+                    hStock.stockfinal = UProduto.stock.Value;
+                    UProduto = new CabecalhoProdutos();
+                    // Adds to history
+                    hStock.tipocomponente = "Fabrico";
+                    hStock.idcomponente = LCFP[i].idprodutos.Value;
+                    hStock.tipo = "Saida";
+                    hStock.idprodutoalterado = CCP.idproduto;
+                    hStock.stockfinal = UProduto.stock.Value;
+                    hStockC.Post(hStock);
+                    hStock = new HistoricoStock();
                     // Fabrico List
                     LCFP[i].idfabrico = CF.idfabrico;
                     FBCC.Post(LCFP[i]);

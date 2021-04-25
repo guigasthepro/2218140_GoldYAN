@@ -3,6 +3,7 @@
 @using GoldYAN.Data
 @using GoldYAN.Controller
 @using System
+@attribute [Authorize]
 
 
 <div class="container-fluid">
@@ -29,28 +30,28 @@
         <div class="m-3 form-group ">
             <div class="form-inline">
                 <label for="nome" class="">Tipo de Produto:</label>
-                <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarProdutos"  oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar cliente">
-                        <SelectedTemplate>
-                            @context.idtipoproduto (Desc: @context.descricao)
-                        </SelectedTemplate>
-                        <ResultTemplate>@context.idtipoproduto + @context.descricao </ResultTemplate>
-                    </BlazoredTypeahead>
+                <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar cliente">
+                    <SelectedTemplate>
+                        @context.idtipoproduto (Desc: @context.descricao)
+                    </SelectedTemplate>
+                    <ResultTemplate>@context.idtipoproduto + @context.descricao </ResultTemplate>
+                </BlazoredTypeahead>
             </div>
         </div>
 
-            <div class="m-3 form-group ">
-                <div class="form-inline">
-                    <label for="nome" class="">Tipo de Peça:</label>
-                    <BlazoredTypeahead class="" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar cliente">
-                            <SelectedTemplate>
-                                @context.codigo (Desc: @context.descricao)
-                            </SelectedTemplate>
-                            <ResultTemplate> @context.codigo + @context.descricao </ResultTemplate>
-                        </BlazoredTypeahead>
-                </div>
+        <div class="m-3 form-group ">
+            <div class="form-inline">
+                <label for="nome" class="">Tipo de Peça:</label>
+                <BlazoredTypeahead class="" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar cliente">
+                    <SelectedTemplate>
+                        @context.codigo (Desc: @context.descricao)
+                    </SelectedTemplate>
+                    <ResultTemplate> @context.codigo + @context.descricao </ResultTemplate>
+                </BlazoredTypeahead>
             </div>
         </div>
     </div>
+</div>
 
 
 
@@ -59,24 +60,24 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Formulário Modelos</h6>
             @if (dtdp.idpeca == 0 || dtp.idtipoproduto == 0)
-        {
-            <h6 class="m-1 float-right text-danger" style="display: inline;">Preencha primeiro o cabeçalho do modelo!</h6>
-        }
-        else
-        {
-            Readonly = false;
-        }
-       
+            {
+                <h6 class="m-1 float-right text-danger" style="display: inline;">Preencha primeiro o cabeçalho do modelo!</h6>
+            }
+            else
+            {
+                Readonly = false;
+            }
+
         </div>
 
- 
+
 
         <EditForm Model="m">
             <div class="m-3 form-group col-sm-5">
                 <div class="form-inline">
                     <label for="Descricao">Componente:</label> &nbsp
                     <InputSelect @bind-Value="@m.formadepesquisa">
-                        <option selected >------</option>
+                        <option selected>------</option>
                         <option>Molde</option>
                         <option>Serviço</option>
                         <option>Produtos</option>
@@ -106,7 +107,7 @@
                 <div class="form-inline">
                     <label for="nome">Serviço:</label>
                     <BlazoredTypeahead SearchMethod="ProcurarServicos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="servicos" Placeholder="Pesquisar Serviço">
-                        <SelectedTemplate >
+                        <SelectedTemplate>
                             @context.descricao
                         </SelectedTemplate>
                         <ResultTemplate>@context.codigo + @context.descricao</ResultTemplate>
@@ -131,7 +132,7 @@
         else
         {
         }
-        
+
         <div class="m-3 form-group">
             <div class="form-inline">
                 <label for="datadeentrega">Colaborador:</label> &nbsp
@@ -149,11 +150,11 @@
             <DataAnnotationsValidator />
 
             @*<div class="m-3 form-group">
-            <div class="form-inline">
-                <label for="telefone">Referência de Modelo:</label> &nbsp
-                <InputText id="telefone" class="form-control" @bind-Value="" />
-            </div>
-        </div>*@
+                    <div class="form-inline">
+                        <label for="telefone">Referência de Modelo:</label> &nbsp
+                        <InputText id="telefone" class="form-control" @bind-Value="" />
+                    </div>
+                </div>*@
 
 
             <div class="m-3 form-group">
@@ -185,11 +186,11 @@
             </div>
 
             @*<div class="m-3 form-group">
-                <div class="form-inline">
-                    <label for="apontamentos">Imagem</label> &nbsp
-                    <InputFile id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="m.Image" />
-                </div>
-            </div>*@
+                    <div class="form-inline">
+                        <label for="apontamentos">Imagem</label> &nbsp
+                        <InputFile id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="m.Image" />
+                    </div>
+                </div>*@
 
 
 
@@ -219,52 +220,52 @@
                             <tbody>
                                 @foreach (var modelo in listaModelos)
                                 {
-                                <tr style="height: 1em;">
-                                    @if (modelo.idmolde.HasValue)
-                                    {
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">Molde</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">@modelo.idmolde</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@cl.valor</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
-                                        <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
+                                    <tr style="height: 1em;">
+                                        @if (modelo.idmolde.HasValue)
+                                        {
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">Molde</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">@modelo.idmolde</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@cl.valor</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
+                                            <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
 
 
-                                    }
-                                    else if (modelo.idservico.HasValue)
-                                    {
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">Servico</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">@modelo.idservico</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@cl.valor">@cl.valor</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
-                                        <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
+                                        }
+                                        else if (modelo.idservico.HasValue)
+                                        {
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">Servico</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">@modelo.idservico</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@cl.valor">@cl.valor</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
+                                            <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
 
-                                    }
-                                    else
-                                    {
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">Produto</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">@modelo.idproduto</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@cl.valor">@cl.valor</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
-                                        <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
+                                        }
+                                        else
+                                        {
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">Produto</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">@modelo.idproduto</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@cl.valor">@cl.valor</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
+                                            <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
 
-                                    }
+                                        }
 
-                                </tr>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
@@ -365,7 +366,7 @@
 
     private async Task AdicionarLista()
     {
-        if (mlds.idmolde != 0 )
+        if (mlds.idmolde != 0)
         {
             i++;
 
@@ -388,7 +389,7 @@
 
 
         }
-        else if(servicos.idservico != 0)
+        else if (servicos.idservico != 0)
         {
             i++;
 

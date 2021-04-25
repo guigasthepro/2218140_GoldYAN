@@ -7,6 +7,7 @@ using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
+using Dapper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -47,14 +48,19 @@ namespace GoldYAN.Controller
 
         // GET api/<ClassificacaoProdutosController>/5
         [HttpGet("{id}")]
-        public Compras Get(int id)
+        public List<Compras> GetAllQuery(int id)
         {
+            string query = $"SELECT * FROM `compras` WHERE idcompra = {id}";
+
+            LerClassificacoes = new List<Compras>();
+
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                var res = DBConn.Get<Compras>(id);
-
-                return res;
+                var res = DBConn.Query<Compras>(query).ToList();
+                LerClassificacoes = res;
             }
+
+            return LerClassificacoes;
         }
 
         // POST api/<ClassificacaoProdutosController>
@@ -98,7 +104,28 @@ namespace GoldYAN.Controller
 
         // DELETE api/<ClassificacaoProdutosController>/5
         [HttpDelete("{id}")]
-        public string Delete(int id)
+        public string Delete(int id, int linha)
+        {
+
+            string query = $" DELETE FROM `compras` WHERE idcompra = {id} AND linha = {linha} ";
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Get<Compras>(id);
+                if (res != null)
+                {
+                    DBConn.Query<Compras>(query);
+                    return "Item foi apagado com sucesso";
+                }
+                else
+                {
+                    return "Item foi apagado com sucesso";
+                }
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public string DeleteAll(int id)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
@@ -114,5 +141,6 @@ namespace GoldYAN.Controller
                 }
             }
         }
+
     }
 }

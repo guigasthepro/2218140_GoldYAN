@@ -2,6 +2,7 @@
 @inject IJSRuntime js
 @page "/materiais"
 @inject MateriasController VM
+@attribute [Authorize]
 
 @if (showModal)
 {
@@ -99,14 +100,14 @@
                                             @foreach (var materia in @VMS)
                                             {
                                                 if (!IsVisible(materia))
-                                                    continue;   
-                                            <tr style="height: 1em;">
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@materia.idmateria">@materia.idmateria</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@materia.alcunha">@materia.alcunha</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@materia.nome">@materia.nome</td>
-                                                <td><button class="btn btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(materia.idmateria)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                    continue;
+                                                <tr style="height: 1em;">
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@materia.idmateria">@materia.idmateria</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@materia.alcunha">@materia.alcunha</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@materia.nome">@materia.nome</td>
+                                                    <td><button class="btn btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(materia.idmateria)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
 
-                                            </tr>
+                                                </tr>
                                             }
                                         </tbody>
                                     </table>

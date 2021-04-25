@@ -2,6 +2,7 @@
 @page "/unidades"
 @inject IJSRuntime js
 @inject UnidadesController VU
+@attribute [Authorize]
 
 
 @if (showModal)
@@ -102,12 +103,12 @@
                                                 if (!IsVisible(unidade))
                                                     continue;
 
-                                            <tr style="height: 1em;">
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@unidade.idunidade">@unidade.idunidade</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@unidade.indice">@unidade.indice</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@unidade.descricao">@unidade.descricao</td>
-                                                <td><button class="btn btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(unidade.idunidade)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
-                                            </tr>
+                                                <tr style="height: 1em;">
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@unidade.idunidade">@unidade.idunidade</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@unidade.indice">@unidade.indice</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@unidade.descricao">@unidade.descricao</td>
+                                                    <td><button class="btn btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(unidade.idunidade)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                </tr>
                                             }
                                         </tbody>
                                     </table>

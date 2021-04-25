@@ -124,6 +124,13 @@ using Microsoft.EntityFrameworkCore.Internal;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Oficina\Oficina.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/oficina")]
     public partial class Oficina : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -133,7 +140,7 @@ using Microsoft.EntityFrameworkCore.Internal;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 57 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Oficina\Oficina.razor"
+#line 58 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Oficina\Oficina.razor"
        
     List<EncomendasComputed> VEC = new List<EncomendasComputed>();
     public string Filter { get; set; }
@@ -162,6 +169,7 @@ using Microsoft.EntityFrameworkCore.Internal;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ServicosController SC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClientesController CC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

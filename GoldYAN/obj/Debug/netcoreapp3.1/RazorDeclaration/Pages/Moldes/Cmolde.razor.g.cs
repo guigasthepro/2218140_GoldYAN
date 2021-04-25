@@ -117,6 +117,13 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Cmolde.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/cmoldes")]
     public partial class Cmolde : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,14 +133,14 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 49 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Cmolde.razor"
+#line 50 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Cmolde.razor"
        
 
     private Moldes cMolde = new Moldes();
 
     List<TipoProduto> TP = new List<TipoProduto>();
 
-    public string idtp  { get; set; }
+    public string idtp { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -158,6 +165,7 @@ using GoldYAN.Controller;
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private MoldesController CM { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

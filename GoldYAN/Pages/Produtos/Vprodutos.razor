@@ -1,4 +1,307 @@
 ﻿@page "/vprodutos"
+@attribute [Authorize]
+
+@if (showModal)
+{
+
+
+
+    <div class="modal fade show" id="myModal" style="display:block; position:fixed; overflow-y:auto;" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar Produto</h4>
+                    <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+
+                    <div class="container-fluid">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Cabeçalho Produto</h6>
+                            </div>
+
+                            <div class="m-3 form-group">
+                                <div class="form-inline">
+                                    <label for="nome">Modelo:</label>
+                                    <BlazoredTypeahead SearchMethod="ProcurarModelos" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="cm" Placeholder="Pesquisar Serviço">
+                                        <SelectedTemplate>
+                                            @context.descricao
+                                        </SelectedTemplate>
+                                        <ResultTemplate>
+                                            @context.idmodelo + @context.descricao
+                                        </ResultTemplate>
+                                    </BlazoredTypeahead>
+                                </div>
+
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <button class="btn btn-primary btn-sm" @onclick="LoadModeloData"><i class="fas fa-check"></i></button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-sm" @onclick="LoadModeloData"><i class="fas fa-check"></i></button>
+                            </div>
+
+                            <EditForm Model="@CCP">
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="Descricao">Descrição:</label> &nbsp
+                                        <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.descricao" />
+                                    </div>
+                                </div>
+                            </EditForm>
+
+                            <div class="m-3 form-group ">
+                                <div class="form-inline">
+                                    <label for="nome" class="">Classificação de Produto:</label>
+                                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarClassificação" oninput="this.value = this.value.toUpperCase()" @bind-Value="ecp" Placeholder="Pesquisar classificação">
+                                        <SelectedTemplate>
+                                            @context.codigo (Desc: @context.descricao)
+                                        </SelectedTemplate>
+                                        <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
+                                    </BlazoredTypeahead>
+                                </div>
+                            </div>
+
+                            <div class="m-3 form-group ">
+                                <div class="form-inline">
+                                    <label for="nome" class="">Unidades:</label>
+                                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarUnidades" oninput="this.value = this.value.toUpperCase()" @bind-Value="unidade" Placeholder="Pesquisar unidade">
+                                        <SelectedTemplate>
+                                            @context.indice (Desc: @context.descricao)
+                                        </SelectedTemplate>
+                                        <ResultTemplate>@context.indice + @context.descricao </ResultTemplate>
+                                    </BlazoredTypeahead>
+                                </div>
+                            </div>
+
+
+                            <div class="m-3 form-group ">
+                                <div class="form-inline">
+                                    <label for="nome" class="">Tipo de Produto:</label>
+                                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarTipoProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo de produto">
+                                        <SelectedTemplate>
+                                            @context.codigo (Desc: @context.descricao)
+                                        </SelectedTemplate>
+                                        <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
+                                    </BlazoredTypeahead>
+                                </div>
+                            </div>
+
+                            <div class="m-3 form-group ">
+                                <div class="form-inline">
+                                    <label for="nome" class="">Tipo de Peça:</label>
+                                    <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar peça">
+                                        <SelectedTemplate>
+                                            @context.codigo (Desc: @context.descricao)
+                                        </SelectedTemplate>
+                                        <ResultTemplate> @context.codigo + @context.descricao </ResultTemplate>
+                                    </BlazoredTypeahead>
+                                </div>
+                            </div>
+
+                            <div class="m-3 form-group ">
+                                <div class="form-inline">
+                                    <label for="nome" class="">Fornecedor:</label>
+                                    <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarFornecedores" oninput="this.value = this.value.toUpperCase()" @bind-Value="fornecedores" Placeholder="Pesquisar peça">
+                                        <SelectedTemplate>
+                                            @context.codigo (Desc: @context.nome)
+                                        </SelectedTemplate>
+                                        <ResultTemplate> @context.codigo + @context.nome </ResultTemplate>
+                                    </BlazoredTypeahead>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="container-fluid">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Formulário Produtos</h6>
+                                @if (dtdp.idpeca == 0 || dtp.idtipoproduto == 0)
+                                {
+                                    <h6 class="m-1 float-right text-danger" style="display: inline;">Preencha primeiro o cabeçalho do modelo!</h6>
+                                }
+                                else
+                                {
+                                    Readonly = false;
+                                }
+
+                            </div>
+
+
+
+                            <EditForm Model="cp">
+                                <div class="m-3 form-group col-sm-5">
+                                    <div class="form-inline">
+                                        <label for="Descricao">Componente:</label> &nbsp
+                                        <InputSelect @bind-Value="@cp.formadepesquisa">
+                                            <option selected>------</option>
+                                            <option>Serviço</option>
+                                            <option>Produtos</option>
+                                        </InputSelect>
+                                    </div>
+                                </div>
+                            </EditForm>
+
+
+
+                            @if (cp.formadepesquisa == "Serviço")
+                            {
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="nome">Serviço:</label>
+                                        <BlazoredTypeahead SearchMethod="ProcurarServicos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="servicos" Placeholder="Pesquisar Serviço">
+                                            <SelectedTemplate>
+                                                @context.descricao
+                                            </SelectedTemplate>
+                                            <ResultTemplate>@context.codigo + @context.descricao</ResultTemplate>
+                                        </BlazoredTypeahead>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                @*<div class="m-3 form-group">
+                        <div class="form-inline">
+                            <label for="nome">Produtos:</label>
+                            <BlazoredTypeahead SearchMethod="ProcurarTipoProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Serviço">
+                                <SelectedTemplate>
+                                    @context.idproduto
+                                </SelectedTemplate>
+                                <ResultTemplate>@context.idtipoproduto + @context.descricao</ResultTemplate>
+                            </BlazoredTypeahead>
+                        </div>
+                    </div>*@
+                            }
+
+                            <EditForm Model="@cp" OnValidSubmit="Update">
+                                <DataAnnotationsValidator />
+
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="Quantidade">Quantidade:</label> &nbsp
+                                        <InputNumber id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="cp.quantidade" />
+                                    </div>
+                                </div>
+
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="peso">Peso:</label> &nbsp
+                                        <InputNumber id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="cp.peso" />
+                                    </div>
+                                </div>
+
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="preco">Preco:</label> &nbsp
+                                        <InputNumber id="preco" class="form-control" placeholder="@cl.valor" disabled="@Readonly" @bind-Value="cp.custo" />
+                                    </div>
+                                </div>
+
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="apontamentos">Valor Total:</label> &nbsp
+                                        <InputNumber id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="cp.custototal" />
+                                    </div>
+                                </div>
+
+                                @*<div class="m-3 form-group">
+                        <div class="form-inline">
+                            <label for="apontamentos">Imagem</label> &nbsp
+                            <InputFile id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="m.Image" />
+                        </div>
+                    </div>*@
+
+                                <div class="m-3 form-group">
+                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                </div>
+
+                            </EditForm>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Sumário da Encomenda</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;table-layout: fixed;">
+                                                <thead>
+                                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 90px;">Componente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 100px;">Colaborador</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Classificação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Qtd.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 30px;">Valor.Un.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Valor Total</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Ações</th></tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr><th rowspan="1" colspan="1">Componente</th><th rowspan="1" colspan="1">Colaborador</th><th rowspan="1" colspan="1">Classificação</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Qtd.</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Valor.Un.</th><th rowspan="1" colspan="1">Valor Total</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    @foreach (var produto in LCP)
+                                                    {
+                                                        <tr style="height: 1em;">
+                                                            @if (produto.idservico.HasValue)
+                                                            {
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.idservico">Servico</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.idcolaborador">@produto.idcolaborador</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.idservico">@produto.idservico</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.descricao">@produto.descricao</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.quantidade">@produto.quantidade</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.peso">@produto.peso</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.custo">@produto.custo</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.custototal">@produto.custototal</td>
+                                                                <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.idproduto">Produto</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.idcolaborador">@produto.idcolaborador</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.idproduto">@produto.idproduto</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.descricao">@produto.descricao</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.quantidade">@produto.quantidade</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.peso">@produto.peso</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.custo">@produto.custo</td>
+                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.custototal">@produto.custototal</td>
+                                                                <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
+
+                                                            }
+
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" @onclick="EditarProduto" class="btn btn-success">Salvar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+   
+}
 
 <div class="container-fluid">
 
@@ -24,19 +327,19 @@
                                     {
                                         if (!IsVisible(produtos))
                                             continue;
-                                    <tr @ondblclick="() => OpenFichaProduto(produtos.idproduto)" style="height: 1em;">
-                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@produtos.idproduto">@produtos.idproduto</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodepeca">@produtos.idtipodepeca</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodeproduto">@produtos.idtipodeproduto</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.descricao">@produtos.descricao</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.apontamentos">@produtos.apontamentos</td>
-                                        <td><button @onclick="() => OpenFichaProduto(produtos.idproduto)" class="btn btn-primary btn-sm"  style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(produtos.idproduto)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
-                                    </tr>
+                                        <tr @ondblclick="() => OpenFichaProduto(produtos.idproduto)" style="height: 1em;">
+                                            <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@produtos.idproduto">@produtos.idproduto</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodepeca">@produtos.idtipodepeca</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodeproduto">@produtos.idtipodeproduto</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.descricao">@produtos.descricao</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.apontamentos">@produtos.apontamentos</td>
+                                            <td><button @onclick="() => OpenFichaProduto(produtos.idproduto)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(produtos.idproduto)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
-                    </div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -44,150 +347,280 @@
 
 </div>
 
-    @code {
-        Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
-        Data.Servicos servicos = new Servicos();
-        Data.Produtos produtos = new Produtos();
-        Data.CabecalhosModelos cm = new CabecalhosModelos();
-        Data.Colaboradores cl = new Colaboradores();
-        Data.TipoDePeca dtdp = new TipoDePeca();
-        Data.TipoProduto dtp = new TipoProduto();
-        Data.Produtos cp = new Produtos();
-        Data.Fornecedores fornecedores = new Data.Fornecedores();
-        Data.ClassificacaoProdutos ecp = new Data.ClassificacaoProdutos();
-        Data.Unidades unidade = new Data.Unidades();
+@code {
+    Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
+    Data.Servicos servicos = new Servicos();
+    Data.Produtos produtos = new Produtos();
+    Data.CabecalhosModelos cm = new CabecalhosModelos();
+    Data.Colaboradores cl = new Colaboradores();
+    Data.TipoDePeca dtdp = new TipoDePeca();
+    Data.TipoProduto dtp = new TipoProduto();
+    Data.Produtos cp = new Produtos();
+    Data.Fornecedores fornecedores = new Data.Fornecedores();
+    Data.ClassificacaoProdutos ecp = new Data.ClassificacaoProdutos();
+    Data.Unidades unidade = new Data.Unidades();
 
 
-        List<Unidades> listaUnidades = new List<Unidades>();
-        List<ClassificacaoProdutos> listaClassificacaoProdutos = new List<ClassificacaoProdutos>();
-        List<Fornecedores> listaFornecedores = new List<Fornecedores>();
-        List<Servicos> ListaServicos = new List<Servicos>();
-        List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
-        List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
-        List<CabecalhoProdutos> listaCabecalhoProdutos = new List<CabecalhoProdutos>();
-        List<Data.Produtos> listaProdutos = new List<Produtos>();
-        List<CabecalhosModelos> listacabecalhoModeloControllers = new List<CabecalhosModelos>();
-        List<Colaboradores> colaboradores = new List<Colaboradores>();
+    List<Unidades> listaUnidades = new List<Unidades>();
+    List<ClassificacaoProdutos> listaClassificacaoProdutos = new List<ClassificacaoProdutos>();
+    List<Fornecedores> listaFornecedores = new List<Fornecedores>();
+    List<Servicos> ListaServicos = new List<Servicos>();
+    List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
+    List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
+    List<CabecalhoProdutos> listaCabecalhoProdutos = new List<CabecalhoProdutos>();
+    List<Data.Produtos> listaProdutos = new List<Produtos>();
+    List<CabecalhosModelos> listacabecalhoModeloControllers = new List<CabecalhosModelos>();
+    List<Colaboradores> colaboradores = new List<Colaboradores>();
 
-        //For input values
-        List<Data.Produtos> LCP = new List<Produtos>();
+    //For input values
+    List<Data.Produtos> LCP = new List<Produtos>();
 
-        bool FichaModelo = false;
+    bool FichaModelo = false;
 
-        bool showModal = false;
-        bool Readonly = true;
-        bool ReadonlyCabecalho = true;
-        int i;
-        string formadepesquisa;
-        public string Filter { get; set; }
+    bool showModal = false;
+    bool Readonly = true;
+    bool ReadonlyCabecalho = true;
+    int i;
+    string formadepesquisa;
+    public string Filter { get; set; }
 
 
-        protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
+    {
+        listaCabecalhoProdutos = CAPC.GetAll();
+        listaFornecedores = FC.GetAll();
+        listacabecalhoModeloControllers = CMC.GetAll();
+        listaClassificacaoProdutos = CPC.GetAll();
+        listaUnidades = UC.GetAll();
+        listaTipoDePecas = TPC.GetAll();
+        listaTipoProdutos = TPRC.GetAll();
+        ListaServicos = SC.GetAll();
+
+
+    }
+
+    public bool IsVisible(CabecalhoProdutos produtos)
+    {
+        if (string.IsNullOrEmpty(Filter))
+            return true;
+
+        if (produtos.idproduto.Equals(Filter) || produtos.descricao.ToString().Contains(Filter) || produtos.apontamentos.ToString().Contains(Filter))
+            return true;
+
+        return false;
+    }
+
+    public void OpenFichaProduto(int id)
+    {
+        CCP = CAPC.Get(id);
+        unidade = UC.Get(CCP.idunidade);
+        ecp = CPC.Get(CCP.idclassificação);
+        dtp = TPRC.Get(CCP.idtipodeproduto);
+        dtdp = TPC.Get(CCP.idtipodepeca);
+        if(CCP.idfornecedor.HasValue)
         {
-            listaCabecalhoProdutos = CAPC.GetAll();
+            fornecedores = FC.Get(CCP.idfornecedor.Value);
+        }
+        listaProdutos = PC.GetAllQuery(id);
+        showModal = true;
+    }
+    void ModalShow()
+    {
+        showModal = true;
+    }
+
+    void ModalCancel()
+    {
+        showModal = false;
+    }
+
+    public async Task AdicionarComposto()
+    {
+
+        if (servicos.idservico != 0)
+        {
+            i++;
+            cp.linha = i;
+            cp.custo = cl.valor;
+            cp.idcolaborador = cl.idcolaborador;
+            cp.idservico = servicos.idservico;
+            cp.descricao = servicos.descricao;
+            cp.datacriacao = DateTime.Now.ToString();
+
+            LCP.Add(cp);
+
+            cm = new CabecalhosModelos();
+            servicos = new Servicos();
+            produtos = new Produtos();
+            cl = new Colaboradores();
+            unidade = new Unidades();
+            ecp = new ClassificacaoProdutos();
 
         }
-
-        public bool IsVisible(CabecalhoProdutos produtos)
+        else if (produtos.idproduto != 0)
         {
-            if (string.IsNullOrEmpty(Filter))
-                return true;
+            i++;
+            cp.linha = i;
+            cp.custo = cl.valor;
+            cp.idcolaborador = cl.idcolaborador;
+            cp.idproduto = produtos.idproduto;
+            cp.descricao = produtos.descricao;
+            cp.datacriacao = DateTime.Now.ToString();
 
-            if (produtos.idproduto.Equals(Filter) || produtos.descricao.ToString().Contains(Filter) || produtos.apontamentos.ToString().Contains(Filter))
-                return true;
+            LCP.Add(cp);
 
-            return false;
-        }
-
-        public void OpenFichaProduto(int id)
-        {
-            //cm = CMC.Get(id);
-            dtp = TPRC.Get(cm.idtipoproduto.Value);
-            dtdp = TPC.Get(cm.idtipodepeca.Value);
-            //listaModelos = MC.GetAllQuery(id);
-            showModal = true;
-        }
-        void ModalShow()
-        {
-            showModal = true;
-        }
-        void ModalCancel()
-        {
-            showModal = false;
-        }
-
-
-        public async Task LoadData(int linha)
-        {
-
-            //m = listaProdutos[linha - 1];
-
-            //js.InvokeVoidAsync("console.log", $"{m}");
-
-
-            //if (m.idmolde.HasValue)
-            //{
-            //    mlds = MoldesController.Get(m.idmolde.Value);
-
-            //}
-            //else if (m.idservico.HasValue)
-            //{
-            //    servicos = SC.Get(m.idservico.Value);
-            //}
-            //else if (m.idproduto != 0)
-            //{
-            //    //mlds = .Get(m.idmolde.Value);
-            //}
-            //cl = colaboradoresController.Get(m.idcolaborador);
+            cm = new CabecalhosModelos();
+            servicos = new Servicos();
+            produtos = new Produtos();
+            cl = new Colaboradores();
+            unidade = new Unidades();
+            ecp = new ClassificacaoProdutos();
 
         }
-
-        public async Task Apagar(int id)
+        else
         {
-            //bool confirmation;
-
-            //confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
-
-            //if (confirmation)
-            //{
-            //    string message = CMC.Delete(id);
-            //    message += MC.Delete(id);
-            //    OnInitializedAsync();
-            //    Task.Delay(1000);
-            //    {
-            //        await js.InvokeVoidAsync("alert", @message);
-            //    }
-            //}
-        }
-
-        public async Task Update()
-        {
-
-            //CMC.Put(cm.idmodelo, cm);
-            //foreach (var modelos in listaModelos)
-            //{
-            //}
-            //showModal = false;
-        }
-
-        private async Task<IEnumerable<TipoDePeca>> ProcurarPecas(string searchText)
-        {
-            return await Task.FromResult(listaTipoDePecas.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower()) || h.idpeca.ToString().Contains(searchText.ToLower())).ToList());
-        }
-
-        private async Task<IEnumerable<Servicos>> ProcurarServicos(string searchText)
-        {
-            return await Task.FromResult(ListaServicos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
-        }
-
-        private async Task<IEnumerable<TipoProduto>> ProcurarProdutos(string searchText)
-        {
-            return await Task.FromResult(listaTipoProdutos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
-        }
-
-        private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
-        {
-            return await Task.FromResult(colaboradores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+            await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
         }
 
     }
+
+    public async Task EditarProduto()
+    {
+        //Vai buscar o utilizador que está logado
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        CCP.idmodelo = cm.idmodelo;
+        CCP.idclassificação = ecp.IDClassificacao;
+        CCP.idunidade = unidade.idunidade;
+        CCP.idtipodeproduto = dtp.idtipoproduto;
+        CCP.idtipodepeca = dtdp.idpeca;
+        CCP.idfornecedor = fornecedores.idfornecedor;
+
+
+        var resultado = CAPC.Put(CCP.idproduto, CCP);
+        await Task.Delay(1000);
+
+
+        servicos = new Servicos();
+        produtos = new Produtos();
+        cl = new Colaboradores();
+        CCP = new CabecalhoProdutos();
+        cm = new CabecalhosModelos();
+        dtp = new TipoProduto();
+        dtdp = new TipoDePeca();
+        LCP = new List<Produtos>();
+        Readonly = true;
+        StateHasChanged();
+        OnInitializedAsync();
+        showModal = false;
+    }
+
+    public async Task LoadData(int linha)
+    {
+
+        //m = listaProdutos[linha - 1];
+
+        //js.InvokeVoidAsync("console.log", $"{m}");
+
+
+        //if (m.idmolde.HasValue)
+        //{
+        //    mlds = MoldesController.Get(m.idmolde.Value);
+
+        //}
+        //else if (m.idservico.HasValue)
+        //{
+        //    servicos = SC.Get(m.idservico.Value);
+        //}
+        //else if (m.idproduto != 0)
+        //{
+        //    //mlds = .Get(m.idmolde.Value);
+        //}
+        //cl = colaboradoresController.Get(m.idcolaborador);
+
+    }
+
+    public async Task Apagar(int id)
+    {
+        //bool confirmation;
+
+        //confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        //if (confirmation)
+        //{
+        //    string message = CMC.Delete(id);
+        //    message += MC.Delete(id);
+        //    OnInitializedAsync();
+        //    Task.Delay(1000);
+        //    {
+        //        await js.InvokeVoidAsync("alert", @message);
+        //    }
+        //}
+    }
+
+    public async Task Update()
+    {
+        LCP.RemoveAt(cp.linha);
+        LCP.Insert(cp.linha, cp);
+        PC.Put(cp.idproduto, cp.linha, cp);
+    }
+
+    public async Task LoadModeloData()
+    {
+        if (cm.idmodelo.Length > 0)
+        {
+            var res = CMC.Get(cm.idmodelo);
+
+            dtdp = TPC.Get(res.idtipodepeca.Value);
+            dtp = TPRC.Get(res.idtipoproduto.Value);
+            CCP.descricao = res.descricao;
+        }
+    }
+
+    private async Task<IEnumerable<Unidades>> ProcurarUnidades(string searchText)
+    {
+        return await Task.FromResult(listaUnidades.Where(h => h.indice.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<ClassificacaoProdutos>> ProcurarClassificação(string searchText)
+    {
+        return await Task.FromResult(listaClassificacaoProdutos.Where(h => h.codigoat.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<TipoDePeca>> ProcurarPecas(string searchText)
+    {
+        return await Task.FromResult(listaTipoDePecas.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower()) || h.idpeca.ToString().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Fornecedores>> ProcurarFornecedores(string searchText)
+    {
+        return await Task.FromResult(listaFornecedores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.nome.ToLower().Contains(searchText.ToLower()) || h.nomevendedor.ToString().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Servicos>> ProcurarServicos(string searchText)
+    {
+        return await Task.FromResult(ListaServicos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<TipoProduto>> ProcurarTipoProdutos(string searchText)
+    {
+        return await Task.FromResult(listaTipoProdutos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    //private async Task<IEnumerable<CabecalhoProdutos>> ProcurarProdutos(string searchText)
+    //{
+    //    return await Task.FromResult(listaProdutos.Where(h => h..ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    //}
+
+    private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
+    {
+        return await Task.FromResult(colaboradores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<CabecalhosModelos>> ProcurarModelos(string searchText)
+    {
+        return await Task.FromResult(listacabecalhoModeloControllers.Where(h => h.idmodelo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+
+}

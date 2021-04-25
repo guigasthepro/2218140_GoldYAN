@@ -117,6 +117,13 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Unidades.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/unidades")]
     public partial class Unidades : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,7 +133,7 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 130 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Unidades.razor"
+#line 131 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Unidades.razor"
        
 
     List<GoldYAN.Data.Unidades> VUS = new List<GoldYAN.Data.Unidades>();
@@ -226,6 +233,7 @@ using GoldYAN.Controller;
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private UnidadesController VU { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

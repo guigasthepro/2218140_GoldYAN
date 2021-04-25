@@ -123,6 +123,13 @@ using System;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/cmodelo")]
     public partial class Cmodelo : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -132,7 +139,7 @@ using System;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 283 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
+#line 284 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
        
     // Invoking classes
     Data.Servicos servicos = new Servicos();
@@ -218,7 +225,7 @@ using System;
 
     private async Task AdicionarLista()
     {
-        if (mlds.idmolde != 0 )
+        if (mlds.idmolde != 0)
         {
             i++;
 
@@ -241,7 +248,7 @@ using System;
 
 
         }
-        else if(servicos.idservico != 0)
+        else if (servicos.idservico != 0)
         {
             i++;
 
@@ -333,6 +340,7 @@ using System;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

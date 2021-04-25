@@ -2,6 +2,7 @@
 @using GoldYAN.Controller
 @using GoldYAN.Data
 @using Microsoft.EntityFrameworkCore.Internal
+@attribute [Authorize]
 
 
 @if (showModal)
@@ -20,274 +21,274 @@
                 <!-- Modal body -->
                 <div class="modal-body">
 
-        <div class="container-fluid">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Cabeçalho Modelo</h6>
-            </div>
-            <EditForm Model="@cm" OnValidSubmit="@AtualizarLista">
-                <div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="Descricao">Referência do Modelo:</label> &nbsp
-                        <InputText id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.idmodelo" />
-                    </div>
-                </div>
+                    <div class="container-fluid">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Cabeçalho Modelo</h6>
+                            </div>
+                            <EditForm Model="@cm" OnValidSubmit="@AtualizarLista">
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="Descricao">Referência do Modelo:</label> &nbsp
+                                        <InputText id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.idmodelo" />
+                                    </div>
+                                </div>
 
-                <div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="Descricao">Descrição:</label> &nbsp
-                        <InputText id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.descricao" />
-                    </div>
-                </div>
-            </EditForm>
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="Descricao">Descrição:</label> &nbsp
+                                        <InputText id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.descricao" />
+                                    </div>
+                                </div>
+                            </EditForm>
 
-            <div class="m-3 form-group ">
-                <div class="form-inline">
-                    <label for="nome" class="">Tipo de Produto:</label>
-                    <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar cliente">
-                        <SelectedTemplate>
-                            @context.codigo (Desc: @context.descricao)
-                        </SelectedTemplate>
-                        <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
-                    </BlazoredTypeahead>
-                </div>
-            </div>
+                            <div class="m-3 form-group ">
+                                <div class="form-inline">
+                                    <label for="nome" class="">Tipo de Produto:</label>
+                                    <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar cliente">
+                                        <SelectedTemplate>
+                                            @context.codigo (Desc: @context.descricao)
+                                        </SelectedTemplate>
+                                        <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
+                                    </BlazoredTypeahead>
+                                </div>
+                            </div>
 
-            <div class="m-3 form-group ">
-                <div class="form-inline">
-                    <label for="nome" class="">Tipo de Peça:</label>
-                    <BlazoredTypeahead class="" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar cliente">
-                        <SelectedTemplate>
-                            @context.codigo (Desc: @context.descricao)
-                        </SelectedTemplate>
-                        <ResultTemplate> @context.codigo + @context.descricao </ResultTemplate>
-                    </BlazoredTypeahead>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="container-fluid">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Formulário Modelos</h6>
-                @if (!String.IsNullOrEmpty(cm.idmodelo) && cm.idtipodepeca == 0 && cm.idtipoproduto == 0 && !String.IsNullOrEmpty(cm.descricao))
-                {
-                    <h6 class="m-1 float-right text-danger" style="display: inline;">Preencha primeiro o cabeçalho do modelo!</h6>
-                }
-                else
-                {
-                    Readonly = false;
-                }
-
-            </div>
-
-
-
-            <EditForm Model="m">
-                <div class="m-3 form-group col-sm-5">
-                    <div class="form-inline">
-                        <label for="Descricao">Componente:</label> &nbsp
-                        <InputSelect @bind-Value="@m.formadepesquisa">
-                            <option selected>------</option>
-                            <option>Molde</option>
-                            <option>Serviço</option>
-                            <option>Produtos</option>
-                        </InputSelect>
-                    </div>
-                </div>
-            </EditForm>
-
-
-            @if (m.formadepesquisa == "Molde" || m.idmolde.HasValue)
-            {
-                <div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="nome">Molde:</label>
-                        <BlazoredTypeahead SearchMethod="ProcurarMoldes" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="mlds" Placeholder="Pesquisar Serviço">
-                            <SelectedTemplate>
-                                @context.descricao
-                            </SelectedTemplate>
-                            <ResultTemplate> @context.codigo + @context.descricao</ResultTemplate>
-                        </BlazoredTypeahead>
-                    </div>
-                </div>
-            }
-            else if (m.formadepesquisa == "Serviço" || m.idservico.HasValue)
-            {
-                <div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="nome">Serviço:</label>
-                        <BlazoredTypeahead SearchMethod="ProcurarServicos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="servicos" Placeholder="Pesquisar Serviço">
-                            <SelectedTemplate>
-                                @context.descricao
-                            </SelectedTemplate>
-                            <ResultTemplate>@context.codigo + @context.descricao</ResultTemplate>
-                        </BlazoredTypeahead>
-                    </div>
-                </div>
-            }
-            else if (m.formadepesquisa == "Produtos" || m.idproduto.HasValue)
-            {
-                @*<div class="m-3 form-group">
-                        <div class="form-inline">
-                            <label for="nome">Produtos:</label>
-                            <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Serviço">
-                                <SelectedTemplate>
-                                    @context.codigo
-                                </SelectedTemplate>
-                                <ResultTemplate>@context.codigo + @context.descricao</ResultTemplate>
-                            </BlazoredTypeahead>
-                        </div>
-                    </div>*@
-            }
-            else
-            {
-            }
-
-            <div class="m-3 form-group">
-                <div class="form-inline">
-                    <label for="datadeentrega">Colaborador:</label> &nbsp
-                    <BlazoredTypeahead SearchMethod="ProcurarColaboradores" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="cl" Placeholder="Pesquisar Colaborador">
-                        <SelectedTemplate>
-                            @context.codigo : @context.descricao
-                        </SelectedTemplate>
-                        <ResultTemplate>@context.codigo : @context.descricao</ResultTemplate>
-                    </BlazoredTypeahead>
-                </div>
-            </div>
-
-
-            <EditForm Model="@m" OnValidSubmit="@AtualizarLista">
-                <DataAnnotationsValidator />
-
-                @*<div class="m-3 form-group">
-                        <div class="form-inline">
-                            <label for="telefone">Referência de Modelo:</label> &nbsp
-                            <InputText id="telefone" class="form-control" @bind-Value="" />
-                        </div>
-                    </div>*@
-
-
-                <div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="Quantidade">Quantidade:</label> &nbsp
-                        <InputNumber id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="m.quantidade" />
-                    </div>
-                </div>
-
-                <div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="peso">Peso:</label> &nbsp
-                        <InputNumber id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="m.peso" />
-                    </div>
-                </div>
-
-                <div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="preco">Preco:</label> &nbsp
-                        <InputNumber id="preco" class="form-control" placeholder="Preço do serviço" disabled="@Readonly" @bind-Value="m.preco" />
-                    </div>
-                </div>
-
-                <div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="apontamentos">Valor Total:</label> &nbsp
-                        <InputNumber id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="m.valortotal" />
-                    </div>
-                </div>
-
-
-
-                <div class="m-3 form-group">
-                    <button type="submit" class="btn btn-primary">Alterar</button>
-                </div>
-            </EditForm>
-        </div>
-    </div>
-
-    <div class="container-fluid">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Sumário da Encomenda</h6>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive-sm">
-                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                        <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"></div></div></div><div class="row">
-                            <div class="col-sm-12">
-                                <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                    <thead>
-                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Componente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Colaborador</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Classificação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Qtd.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Valor.Uni.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr><th rowspan="1" colspan="1">Componente</th><th rowspan="1" colspan="1">Colaborador</th><th rowspan="1" colspan="1">Classificação</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Qtd.</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Valor.Un.</th><th rowspan="1" colspan="1">Ações</th></tr>
-                                    </tfoot>
-                                    <tbody>
-                                        @foreach (var modelo in listaModelos)
-                                        {
-                                            <tr style="height: 1em;">
-                                                @if (modelo.idmolde.HasValue)
-                                                {
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">Molde</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">@modelo.idmolde</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@modelo.preco</td>
-                                                    <td><button class="btn btn-primary btn-sm" @onclick="() => LoadData(modelo.idmodelo, modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => listaModelos.RemoveAt(modelo.linha - 1)" style="margin-left: 0.3rem"><i></i></button></td>
-
-
-                                                }
-                                                else if (modelo.idservico.HasValue)
-                                                {
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">Serviço</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">@modelo.idservico</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@modelo.preco</td>
-                                                    <td><button class="btn btn-primary btn-sm" @onclick="() => LoadData(modelo.idmodelo, modelo.linha)" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" @onclick="() => listaModelos.RemoveAt(modelo.linha - 1)" style="margin-left: 0.3rem">Apagar</button></td>
-
-                                                }
-                                                else
-                                                {
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">Produto</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">@modelo.idproduto</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
-                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@modelo.preco</td>
-                                                    <td><button class="btn btn-primary btn-sm" @onclick="() => LoadData(modelo.idmodelo, modelo.linha)" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" @onclick="() => listaModelos.RemoveAt(modelo.linha - 1)" style="margin-left: 0.3rem">Apagar</button></td>
-
-                                                }
-
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
+                            <div class="m-3 form-group ">
+                                <div class="form-inline">
+                                    <label for="nome" class="">Tipo de Peça:</label>
+                                    <BlazoredTypeahead class="" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar cliente">
+                                        <SelectedTemplate>
+                                            @context.codigo (Desc: @context.descricao)
+                                        </SelectedTemplate>
+                                        <ResultTemplate> @context.codigo + @context.descricao </ResultTemplate>
+                                    </BlazoredTypeahead>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <button type="button" @onclick="() => AtualizarLista()" class="btn btn-success">Salvar</button>
-            </div>
-        
-        </div>
-   
-    </div>
-    
+
+
+
+                    <div class="container-fluid">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Formulário Modelos</h6>
+                                @if (!String.IsNullOrEmpty(cm.idmodelo) && cm.idtipodepeca == 0 && cm.idtipoproduto == 0 && !String.IsNullOrEmpty(cm.descricao))
+                                {
+                                    <h6 class="m-1 float-right text-danger" style="display: inline;">Preencha primeiro o cabeçalho do modelo!</h6>
+                                }
+                                else
+                                {
+                                    Readonly = false;
+                                }
+
+                            </div>
+
+
+
+                            <EditForm Model="m">
+                                <div class="m-3 form-group col-sm-5">
+                                    <div class="form-inline">
+                                        <label for="Descricao">Componente:</label> &nbsp
+                                        <InputSelect @bind-Value="@m.formadepesquisa">
+                                            <option selected>------</option>
+                                            <option>Molde</option>
+                                            <option>Serviço</option>
+                                            <option>Produtos</option>
+                                        </InputSelect>
+                                    </div>
+                                </div>
+                            </EditForm>
+
+
+                            @if (m.formadepesquisa == "Molde" || m.idmolde.HasValue)
+                            {
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="nome">Molde:</label>
+                                        <BlazoredTypeahead SearchMethod="ProcurarMoldes" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="mlds" Placeholder="Pesquisar Serviço">
+                                            <SelectedTemplate>
+                                                @context.descricao
+                                            </SelectedTemplate>
+                                            <ResultTemplate> @context.codigo + @context.descricao</ResultTemplate>
+                                        </BlazoredTypeahead>
+                                    </div>
+                                </div>
+                            }
+                            else if (m.formadepesquisa == "Serviço" || m.idservico.HasValue)
+                            {
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="nome">Serviço:</label>
+                                        <BlazoredTypeahead SearchMethod="ProcurarServicos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="servicos" Placeholder="Pesquisar Serviço">
+                                            <SelectedTemplate>
+                                                @context.descricao
+                                            </SelectedTemplate>
+                                            <ResultTemplate>@context.codigo + @context.descricao</ResultTemplate>
+                                        </BlazoredTypeahead>
+                                    </div>
+                                </div>
+                            }
+                            else if (m.formadepesquisa == "Produtos" || m.idproduto.HasValue)
+                            {
+                                @*<div class="m-3 form-group">
+                                        <div class="form-inline">
+                                            <label for="nome">Produtos:</label>
+                                            <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Serviço">
+                                                <SelectedTemplate>
+                                                    @context.codigo
+                                                </SelectedTemplate>
+                                                <ResultTemplate>@context.codigo + @context.descricao</ResultTemplate>
+                                            </BlazoredTypeahead>
+                                        </div>
+                                    </div>*@
+                            }
+                            else
+                            {
+                            }
+
+                            <div class="m-3 form-group">
+                                <div class="form-inline">
+                                    <label for="datadeentrega">Colaborador:</label> &nbsp
+                                    <BlazoredTypeahead SearchMethod="ProcurarColaboradores" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="cl" Placeholder="Pesquisar Colaborador">
+                                        <SelectedTemplate>
+                                            @context.codigo : @context.descricao
+                                        </SelectedTemplate>
+                                        <ResultTemplate>@context.codigo : @context.descricao</ResultTemplate>
+                                    </BlazoredTypeahead>
+                                </div>
+                            </div>
+
+
+                            <EditForm Model="@m" OnValidSubmit="@AtualizarLista">
+                                <DataAnnotationsValidator />
+
+                                @*<div class="m-3 form-group">
+                                        <div class="form-inline">
+                                            <label for="telefone">Referência de Modelo:</label> &nbsp
+                                            <InputText id="telefone" class="form-control" @bind-Value="" />
+                                        </div>
+                                    </div>*@
+
+
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="Quantidade">Quantidade:</label> &nbsp
+                                        <InputNumber id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="m.quantidade" />
+                                    </div>
+                                </div>
+
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="peso">Peso:</label> &nbsp
+                                        <InputNumber id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="m.peso" />
+                                    </div>
+                                </div>
+
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="preco">Preco:</label> &nbsp
+                                        <InputNumber id="preco" class="form-control" placeholder="Preço do serviço" disabled="@Readonly" @bind-Value="m.preco" />
+                                    </div>
+                                </div>
+
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="apontamentos">Valor Total:</label> &nbsp
+                                        <InputNumber id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="m.valortotal" />
+                                    </div>
+                                </div>
+
+
+
+                                <div class="m-3 form-group">
+                                    <button type="submit" class="btn btn-primary">Alterar</button>
+                                </div>
+                            </EditForm>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Sumário da Encomenda</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive-sm">
+                                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"></div></div></div><div class="row">
+                                            <div class="col-sm-12">
+                                                <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                                    <thead>
+                                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Componente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Colaborador</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Classificação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Qtd.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Valor.Uni.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr><th rowspan="1" colspan="1">Componente</th><th rowspan="1" colspan="1">Colaborador</th><th rowspan="1" colspan="1">Classificação</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Qtd.</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Valor.Un.</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                                    </tfoot>
+                                                    <tbody>
+                                                        @foreach (var modelo in listaModelos)
+                                                        {
+                                                            <tr style="height: 1em;">
+                                                                @if (modelo.idmolde.HasValue)
+                                                                {
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">Molde</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">@modelo.idmolde</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@modelo.preco</td>
+                                                                    <td><button class="btn btn-primary btn-sm" @onclick="() => LoadData(modelo.idmodelo, modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => listaModelos.RemoveAt(modelo.linha - 1)" style="margin-left: 0.3rem"><i></i></button></td>
+
+
+                                                                }
+                                                                else if (modelo.idservico.HasValue)
+                                                                {
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">Serviço</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">@modelo.idservico</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@modelo.preco</td>
+                                                                    <td><button class="btn btn-primary btn-sm" @onclick="() => LoadData(modelo.idmodelo, modelo.linha)" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" @onclick="() => listaModelos.RemoveAt(modelo.linha - 1)" style="margin-left: 0.3rem">Apagar</button></td>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">Produto</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">@modelo.idproduto</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
+                                                                    <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@modelo.preco</td>
+                                                                    <td><button class="btn btn-primary btn-sm" @onclick="() => LoadData(modelo.idmodelo, modelo.linha)" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" @onclick="() => listaModelos.RemoveAt(modelo.linha - 1)" style="margin-left: 0.3rem">Apagar</button></td>
+
+                                                                }
+
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" @onclick="() => AtualizarLista()" class="btn btn-success">Salvar</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
 
                 </div>
             </div>
         </div>
     </div>
-   
+
 }
 
 

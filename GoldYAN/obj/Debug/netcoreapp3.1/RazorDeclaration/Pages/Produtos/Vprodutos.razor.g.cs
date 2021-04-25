@@ -117,6 +117,13 @@ using BlazorInputFile;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Produtos\Vprodutos.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/vprodutos")]
     public partial class Vprodutos : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,158 +133,288 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 47 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Produtos\Vprodutos.razor"
-           
-        Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
-        Data.Servicos servicos = new Servicos();
-        Data.Produtos produtos = new Produtos();
-        Data.CabecalhosModelos cm = new CabecalhosModelos();
-        Data.Colaboradores cl = new Colaboradores();
-        Data.TipoDePeca dtdp = new TipoDePeca();
-        Data.TipoProduto dtp = new TipoProduto();
-        Data.Produtos cp = new Produtos();
-        Data.Fornecedores fornecedores = new Data.Fornecedores();
-        Data.ClassificacaoProdutos ecp = new Data.ClassificacaoProdutos();
-        Data.Unidades unidade = new Data.Unidades();
+#line 350 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Produtos\Vprodutos.razor"
+       
+    Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
+    Data.Servicos servicos = new Servicos();
+    Data.Produtos produtos = new Produtos();
+    Data.CabecalhosModelos cm = new CabecalhosModelos();
+    Data.Colaboradores cl = new Colaboradores();
+    Data.TipoDePeca dtdp = new TipoDePeca();
+    Data.TipoProduto dtp = new TipoProduto();
+    Data.Produtos cp = new Produtos();
+    Data.Fornecedores fornecedores = new Data.Fornecedores();
+    Data.ClassificacaoProdutos ecp = new Data.ClassificacaoProdutos();
+    Data.Unidades unidade = new Data.Unidades();
 
 
-        List<Unidades> listaUnidades = new List<Unidades>();
-        List<ClassificacaoProdutos> listaClassificacaoProdutos = new List<ClassificacaoProdutos>();
-        List<Fornecedores> listaFornecedores = new List<Fornecedores>();
-        List<Servicos> ListaServicos = new List<Servicos>();
-        List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
-        List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
-        List<CabecalhoProdutos> listaCabecalhoProdutos = new List<CabecalhoProdutos>();
-        List<Data.Produtos> listaProdutos = new List<Produtos>();
-        List<CabecalhosModelos> listacabecalhoModeloControllers = new List<CabecalhosModelos>();
-        List<Colaboradores> colaboradores = new List<Colaboradores>();
+    List<Unidades> listaUnidades = new List<Unidades>();
+    List<ClassificacaoProdutos> listaClassificacaoProdutos = new List<ClassificacaoProdutos>();
+    List<Fornecedores> listaFornecedores = new List<Fornecedores>();
+    List<Servicos> ListaServicos = new List<Servicos>();
+    List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
+    List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
+    List<CabecalhoProdutos> listaCabecalhoProdutos = new List<CabecalhoProdutos>();
+    List<Data.Produtos> listaProdutos = new List<Produtos>();
+    List<CabecalhosModelos> listacabecalhoModeloControllers = new List<CabecalhosModelos>();
+    List<Colaboradores> colaboradores = new List<Colaboradores>();
 
-        //For input values
-        List<Data.Produtos> LCP = new List<Produtos>();
+    //For input values
+    List<Data.Produtos> LCP = new List<Produtos>();
 
-        bool FichaModelo = false;
+    bool FichaModelo = false;
 
-        bool showModal = false;
-        bool Readonly = true;
-        bool ReadonlyCabecalho = true;
-        int i;
-        string formadepesquisa;
-        public string Filter { get; set; }
+    bool showModal = false;
+    bool Readonly = true;
+    bool ReadonlyCabecalho = true;
+    int i;
+    string formadepesquisa;
+    public string Filter { get; set; }
 
 
-        protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
+    {
+        listaCabecalhoProdutos = CAPC.GetAll();
+        listaFornecedores = FC.GetAll();
+        listacabecalhoModeloControllers = CMC.GetAll();
+        listaClassificacaoProdutos = CPC.GetAll();
+        listaUnidades = UC.GetAll();
+        listaTipoDePecas = TPC.GetAll();
+        listaTipoProdutos = TPRC.GetAll();
+        ListaServicos = SC.GetAll();
+
+
+    }
+
+    public bool IsVisible(CabecalhoProdutos produtos)
+    {
+        if (string.IsNullOrEmpty(Filter))
+            return true;
+
+        if (produtos.idproduto.Equals(Filter) || produtos.descricao.ToString().Contains(Filter) || produtos.apontamentos.ToString().Contains(Filter))
+            return true;
+
+        return false;
+    }
+
+    public void OpenFichaProduto(int id)
+    {
+        CCP = CAPC.Get(id);
+        unidade = UC.Get(CCP.idunidade);
+        ecp = CPC.Get(CCP.idclassificação);
+        dtp = TPRC.Get(CCP.idtipodeproduto);
+        dtdp = TPC.Get(CCP.idtipodepeca);
+        if(CCP.idfornecedor.HasValue)
         {
-            listaCabecalhoProdutos = CAPC.GetAll();
+            fornecedores = FC.Get(CCP.idfornecedor.Value);
+        }
+        listaProdutos = PC.GetAllQuery(id);
+        showModal = true;
+    }
+    void ModalShow()
+    {
+        showModal = true;
+    }
+
+    void ModalCancel()
+    {
+        showModal = false;
+    }
+
+    public async Task AdicionarComposto()
+    {
+
+        if (servicos.idservico != 0)
+        {
+            i++;
+            cp.linha = i;
+            cp.custo = cl.valor;
+            cp.idcolaborador = cl.idcolaborador;
+            cp.idservico = servicos.idservico;
+            cp.descricao = servicos.descricao;
+            cp.datacriacao = DateTime.Now.ToString();
+
+            LCP.Add(cp);
+
+            cm = new CabecalhosModelos();
+            servicos = new Servicos();
+            produtos = new Produtos();
+            cl = new Colaboradores();
+            unidade = new Unidades();
+            ecp = new ClassificacaoProdutos();
 
         }
-
-        public bool IsVisible(CabecalhoProdutos produtos)
+        else if (produtos.idproduto != 0)
         {
-            if (string.IsNullOrEmpty(Filter))
-                return true;
+            i++;
+            cp.linha = i;
+            cp.custo = cl.valor;
+            cp.idcolaborador = cl.idcolaborador;
+            cp.idproduto = produtos.idproduto;
+            cp.descricao = produtos.descricao;
+            cp.datacriacao = DateTime.Now.ToString();
 
-            if (produtos.idproduto.Equals(Filter) || produtos.descricao.ToString().Contains(Filter) || produtos.apontamentos.ToString().Contains(Filter))
-                return true;
+            LCP.Add(cp);
 
-            return false;
-        }
-
-        public void OpenFichaProduto(int id)
-        {
-            //cm = CMC.Get(id);
-            dtp = TPRC.Get(cm.idtipoproduto.Value);
-            dtdp = TPC.Get(cm.idtipodepeca.Value);
-            //listaModelos = MC.GetAllQuery(id);
-            showModal = true;
-        }
-        void ModalShow()
-        {
-            showModal = true;
-        }
-        void ModalCancel()
-        {
-            showModal = false;
-        }
-
-
-        public async Task LoadData(int linha)
-        {
-
-            //m = listaProdutos[linha - 1];
-
-            //js.InvokeVoidAsync("console.log", $"{m}");
-
-
-            //if (m.idmolde.HasValue)
-            //{
-            //    mlds = MoldesController.Get(m.idmolde.Value);
-
-            //}
-            //else if (m.idservico.HasValue)
-            //{
-            //    servicos = SC.Get(m.idservico.Value);
-            //}
-            //else if (m.idproduto != 0)
-            //{
-            //    //mlds = .Get(m.idmolde.Value);
-            //}
-            //cl = colaboradoresController.Get(m.idcolaborador);
+            cm = new CabecalhosModelos();
+            servicos = new Servicos();
+            produtos = new Produtos();
+            cl = new Colaboradores();
+            unidade = new Unidades();
+            ecp = new ClassificacaoProdutos();
 
         }
-
-        public async Task Apagar(int id)
+        else
         {
-            //bool confirmation;
-
-            //confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
-
-            //if (confirmation)
-            //{
-            //    string message = CMC.Delete(id);
-            //    message += MC.Delete(id);
-            //    OnInitializedAsync();
-            //    Task.Delay(1000);
-            //    {
-            //        await js.InvokeVoidAsync("alert", @message);
-            //    }
-            //}
+            await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
         }
 
-        public async Task Update()
+    }
+
+    public async Task EditarProduto()
+    {
+        //Vai buscar o utilizador que está logado
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        CCP.idmodelo = cm.idmodelo;
+        CCP.idclassificação = ecp.IDClassificacao;
+        CCP.idunidade = unidade.idunidade;
+        CCP.idtipodeproduto = dtp.idtipoproduto;
+        CCP.idtipodepeca = dtdp.idpeca;
+        CCP.idfornecedor = fornecedores.idfornecedor;
+
+
+        var resultado = CAPC.Put(CCP.idproduto, CCP);
+        await Task.Delay(1000);
+
+
+        servicos = new Servicos();
+        produtos = new Produtos();
+        cl = new Colaboradores();
+        CCP = new CabecalhoProdutos();
+        cm = new CabecalhosModelos();
+        dtp = new TipoProduto();
+        dtdp = new TipoDePeca();
+        LCP = new List<Produtos>();
+        Readonly = true;
+        StateHasChanged();
+        OnInitializedAsync();
+        showModal = false;
+    }
+
+    public async Task LoadData(int linha)
+    {
+
+        //m = listaProdutos[linha - 1];
+
+        //js.InvokeVoidAsync("console.log", $"{m}");
+
+
+        //if (m.idmolde.HasValue)
+        //{
+        //    mlds = MoldesController.Get(m.idmolde.Value);
+
+        //}
+        //else if (m.idservico.HasValue)
+        //{
+        //    servicos = SC.Get(m.idservico.Value);
+        //}
+        //else if (m.idproduto != 0)
+        //{
+        //    //mlds = .Get(m.idmolde.Value);
+        //}
+        //cl = colaboradoresController.Get(m.idcolaborador);
+
+    }
+
+    public async Task Apagar(int id)
+    {
+        //bool confirmation;
+
+        //confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        //if (confirmation)
+        //{
+        //    string message = CMC.Delete(id);
+        //    message += MC.Delete(id);
+        //    OnInitializedAsync();
+        //    Task.Delay(1000);
+        //    {
+        //        await js.InvokeVoidAsync("alert", @message);
+        //    }
+        //}
+    }
+
+    public async Task Update()
+    {
+        LCP.RemoveAt(cp.linha);
+        LCP.Insert(cp.linha, cp);
+        PC.Put(cp.idproduto, cp.linha, cp);
+    }
+
+    public async Task LoadModeloData()
+    {
+        if (cm.idmodelo.Length > 0)
         {
+            var res = CMC.Get(cm.idmodelo);
 
-            //CMC.Put(cm.idmodelo, cm);
-            //foreach (var modelos in listaModelos)
-            //{
-            //}
-            //showModal = false;
+            dtdp = TPC.Get(res.idtipodepeca.Value);
+            dtp = TPRC.Get(res.idtipoproduto.Value);
+            CCP.descricao = res.descricao;
         }
+    }
 
-        private async Task<IEnumerable<TipoDePeca>> ProcurarPecas(string searchText)
-        {
-            return await Task.FromResult(listaTipoDePecas.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower()) || h.idpeca.ToString().Contains(searchText.ToLower())).ToList());
-        }
+    private async Task<IEnumerable<Unidades>> ProcurarUnidades(string searchText)
+    {
+        return await Task.FromResult(listaUnidades.Where(h => h.indice.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
 
-        private async Task<IEnumerable<Servicos>> ProcurarServicos(string searchText)
-        {
-            return await Task.FromResult(ListaServicos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
-        }
+    private async Task<IEnumerable<ClassificacaoProdutos>> ProcurarClassificação(string searchText)
+    {
+        return await Task.FromResult(listaClassificacaoProdutos.Where(h => h.codigoat.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
 
-        private async Task<IEnumerable<TipoProduto>> ProcurarProdutos(string searchText)
-        {
-            return await Task.FromResult(listaTipoProdutos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
-        }
+    private async Task<IEnumerable<TipoDePeca>> ProcurarPecas(string searchText)
+    {
+        return await Task.FromResult(listaTipoDePecas.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower()) || h.idpeca.ToString().Contains(searchText.ToLower())).ToList());
+    }
 
-        private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
-        {
-            return await Task.FromResult(colaboradores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
-        }
+    private async Task<IEnumerable<Fornecedores>> ProcurarFornecedores(string searchText)
+    {
+        return await Task.FromResult(listaFornecedores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.nome.ToLower().Contains(searchText.ToLower()) || h.nomevendedor.ToString().Contains(searchText.ToLower())).ToList());
+    }
 
-    
+    private async Task<IEnumerable<Servicos>> ProcurarServicos(string searchText)
+    {
+        return await Task.FromResult(ListaServicos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<TipoProduto>> ProcurarTipoProdutos(string searchText)
+    {
+        return await Task.FromResult(listaTipoProdutos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    //private async Task<IEnumerable<CabecalhoProdutos>> ProcurarProdutos(string searchText)
+    //{
+    //    return await Task.FromResult(listaProdutos.Where(h => h..ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    //}
+
+    private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
+    {
+        return await Task.FromResult(colaboradores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<CabecalhosModelos>> ProcurarModelos(string searchText)
+    {
+        return await Task.FromResult(listacabecalhoModeloControllers.Where(h => h.idmodelo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

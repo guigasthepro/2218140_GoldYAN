@@ -138,6 +138,13 @@ using Microsoft.EntityFrameworkCore;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 7 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/bancos")]
     public partial class ABancos : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -147,7 +154,7 @@ using Microsoft.EntityFrameworkCore;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 132 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
+#line 133 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\ABancos.razor"
        
     List<GoldYAN.Data.Bancos> VBS = new List<GoldYAN.Data.Bancos>();
 
@@ -246,6 +253,7 @@ using Microsoft.EntityFrameworkCore;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

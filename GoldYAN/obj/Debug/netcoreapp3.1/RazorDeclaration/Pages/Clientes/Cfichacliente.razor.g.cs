@@ -131,6 +131,13 @@ using Microsoft.EntityFrameworkCore;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 8 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Cfichacliente.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/cfichacliente")]
     public partial class Cfichacliente : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -140,7 +147,7 @@ using Microsoft.EntityFrameworkCore;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 72 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Cfichacliente.razor"
+#line 73 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Cfichacliente.razor"
        
 
 
@@ -164,6 +171,7 @@ using Microsoft.EntityFrameworkCore;
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClientesController CC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

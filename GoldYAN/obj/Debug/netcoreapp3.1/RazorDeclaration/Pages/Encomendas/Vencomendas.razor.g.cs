@@ -124,6 +124,13 @@ using Microsoft.EntityFrameworkCore.Internal;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Vencomendas.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/vencomendas")]
     public partial class Vencomendas : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -133,7 +140,7 @@ using Microsoft.EntityFrameworkCore.Internal;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 481 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Vencomendas.razor"
+#line 470 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Vencomendas.razor"
        
 
     //Lists
@@ -163,6 +170,9 @@ using Microsoft.EntityFrameworkCore.Internal;
     Data.Fabrico F = new Data.Fabrico();
     Data.Unidades unidade = new Data.Unidades();
     Data.IDMaximo IDMaximo = new Data.IDMaximo();
+    Data.HistoricoStock hStock = new Data.HistoricoStock();
+    Data.Produtos RProduto = new Data.Produtos();
+    Data.CabecalhoProdutos UProduto = new Data.CabecalhoProdutos();
 
     // Declaration of needed lists
     List<Unidades> listaUnidades = new List<Unidades>();
@@ -214,6 +224,15 @@ using Microsoft.EntityFrameworkCore.Internal;
                 CCP.idtipodeproduto = dtp.idtipoproduto;
                 CCP.idtipodepeca = dtdp.idpeca;
 
+                hStock.tipocomponente = "Fabrico";
+                hStock.idcomponente = CCP.idproduto;
+                hStock.tipo = "Entrada";
+                hStock.idprodutoalterado = CCP.idproduto;
+                hStock.stockinicial = 0;
+                hStock.stockfinal = CCP.stock.Value;
+                hStockC.Post(hStock);
+                hStock = new HistoricoStock();
+
                 var resultado = CAPC.Post(CCP);
                 await Task.Delay(1000);
                 CF.idproduto = CCP.idproduto;
@@ -225,6 +244,22 @@ using Microsoft.EntityFrameworkCore.Internal;
                 {
 
                     LCP[i].linha = i;
+
+                    UProduto = CAPC.Get(LCP[i].idproduto);
+                    hStock.stockinicial = UProduto.stock.Value;
+                    UProduto.stock = UProduto.stock - LCP[i].quantidade;
+                    CAPC.Put(UProduto.idproduto, UProduto);
+                    hStock.stockfinal = UProduto.stock.Value;
+                    UProduto = new CabecalhoProdutos();
+                    // Adds to history
+                    hStock.tipocomponente = "Fabrico";
+                    hStock.idcomponente = LCP[i].idproduto;
+                    hStock.tipo = "Saida";
+                    hStock.idprodutoalterado = CCP.idproduto;
+                    hStock.stockfinal = UProduto.stock.Value;
+                    hStockC.Post(hStock);
+                    hStock = new HistoricoStock();
+
                     PC.Post(LCP[i]);
                     LCFP[i].idfabrico = CF.idfabrico;
                     FBCC.Post(LCFP[i]);
@@ -251,7 +286,20 @@ using Microsoft.EntityFrameworkCore.Internal;
                 for (int i = 0; i < LCFP.Count; i++)
                 {
                     //Product List
-
+                    UProduto = CAPC.Get(LCFP[i].idprodutos.Value);
+                    hStock.stockinicial = UProduto.stock.Value;
+                    UProduto.stock = UProduto.stock - LCFP[i].quantidade;
+                    CAPC.Put(UProduto.idproduto, UProduto);
+                    hStock.stockfinal = UProduto.stock.Value;
+                    UProduto = new CabecalhoProdutos();
+                    // Adds to history
+                    hStock.tipocomponente = "Fabrico";
+                    hStock.idcomponente = LCFP[i].idprodutos.Value;
+                    hStock.tipo = "Saida";
+                    hStock.idprodutoalterado = CCP.idproduto;
+                    hStock.stockfinal = UProduto.stock.Value;
+                    hStockC.Post(hStock);
+                    hStock = new HistoricoStock();
                     // Fabrico List
                     LCFP[i].idfabrico = CF.idfabrico;
                     FBCC.Post(LCFP[i]);
@@ -619,6 +667,7 @@ using Microsoft.EntityFrameworkCore.Internal;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ServicosController SC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClientesController CC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

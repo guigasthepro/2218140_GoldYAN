@@ -117,6 +117,13 @@ using GoldYAN.Data;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Produtos\Cprodutos.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/cprodutos")]
     public partial class Cprodutos : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,7 +133,7 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 280 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Produtos\Cprodutos.razor"
+#line 272 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Produtos\Cprodutos.razor"
        
 
     Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
@@ -185,14 +192,14 @@ using GoldYAN.Data;
             CCP.idunidade = unidade.idunidade;
             CCP.idtipodeproduto = dtp.idtipoproduto;
             CCP.idtipodepeca = dtdp.idpeca;
-
+            CCP.idfornecedor = fornecedores.idfornecedor;
 
             var resultado = CAPC.Post(CCP);
             await Task.Delay(1000);
 
             for (int i = 0; i < LCP.Count; i++)
             {
-                LCP[i].linha = i;
+                LCP[i].linha = i + 1;
                 LCP[i].idproduto = cp.idproduto;
                 PC.Post(LCP[i]);
             }
@@ -211,7 +218,29 @@ using GoldYAN.Data;
         }
         else
         {
-            await js.InvokeVoidAsync("alert", "Impossível criar a encomenda, por favor, insira bem os dados da encomenda!");
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+            CCP.idmodelo = cm.idmodelo;
+            CCP.idclassificação = ecp.IDClassificacao;
+            CCP.idunidade = unidade.idunidade;
+            CCP.idtipodeproduto = dtp.idtipoproduto;
+            CCP.idtipodepeca = dtdp.idpeca;
+
+
+            var resultado = CAPC.Post(CCP);
+            await Task.Delay(1000);
+            await js.InvokeVoidAsync("alert", "Foi apenas criado o cabeçalho do produto!");
+            servicos = new Servicos();
+            produtos = new Produtos();
+            cl = new Colaboradores();
+            CCP = new CabecalhoProdutos();
+            cm = new CabecalhosModelos();
+            dtp = new TipoProduto();
+            dtdp = new TipoDePeca();
+            LCP = new List<Produtos>();
+            Readonly = true;
+            StateHasChanged();
+            OnInitializedAsync();
         }
     }
 
@@ -265,17 +294,26 @@ using GoldYAN.Data;
 
     public async Task EditarComposto(int linha)
     {
-        LCP.RemoveAt(linha-1);
-        LCP.Insert(linha-1, cp);
+        LCP.RemoveAt(linha - 1);
+        LCP.Insert(linha - 1, cp);
     }
 
     public async Task ApagarComposto(int linha)
     {
-        LCP.Remove(listaProdutos[linha-1]);
+        LCP.Remove(listaProdutos[linha - 1]);
     }
 
 
-
+    public async Task LoadModeloData()
+    {
+        if(cm.idmodelo.Length > 0)
+        {
+            var res = CMC.Get(cm.idmodelo);
+            dtdp = TPC.Get(res.idtipodepeca.Value);
+            dtp = TPRC.Get(res.idtipoproduto.Value);
+            CCP.descricao = res.descricao;
+        }
+    }
 
 
     private async Task<IEnumerable<Unidades>> ProcurarUnidades(string searchText)
@@ -295,7 +333,7 @@ using GoldYAN.Data;
 
     private async Task<IEnumerable<Fornecedores>> ProcurarFornecedores(string searchText)
     {
-        return await Task.FromResult(listaFornecedores.Where(h => h.contacto.ToLower().Contains(searchText.ToLower()) || h.nome.ToLower().Contains(searchText.ToLower()) || h.nomevendedor.ToString().Contains(searchText.ToLower())).ToList());
+        return await Task.FromResult(listaFornecedores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.nome.ToLower().Contains(searchText.ToLower()) || h.nomevendedor.ToString().Contains(searchText.ToLower())).ToList());
     }
 
     private async Task<IEnumerable<Servicos>> ProcurarServicos(string searchText)
@@ -329,6 +367,7 @@ using GoldYAN.Data;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

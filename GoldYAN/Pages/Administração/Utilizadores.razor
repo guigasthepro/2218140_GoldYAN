@@ -1,4 +1,5 @@
-﻿
+﻿@attribute [Authorize]
+
 
 <h3>Utilizadores</h3>
 
@@ -9,7 +10,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Listagem de Clientes</h6> 
+            <h6 class="m-0 font-weight-bold text-primary">Listagem de Clientes</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -25,18 +26,18 @@
                                 </tfoot>
                                 <tbody>
                                     @*@foreach (var cliente in @VCS)
-                                    {
-                                        <tr role="row" class="odd" id="@cliente.clienteid">
-                                            <td>@cliente.Nome</td>
-                                            <td>@cliente.Telefone</td>
-                                            <td>@cliente.Email</td>
-                                            <td>@cliente.Morada</td>
-                                            <td>@cliente.Codigopostal</td>
-                                            <td>@cliente.Nif</td>
-                                            <td>@cliente.Profissao</td>
-                                            <td><button class="btn btn-primary" style="margin-left:1rem">Editar</button><button class="btn btn-danger" style="margin-left:0.3rem">Apagar</button></td>
-                                        </tr>
-                                    }*@
+                                        {
+                                            <tr role="row" class="odd" id="@cliente.clienteid">
+                                                <td>@cliente.Nome</td>
+                                                <td>@cliente.Telefone</td>
+                                                <td>@cliente.Email</td>
+                                                <td>@cliente.Morada</td>
+                                                <td>@cliente.Codigopostal</td>
+                                                <td>@cliente.Nif</td>
+                                                <td>@cliente.Profissao</td>
+                                                <td><button class="btn btn-primary" style="margin-left:1rem">Editar</button><button class="btn btn-danger" style="margin-left:0.3rem">Apagar</button></td>
+                                            </tr>
+                                        }*@
 
                                 </tbody>
                             </table>

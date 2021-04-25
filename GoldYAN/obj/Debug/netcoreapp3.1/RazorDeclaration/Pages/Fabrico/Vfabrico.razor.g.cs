@@ -117,6 +117,13 @@ using BlazorInputFile;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/vfabrico")]
     public partial class Vfabrico : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,7 +133,7 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 45 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
+#line 46 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
        
     Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
     Data.Servicos servicos = new Servicos();
@@ -187,7 +194,7 @@ using BlazorInputFile;
     public void OpenFichaProduto(int id)
     {
         //cm = CMC.Get(id);
-        dtp = TPRC.Get(cm.idtipoproduto.Value);
+        //dtp = TPRC.Get(cm.idtipoproduto.Value);
         dtdp = TPC.Get(cm.idtipodepeca.Value);
         //listaModelos = MC.GetAllQuery(id);
         showModal = true;
@@ -279,6 +286,7 @@ using BlazorInputFile;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

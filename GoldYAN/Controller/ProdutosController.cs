@@ -6,6 +6,7 @@ using GoldYAN.Data;
 using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Linq;
+using Dapper;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace GoldYAN.Controller
@@ -53,6 +54,22 @@ namespace GoldYAN.Controller
             }
         }
 
+        [HttpGet("{id}")]
+        public List<Produtos> GetAllQuery(int id)
+        {
+            string query = $"SELECT * FROM `produtos` WHERE idproduto = '{id}'";
+
+            lerFamilias = new List<Produtos>();
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Query<Produtos>(query).ToList();
+                lerFamilias = res;
+            }
+
+            return lerFamilias;
+        }
+
         // POST api/<FamiliaProdutosController>
         [HttpPost]
         public Produtos Post([FromBody] Produtos familiaProdutos)
@@ -66,17 +83,18 @@ namespace GoldYAN.Controller
             }
         }
 
-        // PUT api/<FamiliaProdutosController>/5
         [HttpPut("{id}")]
-        public ActionResult<Produtos> Put(int id, [FromBody] Produtos familiaProdutos)
+        public ActionResult<Produtos> Put(int id, int linha, [FromBody] Produtos familiaProdutos)
         {
+            string getsql = $"SELECT* FROM `produtos` WHERE idproduto = '{id}' AND linha = '{linha}';";
+
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-
-                var recLido = DBConn.Get<Produtos>(id);
+                var recLido = DBConn.QuerySingle<Produtos>(getsql);
 
                 if (recLido != null)
                 {
+
                     recLido.idcolaborador = familiaProdutos.idcolaborador;
                     recLido.idprodutos = familiaProdutos.idprodutos;
                     recLido.idservico = familiaProdutos.idservico;
@@ -85,8 +103,7 @@ namespace GoldYAN.Controller
                     recLido.custototal = familiaProdutos.custototal;
                     recLido.customedio = familiaProdutos.customedio;
                     recLido.descricao = familiaProdutos.descricao;
-                    recLido.quantidade = familiaProdutos.quantidade;          
-
+                    recLido.quantidade = familiaProdutos.quantidade;
 
                     bool updated = DBConn.Update(recLido);
 
@@ -98,6 +115,39 @@ namespace GoldYAN.Controller
                 }
             }
         }
+
+        //// PUT api/<FamiliaProdutosController>/5
+        //[HttpPut("{id}")]
+        //public ActionResult<Produtos> Put(int id, [FromBody] Produtos familiaProdutos)
+        //{
+        //    using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+        //    {
+
+        //        var recLido = DBConn.Get<Produtos>(id);
+
+        //        if (recLido != null)
+        //        {
+        //            recLido.idcolaborador = familiaProdutos.idcolaborador;
+        //            recLido.idprodutos = familiaProdutos.idprodutos;
+        //            recLido.idservico = familiaProdutos.idservico;
+        //            recLido.peso = familiaProdutos.peso;
+        //            recLido.custo = familiaProdutos.custo;
+        //            recLido.custototal = familiaProdutos.custototal;
+        //            recLido.customedio = familiaProdutos.customedio;
+        //            recLido.descricao = familiaProdutos.descricao;
+        //            recLido.quantidade = familiaProdutos.quantidade;          
+
+
+        //            bool updated = DBConn.Update(recLido);
+
+        //            return Ok(recLido);
+        //        }
+        //        else
+        //        {
+        //            return NotFound();
+        //        }
+        //    }
+        //}
 
         // DELETE api/<FamiliaProdutosController>/5
         [HttpDelete("{id}")]

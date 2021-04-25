@@ -21,9 +21,13 @@ namespace GoldYAN.Data
         public int? idfornecedor { get; set; }
         public double? preco { get; set; }
         public double? stock { get; set; }
+        public double? peso { get; set; }
         [Computed] public double? updatestock{ get; set; }
         [Computed] public double? stocktotal { get; set; }
         [Computed] public bool produtonovo { get; set; }
+        [Computed] public int idcompra { get; set; }
+        [Computed] public int linha { get; set; }
+
 
     }
 }

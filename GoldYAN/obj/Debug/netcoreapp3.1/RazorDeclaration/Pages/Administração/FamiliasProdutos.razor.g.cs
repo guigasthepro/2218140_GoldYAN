@@ -117,6 +117,13 @@ using GoldYAN.Controller;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/familiaprodutos")]
     public partial class FamiliasProdutos : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,7 +133,7 @@ using GoldYAN.Controller;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 173 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+#line 174 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
        
 
     List<GoldYAN.Data.FamiliaProdutos> VFPS = new List<GoldYAN.Data.FamiliaProdutos>();
@@ -147,7 +154,7 @@ using GoldYAN.Controller;
 #line hidden
 #nullable disable
 #nullable restore
-#line 187 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+#line 188 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
          foreach (var fp in @VFPS)
         {
 
@@ -166,7 +173,7 @@ using GoldYAN.Controller;
 #line hidden
 #nullable disable
 #nullable restore
-#line 199 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
+#line 200 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\FamiliasProdutos.razor"
          
 
     }
@@ -247,6 +254,7 @@ using GoldYAN.Controller;
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private FamiliaProdutosController VFP { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

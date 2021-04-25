@@ -138,6 +138,13 @@ using Microsoft.EntityFrameworkCore;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 9 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Servicos.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/servicos")]
     public partial class Servicos : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -147,7 +154,7 @@ using Microsoft.EntityFrameworkCore;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 145 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Servicos.razor"
+#line 146 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Servicos.razor"
        
     List<GoldYAN.Data.Servicos> VSS = new List<GoldYAN.Data.Servicos>();
 
@@ -250,6 +257,7 @@ using Microsoft.EntityFrameworkCore;
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ServicosController SC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }

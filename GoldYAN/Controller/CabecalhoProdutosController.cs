@@ -84,6 +84,7 @@ namespace GoldYAN.Controller
             }
         }
 
+
         public ActionResult<CabecalhoProdutos> Put(int id, [FromBody] CabecalhoProdutos familiaProdutos)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
@@ -93,6 +94,13 @@ namespace GoldYAN.Controller
 
                 if (recLido != null)
                 {
+                    recLido.idfornecedor = familiaProdutos.idfornecedor;
+                    recLido.idclassificação = familiaProdutos.idclassificação;
+                    recLido.idunidade = familiaProdutos.idunidade;
+                    recLido.idtipodeproduto = familiaProdutos.idtipodeproduto;
+                    recLido.idtipodepeca = familiaProdutos.idtipodepeca;
+                    recLido.idmodelo = familiaProdutos.idmodelo;
+                    recLido.descricao = familiaProdutos.descricao;
                     recLido.preco = familiaProdutos.preco;
                     recLido.stock = familiaProdutos.stock;
 
