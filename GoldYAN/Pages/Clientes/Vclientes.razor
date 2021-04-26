@@ -24,53 +24,58 @@
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Ficha do Cliente</h6>
                             </div>
-                            <EditForm class="form-group" Model="@EClientes" OnValidSubmit="@Editar">
+                            <EditForm class="form-group" Model="@EClientes" OnValidSubmit="Editar">
                                 <DataAnnotationsValidator />
-                                <div class="form-group form-inline m-3 p-1">
+                                <div class="form-group form-inline m-2 p-1">
                                     <label class="" for="nome">Nome:</label> &nbsp;
-                                    <InputText class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" placeholder="Nome do cliente" id="nome" @bind-Value="EClientes.Nome" />
+                                    <InputText autocomplete="false" class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" placeholder="Nome do cliente" id="nome" @bind-Value="EClientes.Nome" />
                                 </div>
                                 <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Nome)" />
 
-                                <div class="form-group form-inline m-3 p-1">
+                                <div class="form-group form-inline m-2 p-1">
                                     <label for="telefone">Telefone:</label> &nbsp;
-                                    <InputText class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="telefone" @bind-Value="EClientes.Telefone" />
+                                    <InputText autocomplete="false" class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="telefone" placeholder="Telefone do cliente" @bind-Value="EClientes.Telefone" />
                                 </div>
                                 <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Telefone)" />
 
-                                <div class="form-group form-inline m-3 p-1">
+                                <div class="form-group form-inline m-2 p-1">
                                     <label for="email">Email:</label> &nbsp;
-                                    <InputText class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="email" placeholder="Boas" @bind-Value="EClientes.Email" />
+                                    <InputText autocomplete="false" class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="email" placeholder="Email do cliente" @bind-Value="EClientes.Email" />
                                 </div>
                                 <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Email)" />
 
-                                <div class="form-group form-inline m-3 p-1">
+                                <div class="form-group form-inline m-2 p-1">
                                     <label for="morada">Morada:</label> &nbsp;
-                                    <InputText class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="morada" @bind-Value="EClientes.Morada" />
+                                    <InputText autocomplete="false" class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="morada" placeholder="Moarada do cliente" @bind-Value="EClientes.Morada" />
                                 </div>
                                 <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Morada)" />
 
-                                <div class="form-group form-inline m-3 p-1">
+                                <div class="form-group form-inline m-2 p-1">
                                     <label for="moradaopcional">Morada Opcional:</label> &nbsp;
-                                    <InputText class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="moradaopcional" @bind-Value="EClientes.Moradaopcional" />
+                                    <InputText autocomplete="false" class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="moradaopcional" placeholder="Morada Opcional do cliente" @bind-Value="EClientes.Moradaopcional" />
                                 </div>
-                                <div class="form-group form-inline m-3 p-1">
+                                <div class="form-group form-inline m-2 p-1">
                                     <label for="codigopostal">Codigo Postal:</label> &nbsp;
-                                    <InputText class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="codigopostal" @bind-Value="EClientes.Codigopostal" />
+                                    <InputText autocomplete="false" class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="codigopostal" placeholder="Codigo Postal do cliente" @bind-Value="EClientes.Codigopostal" />
                                 </div>
                                 <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Codigopostal)" />
 
-                                <div class="form-group form-inline m-3 p-1">
+                                <div class="form-group form-inline m-2 p-1">
                                     <label for="nif">Nif:</label> &nbsp;
-                                    <InputNumber class="w-25 form-control" id="nif" @bind-Value="EClientes.Nif" />
-                                </div>
+                                    <InputNumber autocomplete="false" class="w-25 form-control" id="nif" placeholder="Nif do cliente" @bind-Value="EClientes.Nif"/>
+                                    </div>
                                 <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Nif)" />
 
-                                <div class="form-group form-inline m-3 p-1">
+                                <div class="form-group form-inline m-2 p-1">
                                     <label for="Profissao">Profissão</label> &nbsp;
-                                    <InputText class="w-25  form-control" oninput="this.value = this.value.toUpperCase()" id="Profissao" @bind-Value="EClientes.Profissao" />
+                                    <InputText autocomplete="false" class="w-25  form-control" oninput="this.value = this.value.toUpperCase()" placeholder="Profissão do cliente" id="Profissao" @bind-Value="EClientes.Profissao" />
                                 </div>
                                 <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Profissao)" />
+
+                                <div class="form-group m-3">
+                                    <button type="submit" class="btn btn-primary float-right">Criar</button>
+                                    <button type="reset" style="margin-right: 0.5rem" class="btn btn-primary float-right">Cancelar</button>
+                                </div>
                             </EditForm>
                         </div>
                     </div>

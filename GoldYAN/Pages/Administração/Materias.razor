@@ -20,12 +20,12 @@
                 <div class="modal-body">
                     <EditForm Model="@updateM" OnValidSubmit="@Update">
                         <div class="form-group m-3 p-1">
-                            <label for="telefone">Alcunha:</label>
-                            <InputText class="w-25 form-control" id="telefone" @bind-Value="updateM.alcunha" />
+                            <label for="alcunha">Alcunha:</label>
+                            <InputText autocomplete="false" class="w-25 form-control" id="alcunha" placeholder="Alcunha Materia" @bind-Value="updateM.alcunha" />
                         </div>
                         <div class="form-group m-3 p-1">
-                            <label for="email">Nome:</label>
-                            <InputText class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="updateM.nome" />
+                            <label for="nome">Nome:</label>
+                            <InputText autocomplete="false" class="w-25 form-control" id="nome" placeholder="Nome Materia" @bind-Value="updateM.nome" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -54,12 +54,12 @@
                 <div class="modal-body">
                     <EditForm Model="@criarM" OnValidSubmit="@Criar">
                         <div class="form-group m-3 p-1">
-                            <label for="telefone">Alcunha:</label>
-                            <InputText class="w-25 form-control" id="telefone" @bind-Value="criarM.alcunha" />
+                            <label for="alcunha">Alcunha:</label>
+                            <InputText autocomplete="false" class="w-25 form-control" id="alcunha" placeholder="Alcunha Materia" @bind-Value="criarM.alcunha" />
                         </div>
                         <div class="form-group m-3 p-1">
-                            <label for="email">Nome:</label>
-                            <InputText class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="criarM.nome" />
+                            <label for="nome">Nome:</label>
+                            <InputText autocomplete="false" class="w-25 form-control" id="nome" placeholder="Nome Materia" @bind-Value="criarM.nome" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

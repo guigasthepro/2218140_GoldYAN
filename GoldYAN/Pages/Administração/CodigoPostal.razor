@@ -21,8 +21,8 @@
                 <div class="modal-body">
                     <EditForm Model="@updateCP" OnValidSubmit="@Update">
                         <div class="form-group m-3 p-1">
-                            <label for="telefone">Descrição:</label>
-                            <InputText class="w-25 form-control" id="telefone" @bind-Value="updateCP.desig_postal" />
+                            <label for="descricao">Descrição:</label>
+                            <InputText autocomplete="false" class="w-25 form-control" id="descricao" placeholder="Nome Localização" @bind-Value="updateCP.desig_postal" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -51,8 +51,8 @@
                 <div class="modal-body">
                     <EditForm Model="@criarCP" OnValidSubmit="@Criar">
                         <div class="form-group m-3 p-1">
-                            <label for="telefone">Descrição:</label>
-                            <InputText class="w-25 form-control" id="telefone" @bind-Value="criarCP.desig_postal" />
+                            <label for="descricao">Descrição:</label>
+                            <InputText autocomplete="false" class="w-25 form-control" id="descricao" placeholder="Nome Localização" @bind-Value="criarCP.desig_postal" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

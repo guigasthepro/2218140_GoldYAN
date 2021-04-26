@@ -26,7 +26,7 @@
                             <div class="m-3 form-group ">
                                 <div class="form-inline">
                                     <label for="nome" class="">Fornecedor:</label>
-                                    <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarFornecedores" oninput="this.value = this.value.toUpperCase()" @bind-Value="fornecedores" Placeholder="Pesquisar peça">
+                                    <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarFornecedores" oninput="this.value = this.value.toUpperCase()" @bind-Value="fornecedores" Placeholder="Pesquisar fornecedore">
                                         <SelectedTemplate>
                                             @context.idfornecedor (Desc: @context.nome)
                                         </SelectedTemplate>
@@ -39,21 +39,21 @@
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="numero">Numero:</label> &nbsp
-                                        <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCompra.numero" />
+                                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Numero da fatura" @bind-Value="CCompra.numero" />
                                     </div>
                                 </div>
 
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="apontamento">Apontamentos:</label> &nbsp
-                                        <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCompra.apontamentos" />
+                                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Apontamentos da fatura" @bind-Value="CCompra.apontamentos" />
                                     </div>
                                 </div>
 
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="Descricao">Data Transação:</label> &nbsp
-                                        <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCompra.datacriacao" />
+                                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Data do recibo" @bind-Value="CCompra.datacriacao" />
                                     </div>
                                 </div>
                             </EditForm>
@@ -71,20 +71,8 @@
                                 <EditForm Model="@CCP">
                                     <div class="m-3 form-group">
                                         <div class="form-inline">
-                                            <label for="Descricao">ID:</label> &nbsp
-                                            <InputNumber oninput="this.value = this.value.toUpperCase()" disabled="true" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.idproduto" />
-                                        </div>
-                                    </div>
-                                    <div class="m-3 form-group">
-                                        <div class="form-inline">
                                             <label for="Descricao">Descrição:</label> &nbsp
-                                            <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.descricao" />
-                                        </div>
-                                    </div>
-                                    <div class="m-3 form-group">
-                                        <div class="form-inline">
-                                            <label for="Descricao">Descrição2:</label> &nbsp
-                                            <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.apontamentos" />
+                                            <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descrição do Produto" @bind-Value="CCP.descricao" />
                                         </div>
                                     </div>
                                 </EditForm>
@@ -130,20 +118,20 @@
                                     <div class="m-3 form-group">
                                         <div class="form-inline">
                                             <label for="Descricao">Quantidade:</label> &nbsp
-                                            <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.stock" />
+                                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade comprada" @bind-Value="CCP.stock" />
                                         </div>
 
                                     </div>
                                     <div class="m-3 form-group">
                                         <div class="form-inline">
                                             <label for="Descricao">Preco:</label> &nbsp
-                                            <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.preco" />
+                                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Preço do produto" @bind-Value="CCP.preco" />
                                         </div>
                                     </div>
                                     <div class="m-3 form-group">
                                         <div class="form-inline">
                                             <label for="Descricao">Peso:</label> &nbsp
-                                            <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.peso" />
+                                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Peso:" @bind-Value="CCP.peso" />
                                         </div>
                                     </div>
                                 </EditForm>
@@ -173,14 +161,14 @@
                                     <div class="m-3 form-group">
                                         <div class="form-inline">
                                             <label for="Descricao">Quantidade:</label> &nbsp
-                                            <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.updatestock" />
+                                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" style="-moz-appearance: textfield;" class="form-control" placeholder="Quantidade comprada" @bind-Value="CCP.updatestock" />
                                         </div>
 
                                     </div>
                                     <div class="m-3 form-group">
                                         <div class="form-inline">
                                             <label for="Descricao">Preco:</label> &nbsp
-                                            <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.preco" />
+                                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" style="-moz-appearance: textfield;" class="form-control" placeholder="Preço do produto" @bind-Value="CCP.preco" />
                                         </div>
                                     </div>
                                 </EditForm>
@@ -235,11 +223,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="m-3 form-group">
-                                <button class="btn btn-primary" @onclick="CriarProduto">Inserir compra</button>
-                            </div>
-
                         </div>
                     </div>
 

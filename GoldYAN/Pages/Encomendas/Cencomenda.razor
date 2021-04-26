@@ -42,20 +42,20 @@
         <div class="m-3 form-group">
             <div class="form-inline">
                 <label for="nome">Nome:</label> &nbsp;
-                <input class="col-8 form-control" disabled="true" oninput="this.value = this.value.toUpperCase()" type="text" value="@Cliente.Nome" />
+                <input autocomplete="false" class="col-8 form-control" disabled="true" oninput="this.value = this.value.toUpperCase()" type="text" value="@Cliente.Nome" />
             </div>
             <br />
             <div class="form-inline">
                 <label for="Telefone">Telefone:</label>&nbsp;
-                <input class="col-sm-2 form-control" disabled="true" oninput="this.value = this.value.toUpperCase()" type="text" value="@Cliente.Telefone" />&nbsp;&nbsp;
+                <input autocomplete="false" class="col-sm-2 form-control" disabled="true" oninput="this.value = this.value.toUpperCase()" type="text" value="@Cliente.Telefone" />&nbsp;&nbsp;
                 <label for="Nif">Nif:</label>&nbsp;
-                <input class="col-sm-2 form-control" disabled="true" oninput="this.value = this.value.toUpperCase()" type="text" value="@Cliente.Nif" />
+                <input autocomplete="false" class="col-sm-2 form-control" disabled="true" oninput="this.value = this.value.toUpperCase()" type="text" value="@Cliente.Nif" />
 
             </div>
             <br />
             <div class="form-inline">
                 <label for="Email">Email:</label>&nbsp;
-                <input class="col-sm-5 form-control" disabled="true" type="text" value="@Cliente.Email" />
+                <input autocomplete="false" class="col-sm-5 form-control" disabled="true" type="text" value="@Cliente.Email" />
             </div>
         </div>
 
@@ -106,35 +106,35 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Descricao">Descrição:</label> &nbsp
-                    <InputText id="Descricao" oninput="this.value = this.value.toUpperCase()" class="form-control" disabled="true" placeholder="Ainda não selecionado" @bind-Value="servicos.descricao" />
+                    <InputText autocomplete="false" id="Descricao" oninput="this.value = this.value.toUpperCase()" class="form-control" disabled="true" placeholder="Ainda não selecionado" @bind-Value="servicos.descricao" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Quantidade">Quantidade:</label> &nbsp
-                    <InputNumber id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="encomendas.quantidade" />
+                    <InputNumber autocomplete="false" id="Quantidade" class="form-control" style="-moz-appearance: textfield;" placeholder="Quantidade" disabled="@Readonly" @bind-Value="encomendas.quantidade" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="peso">Peso:</label> &nbsp
-                    <InputText id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="encomendas.peso" />
+                    <InputText id="peso" autocomplete="false" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="encomendas.peso" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="preco">Preco:</label> &nbsp
-                    <InputNumber id="preco" class="form-control" placeholder="Preço do serviço" disabled="@Readonly" @bind-Value="servicos.custo" />
+                    <InputNumber id="preco" autocomplete="false" class="form-control" style="-moz-appearance: textfield;" placeholder="Preço do serviço" disabled="@Readonly" @bind-Value="servicos.custo" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="apontamentos">Apontamentos:</label> &nbsp
-                    <InputText id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="encomendas.apontamentos" />
+                    <InputText id="apontamentos" autocomplete="false" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="encomendas.apontamentos" />
                 </div>
             </div>
 
@@ -228,14 +228,6 @@
                         <EditForm Model="@encomendas" OnValidSubmit="@AtualizarLista">
                             <DataAnnotationsValidator />
 
-
-                            @*<div class="m-3 form-group">
-                                    <div class="form-inline">
-                                        <label for="telefone">Referência de Modelo:</label> &nbsp
-                                        <InputText id="telefone" class="form-control" @bind-Value="" />
-                                    </div>
-                                </div>*@
-
                             <div class="m-3 form-group">
                                 <div class="form-inline">
                                     <label for="Descricao">Descrição:</label> &nbsp
@@ -246,7 +238,7 @@
                             <div class="m-3 form-group">
                                 <div class="form-inline">
                                     <label for="Quantidade">Quantidade:</label> &nbsp
-                                    <InputNumber id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="encomendas.quantidade" />
+                                    <InputNumber id="Quantidade" class="form-control" style="-moz-appearance: textfield;" placeholder="Quantidade" disabled="@Readonly" @bind-Value="encomendas.quantidade" />
                                 </div>
                             </div>
 
@@ -260,7 +252,7 @@
                             <div class="m-3 form-group">
                                 <div class="form-inline">
                                     <label for="preco">Preco:</label> &nbsp
-                                    <InputNumber id="preco" class="form-control" placeholder="Preço do serviço" disabled="@Readonly" @bind-Value="servicos.custo" />
+                                    <InputNumber id="preco" class="form-control" style="-moz-appearance: textfield;" placeholder="Preço do serviço" disabled="@Readonly" @bind-Value="servicos.custo" />
                                 </div>
                             </div>
 

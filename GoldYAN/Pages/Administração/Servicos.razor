@@ -25,16 +25,16 @@
                 <div class="modal-body">
                     <EditForm Model="@updateServicos" OnValidSubmit="@Update">
                         <div class="form-group m-3 p-1">
-                            <label for="telefone">Código do Serviço:</label>
-                            <InputText class="w-25 form-control" id="telefone" @bind-Value="updateServicos.codigo" />
+                            <label for="cs">Código do Serviço:</label>
+                            <InputText autocomplete="false" class="w-25 form-control" id="cs" placeholder="Código Do Serviço" @bind-Value="updateServicos.codigo" />
                         </div>
                         <div class="form-group m-3 p-1">
-                            <label for="email">Descrição do Serviço:</label>
-                            <InputText class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="updateServicos.descricao" />
+                            <label for="ds">Descrição do Serviço:</label>
+                            <InputText autocomplete="false" class="w-25 form-control" id="ds" placeholder="Descrição do Serviço" @bind-Value="updateServicos.descricao" />
                         </div>
                         <div class="form-group m-3 p-1">
-                            <label for="email">Custo do Serviço:</label>
-                            <InputNumber class="w-25 form-control" style="-moz-appearance: textfield;" id="email" placeholder="Boas" @bind-Value="updateServicos.custo" />
+                            <label for="custo">Custo do Serviço:</label>
+                            <InputNumber autocomplete="false" class="w-25 form-control" style="-moz-appearance: textfield;" id="custo" placeholder="Custo do Serviço" @bind-Value="updateServicos.custo" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -63,16 +63,16 @@
                 <div class="modal-body">
                     <EditForm Model="@criarServicos" OnValidSubmit="@Criar">
                         <div class="form-group m-3 p-1">
-                            <label for="telefone">Código do Serviço:</label>
-                            <InputText class="w-25 form-control" id="telefone" @bind-Value="criarServicos.codigo" />
+                            <label for="cs">Código do Serviço:</label>
+                            <InputText class="w-25 form-control" id="cs" placeholder="Codigo do Serviço" @bind-Value="criarServicos.codigo" />
                         </div>
                         <div class="form-group m-3 p-1">
-                            <label for="email">Descrição do Serviço:</label>
-                            <InputText class="w-25 form-control" id="email" placeholder="Boas" @bind-Value="criarServicos.descricao" />
+                            <label for="ds">Descrição do Serviço:</label>
+                            <InputText class="w-25 form-control" id="ds" placeholder="Descrição do Serviço" @bind-Value="criarServicos.descricao" />
                         </div>
                         <div class="form-group m-3 p-1">
-                            <label for="email">Custo do Serviço:</label>
-                            <InputNumber class="w-25 form-control" style="-moz-appearance: textfield;" id="email" placeholder="Boas" @bind-Value="criarServicos.custo" />
+                            <label for="custo">Custo do Serviço:</label>
+                            <InputNumber class="w-25 form-control" style="-moz-appearance: textfield;" id="custo" placeholder="Custo do serviço" @bind-Value="criarServicos.custo" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

@@ -14,18 +14,18 @@
 
             <div class="form-group m-2 p-1">
                 <label for="codigo">Código</label>
-                <InputText oninput="this.value = this.value.toUpperCase()" class="w-25 form-control" id="codigo" @bind-Value="cMolde.codigo" />
+                <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" placeholder="Código Molde" class="w-25 form-control" id="codigo" @bind-Value="cMolde.codigo" />
                 <ValidationMessage For="@(() => cMolde.codigo)" />
             </div>
 
             <div class="form-group m-2 p-1">
                 <label for="descricao">Descrição</label>
-                <InputText oninput="this.value = this.value.toUpperCase()" class="w-25 form-control" id="descricao" @bind-Value="cMolde.descricao" />
+                <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" class="w-25 form-control" placeholder="Descrição do Molde" id="descricao" @bind-Value="cMolde.descricao" />
                 <ValidationMessage For="@(() => cMolde.descricao)" />
             </div>
             <div class="form-group m-2 p-1">
                 <label for="gaveta">Gaveta</label>
-                <InputNumber class="w-25 form-control" id="gaveta" placeholder="Boas" @bind-Value="cMolde.gaveta" />
+                <InputNumber autocomplete="false" style="-moz-appearance: textfield;" class="w-25 form-control" id="gaveta" placeholder="Gaveta molde" @bind-Value="cMolde.gaveta" />
             </div>
 
             @*<div class="form-group m-2 p-1">
@@ -36,7 +36,7 @@
 
             <div class="form-group m-2 p-1">
                 <label for="peso">Peso</label>
-                <InputText class="w-25 form-control" id="peso" @bind-Value="cMolde.peso" />
+                <InputText class="w-25 form-control" id="peso" placeholder="Peso do molde" @bind-Value="cMolde.peso" />
             </div>
             <div class="m-3">
                 <button class="btn btn-primary float-right" style="margin-left: 5px" type="reset">Cancelar</button>

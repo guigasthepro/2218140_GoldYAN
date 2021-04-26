@@ -59,91 +59,83 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <EditForm Model="@eFornecedor" OnValidSubmit="@Update">
+                    <EditForm Model="@eFornecedor" OnValidSubmit="Update">
                         <DataAnnotationsValidator />
-
-
-                        @*<div class="m-3 form-group">
-                                <div class="form-inline">
-                                    <label for="telefone">Referência de Modelo:</label> &nbsp
-                                    <InputText id="telefone" class="form-control" @bind-Value="" />
-                                </div>
-                            </div>*@
 
                         <div class="m-3 form-group">
                             <div class="form-inline">
                                 <label for="Descricao">Codigo Fornecedor:</label> &nbsp
-                                <InputText id="Descricao" oninput="this.value = this.value.toUpperCase()" class="form-control" placeholder="Ainda não selecionado" @bind-Value="eFornecedor.codigo" />
+                                <InputText autocomplete="false" id="Descricao" oninput="this.value = this.value.toUpperCase()" class="form-control" placeholder="Codigo do fornecedor" @bind-Value="eFornecedor.codigo" />
                             </div>
                         </div>
 
                         <div class="m-3 form-group">
                             <div class="form-inline">
                                 <label for="Quantidade">Nome Fornecedor:</label> &nbsp
-                                <InputText id="Quantidade" class="form-control" placeholder="Quantidade" @bind-Value="eFornecedor.nome" />
+                                <InputText autocomplete="false" id="Quantidade" class="form-control" placeholder="Nome do fornecedor" @bind-Value="eFornecedor.nome" />
                             </div>
                         </div>
 
                         <div class="m-3 form-group">
                             <div class="form-inline">
                                 <label for="peso">Contacto:</label> &nbsp
-                                <InputText id="peso" class="form-control" placeholder="Peso" @bind-Value="eFornecedor.contacto" />
+                                <InputText autocomplete="false" id="peso" class="form-control" placeholder="Contacto do fornecedor" @bind-Value="eFornecedor.contacto" />
                             </div>
                         </div>
 
                         <div class="m-3 form-group">
                             <div class="form-inline">
                                 <label for="preco">Nif:</label> &nbsp
-                                <InputText id="preco" class="form-control" placeholder="Preço do serviço" @bind-Value="eFornecedor.nif" />
+                                <InputText autocomplete="false" id="preco" class="form-control" placeholder="Nif do Fornecedor" @bind-Value="eFornecedor.nif" />
                             </div>
                         </div>
 
                         <div class="m-3 form-group">
                             <div class="form-inline">
                                 <label for="apontamentos">Morada:</label> &nbsp
-                                <InputText id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" oninput="this.value = this.value.toUpperCase()" @bind-Value="eFornecedor.morada" />
+                                <InputText autocomplete="false" id="apontamentos" class="form-control" placeholder="Morada Fornecedor" oninput="this.value = this.value.toUpperCase()" @bind-Value="eFornecedor.morada" />
                             </div>
                         </div>
 
                         <div class="m-3 form-group">
                             <div class="form-inline">
                                 <label for="datadeentrega">Localização:</label> &nbsp
-                                <InputText id="datadeentrega" class="form-control" @bind-Value="eFornecedor.localizaçao" />
+                                <InputText autocomplete="false" id="datadeentrega" placeholder="Localização Fornecedor" class="form-control" @bind-Value="eFornecedor.localizaçao" />
                             </div>
                         </div>
 
                         <div class="m-3 form-group">
                             <div class="form-inline">
                                 <label for="datadeentrega">Código Postal:</label> &nbsp
-                                <InputText id="datadeentrega" class="form-control" @bind-Value="eFornecedor.codigopostal" />
+                                <InputText autocomplete="false" id="datadeentrega" placeholder="Codigo Postal Fornecedor" class="form-control" @bind-Value="eFornecedor.codigopostal" />
                             </div>
                         </div>
 
                         <div class="m-3 form-group">
                             <div class="form-inline">
                                 <label for="datadeentrega">Telefone:</label> &nbsp
-                                <InputText id="datadeentrega" class="form-control" @bind-Value="eFornecedor.telefone" />
+                                <InputText autocomplete="false" id="datadeentrega" placeholder="Telefone Fornecedor" class="form-control" @bind-Value="eFornecedor.telefone" />
                             </div>
                         </div>
 
                         <div class="m-3 form-group">
                             <div class="form-inline">
                                 <label for="datadeentrega">Telemovel:</label> &nbsp
-                                <InputText id="datadeentrega" class="form-control" @bind-Value="eFornecedor.telemovel" />
+                                <InputText autocomplete="false" id="datadeentrega" placeholder="Telemovel Fornecedor" class="form-control" @bind-Value="eFornecedor.telemovel" />
                             </div>
                         </div>
 
                         <div class="m-3 form-group">
                             <div class="form-inline">
                                 <label for="datadeentrega">Nome Vendedor:</label> &nbsp
-                                <InputText id="datadeentrega" class="form-control" @bind-Value="eFornecedor.nomevendedor" />
+                                <InputText autocomplete="false" id="datadeentrega" class="form-control" placeholder="Nome do Vendedor" @bind-Value="eFornecedor.nomevendedor" />
                             </div>
                         </div>
 
                         <div class="m-3 form-group">
                             <div class="form-inline">
                                 <label for="datadeentrega">Telemovel Vendedor:</label> &nbsp
-                                <InputText id="datadeentrega" class="form-control" @bind-Value="eFornecedor.telemovelvendedor" />
+                                <InputText autocomplete="false" id="datadeentrega" placeholder="Telefone do vendedor" class="form-control" @bind-Value="eFornecedor.telemovelvendedor" />
                             </div>
                         </div>
 

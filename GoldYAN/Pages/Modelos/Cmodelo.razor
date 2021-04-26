@@ -15,14 +15,14 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Descricao">Referência do Modelo:</label> &nbsp
-                    <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.idmodelo" />
+                    <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Código do modelo" @bind-Value="cm.idmodelo" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Descricao">Descrição:</label> &nbsp
-                    <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.descricao" />
+                    <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descrição do modelo" @bind-Value="cm.descricao" />
                 </div>
             </div>
         </EditForm>
@@ -30,7 +30,7 @@
         <div class="m-3 form-group ">
             <div class="form-inline">
                 <label for="nome" class="">Tipo de Produto:</label>
-                <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar cliente">
+                <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo de produto">
                     <SelectedTemplate>
                         @context.idtipoproduto (Desc: @context.descricao)
                     </SelectedTemplate>
@@ -42,7 +42,7 @@
         <div class="m-3 form-group ">
             <div class="form-inline">
                 <label for="nome" class="">Tipo de Peça:</label>
-                <BlazoredTypeahead class="" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar cliente">
+                <BlazoredTypeahead class="" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar tipo de peça">
                     <SelectedTemplate>
                         @context.codigo (Desc: @context.descricao)
                     </SelectedTemplate>
@@ -92,7 +92,7 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="nome">Molde:</label>
-                    <BlazoredTypeahead SearchMethod="ProcurarMoldes" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="mlds" Placeholder="Pesquisar Serviço">
+                    <BlazoredTypeahead SearchMethod="ProcurarMoldes" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="mlds" Placeholder="Pesquisar Molde">
                         <SelectedTemplate>
                             @context.descricao
                         </SelectedTemplate>
@@ -120,7 +120,7 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="nome">Produtos:</label>
-                    <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Serviço">
+                    <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Proutos">
                         <SelectedTemplate>
                             @context.idproduto
                         </SelectedTemplate>
@@ -136,7 +136,7 @@
         <div class="m-3 form-group">
             <div class="form-inline">
                 <label for="datadeentrega">Colaborador:</label> &nbsp
-                <BlazoredTypeahead SearchMethod="ProcurarColaboradores" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="cl" Placeholder="Pesquisar Serviço">
+                <BlazoredTypeahead SearchMethod="ProcurarColaboradores" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="cl" Placeholder="Pesquisar Colaborador">
                     <SelectedTemplate>
                         @context.codigo : @context.descricao
                     </SelectedTemplate>
@@ -149,50 +149,33 @@
         <EditForm Model="@m" OnValidSubmit="@AdicionarLista">
             <DataAnnotationsValidator />
 
-            @*<div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="telefone">Referência de Modelo:</label> &nbsp
-                        <InputText id="telefone" class="form-control" @bind-Value="" />
-                    </div>
-                </div>*@
-
-
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Quantidade">Quantidade:</label> &nbsp
-                    <InputNumber id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="m.quantidade" />
+                    <InputNumber autocomplete="false" id="Quantidade" style="-moz-appearance: textfield;" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="m.quantidade" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="peso">Peso:</label> &nbsp
-                    <InputNumber id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="m.peso" />
+                    <InputNumber autocomplete="false" id="peso" style="-moz-appearance: textfield;" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="m.peso" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="preco">Preco:</label> &nbsp
-                    <InputNumber id="preco" class="form-control" placeholder="@cl.valor" disabled="@Readonly" @bind-Value="m.preco" />
+                    <InputNumber autocomplete="false" id="preco" style="-moz-appearance: textfield;" class="form-control" placeholder="@cl.valor" disabled="@Readonly" @bind-Value="m.preco" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="apontamentos">Valor Total:</label> &nbsp
-                    <InputNumber id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="m.valortotal" />
+                    <InputNumber autocomplete="false" id="apontamentos" style="-moz-appearance: textfield;" class="form-control" placeholder="Valor total" disabled="@Readonly" @bind-Value="m.valortotal" />
                 </div>
             </div>
-
-            @*<div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="apontamentos">Imagem</label> &nbsp
-                        <InputFile id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="m.Image" />
-                    </div>
-                </div>*@
-
-
 
             <div class="m-3 form-group">
                 <button type="submit" class="btn btn-primary">Adicionar</button>

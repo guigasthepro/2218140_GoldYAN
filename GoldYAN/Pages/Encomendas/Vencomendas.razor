@@ -32,7 +32,7 @@
                     <div class="form-row p-sm-1">
                         <label for="nome" class="col-sm-auto col-form-label">Localizacao:</label>
                         <div class="col-sm-5">
-                            <BlazoredTypeahead SearchMethod="ProcurarLocalizacao" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="localizacao" Placeholder="Pesquisar cliente">
+                            <BlazoredTypeahead SearchMethod="ProcurarLocalizacao" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="localizacao" Placeholder="Pesquisar localização">
                                 <SelectedTemplate>
                                     @context.idlocalizacao (ID: @context.descricao)
                                 </SelectedTemplate>
@@ -70,7 +70,7 @@
                     <div class="form-row p-sm-1">
                         <label for="nome" class="col-sm-auto col-form-label">Estado:</label>
                         <div class="col-sm-5">
-                            <BlazoredTypeahead SearchMethod="ProcurarEstado" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="estado" Placeholder="Pesquisar cliente">
+                            <BlazoredTypeahead SearchMethod="ProcurarEstado" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="estado" Placeholder="Pesquisar estado">
                                 <SelectedTemplate>
                                     @context.idestados (ID: @context.descricao)
                                 </SelectedTemplate>
@@ -113,7 +113,7 @@
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="Descricao">Data Transação:</label> &nbsp
-                                        <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" disabled="true" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CF.datacriacao" />
+                                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" disabled="true" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CF.datacriacao" />
                                     </div>
                                 </div>
                             </EditForm>
@@ -131,14 +131,8 @@
                                 <EditForm Model="@CCP">
                                     <div class="m-3 form-group">
                                         <div class="form-inline">
-                                            <label for="Descricao">ID:</label> &nbsp
-                                            <InputNumber oninput="this.value = this.value.toUpperCase()" disabled="true" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.idproduto" />
-                                        </div>
-                                    </div>
-                                    <div class="m-3 form-group">
-                                        <div class="form-inline">
                                             <label for="Descricao">Descrição:</label> &nbsp
-                                            <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.descricao" />
+                                            <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descricação do produto" @bind-Value="CCP.descricao" />
                                         </div>
                                     </div>
                                 </EditForm>
@@ -193,7 +187,7 @@
                                 <div class="m-3 form-group ">
                                     <div class="form-inline">
                                         <label for="nome" class="">Fornecedor:</label>
-                                        <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarFornecedores" oninput="this.value = this.value.toUpperCase()" @bind-Value="fornecedores" Placeholder="Pesquisar peça">
+                                        <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarFornecedores" oninput="this.value = this.value.toUpperCase()" @bind-Value="fornecedores" Placeholder="Pesquisar fornecedor">
                                             <SelectedTemplate>
                                                 @context.idfornecedor (Desc: @context.nome)
                                             </SelectedTemplate>
@@ -208,7 +202,7 @@
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="nome">Produto:</label>
-                                        <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="CCP" Placeholder="Pesquisar Serviço">
+                                        <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="CCP" Placeholder="Pesquisar Produto">
                                             <SelectedTemplate>
                                                 @context.idproduto + @context.descricao
                                             </SelectedTemplate>
@@ -277,7 +271,7 @@
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="nome">Produtos:</label>
-                                        <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Serviço">
+                                        <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar produto">
                                             <SelectedTemplate>
                                                 @context.idproduto + @context.descricao
                                             </SelectedTemplate>
@@ -293,28 +287,28 @@
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="Quantidade">Quantidade:</label> &nbsp
-                                        <InputNumber id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="cp.quantidade" />
+                                        <InputNumber id="Quantidade" class="form-control" style="-moz-appearance: textfield;" placeholder="Quantidade" disabled="@Readonly" @bind-Value="cp.quantidade" />
                                     </div>
                                 </div>
 
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="peso">Peso:</label> &nbsp
-                                        <InputNumber id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="cp.peso" />
+                                        <InputNumber id="peso" class="form-control" style="-moz-appearance: textfield;" placeholder="Peso" disabled="@Readonly" @bind-Value="cp.peso" />
                                     </div>
                                 </div>
 
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="preco">Preco:</label> &nbsp
-                                        <InputNumber id="preco" class="form-control" placeholder="@cl.valor" disabled="@Readonly" @bind-Value="cp.custo" />
+                                        <InputNumber id="preco" class="form-control" style="-moz-appearance: textfield;" placeholder="@cl.valor" disabled="@Readonly" @bind-Value="cp.custo" />
                                     </div>
                                 </div>
 
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="apontamentos">Valor Total:</label> &nbsp
-                                        <InputNumber id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="cp.custototal" />
+                                        <InputNumber id="apontamentos" class="form-control" style="-moz-appearance: textfield;" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="cp.custototal" />
                                     </div>
                                 </div>
 
@@ -388,16 +382,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" @onclick="CriarProduto" class="btn btn-success">Criar Produto</button>
-
-
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" @onclick="LancarEstado" class="btn btn-primary">Lancar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+
                 </div>
             </div>
         </div>

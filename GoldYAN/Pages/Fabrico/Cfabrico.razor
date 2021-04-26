@@ -12,13 +12,13 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Descricao">Descrição:</label> &nbsp
-                    <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" disabled="true" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CF.idencomenda" />
+                    <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" disabled="true" class="form-control" placeholder="Descrição fabrico" @bind-Value="CF.idencomenda" />
                 </div>
             </div>
             <div class="m-3 form-group">
                 <div class="form-inline">
-                    <label for="Descricao">Data Transação:</label> &nbsp
-                    <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" disabled="true" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CF.datacriacao" />
+                    <label for="datatransação">Data Transação:</label> &nbsp
+                    <InputText autocomplete="false"  oninput="this.value = this.value.toUpperCase()" id="datatransação" disabled="true" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CF.datacriacao" />
                 </div>
             </div>
         </EditForm>
@@ -36,14 +36,8 @@
             <EditForm Model="@CCP">
                 <div class="m-3 form-group">
                     <div class="form-inline">
-                        <label for="Descricao">ID:</label> &nbsp
-                        <InputNumber oninput="this.value = this.value.toUpperCase()" disabled="true" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.idproduto" />
-                    </div>
-                </div>
-                <div class="m-3 form-group">
-                    <div class="form-inline">
                         <label for="Descricao">Descrição:</label> &nbsp
-                        <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.descricao" />
+                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descrição produto" @bind-Value="CCP.descricao" />
                     </div>
                 </div>
             </EditForm>
@@ -98,7 +92,7 @@
             <div class="m-3 form-group ">
                 <div class="form-inline">
                     <label for="nome" class="">Fornecedor:</label>
-                    <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarFornecedores" oninput="this.value = this.value.toUpperCase()" @bind-Value="fornecedores" Placeholder="Pesquisar peça">
+                    <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarFornecedores" oninput="this.value = this.value.toUpperCase()" @bind-Value="fornecedores" Placeholder="Pesquisar fornecedor">
                         <SelectedTemplate>
                             @context.codigo (Desc: @context.nome)
                         </SelectedTemplate>
@@ -107,13 +101,35 @@
                 </div>
             </div>
 
+
+            <EditForm Model="@CCP">
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="Descricao">Quantidade:</label> &nbsp
+                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Quantidade comprada" @bind-Value="CCP.stock" />
+                    </div>
+                </div>
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="Descricao">Preco:</label> &nbsp
+                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Preco do produto" @bind-Value="CCP.preco"/>
+                    </div>
+                </div>
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="Descricao">Peso:</label> &nbsp
+                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Peso do produto" @bind-Value="CCP.peso"/>
+                    </div>
+                </div>
+            </EditForm>
+
         }
         else
         {
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="nome">Produto:</label>
-                    <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="CCP" Placeholder="Pesquisar Serviço">
+                    <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="CCP" Placeholder="Pesquisar Produto">
                         <SelectedTemplate>
                             @context.idproduto + @context.descricao
                         </SelectedTemplate>
@@ -182,7 +198,7 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="nome">Produtos:</label>
-                    <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Serviço">
+                    <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Produto">
                         <SelectedTemplate>
                             @context.idproduto + @context.descricao
                         </SelectedTemplate>
@@ -198,37 +214,30 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Quantidade">Quantidade:</label> &nbsp
-                    <InputNumber id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="cp.quantidade" />
+                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="cp.quantidade" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="peso">Peso:</label> &nbsp
-                    <InputNumber id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="cp.peso" />
+                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="cp.peso" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="preco">Preco:</label> &nbsp
-                    <InputNumber id="preco" class="form-control" placeholder="@cl.valor" disabled="@Readonly" @bind-Value="cp.custo" />
+                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="preco" class="form-control" placeholder="@cl.valor" disabled="@Readonly" @bind-Value="cp.custo" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="apontamentos">Valor Total:</label> &nbsp
-                    <InputNumber id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="cp.custototal" />
+                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="cp.custototal" />
                 </div>
             </div>
-
-            @*<div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="apontamentos">Imagem</label> &nbsp
-                        <InputFile id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="m.Image" />
-                    </div>
-                </div>*@
 
             <div class="m-3 form-group">
                 <button type="submit" class="btn btn-primary">Adicionar</button>

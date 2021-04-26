@@ -12,7 +12,7 @@
         <div class="m-3 form-group">
             <div class="form-inline">
                 <label for="nome">Modelo:</label>
-                <BlazoredTypeahead SearchMethod="ProcurarModelos" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="cm" Placeholder="Pesquisar Serviço">
+                <BlazoredTypeahead SearchMethod="ProcurarModelos" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="cm" Placeholder="Pesquisar Modelo">
                     <SelectedTemplate>
                         @context.descricao
                     </SelectedTemplate>
@@ -28,7 +28,7 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Descricao">Descrição:</label> &nbsp
-                    <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CCP.descricao" />
+                    <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descrição do produto" @bind-Value="CCP.descricao" />
                 </div>
             </div>
         </EditForm>
@@ -85,7 +85,7 @@
         <div class="m-3 form-group ">
             <div class="form-inline">
                 <label for="nome" class="">Fornecedor:</label>
-                <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarFornecedores" oninput="this.value = this.value.toUpperCase()" @bind-Value="fornecedores" Placeholder="Pesquisar peça">
+                <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarFornecedores" oninput="this.value = this.value.toUpperCase()" @bind-Value="fornecedores" Placeholder="Pesquisar fornecedores">
                     <SelectedTemplate>
                         @context.codigo (Desc: @context.nome)
                     </SelectedTemplate>
@@ -147,17 +147,17 @@
         }
         else
         {
-            @*<div class="m-3 form-group">
+            <div class="m-3 form-group">
                     <div class="form-inline">
                         <label for="nome">Produtos:</label>
-                        <BlazoredTypeahead SearchMethod="ProcurarTipoProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Serviço">
+                        <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Produto">
                             <SelectedTemplate>
                                 @context.idproduto
                             </SelectedTemplate>
-                            <ResultTemplate>@context.idtipoproduto + @context.descricao</ResultTemplate>
+                            <ResultTemplate>@context.idproduto + @context.descricao</ResultTemplate>
                         </BlazoredTypeahead>
                     </div>
-                </div>*@
+                </div>
         }
 
         <EditForm Model="@cp" OnValidSubmit="AdicionarComposto">
@@ -166,37 +166,30 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="Quantidade">Quantidade:</label> &nbsp
-                    <InputNumber id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="cp.quantidade" />
+                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;"  id="Quantidade" class="form-control" placeholder="Quantidade produto usado" disabled="@Readonly" @bind-Value="cp.quantidade" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="peso">Peso:</label> &nbsp
-                    <InputNumber id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="cp.peso" />
+                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;"  id="peso" class="form-control" placeholder="Peso gasto" disabled="@Readonly" @bind-Value="cp.peso" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="preco">Preco:</label> &nbsp
-                    <InputNumber id="preco" class="form-control" placeholder="@cl.valor" disabled="@Readonly" @bind-Value="cp.custo" />
+                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="preco" class="form-control" placeholder="@cl.valor" disabled="@Readonly" @bind-Value="cp.custo" />
                 </div>
             </div>
 
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="apontamentos">Valor Total:</label> &nbsp
-                    <InputNumber id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="cp.custototal" />
+                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;"  id="apontamentos" class="form-control" placeholder="Valor total" disabled="@Readonly" @bind-Value="cp.custototal" />
                 </div>
             </div>
-
-            @*<div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="apontamentos">Imagem</label> &nbsp
-                        <InputFile id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="m.Image" />
-                    </div>
-                </div>*@
 
             <div class="m-3 form-group">
                 <button type="submit" class="btn btn-primary">Adicionar</button>
@@ -212,10 +205,10 @@
             <h6 class="m-0 font-weight-bold text-primary">Sumário da Encomenda</h6>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive-sm">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="col-sm-12">
-                        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;table-layout: fixed;">
+                        <table class="table table-bordered table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;table-layout: fixed;">
                             <thead>
                                 <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 90px;">Componente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 100px;">Colaborador</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Classificação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Qtd.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 30px;">Valor.Un.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Valor Total</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Ações</th></tr>
                             </thead>
@@ -293,6 +286,8 @@
     List<Data.Produtos> listaProdutos = new List<Produtos>();
     List<CabecalhosModelos> listacabecalhoModeloControllers = new List<CabecalhosModelos>();
     List<Colaboradores> colaboradores = new List<Colaboradores>();
+    List<CabecalhoProdutos> listaCProdutos = new List<CabecalhoProdutos>();
+
 
     //For input values
     List<Data.Produtos> LCP = new List<Produtos>();
@@ -312,6 +307,7 @@
         listaTipoDePecas = TPC.GetAll();
         listaTipoProdutos = TPRC.GetAll();
         ListaServicos = SC.GetAll();
+        listaCProdutos = CAPC.GetAll();
 
     }
 
@@ -481,10 +477,10 @@
         return await Task.FromResult(listaTipoProdutos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
-    //private async Task<IEnumerable<CabecalhoProdutos>> ProcurarProdutos(string searchText)
-    //{
-    //    return await Task.FromResult(listaProdutos.Where(h => h..ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
-    //}
+    private async Task<IEnumerable<CabecalhoProdutos>> ProcurarProdutos(string searchText)
+    {
+        return await Task.FromResult(listaCProdutos.Where(h => h.descricao.ToLower().Contains(searchText.ToLower()) || h.idproduto.Equals(searchText.ToLower())).ToList());
+    }
 
     private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
     {

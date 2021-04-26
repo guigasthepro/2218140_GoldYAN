@@ -5,8 +5,62 @@
 @inject MoldesController VM
 @attribute [Authorize]
 
-@if(showModal)
+@if (showModal)
 {
+
+    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Lançar Estado</h4>
+                    <button type="button" class="close" @onclick="FecharModal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+
+                    <EditForm Model="@Emolde" class="form-group" OnValidSubmit="Update">
+
+                        <div class="form-group m-2 p-1">
+                            <label for="codigo">Código</label>
+                            <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" placeholder="Código Molde" class="w-25 form-control" id="codigo" @bind-Value="Emolde.codigo" />
+                            <ValidationMessage For="@(() => Emolde.codigo)" />
+                        </div>
+
+                        <div class="form-group m-2 p-1">
+                            <label for="descricao">Descrição</label>
+                            <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" class="w-25 form-control" placeholder="Descrição do Molde" id="descricao" @bind-Value="Emolde.descricao" />
+                            <ValidationMessage For="@(() => Emolde.descricao)" />
+                        </div>
+                        <div class="form-group m-2 p-1">
+                            <label for="gaveta">Gaveta</label>
+                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" class="w-25 form-control" id="gaveta" placeholder="Gaveta molde" @bind-Value="Emolde.gaveta" />
+                        </div>
+
+                        @*<div class="form-group m-2 p-1">
+                            <label for="tempo">Tempo</label>
+                            <InputText class="w-25 form-control" id="tempo" placeholder="Indique o tempo que demorou (minutos)" @bind-Value="Emolde.tempo" />
+                            <ValidationMessage For="@(() => Emolde.tempo)" />
+                            </div>*@
+
+                        <div class="form-group m-2 p-1">
+                            <label for="peso">Peso</label>
+                            <InputText class="w-25 form-control" id="peso" placeholder="Peso do molde" @bind-Value="Emolde.peso" />
+                        </div>
+                    </EditForm>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" @onclick="Update" class="btn btn-primary">Lancar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 }
 
@@ -38,13 +92,13 @@
                                             <td>@molde.codigo</td>
                                             <td>@molde.descricao</td>
                                             <td>@molde.gaveta</td>
-                                            <td><button @onclick="() => LoadModal(molde.idmolde)" class="btn btn-sm btn-primary" style="margin-left:1rem">Editar</button><button class="btn btn-sm btn-danger" style="margin-left:0.3rem">Apagar</button></td>
+                                            <td><button @onclick="() => LoadModal(molde.idmolde)" class="btn btn-sm btn-primary" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
-                    </div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,6 +134,7 @@
     public async Task LoadModal(int id)
     {
         Emolde = VM.Get(id);
+        showModal = true;
     }
 
     public async Task FecharModal()
@@ -89,7 +144,9 @@
 
     public async Task Update()
     {
-        VM.Put(Emolde.idmolde,Emolde);
+        VM.Put(Emolde.idmolde, Emolde);
+        OnInitializedAsync();
+        showModal = false;
 
     }
 }

@@ -30,14 +30,14 @@
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="Descricao">Referência do Modelo:</label> &nbsp
-                                        <InputText id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.idmodelo" />
+                                        <InputText autocomplete="false" id="Descricao" class="form-control" placeholder="Codigo Modelo" @bind-Value="cm.idmodelo" />
                                     </div>
                                 </div>
 
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="Descricao">Descrição:</label> &nbsp
-                                        <InputText id="Descricao" class="form-control" placeholder="Ainda não selecionado" @bind-Value="cm.descricao" />
+                                        <InputText autocomplete="false" id="Descricao" class="form-control" placeholder="Descrição Modelo" @bind-Value="cm.descricao" />
                                     </div>
                                 </div>
                             </EditForm>
@@ -45,7 +45,7 @@
                             <div class="m-3 form-group ">
                                 <div class="form-inline">
                                     <label for="nome" class="">Tipo de Produto:</label>
-                                    <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar cliente">
+                                    <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarTipoProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo produto">
                                         <SelectedTemplate>
                                             @context.codigo (Desc: @context.descricao)
                                         </SelectedTemplate>
@@ -57,7 +57,7 @@
                             <div class="m-3 form-group ">
                                 <div class="form-inline">
                                     <label for="nome" class="">Tipo de Peça:</label>
-                                    <BlazoredTypeahead class="" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar cliente">
+                                    <BlazoredTypeahead class="" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar tipo de peça">
                                         <SelectedTemplate>
                                             @context.codigo (Desc: @context.descricao)
                                         </SelectedTemplate>
@@ -107,7 +107,7 @@
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="nome">Molde:</label>
-                                        <BlazoredTypeahead SearchMethod="ProcurarMoldes" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="mlds" Placeholder="Pesquisar Serviço">
+                                        <BlazoredTypeahead SearchMethod="ProcurarMoldes" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="mlds" Placeholder="Pesquisar Molde">
                                             <SelectedTemplate>
                                                 @context.descricao
                                             </SelectedTemplate>
@@ -132,17 +132,17 @@
                             }
                             else if (m.formadepesquisa == "Produtos" || m.idproduto.HasValue)
                             {
-                                @*<div class="m-3 form-group">
+                                <div class="m-3 form-group">
                                         <div class="form-inline">
                                             <label for="nome">Produtos:</label>
-                                            <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Serviço">
+                                            <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Produtos">
                                                 <SelectedTemplate>
-                                                    @context.codigo
+                                                    @context.idproduto
                                                 </SelectedTemplate>
-                                                <ResultTemplate>@context.codigo + @context.descricao</ResultTemplate>
+                                                <ResultTemplate>@context.idproduto + @context.descricao</ResultTemplate>
                                             </BlazoredTypeahead>
                                         </div>
-                                    </div>*@
+                                    </div>
                             }
                             else
                             {
@@ -164,39 +164,32 @@
                             <EditForm Model="@m" OnValidSubmit="@AtualizarLista">
                                 <DataAnnotationsValidator />
 
-                                @*<div class="m-3 form-group">
-                                        <div class="form-inline">
-                                            <label for="telefone">Referência de Modelo:</label> &nbsp
-                                            <InputText id="telefone" class="form-control" @bind-Value="" />
-                                        </div>
-                                    </div>*@
-
 
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="Quantidade">Quantidade:</label> &nbsp
-                                        <InputNumber id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="m.quantidade" />
+                                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="m.quantidade" />
                                     </div>
                                 </div>
 
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="peso">Peso:</label> &nbsp
-                                        <InputNumber id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="m.peso" />
+                                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="m.peso" />
                                     </div>
                                 </div>
 
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="preco">Preco:</label> &nbsp
-                                        <InputNumber id="preco" class="form-control" placeholder="Preço do serviço" disabled="@Readonly" @bind-Value="m.preco" />
+                                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="preco" class="form-control" placeholder="Preço do serviço" disabled="@Readonly" @bind-Value="m.preco" />
                                     </div>
                                 </div>
 
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="apontamentos">Valor Total:</label> &nbsp
-                                        <InputNumber id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="m.valortotal" />
+                                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="m.valortotal" />
                                     </div>
                                 </div>
 
@@ -355,7 +348,7 @@
 
     //Invoking lists
     List<Servicos> ListaServicos = new List<Servicos>();
-    List<Produtos> listaProdutos = new List<Produtos>();
+    List<CabecalhoProdutos> listaCProdutos = new List<CabecalhoProdutos>();
     List<Moldes> listaMoldes = new List<Moldes>();
     List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
     List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
@@ -390,6 +383,7 @@
         listaMoldes = MoldesController.Get();
         listaTipoDePecas = TPC.GetAll();
         listaTipoProdutos = TPRC.GetAll();
+        listaCProdutos = CAPC.GetAll();
         ListaServicos = SC.GetAll();
     }
 
@@ -494,9 +488,14 @@
         return await Task.FromResult(ListaServicos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
-    private async Task<IEnumerable<TipoProduto>> ProcurarProdutos(string searchText)
+    private async Task<IEnumerable<TipoProduto>> ProcurarTipoProdutos(string searchText)
     {
-        return await Task.FromResult(listaTipoProdutos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+        return await Task.FromResult(listaTipoProdutos.Where(h => h.codigo.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<CabecalhoProdutos>> ProcurarProdutos(string searchText)
+    {
+        return await Task.FromResult(listaCProdutos.Where(h => h.idproduto.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
     private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
