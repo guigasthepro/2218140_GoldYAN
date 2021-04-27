@@ -14,9 +14,8 @@ namespace GoldYAN.Data
         public int idcomponente { get; set; }
         public string tipo { get; set; }
         public int idprodutoalterado { get; set; }
-
         public double stockinicial { get; set; }
-
+        public double stockadicionado { get; set; }
         public double? stockfinal { get; set; }
 
         public string datacriacao { get; set; }

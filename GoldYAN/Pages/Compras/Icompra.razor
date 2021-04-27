@@ -21,6 +21,18 @@
                 </BlazoredTypeahead>
             </div>
         </div>
+        
+        <div class="m-3 form-group ">
+            <div class="form-inline">
+                <label for="nome" class="">Tipo de compra:</label>
+                <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarCompra" oninput="this.value = this.value.toUpperCase()" @bind-Value="TDC" Placeholder="Pesquisar classificação">
+                    <SelectedTemplate>
+                        @context.idtipocompra (Desc: @context.descricao)
+                    </SelectedTemplate>
+                    <ResultTemplate>@context.idtipocompra + @context.descricao </ResultTemplate>
+                </BlazoredTypeahead>
+            </div>
+        </div>
 
         <EditForm Model="@CCompra">
             <div class="m-3 form-group">
@@ -58,8 +70,15 @@
             <EditForm Model="@CCP">
                 <div class="m-3 form-group">
                     <div class="form-inline">
+                        <label for="Descricao">Referencia Fornecedor:</label> &nbsp
+                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Referencia do Fornecedor" @bind-Value="CCP.descricao" />
+                    </div>
+                </div>
+
+                <div class="m-3 form-group">
+                    <div class="form-inline">
                         <label for="Descricao">Descrição:</label> &nbsp
-                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descrição do Produto" @bind-Value="CCP.descricao" />
+                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descrição do Produto" @bind-Value="CCP.descricao"/>
                     </div>
                 </div>
             </EditForm>
@@ -260,7 +279,7 @@
     Data.Compras Compra = new Data.Compras();
     Data.IDMaximo IDMaximo = new Data.IDMaximo();
     Data.HistoricoStock hStock = new Data.HistoricoStock();
-
+    Data.TipodeCompra TDC = new TipodeCompra();
 
 
 
@@ -274,7 +293,7 @@
     List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
     List<Colaboradores> colaboradores = new List<Colaboradores>();
     List<CabecalhoProdutos> listaCabecalhoProduto = new List<CabecalhoProdutos>();
-
+    List<TipodeCompra> LTDC = new List<TipodeCompra>();
 
 
 
@@ -323,7 +342,10 @@
         listaTipoProdutos = TPRC.GetAll();
         listaCabecalhoProduto = CAPC.GetAll();
         CCompra.produtonovo = true;
-        // Initial Values in CFabrico Page
+        LTDC = TCC.GetAll();
+    // Initial Values in CFabrico Page
+
+
         var res = CAPC.GetMaxID();
         JsRuntime.InvokeVoidAsync("console.log", res);
         CCompra.datacriacao = DateTime.Now.ToShortDateString();
@@ -542,6 +564,20 @@
             CCP.stockantigo = CCP.updatestock.GetValueOrDefault();
         }
 
+        if (LCP[i].updatestock.HasValue)
+        {
+            hStock.stockadicionado = LCP[i].updatestock.Value;
+        }
+
+
+        if (!CCP.produtonovo)
+        {
+            hStock.idprodutoalterado = CCP.idproduto;
+        }
+        hStock.stockfinal = LCP[i].stock;
+
+        hStock.datacriacao = DateTime.Now.ToShortDateString();
+
         if (CCP.updatestock.HasValue)
         {
             CCP.stocktotal = CCP.stock.GetValueOrDefault() + CCP.updatestock.Value;
@@ -631,6 +667,10 @@
                         hStock.idcomponente = LC[i].idcompra;
                         hStock.tipo = "Entrada";
                         hStock.stockinicial = 0;
+                        if (LCP[i].updatestock.HasValue)
+                        {
+                            hStock.stockadicionado = LCP[i].updatestock.Value;
+                        }
                         hStock.stockfinal = LCP[i].stock;
                         hStock.datacriacao = DateTime.Now.ToShortDateString();
                         var resutlacompra = CAPC.Post(LCP[i]);
@@ -651,6 +691,10 @@
                     hStock.idcomponente = LC[i].idcompra;
                     hStock.tipo = "Entrada";
                     hStock.stockinicial = 0;
+                    if (LCP[i].updatestock.HasValue)
+                    {
+                        hStock.stockadicionado = LCP[i].updatestock.Value;
+                    }
                     hStock.stockfinal = LCP[i].stock;
                     hStock.datacriacao = DateTime.Now.ToShortDateString();
 
@@ -679,7 +723,14 @@
                         hStock.tipocomponente = "Compra";
                         hStock.idcomponente = LC[i].idcompra;
                         hStock.tipo = "Entrada";
-                        hStock.stockinicial = 0;
+                        if (LCP[i].updatestock.HasValue)
+                        {
+                            hStock.stockinicial = LCP[i].stockantigo.Value;
+                        }
+                        if (LCP[i].updatestock.HasValue)
+                        {
+                            hStock.stockadicionado = LCP[i].updatestock.Value;
+                        }
                         js.InvokeVoidAsync("console.log", $"{LCP[i].stock.Value}");
 
                         hStock.stockfinal = LCP[i].stock;
@@ -703,6 +754,10 @@
                     hStock.idcomponente = LC[0].idcompra;
                     hStock.tipo = "Entrada";
                     hStock.stockinicial = 0;
+                    if (LCP[i].updatestock.HasValue)
+                    {
+                        hStock.stockadicionado = LCP[i].updatestock.Value;
+                    }
                     hStock.stockfinal = LCP[0].stock;
                     hStock.datacriacao = DateTime.Now.ToShortDateString();
                     CAPC.Put(LCP[0].idproduto, LCP[0]);
@@ -832,6 +887,11 @@
     private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
     {
         return await Task.FromResult(colaboradores.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<TipodeCompra>> ProcurarCompra(string searchText)
+    {
+        return await Task.FromResult(LTDC.Where(h => h.idtipocompra.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
 }

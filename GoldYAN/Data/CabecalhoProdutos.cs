@@ -14,6 +14,7 @@ namespace GoldYAN.Data
         public string? idmodelo { get; set; }
         public int idclassificação { get; set; }
         public int idunidade { get; set; }
+        public string  referenciafornecedor { get; set; }
         public string descricao { get; set; }
         public string apontamentos { get; set; }
         public int idtipodeproduto { get; set; }

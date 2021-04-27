@@ -17,27 +17,49 @@
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Tipo de Componente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">IDComponente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">IDProdutoAlterado</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Tipo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Stock Inicial</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Stock Final</th></tr>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Tipo de Componente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">IDComponente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">IDProdutoAlterado</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Tipo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Stock Inicial</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Stock Final</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">Tipo de Componente</th><th rowspan="1" colspan="1">IDComponente</th><th rowspan="1" colspan="1">Produto Alterado</th><th rowspan="1" colspan="1">Tipo</th><th rowspan="1" colspan="1">Stock Inicial</th><th rowspan="1" colspan="1">Stock Final</th></tr>
+                                <tr><th rowspan="1" colspan="1">Tipo de Componente</th><th rowspan="1" colspan="1">IDComponente</th><th rowspan="1" colspan="1">Produto Alterado</th><th rowspan="1" colspan="1">Tipo</th><th rowspan="1" colspan="1">Stock Inicial</th><th rowspan="1" colspan="1">Stock Final</th></tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach (var stock in vhStock)
+                                @foreach (var stock in vhStock)
+                                {
+                                    if (!IsVisible(stock))
+                                        continue;
+                                    if (stock.tipo == "Entrada")
                                     {
-                                        if (!IsVisible(stock))
-                                            continue;
+                                        Entrada += stock.stockadicionado;
+                                    }
+                                    else
+                                    {
+                                        Saida += stock.stockadicionado;
+                                    }
                                     <tr style="height: 1em;">
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@stock.tipocomponente">@stock.tipocomponente</td>
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@stock.idcomponente">@stock.idcomponente</td>
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@stock.idprodutoalterado">@stock.idprodutoalterado</td>
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@stock.tipo">@stock.tipo</td>
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@stock.stockinicial">@stock.stockinicial</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.stockadicionado">@stock.stockadicionado</td>
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@stock.stockfinal">@Math.Round(stock.stockfinal.Value, 2)</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.stockinicial">@stock.datacriacao</td>
+
                                     </tr>
-                                    }
+
+
+
+                                }
+                                
                                 </tbody>
                             </table>
+                            @CheckStock()
+                            <label>Entrada</label>
+                            <input value="@Entrada" />
+                            <label>Saida</label>
+                            <input value="@Saida" />
+                            <label>Stock</label>
+                            <input value="@Stock" />
                         </div>
                     </div>
                 </div>
@@ -50,12 +72,27 @@
 
     List<HistoricoStock> vhStock = new List<HistoricoStock>();
     public string Filter { get; set; }
+    public double Entrada { get; set; }
+    public double Saida { get; set; }
+    public double Stock { get; set; }
 
 
     protected override async Task OnInitializedAsync()
     {
         vhStock = hStockC.GetAll();
+    }
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Stock = Entrada - Saida;
+        }
+    }
+
+    public async Task CheckStock()
+    {
+        Stock = Entrada - Saida;
     }
 
     public bool IsVisible(HistoricoStock hstock)
