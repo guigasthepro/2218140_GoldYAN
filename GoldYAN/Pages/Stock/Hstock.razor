@@ -13,28 +13,20 @@
         <div class="card-body">
             <div class="table-responsive-sm">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Pesquisar Movimento:<input type="search" @bind="Filter" @bind:event="oninput" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
+                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Pesquisar Movimento:<input type="search" @bind="Filter" @bind:event="oninput" @bind:event="on"  class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Tipo de Componente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">IDComponente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">IDProdutoAlterado</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Tipo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Stock Inicial</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Stock Final</th></tr>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Tipo de Componente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">IDComponente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">IDProdutoAlterado</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Tipo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Stock Inicial</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Quantidade adicionada</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Stock Final</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Data da Compra</th></tr>
                                 </thead>
                                 <tfoot>
-                                <tr><th rowspan="1" colspan="1">Tipo de Componente</th><th rowspan="1" colspan="1">IDComponente</th><th rowspan="1" colspan="1">Produto Alterado</th><th rowspan="1" colspan="1">Tipo</th><th rowspan="1" colspan="1">Stock Inicial</th><th rowspan="1" colspan="1">Stock Final</th></tr>
+                                <tr><th rowspan="1" colspan="1">Tipo de Componente</th><th rowspan="1" colspan="1">IDComponente</th><th rowspan="1" colspan="1">Produto Alterado</th><th rowspan="1" colspan="1">Tipo</th><th rowspan="1" colspan="1">Stock Inicial</th><th rowspan="1" colspan="1">Quantidade adicionada</th><th rowspan="1" colspan="1">Stock Final</th><th rowspan="1" colspan="1">Data da Compra</th></tr>
                                 </tfoot>
                                 <tbody>
                                 @foreach (var stock in vhStock)
                                 {
                                     if (!IsVisible(stock))
-                                        continue;
-                                    if (stock.tipo == "Entrada")
-                                    {
-                                        Entrada += stock.stockadicionado;
-                                    }
-                                    else
-                                    {
-                                        Saida += stock.stockadicionado;
-                                    }
+                                    continue;
                                     <tr style="height: 1em;">
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@stock.tipocomponente">@stock.tipocomponente</td>
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@stock.idcomponente">@stock.idcomponente</td>
@@ -47,19 +39,23 @@
 
                                     </tr>
 
-
+                                    CheckStock();
 
                                 }
                                 
                                 </tbody>
                             </table>
-                            @CheckStock()
-                            <label>Entrada</label>
-                            <input value="@Entrada" />
-                            <label>Saida</label>
-                            <input value="@Saida" />
-                            <label>Stock</label>
-                            <input value="@Stock" />
+                            <div class="float-right">
+                                <label class="">Entrada</label>
+                                <input class="" value="@Entrada" />
+
+                                <label class="">Saida</label>
+                                <input class="" value="@Saida" />
+
+                                <label class="">Stock</label>
+                                <input class="" value="@Stock" />
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -75,6 +71,7 @@
     public double Entrada { get; set; }
     public double Saida { get; set; }
     public double Stock { get; set; }
+
 
 
     protected override async Task OnInitializedAsync()
@@ -95,15 +92,44 @@
         Stock = Entrada - Saida;
     }
 
+    public async Task AdicionarStock(double stock, string tipo)
+    {
+        if (tipo == "Entrada")
+        {
+            Entrada += stock ;
+        }
+        else
+        {
+            Saida += stock;
+        }
+    }
+
     public bool IsVisible(HistoricoStock hstock)
     {
+
         if (string.IsNullOrEmpty(Filter))
-            return true;
+        {
+            Entrada = new double();
+            Saida = new double();
+            Stock = new double();
+            return false;
+        }
 
         if (hstock.id.Equals(Filter) || hstock.idprodutoalterado.ToString().Contains(Filter) || hstock.tipo.ToString().Contains(Filter))
+        {
+            AdicionarStock(hstock.stockadicionado, hstock.tipo);
             return true;
+        }
+        else
+        {
 
+        }
+
+        Entrada = new double();
+        Saida = new double();
+        Stock = new double();
         return false;
+
     }
 
 

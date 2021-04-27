@@ -15,6 +15,7 @@ namespace GoldYAN.Data
         public int idproduto { get; set; }
         public double quantidade { get; set; }
         public double preco { get; set; }
+        [Computed] public bool produtonovo { get; set; }
 
     }
 }

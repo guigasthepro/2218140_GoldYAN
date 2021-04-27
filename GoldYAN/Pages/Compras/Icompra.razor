@@ -71,7 +71,7 @@
                 <div class="m-3 form-group">
                     <div class="form-inline">
                         <label for="Descricao">Referencia Fornecedor:</label> &nbsp
-                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Referencia do Fornecedor" @bind-Value="CCP.descricao" />
+                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Referencia do Fornecedor" @bind-Value="CCP.referenciafornecedor" />
                     </div>
                 </div>
 
@@ -341,9 +341,9 @@
         listaTipoDePecas = TPC.GetAll();
         listaTipoProdutos = TPRC.GetAll();
         listaCabecalhoProduto = CAPC.GetAll();
-        CCompra.produtonovo = true;
+
         LTDC = TCC.GetAll();
-    // Initial Values in CFabrico Page
+        // Initial Values in CFabrico Page
 
 
         var res = CAPC.GetMaxID();
@@ -400,20 +400,19 @@
         if (ProdutoNovo)
         {
             i++;
-
+            CCP.produtonovo = true;
             CCP.idclassificação = ecp.IDClassificacao;
             CCP.idtipodeproduto = dtp.idtipoproduto;
             CCP.idtipodepeca = dtdp.idpeca;
 
-            if (CCP.updatestock.HasValue)
-            {
-                Compra.quantidade = CCP.updatestock.GetValueOrDefault();
-                CCP.stockantigo = CCP.updatestock.GetValueOrDefault();
-            }
+
+            CCP.stockantigo = 0;
+
 
             if (CCP.updatestock.HasValue)
             {
                 CCP.stocktotal = CCP.stock.GetValueOrDefault() + CCP.updatestock.Value;
+                Compra.quantidade = CCP.updatestock.GetValueOrDefault();
             }
             else if (CCP.peso.HasValue)
             {
@@ -474,20 +473,20 @@
         else
         {
             i++;
-
+            CCP.produtonovo = false;
             CCP.idclassificação = ecp.IDClassificacao;
             CCP.idtipodeproduto = dtp.idtipoproduto;
             CCP.idtipodepeca = dtdp.idpeca;
 
-            if (CCP.updatestock.HasValue)
+            if(CCP.stock.HasValue)
             {
-                Compra.quantidade = CCP.updatestock.GetValueOrDefault();
-                CCP.stockantigo = CCP.updatestock.GetValueOrDefault();
+                CCP.stockantigo = CCP.stock.GetValueOrDefault();
             }
 
             if (CCP.updatestock.HasValue)
             {
                 CCP.stocktotal = CCP.stock.GetValueOrDefault() + CCP.updatestock.Value;
+                Compra.quantidade = CCP.updatestock.GetValueOrDefault();
             }
             else if (CCP.peso.HasValue)
             {
@@ -561,12 +560,12 @@
         if (CCP.updatestock.HasValue)
         {
             Compra.quantidade = CCP.updatestock.GetValueOrDefault();
-            CCP.stockantigo = CCP.updatestock.GetValueOrDefault();
+            CCP.stockantigo = CCP.stock.GetValueOrDefault();
         }
 
-        if (LCP[i].updatestock.HasValue)
+        if (LCP[linhaselecionada - 1].updatestock.HasValue)
         {
-            hStock.stockadicionado = LCP[i].updatestock.Value;
+            hStock.stockadicionado = LCP[linhaselecionada -1].updatestock.Value;
         }
 
 
@@ -574,7 +573,7 @@
         {
             hStock.idprodutoalterado = CCP.idproduto;
         }
-        hStock.stockfinal = LCP[i].stock;
+        hStock.stockfinal = LCP[linhaselecionada - 1].stock;
 
         hStock.datacriacao = DateTime.Now.ToShortDateString();
 
@@ -652,16 +651,16 @@
         if (LCP.Count != 0)
         {
 
-            if (CCompra.produtonovo)
+
+            CCompra.idfornecedor = fornecedores.idfornecedor;
+            CCompra.idtipodecompra = TDC.idtipocompra;
+            var resultado = CComprasC.Post(CCompra);
+
+            if (LCP.Count > 1)
             {
-
-                CCompra.idfornecedor = fornecedores.idfornecedor;
-
-                var resultado = CComprasC.Post(CCompra);
-
-                if (LCP.Count > 1)
+                for (int i = 0; i < LCP.Count; i++)
                 {
-                    for (int i = 0; i < LCP.Count; i++)
+                    if(LCP[i].produtonovo)
                     {
                         hStock.tipocomponente = "Compra";
                         hStock.idcomponente = LC[i].idcompra;
@@ -675,49 +674,15 @@
                         hStock.datacriacao = DateTime.Now.ToShortDateString();
                         var resutlacompra = CAPC.Post(LCP[i]);
                         hStock.idprodutoalterado = resutlacompra.idproduto;
+
                         LC[i].idcompra = resultado.idcompra;
+                        LC[i].idproduto = resutlacompra.idproduto;
 
                         ComprasC.Post(LC[i]);
                         hStockC.Post(hStock);
                         hStock = new HistoricoStock();
-
-
                     }
-
-                }
-                else
-                {
-                    hStock.tipocomponente = "Compra";
-                    hStock.idcomponente = LC[i].idcompra;
-                    hStock.tipo = "Entrada";
-                    hStock.stockinicial = 0;
-                    if (LCP[i].updatestock.HasValue)
-                    {
-                        hStock.stockadicionado = LCP[i].updatestock.Value;
-                    }
-                    hStock.stockfinal = LCP[i].stock;
-                    hStock.datacriacao = DateTime.Now.ToShortDateString();
-
-                    var resutlacompra = CAPC.Post(LCP[i]);
-                    hStock.idprodutoalterado = resutlacompra.idproduto;
-
-                    LC[0].idcompra = resultado.idcompra;
-                    ComprasC.Post(LC[0]);
-                    hStockC.Post(hStock);
-                    hStock = new HistoricoStock();
-
-                }
-
-            }
-            else
-            {
-                CCompra.idfornecedor = fornecedores.idfornecedor;
-
-                var resultado = CComprasC.Post(CCompra);
-
-                if (LCP.Count > 1)
-                {
-                    for (int i = 0; i < LCP.Count; i++)
+                    else
                     {
                         hStock.idprodutoalterado = LCP[i].idproduto;
                         hStock.tipocomponente = "Compra";
@@ -739,13 +704,52 @@
                         CAPC.Put(LCP[i].idproduto, LCP[i]);
 
                         LC[i].idcompra = resultado.idcompra;
-
                         ComprasC.Post(LC[i]);
                         hStockC.Post(hStock);
                         hStock = new HistoricoStock();
 
+
+
+
+
                     }
 
+
+
+                }
+
+
+
+
+
+            }
+            else
+            {
+                CCompra.idfornecedor = fornecedores.idfornecedor;
+
+                var resultado2 = CComprasC.Post(CCompra);
+
+                if (LCP[0].produtonovo)
+                {
+                    hStock.tipocomponente = "Compra";
+                    hStock.idcomponente = LC[0].idcompra;
+                    hStock.tipo = "Entrada";
+                    hStock.stockinicial = 0;
+                    if (LCP[i].updatestock.HasValue)
+                    {
+                        hStock.stockadicionado = LCP[0].updatestock.Value;
+                    }
+                    hStock.stockfinal = LCP[0].stock;
+                    hStock.datacriacao = DateTime.Now.ToShortDateString();
+
+                    var resutlacompra = CAPC.Post(LCP[0]);
+                    hStock.idprodutoalterado = resutlacompra.idproduto;
+                    LC[0].idproduto = resutlacompra.idproduto;
+
+                    LC[0].idcompra = resultado2.idcompra;
+                    ComprasC.Post(LC[0]);
+                    hStockC.Post(hStock);
+                    hStock = new HistoricoStock();
                 }
                 else
                 {
@@ -753,15 +757,17 @@
                     hStock.tipocomponente = "Compra";
                     hStock.idcomponente = LC[0].idcompra;
                     hStock.tipo = "Entrada";
-                    hStock.stockinicial = 0;
-                    if (LCP[i].updatestock.HasValue)
+                    if(LCP[0].stockantigo.HasValue)
                     {
-                        hStock.stockadicionado = LCP[i].updatestock.Value;
+                        hStock.stockinicial = LCP[0].stockantigo.Value;
+                    }
+                    if (LCP[0].updatestock.HasValue)
+                    {
+                        hStock.stockadicionado = LCP[0].updatestock.Value;
                     }
                     hStock.stockfinal = LCP[0].stock;
                     hStock.datacriacao = DateTime.Now.ToShortDateString();
                     CAPC.Put(LCP[0].idproduto, LCP[0]);
-
                     LC[0].idcompra = resultado.idcompra;
 
                     ComprasC.Post(LC[0]);
@@ -770,12 +776,37 @@
                 }
 
 
+
+                //for (int i = 0; i < LCP.Count; i++)
+                //{
+                //    hStock.idprodutoalterado = LCP[i].idproduto;
+                //    hStock.tipocomponente = "Compra";
+                //    hStock.idcomponente = LC[i].idcompra;
+                //    hStock.tipo = "Entrada";
+                //    if (LCP[i].updatestock.HasValue)
+                //    {
+                //        hStock.stockinicial = LCP[i].stockantigo.Value;
+                //    }
+                //    if (LCP[i].updatestock.HasValue)
+                //    {
+                //        hStock.stockadicionado = LCP[i].updatestock.Value;
+                //    }
+                //    js.InvokeVoidAsync("console.log", $"{LCP[i].stock.Value}");
+
+                //    hStock.stockfinal = LCP[i].stock;
+                //    hStock.datacriacao = DateTime.Now.ToShortDateString();
+
+                //    CAPC.Put(LCP[i].idproduto, LCP[i]);
+
+                //    LC[i].idcompra = resultado.idcompra;
+                //    ComprasC.Post(LC[i]);
+                //    hStockC.Post(hStock);
+                //    hStock = new HistoricoStock();
+
+                //}
+
+
             }
-
-
-
-
-
         }
         else
         {
@@ -796,7 +827,6 @@
         CCP = new CabecalhoProdutos();
         ProdutoNovo = true;
         CCP.produtonovo = true;
-        CCompra.produtonovo = true;
     }
 
 
@@ -811,7 +841,6 @@
         CCP = new CabecalhoProdutos();
         ProdutoNovo = false;
         CCP.produtonovo = false;
-        CCompra.produtonovo = false;
     }
 
 
@@ -894,4 +923,4 @@
         return await Task.FromResult(LTDC.Where(h => h.idtipocompra.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
-}
+    }
