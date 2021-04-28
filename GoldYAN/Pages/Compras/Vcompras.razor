@@ -10,7 +10,7 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Lançar Localização</h4>
+                    <h4 class="modal-title">Lançar Compra</h4>
                     <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
                 </div>
 
@@ -71,8 +71,10 @@
                             </EditForm>
                         </div>
                     </div>
+                    
+                
 
-                    <div class="container-fluid">
+                <div class="container-fluid">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 style="display: inline" class="m-0 font-weight-bold text-primary">Cabeçalho Produto</h6><div style="display: inline" class="float-right"><button class="btn btn-primary btn-sm" style="display: inline; margin-right: 5px" @onclick="CriarProdutoNovo">Produto Novo</button><button class="btn btn-success btn-sm" @onclick="UsarProdutoExistente">Produto Existente</button></div>
@@ -348,7 +350,7 @@
     List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
     List<CabecalhoProdutos> listaCabecalhoProduto = new List<CabecalhoProdutos>();
     List<TipodeCompra> LTDC = new List<TipodeCompra>();
-
+    List<HistoricoStock> LHS = new List<HistoricoStock>();
 
 
 
@@ -410,26 +412,21 @@
     public async Task OpenFichaProduto(int idproduto, int linha)
     {
         linhaselecionada = linha;
-        if (ProdutoNovo)
-        {
+        
+        
             CCP = LCP[linha];
             dtp = TPRC.Get(CCP.idtipodeproduto);
             dtdp = TPC.Get(CCP.idtipodepeca);
             ecp = CPC.Get(CCP.idclassificação);
+            LHS = hStockC.GetAllQuery(CCompra.idcompra, idproduto);
 
-        }
-        else
-        {
-            CCP = LCP[linha - 1];
+        
 
-        }
-        save = true;
     }
 
     public void AbrirModal(int id)
     {
         LCP = new List<CabecalhoProdutos>();
-        CCompra = CComprasC.Get(id);
         listaCompras = ComprasC.GetAllQuery(id);
         fornecedores = FC.Get(CCompra.idfornecedor);
         foreach (var compra in listaCompras)
@@ -438,6 +435,7 @@
             LCP.Add(CCP);
             CCP = new CabecalhoProdutos();
         }
+
         showModal = true;
     }
 
@@ -539,6 +537,13 @@
         }
     }
 
+
+    public async Task ÉditarCabecalho()
+    {
+        CCompra.idfornecedor = fornecedores.idfornecedor;
+        CCompra.idtipodecompra = TDC.idtipocompra;
+        CComprasC.Put(CCompra.idcompra, CCompra);
+    }
 
 
 

@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using MySql.Data.MySqlClient;
@@ -58,6 +59,21 @@ namespace GoldYAN.Controller
             }
         }
 
+        public List<HistoricoStock> GetAllQuery(int id,int id2)
+        {
+            string query = $"SELECT * FROM `historicostock` WHERE idcomponente = {id} AND idprodutoalterado  = {id2} ";
+
+            LerCodigos = new List<HistoricoStock>();
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Query<HistoricoStock>(query).ToList();
+                LerCodigos = res;
+            }
+
+            return LerCodigos;
+        }
+
         // POST api/<CodigoPostalController>
         [HttpPost]
         public HistoricoStock Post([FromBody] HistoricoStock encomenda)
@@ -73,7 +89,7 @@ namespace GoldYAN.Controller
         // DELETE api/<CodigoPostalController>/5
 
         [HttpPut("{id}")]
-        public ActionResult<HistoricoStock> Put(int id, [FromBody] HistoricoStock cliente)
+        public ActionResult<HistoricoStock> Put(int id, [FromBody] HistoricoStock hstock)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
@@ -82,8 +98,12 @@ namespace GoldYAN.Controller
 
                 if (recLido != null)
                 {
-                    //recLido.Nomes = presente.Nomes;
-                    //recLido.Quantidade = presente.Quantidade;
+                    recLido.stockadicionado = hstock.stockadicionado;
+                    recLido.idprodutoalterado = hstock.idprodutoalterado;
+                    recLido.tipo = hstock.tipo;
+                    recLido.idcomponente = hstock.idcomponente;
+                    recLido.stockfinal = hstock.stockfinal;
+                    recLido.stockinicial = hstock.stockinicial;
 
                     bool updated = DBConn.Update(recLido);
 

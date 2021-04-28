@@ -1,6 +1,7 @@
 ﻿@page "/vmoldes"
 @using GoldYAN.Data
 @using GoldYAN.Controller
+@using System.Runtime
 @inject IJSRuntime JS;
 @inject MoldesController VM
 @attribute [Authorize]
@@ -116,6 +117,8 @@
 
     protected override async Task OnInitializedAsync()
     {
+        GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
+        GC.Collect();
         VMS = VM.Get();
 
     }
@@ -149,4 +152,4 @@
         showModal = false;
 
     }
-}
+    }
