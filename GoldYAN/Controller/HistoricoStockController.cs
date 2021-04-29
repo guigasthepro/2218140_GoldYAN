@@ -86,7 +86,8 @@ namespace GoldYAN.Controller
             }
         }
 
-        // DELETE api/<CodigoPostalController>/5
+        // DELETE api/<CodigoPostalController>/
+
 
         [HttpPut("{id}")]
         public ActionResult<HistoricoStock> Put(int id, [FromBody] HistoricoStock hstock)

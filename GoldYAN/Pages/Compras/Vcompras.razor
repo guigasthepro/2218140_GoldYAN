@@ -69,151 +69,96 @@
                                     </div>
                                 </div>
                             </EditForm>
-                        </div>
-                    </div>
-                    
-                
 
-                <div class="container-fluid">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 style="display: inline" class="m-0 font-weight-bold text-primary">Cabeçalho Produto</h6><div style="display: inline" class="float-right"><button class="btn btn-primary btn-sm" style="display: inline; margin-right: 5px" @onclick="CriarProdutoNovo">Produto Novo</button><button class="btn btn-success btn-sm" @onclick="UsarProdutoExistente">Produto Existente</button></div>
+                            <div class="m-3 form-group">
+                                <button class="btn btn-primary" @onclick="EditarCabecalho">Editar</button>
                             </div>
 
-                            @if (ProdutoNovo)
-                            {
-                                <EditForm Model="@CCP">
-                                    <div class="m-3 form-group">
-                                        <div class="form-inline">
-                                            <label for="Descricao">Referencia Fornecedor:</label> &nbsp
-                                            <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Referencia do Fornecedor" @bind-Value="CCP.descricao" />
-                                        </div>
-                                    </div>
-
-                                    <div class="m-3 form-group">
-                                        <div class="form-inline">
-                                            <label for="Descricao">Descrição:</label> &nbsp
-                                            <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descrição do Produto" @bind-Value="CCP.descricao" />
-                                        </div>
-                                    </div>
-                                </EditForm>
-
-                                <div class="m-3 form-group ">
-                                    <div class="form-inline">
-                                        <label for="nome" class="">Classificação de Produto:</label>
-                                        <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarClassificação" oninput="this.value = this.value.toUpperCase()" @bind-Value="ecp" Placeholder="Pesquisar classificação">
-                                            <SelectedTemplate>
-                                                @context.codigo (Desc: @context.descricao)
-                                            </SelectedTemplate>
-                                            <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
-                                        </BlazoredTypeahead>
-                                    </div>
-                                </div>
-
-                                <div class="m-3 form-group ">
-                                    <div class="form-inline">
-                                        <label for="nome" class="">Tipo de Produto:</label>
-                                        <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarTipoProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo de produto">
-                                            <SelectedTemplate>
-                                                @context.codigo (Desc: @context.descricao)
-                                            </SelectedTemplate>
-                                            <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
-                                        </BlazoredTypeahead>
-                                    </div>
-                                </div>
-
-                                <div class="m-3 form-group ">
-                                    <div class="form-inline">
-                                        <label for="nome" class="">Tipo de Peça:</label>
-                                        <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar peça">
-                                            <SelectedTemplate>
-                                                @context.codigo (Desc: @context.descricao)
-                                            </SelectedTemplate>
-                                            <ResultTemplate> @context.codigo + @context.descricao </ResultTemplate>
-                                        </BlazoredTypeahead>
-                                    </div>
-                                </div>
-
-                                <EditForm Model="@CCP">
-                                    <div class="m-3 form-group">
-                                        <div class="form-inline">
-                                            <label for="Descricao">Peso:</label> &nbsp
-                                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Peso do produto" @bind-Value="CCP.peso" />
-
-                                            <label for="Descricao">Cotação:</label> &nbsp
-                                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Cotação Produto" @bind-Value="CCP.cotacao" />
-
-                                            <label for="Descricao">Feitio:</label> &nbsp
-                                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Feitio peça" @bind-Value="CCP.feitiopeca" />
-
-                                            <label for="Descricao">Quantidade:</label> &nbsp
-                                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade comprada" @bind-Value="CCP.updatestock" />
+                        </div>
+                    </div>
 
 
-                                            @*<label for="Descricao">Preço Uni.:</label> &nbsp
-                                <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Cotação Produto" @bind-Value="CCP.cotacao" />
 
-                                <label for="Descricao">Preço total.:</label> &nbsp
-                                <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade na fatura" @bind-Value="CCP.updatestock" />*@
-                                        </div>
+                    <div class="container-fluid">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 style="display: inline" class="m-0 font-weight-bold text-primary">Cabeçalho Produto</h6>
+                            </div>
 
-                                    </div>
-                                </EditForm>
+                            <EditForm Model="@CCP">
                                 <div class="m-3 form-group">
-                                    @if (save)
-                                    {
-                                        <button class="btn btn-primary" @onclick="EditarComposto">Editar</button>
-
-                                    }
-                                    else
-                                    {
-                                        <button class="btn btn-primary" @onclick="AdicionarComposto">Adicionar</button>
-
-                                    }
+                                    <div class="form-inline">
+                                        <label for="Descricao">Referencia Fornecedor:</label> &nbsp
+                                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Referencia do Fornecedor" @bind-Value="CCP.referenciafornecedor" />
+                                    </div>
                                 </div>
-                            }
-                            else
-                            {
 
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
-                                        <label for="nome">Produto:</label>
-                                        <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="CCP" Placeholder="Pesquisar produto">
-                                            <SelectedTemplate>
-                                                @context.idproduto + @context.descricao
-                                            </SelectedTemplate>
-                                            <NotFoundTemplate>
-                                            </NotFoundTemplate>
-                                            <ResultTemplate>@context.idproduto + @context.descricao</ResultTemplate>
-                                        </BlazoredTypeahead>
+                                        <label for="Descricao">Descrição:</label> &nbsp
+                                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descrição do Produto" @bind-Value="CCP.descricao" />
                                     </div>
                                 </div>
-                                <EditForm Model="@CCP">
-                                    <div class="m-3 form-group">
-                                        <div class="form-inline">
-                                            <label for="Descricao">Peso:</label> &nbsp
-                                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Peso comprado" @bind-Value="CCP.peso" />
+                            </EditForm>
 
-                                            <label for="Descricao">Cotação:</label> &nbsp
-                                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Cotação Produto" @bind-Value="CCP.cotacao" />
+                            <div class="m-3 form-group ">
+                                <div class="form-inline">
+                                    <label for="nome" class="">Classificação de Produto:</label>
+                                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarClassificação" oninput="this.value = this.value.toUpperCase()" @bind-Value="ecp" Placeholder="Pesquisar classificação">
+                                        <SelectedTemplate>
+                                            @context.codigo (Desc: @context.descricao)
+                                        </SelectedTemplate>
+                                        <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
+                                    </BlazoredTypeahead>
+                                </div>
+                            </div>
 
-                                            <label for="Descricao">Feitio:</label> &nbsp
-                                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Feitio Peça" @bind-Value="CCP.feitiopeca" />
+                            <div class="m-3 form-group ">
+                                <div class="form-inline">
+                                    <label for="nome" class="">Tipo de Produto:</label>
+                                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarTipoProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo de produto">
+                                        <SelectedTemplate>
+                                            @context.codigo (Desc: @context.descricao)
+                                        </SelectedTemplate>
+                                        <ResultTemplate>@context.codigo + @context.descricao </ResultTemplate>
+                                    </BlazoredTypeahead>
+                                </div>
+                            </div>
 
-                                            <label for="Descricao">Quantidade:</label> &nbsp
-                                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade na fatura" @bind-Value="CCP.updatestock" />
+                            <div class="m-3 form-group ">
+                                <div class="form-inline">
+                                    <label for="nome" class="">Tipo de Peça:</label>
+                                    <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar peça">
+                                        <SelectedTemplate>
+                                            @context.codigo (Desc: @context.descricao)
+                                        </SelectedTemplate>
+                                        <ResultTemplate> @context.codigo + @context.descricao </ResultTemplate>
+                                    </BlazoredTypeahead>
+                                </div>
+                            </div>
 
-                                        </div>
-                                    </div>
-                                </EditForm>
-
+                            <EditForm Model="@CCP">
 
                                 <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="Descricao">Peso:</label> &nbsp
+                                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Peso do produto" @bind-Value="CCP.peso" />
 
-                                        <button class="btn btn-primary" @onclick="EditarComposto">Editar</button>
+                                        <label for="Descricao">Cotação:</label> &nbsp
+                                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Cotação Produto" @bind-Value="CCP.cotacao" />
 
+                                        <label for="Descricao">Feitio:</label> &nbsp
+                                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Feitio peça" @bind-Value="CCP.feitiopeca" />
+
+                                        <label for="Descricao">Quantidade:</label> &nbsp
+                                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade comprada" @bind-Value="CCP.updatestock" />
+                                    </div>
                                 </div>
-                            }
+
+                            </EditForm>
+                            <div class="m-3 form-group">
+                                <button class="btn btn-primary" @onclick="EditarComposto">Editar</button>
+                            </div>
                         </div>
                     </div>
 
@@ -227,36 +172,33 @@
                             <div class="card-body">
                                 <div class="table-responsive-sm">
                                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                        <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
-                                            <div class="col-sm-12">
-                                                <table class="table table-bordered table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                                    <thead>
-                                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">IdProduto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">IDFornecedor</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Stock</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Cotação</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Preco</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Preço Total</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Ações</th></tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr><th rowspan="1" colspan="1">IdProduto</th><th rowspan="1" colspan="1">IDFornecedor</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Stock</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Cotação</th><th rowspan="1" colspan="1">Preco</th><th rowspan="1" colspan="1">Preço Total</th><th rowspan="1" colspan="1">Ações</th></tr>
-                                                    </tfoot>
-                                                    <tbody>
-                                                        @foreach (var produtos in LCP)
-                                                        {
-                                                            if (!IsVisibleProdutos(produtos))
-                                                                continue;
-                                                            <tr style="height: 1em;">
-                                                                <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@produtos.idproduto">@produtos.idproduto</td>
-                                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idfornecedor">@produtos.idfornecedor</td>
-                                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.descricao">@produtos.descricao</td>
-                                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.updatestock">@produtos.updatestock</td>
-                                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.peso">@produtos.peso</td>
-                                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.cotacao">@produtos.cotacao</td>
-                                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.preco">@produtos.preco</td>
-                                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.custototal">@produtos.custototal</td>
-
-                                                                <td><button @onclick="() => OpenFichaProduto(produtos.idproduto, produtos.linha)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(produtos.linha)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
-                                                            </tr>
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                                <thead>
+                                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">IdProduto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">IDFornecedor</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Stock</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Cotação</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Preco</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Preço Total</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Ações</th></tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr><th rowspan="1" colspan="1">IdProduto</th><th rowspan="1" colspan="1">IDFornecedor</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Stock</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Cotação</th><th rowspan="1" colspan="1">Preco</th><th rowspan="1" colspan="1">Preço Total</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    @foreach (var produtos in LCP)
+                                                    {
+                                                        if (!IsVisibleProdutos(produtos))
+                                                            continue;
+                                                        <tr>
+                                                            <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@produtos.idproduto">@produtos.idproduto</td>
+                                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idfornecedor">@produtos.idfornecedor</td>
+                                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.descricao">@produtos.descricao</td>
+                                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.updatestock">@produtos.updatestock</td>
+                                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.peso">@produtos.peso</td>
+                                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.cotacao">@produtos.cotacao</td>
+                                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.preco">@produtos.preco</td>
+                                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.custototal">@produtos.custototal</td>
+                                                            <td><button @onclick="() => OpenFichaProduto(produtos.idproduto, produtos.linha - 1)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(produtos.linha - 1)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -265,15 +207,13 @@
                     </div>
 
                 </div>
-
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" data-dismiss="modal" class="btn btn-primary">Editar</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary">Fechar</button>
                 </div>
-
+            </div>
             </div>
         </div>
-    </div>
+
 }
 
 
@@ -371,10 +311,9 @@
     bool save = false;
     public string Filter { get; set; }
     bool ProdutoNovo = true;
-
+    ActionResult<CabecalhoCompras> RCCompra = new CabecalhoCompras();
     public int linhaselecionada { get; set; }
     public double custototalsomado { get; set; }
-
 
     protected override async Task OnInitializedAsync()
     {
@@ -385,6 +324,7 @@
         listaTipoDePecas = TPC.GetAll();
         listaTipoProdutos = TPRC.GetAll();
         listaCabecalhoProduto = CAPC.GetAll();
+        LTDC = TCC.GetAll();
     }
 
     public bool IsVisible(CabecalhoCompras compras)
@@ -412,26 +352,31 @@
     public async Task OpenFichaProduto(int idproduto, int linha)
     {
         linhaselecionada = linha;
-        
-        
-            CCP = LCP[linha];
-            dtp = TPRC.Get(CCP.idtipodeproduto);
-            dtdp = TPC.Get(CCP.idtipodepeca);
-            ecp = CPC.Get(CCP.idclassificação);
-            LHS = hStockC.GetAllQuery(CCompra.idcompra, idproduto);
 
-        
+
+        CCP = LCP[linha];
+        dtp = TPRC.Get(CCP.idtipodeproduto);
+        dtdp = TPC.Get(CCP.idtipodepeca);
+        ecp = CPC.Get(CCP.idclassificação);
+        LHS = hStockC.GetAllQuery(CCompra.idcompra, idproduto);
+        Compra = ComprasC.GetOneLine(CCompra.idcompra, CCP.idproduto, linha + 1);
+
 
     }
 
     public void AbrirModal(int id)
     {
+        i++;
         LCP = new List<CabecalhoProdutos>();
         listaCompras = ComprasC.GetAllQuery(id);
+        CCompra = CComprasC.Get(id);
         fornecedores = FC.Get(CCompra.idfornecedor);
+
+
         foreach (var compra in listaCompras)
         {
             CCP = CAPC.Get(compra.idproduto);
+            CCP.linha = i;
             LCP.Add(CCP);
             CCP = new CabecalhoProdutos();
         }
@@ -444,15 +389,6 @@
         showModal = false;
     }
 
-
-    public async Task LoadData(int linha)
-    {
-        CCP = CAPC.Get(LCP[linha - 1].idproduto);
-        ecp = CPC.Get(CCP.idclassificação);
-        dtp = TPRC.Get(CCP.idtipodeproduto);
-        dtdp = TPC.Get(CCP.idtipodepeca);
-    }
-
     public async Task ApagarComposto(int i)
     {
         CCP.stock = CCP.stock - listaCompras[i - 1].quantidade;
@@ -462,206 +398,93 @@
 
     }
 
-
-    public async Task AdicionarComposto()
-    {
-        if (ProdutoNovo)
-        {
-            i++;
-            CCP.idclassificação = ecp.IDClassificacao;
-            CCP.idtipodeproduto = dtp.idtipoproduto;
-            CCP.idtipodepeca = dtdp.idpeca;
-            Compra.quantidade = CCP.stock.Value;
-            CCP.stocktotal = CCP.stock + CCP.updatestock;
-            CCP.stock = CCP.stocktotal;
-            Compra.idproduto = CCP.idproduto;
-            Compra.linha = i;
-            Compra.preco = CCP.preco.Value;
-
-            LCP.Add(CCP);
-            LC.Add(Compra);
-
-        }
-        else
-        {
-            i++;
-            CCP.idclassificação = ecp.IDClassificacao;
-            CCP.idtipodeproduto = dtp.idtipoproduto;
-            CCP.idtipodepeca = dtdp.idpeca;
-            Compra.quantidade = CCP.stock.Value;
-            CCP.stocktotal = CCP.stock + CCP.updatestock;
-            CCP.stock = CCP.stocktotal;
-            Compra.idproduto = CCP.idproduto;
-            Compra.linha = i;
-            Compra.preco = CCP.preco.Value;
-            LCP.Add(CCP);
-            LC.Add(Compra);
-
-        }
-    }
-
     public async Task EditarComposto()
     {
-        if (ProdutoNovo)
+        CCP.idclassificação = ecp.IDClassificacao;
+        CCP.idtipodeproduto = dtp.idtipoproduto;
+        CCP.idtipodepeca = dtdp.idpeca;
+
+        hStock = LHS[CCP.linha - 1];
+
+        hStock.stockinicial = hStock.stockfinal.Value - hStock.stockadicionado;
+
+        if (CCP.stock.HasValue)
         {
-            i++;
-            CCP.idclassificação = ecp.IDClassificacao;
-            CCP.idtipodeproduto = dtp.idtipoproduto;
-            CCP.idtipodepeca = dtdp.idpeca;
-            Compra.quantidade = CCP.stock.Value;
-            CCP.stocktotal = CCP.stock + CCP.updatestock;
-            CCP.stock = CCP.stocktotal;
-            Compra.idproduto = CCP.idproduto;
-            Compra.linha = i;
-            Compra.preco = CCP.preco.Value;
+            CCP.stock = CCP.stock - hStock.stockadicionado;
+            CCP.stockantigo = CCP.stock.GetValueOrDefault();
+        }
 
-            LCP.Add(CCP);
-            LC.Add(Compra);
-
+        if (CCP.updatestock.HasValue)
+        {
+            CCP.stocktotal = CCP.stock.GetValueOrDefault() + CCP.updatestock.Value;
+            Compra.quantidade = CCP.updatestock.GetValueOrDefault();
+            hStock.stockadicionado = CCP.updatestock.Value;
+            hStock.stockfinal = hStock.stockinicial + hStock.stockadicionado;
+        }
+        else if (CCP.peso.HasValue)
+        {
+            CCP.stocktotal = CCP.stock.GetValueOrDefault() + CCP.peso.Value;
         }
         else
         {
-            i++;
-            CCP.idclassificação = ecp.IDClassificacao;
-            CCP.idtipodeproduto = dtp.idtipoproduto;
-            CCP.idtipodepeca = dtdp.idpeca;
-            Compra.quantidade = CCP.stock.Value;
-            CCP.stocktotal = CCP.stock + CCP.updatestock;
-            CCP.stock = CCP.stocktotal;
-            Compra.idproduto = CCP.idproduto;
-            Compra.linha = i;
-            Compra.preco = CCP.preco.Value;
-            LCP.Add(CCP);
-            LC.Add(Compra);
+            js.InvokeVoidAsync("alert", "Impossivel adicionar stock ao produto, o produto foi composto sem stock!");
 
         }
+
+
+
+        if (CCP.stocktotal.HasValue)
+        {
+            CCP.stock = CCP.stocktotal.Value;
+        }
+
+
+
+
+        if (CCP.peso.HasValue && CCP.cotacao.HasValue && CCP.updatestock.HasValue)
+        {
+            CCP.preco = (CCP.peso.Value * CCP.cotacao.Value) + CCP.feitiopeca;
+            CCP.custototal = CCP.preco * CCP.updatestock;
+
+        }
+        else if (CCP.peso.HasValue && CCP.cotacao.HasValue && !CCP.updatestock.HasValue)
+        {
+            CCP.preco = (CCP.peso.Value * CCP.cotacao.Value) + CCP.feitiopeca;
+            CCP.custototal = CCP.preco;
+        }
+        else if (CCP.updatestock.HasValue)
+        {
+            CCP.preco = CCP.feitiopeca;
+            CCP.custototal = CCP.preco * CCP.updatestock;
+        }
+        else
+        {
+            js.InvokeVoidAsync("alert", "Impossivel fazer o preço, o produto foi adicionado sem preço");
+        }
+
+
+
+        if (CCP.preco.HasValue)
+        {
+            Compra.preco = CCP.preco.Value;
+        }
+
+
+        LCP.RemoveAt(CCP.linha -1);
+        LCP.Insert(CCP.linha - 1, CCP);
+        CAPC.Put(CCP.idproduto, CCP);
+        ComprasC.Put(Compra.idcompra, Compra.linha, Compra);
+        hStockC.Put(hStock.id, hStock);
+
     }
 
 
-    public async Task ÉditarCabecalho()
+    public async Task EditarCabecalho()
     {
         CCompra.idfornecedor = fornecedores.idfornecedor;
         CCompra.idtipodecompra = TDC.idtipocompra;
-        CComprasC.Put(CCompra.idcompra, CCompra);
+        RCCompra = CComprasC.Put(CCompra.idcompra, CCompra);
     }
-
-
-
-
-    // Function that creates the product if new and creates also the cabecalhofabrico and fabrico
-    public async Task CriarProduto()
-    {
-        if (LCP.Count != 0)
-        {
-
-            if (CCP.produtonovo)
-            {
-
-                CCompra.idfornecedor = fornecedores.idfornecedor;
-
-                var resultado = CComprasC.Post(CCompra);
-
-                if (LCP.Count > 1)
-                {
-                    for (int i = 0; i < LCP.Count; i++)
-                    {
-                        hStock.idprodutoalterado = LCP[i].idproduto;
-                        hStock.tipo = "Entrada";
-                        hStock.stockinicial = 0;
-                        hStock.stockfinal = hStock.stockinicial + LCP[i].stock.Value;
-                        hStock.datacriacao = DateTime.Now.ToShortDateString();
-                        CAPC.Post(LCP[i]);
-                        LC[i].idcompra = resultado.idcompra;
-
-                        ComprasC.Post(LC[i]);
-                        hStockC.Post(hStock);
-                        hStock = new HistoricoStock();
-
-
-                    }
-
-                }
-                else
-                {
-                    hStock.idprodutoalterado = LCP[i].idproduto;
-                    hStock.tipo = "Entrada";
-                    hStock.stockinicial = 0;
-                    hStock.stockfinal = hStock.stockinicial + LCP[i].stock.Value;
-                    hStock.datacriacao = DateTime.Now.ToShortDateString();
-
-
-                    CAPC.Post(LCP[0]);
-
-                    LC[0].idcompra = resultado.idcompra;
-                    ComprasC.Post(LC[0]);
-                    hStockC.Post(hStock);
-                    hStock = new HistoricoStock();
-
-                }
-
-            }
-            else
-            {
-
-                var resultado = CComprasC.Post(CCompra);
-
-                if (LCP.Count > 1)
-                {
-                    for (int i = 0; i < LCP.Count; i++)
-                    {
-                        hStock.idprodutoalterado = LCP[i].idproduto;
-                        hStock.tipo = "Entrada";
-                        hStock.stockinicial = 0;
-                        hStock.stockfinal = hStock.stockinicial + LCP[i].stock.Value;
-                        hStock.datacriacao = DateTime.Now.ToShortDateString();
-
-                        CAPC.Put(LCP[i].idproduto, LCP[i]);
-
-                        LC[i].idcompra = resultado.idcompra;
-
-                        ComprasC.Post(LC[i]);
-                        hStockC.Post(hStock);
-                        hStock = new HistoricoStock();
-
-                    }
-
-                }
-                else
-                {
-                    hStock.idprodutoalterado = LCP[0].idproduto;
-                    hStock.tipo = "Entrada";
-                    hStock.stockinicial = 0;
-                    hStock.stockfinal = hStock.stockinicial + LCP[0].stock.Value;
-                    hStock.datacriacao = DateTime.Now.ToShortDateString();
-                    CAPC.Put(LCP[0].idproduto, LCP[0]);
-
-                    LC[0].idcompra = resultado.idcompra;
-
-                    ComprasC.Post(LC[0]);
-                    hStockC.Post(hStock);
-                    hStock = new HistoricoStock();
-                }
-
-
-            }
-
-
-
-
-
-        }
-        else
-        {
-            await js.InvokeVoidAsync("alert", "Impossível criar a encomenda, por favor, insira bem os dados da encomenda!");
-        }
-    }
-
-
-
-
-
-
-
 
     // Function that does the selecting in the selected buttons
     public async Task CriarProdutoNovo()
@@ -671,22 +494,6 @@
         CCP.produtonovo = true;
         CCP.produtonovo = true;
     }
-
-
-
-
-
-
-
-    // Function that does the selecting in the selected buttons
-    public async Task UsarProdutoExistente()
-    {
-        CCP = new CabecalhoProdutos();
-        ProdutoNovo = false;
-        CCP.produtonovo = false;
-        CCP.produtonovo = false;
-    }
-
 
     public async Task Apagar(int id)
     {
@@ -706,15 +513,7 @@
         }
     }
 
-    public async Task Update()
-    {
 
-        //CMC.Put(cm.idmodelo, cm);
-        //foreach (var modelos in listaModelos)
-        //{
-        //}
-        //showModal = false;
-    }
 
     private async Task<IEnumerable<Unidades>> ProcurarUnidades(string searchText)
     {

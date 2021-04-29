@@ -75,7 +75,7 @@ namespace GoldYAN.Controller
 
         // PUT api/<ClassificacaoProdutosController>/5
         [HttpPut("{id}")]
-        public ActionResult<CabecalhoCompras> Put(int id, [FromBody] CabecalhoCompras classificacaoProdutos)
+        public ActionResult<CabecalhoCompras> Put(int id, [FromBody] CabecalhoCompras compras)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
@@ -84,6 +84,12 @@ namespace GoldYAN.Controller
 
                 if (recLido != null)
                 {
+
+                    recLido.idfornecedor = compras.idfornecedor;
+                    recLido.idtipodecompra = compras.idtipodecompra;
+                    recLido.numero = compras.numero;
+                    recLido.datacriacao = compras.datacriacao;
+                    recLido.apontamentos = compras.apontamentos;
 
 
                     bool updated = DBConn.Update(recLido);

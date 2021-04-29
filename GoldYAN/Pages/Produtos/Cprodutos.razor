@@ -147,7 +147,7 @@
         }
         else
         {
-            <div class="m-3 form-group">
+            @*<div class="m-3 form-group">
                     <div class="form-inline">
                         <label for="nome">Produtos:</label>
                         <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Produto">
@@ -157,7 +157,7 @@
                             <ResultTemplate>@context.idproduto + @context.descricao</ResultTemplate>
                         </BlazoredTypeahead>
                     </div>
-                </div>
+                </div>*@
         }
 
         <EditForm Model="@cp" OnValidSubmit="AdicionarComposto">

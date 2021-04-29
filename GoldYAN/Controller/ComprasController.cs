@@ -63,6 +63,22 @@ namespace GoldYAN.Controller
             return LerClassificacoes;
         }
 
+
+
+        public Compras GetOneLine(int id, int idp, int i)
+        {
+            string query = $"SELECT * FROM `compras` WHERE idcompra = {id} AND idproduto = {idp} AND linha = {i}";
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.QueryFirstOrDefault<Compras>(query);
+                return res;
+            }
+
+        }
+
+
+
         // POST api/<ClassificacaoProdutosController>
         [HttpPost]
         public Compras Post([FromBody] Compras classificacaoProdutos)
@@ -80,16 +96,18 @@ namespace GoldYAN.Controller
 
         // PUT api/<ClassificacaoProdutosController>/5
         [HttpPut("{id}")]
-        public ActionResult<Compras> Put(int id, [FromBody] Compras classificacaoProdutos)
+        public ActionResult<Compras> Put(int id, int linha, [FromBody] Compras compras)
         {
+            string getsql = $"SELECT* FROM `compras` WHERE idcompra = {id} AND linha = {linha};";
+
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-
-                var recLido = DBConn.Get<Compras>(id);
+                var recLido = DBConn.QuerySingle<Compras>(getsql);
 
                 if (recLido != null)
                 {
-
+                    recLido.preco = compras.preco;
+                    recLido.quantidade = compras.quantidade;
 
                     bool updated = DBConn.Update(recLido);
 

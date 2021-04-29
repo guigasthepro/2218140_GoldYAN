@@ -102,6 +102,9 @@ namespace GoldYAN.Controller
                     recLido.idmodelo = familiaProdutos.idmodelo;
                     recLido.descricao = familiaProdutos.descricao;
                     recLido.preco = familiaProdutos.preco;
+                    recLido.cotacao = familiaProdutos.cotacao;
+                    recLido.peso = familiaProdutos.peso;
+                    recLido.feitiopeca = familiaProdutos.feitiopeca;
                     recLido.stock = familiaProdutos.stock;
 
                     bool updated = DBConn.Update(recLido);
