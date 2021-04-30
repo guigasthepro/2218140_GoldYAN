@@ -38,7 +38,6 @@ namespace GoldYAN.Controller
         {
             LerBancos = new List<Bancos>();
 
-
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
                 var res = DBConn.GetAll<Bancos>().ToList();

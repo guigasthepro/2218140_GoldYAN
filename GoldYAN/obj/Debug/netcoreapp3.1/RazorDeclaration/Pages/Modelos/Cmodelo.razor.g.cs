@@ -12,126 +12,126 @@ namespace GoldYAN.Pages.Modelos
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 1 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 2 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 3 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 4 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 5 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 6 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 7 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 8 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Mvc;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 9 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 10 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 11 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 12 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Blazored.Typeahead;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 15 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.IO;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 16 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using BlazorInputFile;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
+#line 3 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
 using GoldYAN.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
+#line 4 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
 using GoldYAN.Controller;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
+#line 5 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
 using System;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
+#line 6 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
            [Authorize]
 
 #line default
@@ -146,12 +146,12 @@ using System;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 267 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
+#line 275 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
        
     // Invoking classes
     Data.Servicos servicos = new Servicos();
     Data.Moldes mlds = new Moldes();
-    Data.Produtos produtos = new Produtos();
+    Data.CabecalhoProdutos produtos = new CabecalhoProdutos();
     Data.CabecalhosModelos cm = new CabecalhosModelos();
     Data.Modelos m = new Modelos();
     Data.Colaboradores cl = new Colaboradores();
@@ -162,7 +162,7 @@ using System;
 
     //Invoking lists
     List<Servicos> ListaServicos = new List<Servicos>();
-    List<Produtos> listaProdutos = new List<Produtos>();
+    List<CabecalhoProdutos> listaProdutos = new List<CabecalhoProdutos>();
     List<Moldes> listaMoldes = new List<Moldes>();
     List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
     List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
@@ -176,6 +176,7 @@ using System;
     bool ReadonlyCabecalho = true;
     int i;
     string formadepesquisa;
+    bool save = false;
 
 
     protected override async Task OnInitializedAsync()
@@ -190,6 +191,7 @@ using System;
         listaTipoDePecas = TPC.GetAll();
         listaTipoProdutos = TPRC.GetAll();
         ListaServicos = SC.GetAll();
+        listaProdutos = CAPC.GetAll();
         servicos.idservico = 0;
     }
 
@@ -208,9 +210,14 @@ using System;
         return await Task.FromResult(ListaServicos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
-    private async Task<IEnumerable<TipoProduto>> ProcurarProdutos(string searchText)
+    private async Task<IEnumerable<TipoProduto>> ProcurarTipoProdutos(string searchText)
     {
         return await Task.FromResult(listaTipoProdutos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<CabecalhoProdutos>> ProcurarProdutos(string searchText)
+    {
+        return await Task.FromResult(listaProdutos.Where(h => h.idproduto.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
     private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
@@ -230,6 +237,75 @@ using System;
     //}
 
 
+    public async Task EditarLista()
+    {
+        if (mlds.idmolde != 0)
+        {
+            m.idmolde = mlds.idmolde;
+            m.descricao = mlds.descricao;
+            m.codigo = mlds.codigo;
+            m.idcolaborador = cl.idcolaborador;
+
+            m.preco = cl.valor;
+
+            listaModelos.RemoveAt(m.linha);
+            listaModelos.Insert(m.linha,m);
+
+            m = new Modelos();
+            servicos = new Servicos();
+            produtos = new CabecalhoProdutos();
+            mlds = new Moldes();
+            cl = new Colaboradores();
+
+            save = false;
+
+
+        }
+        else if (servicos.idservico != 0)
+        {
+            m.preco = cl.valor;
+            m.idcolaborador = cl.idcolaborador;
+            m.idservico = servicos.idservico;
+            m.descricao = servicos.descricao;
+            m.codigo = servicos.codigo;
+
+            listaModelos.RemoveAt(m.linha);
+            listaModelos.Insert(m.linha, m);
+
+            m = new Modelos();
+            servicos = new Servicos();
+            produtos = new CabecalhoProdutos();
+            mlds = new Moldes();
+            cl = new Colaboradores();
+
+            save = false;
+
+        }
+        else if (produtos.idproduto != 0)
+        {
+            m.preco = cl.valor;
+            m.idcolaborador = cl.idcolaborador;
+            m.idproduto = produtos.idproduto;
+            m.descricao = produtos.descricao;
+
+            listaModelos.RemoveAt(m.linha);
+            listaModelos.Insert(m.linha, m);
+
+            m = new Modelos();
+            servicos = new Servicos();
+            produtos = new CabecalhoProdutos();
+            mlds = new Moldes();
+            cl = new Colaboradores();
+
+            save = false;
+
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
+        }
+    }
+
     private async Task AdicionarLista()
     {
         if (mlds.idmolde != 0)
@@ -248,7 +324,7 @@ using System;
 
             m = new Modelos();
             servicos = new Servicos();
-            produtos = new Produtos();
+            produtos = new CabecalhoProdutos();
             mlds = new Moldes();
             cl = new Colaboradores();
 
@@ -270,7 +346,7 @@ using System;
 
             m = new Modelos();
             servicos = new Servicos();
-            produtos = new Produtos();
+            produtos = new CabecalhoProdutos();
             mlds = new Moldes();
             cl = new Colaboradores();
 
@@ -290,7 +366,7 @@ using System;
 
             m = new Modelos();
             servicos = new Servicos();
-            produtos = new Produtos();
+            produtos = new CabecalhoProdutos();
             mlds = new Moldes();
             cl = new Colaboradores();
 
@@ -327,7 +403,7 @@ using System;
 
             m = new Modelos();
             servicos = new Servicos();
-            produtos = new Produtos();
+            produtos = new CabecalhoProdutos();
             mlds = new Moldes();
             cl = new Colaboradores();
             cm = new CabecalhosModelos();
@@ -340,8 +416,46 @@ using System;
         }
         else
         {
-            await js.InvokeVoidAsync("alert", "Impossível criar a encomenda, por favor, insira bem os dados da encomenda!");
+            await js.InvokeVoidAsync("alert", "Impossível criar o modelo, por favor, insira bem os dados do modelo!");
         }
+    }
+
+    public async Task AbrirModal(int linha)
+    {
+        m = listaModelos[linha - 1];
+
+        if (mlds.idmolde != 0)
+        {
+            if (m.idmolde.HasValue)
+            {
+                mlds = MoldesController.Get(m.idmolde.Value);
+            }
+        }
+        else if (servicos.idservico != 0)
+        {
+            if (m.idservico.HasValue)
+            {
+                servicos = SC.Get(m.idservico.Value);
+            }
+        }
+        else if (produtos.idproduto != 0)
+        {
+            if (m.idproduto.HasValue)
+            {
+                produtos = CAPC.Get(m.idproduto.Value);
+            }
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
+        }
+
+        save = true;
+    }
+
+    public async Task ApagarComposto(int linha)
+    {
+        listaModelos.RemoveAt(linha -1);
     }
 
 #line default

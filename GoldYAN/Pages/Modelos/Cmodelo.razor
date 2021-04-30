@@ -30,7 +30,7 @@
         <div class="m-3 form-group ">
             <div class="form-inline">
                 <label for="nome" class="">Tipo de Produto:</label>
-                <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo de produto">
+                <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarTipoProdutos" DisableClear="true" EnableDropDown="true"  oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo de produto">
                     <SelectedTemplate>
                         @context.idtipoproduto (Desc: @context.descricao)
                     </SelectedTemplate>
@@ -42,7 +42,7 @@
         <div class="m-3 form-group ">
             <div class="form-inline">
                 <label for="nome" class="">Tipo de Peça:</label>
-                <BlazoredTypeahead class="" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar tipo de peça">
+                <BlazoredTypeahead class="" SearchMethod="ProcurarPecas" DisableClear="true" EnableDropDown="true"  oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar tipo de peça">
                     <SelectedTemplate>
                         @context.codigo (Desc: @context.descricao)
                     </SelectedTemplate>
@@ -122,9 +122,9 @@
                     <label for="nome">Produtos:</label>
                     <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Proutos">
                         <SelectedTemplate>
-                            @context.idproduto
+                            @context.idproduto + @context.descricao
                         </SelectedTemplate>
-                        <ResultTemplate>@context.idtipoproduto + @context.descricao</ResultTemplate>
+                        <ResultTemplate>@context.idproduto + @context.descricao</ResultTemplate>
                     </BlazoredTypeahead>
                 </div>
             </div>
@@ -223,8 +223,7 @@
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@cl.valor</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
-
-                                        <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                        <td><button class="btn btn-primary btn-sm" @onclick="() => AbrirModal(modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => ApagarComposto(modelo.linha)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
 
 
                                     }
@@ -239,7 +238,7 @@
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@cl.valor">@cl.valor</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
-                                        <td><button class="btn btn-primary btn-sm" @onclick="AbrirModal(modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="ApagarComposto(modelo.linha)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                        <td><button class="btn btn-primary btn-sm" @onclick="() => AbrirModal(modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => ApagarComposto(modelo.linha)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
 
                                     }
                                     else
@@ -253,7 +252,7 @@
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@cl.valor">@cl.valor</td>
                                         <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
-                                        <td><button class="btn btn-primary btn-sm" @onclick="AbrirModal(modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="ApagarComposto(modelo.linha)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                        <td><button class="btn btn-primary btn-sm" @onclick="() => AbrirModal(modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => ApagarComposto(modelo.linha)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
 
                                     }
 
@@ -277,7 +276,7 @@
     // Invoking classes
     Data.Servicos servicos = new Servicos();
     Data.Moldes mlds = new Moldes();
-    Data.Produtos produtos = new Produtos();
+    Data.CabecalhoProdutos produtos = new CabecalhoProdutos();
     Data.CabecalhosModelos cm = new CabecalhosModelos();
     Data.Modelos m = new Modelos();
     Data.Colaboradores cl = new Colaboradores();
@@ -288,7 +287,7 @@
 
     //Invoking lists
     List<Servicos> ListaServicos = new List<Servicos>();
-    List<Produtos> listaProdutos = new List<Produtos>();
+    List<CabecalhoProdutos> listaProdutos = new List<CabecalhoProdutos>();
     List<Moldes> listaMoldes = new List<Moldes>();
     List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
     List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
@@ -317,6 +316,7 @@
         listaTipoDePecas = TPC.GetAll();
         listaTipoProdutos = TPRC.GetAll();
         ListaServicos = SC.GetAll();
+        listaProdutos = CAPC.GetAll();
         servicos.idservico = 0;
     }
 
@@ -335,9 +335,14 @@
         return await Task.FromResult(ListaServicos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
-    private async Task<IEnumerable<TipoProduto>> ProcurarProdutos(string searchText)
+    private async Task<IEnumerable<TipoProduto>> ProcurarTipoProdutos(string searchText)
     {
         return await Task.FromResult(listaTipoProdutos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<CabecalhoProdutos>> ProcurarProdutos(string searchText)
+    {
+        return await Task.FromResult(listaProdutos.Where(h => h.idproduto.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
     private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
@@ -357,6 +362,75 @@
     //}
 
 
+    public async Task EditarLista()
+    {
+        if (mlds.idmolde != 0)
+        {
+            m.idmolde = mlds.idmolde;
+            m.descricao = mlds.descricao;
+            m.codigo = mlds.codigo;
+            m.idcolaborador = cl.idcolaborador;
+
+            m.preco = cl.valor;
+
+            listaModelos.RemoveAt(m.linha);
+            listaModelos.Insert(m.linha,m);
+
+            m = new Modelos();
+            servicos = new Servicos();
+            produtos = new CabecalhoProdutos();
+            mlds = new Moldes();
+            cl = new Colaboradores();
+
+            save = false;
+
+
+        }
+        else if (servicos.idservico != 0)
+        {
+            m.preco = cl.valor;
+            m.idcolaborador = cl.idcolaborador;
+            m.idservico = servicos.idservico;
+            m.descricao = servicos.descricao;
+            m.codigo = servicos.codigo;
+
+            listaModelos.RemoveAt(m.linha);
+            listaModelos.Insert(m.linha, m);
+
+            m = new Modelos();
+            servicos = new Servicos();
+            produtos = new CabecalhoProdutos();
+            mlds = new Moldes();
+            cl = new Colaboradores();
+
+            save = false;
+
+        }
+        else if (produtos.idproduto != 0)
+        {
+            m.preco = cl.valor;
+            m.idcolaborador = cl.idcolaborador;
+            m.idproduto = produtos.idproduto;
+            m.descricao = produtos.descricao;
+
+            listaModelos.RemoveAt(m.linha);
+            listaModelos.Insert(m.linha, m);
+
+            m = new Modelos();
+            servicos = new Servicos();
+            produtos = new CabecalhoProdutos();
+            mlds = new Moldes();
+            cl = new Colaboradores();
+
+            save = false;
+
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
+        }
+    }
+
     private async Task AdicionarLista()
     {
         if (mlds.idmolde != 0)
@@ -375,7 +449,7 @@
 
             m = new Modelos();
             servicos = new Servicos();
-            produtos = new Produtos();
+            produtos = new CabecalhoProdutos();
             mlds = new Moldes();
             cl = new Colaboradores();
 
@@ -397,7 +471,7 @@
 
             m = new Modelos();
             servicos = new Servicos();
-            produtos = new Produtos();
+            produtos = new CabecalhoProdutos();
             mlds = new Moldes();
             cl = new Colaboradores();
 
@@ -417,7 +491,7 @@
 
             m = new Modelos();
             servicos = new Servicos();
-            produtos = new Produtos();
+            produtos = new CabecalhoProdutos();
             mlds = new Moldes();
             cl = new Colaboradores();
 
@@ -454,7 +528,7 @@
 
             m = new Modelos();
             servicos = new Servicos();
-            produtos = new Produtos();
+            produtos = new CabecalhoProdutos();
             mlds = new Moldes();
             cl = new Colaboradores();
             cm = new CabecalhosModelos();
@@ -474,6 +548,39 @@
     public async Task AbrirModal(int linha)
     {
         m = listaModelos[linha - 1];
+
+        if (mlds.idmolde != 0)
+        {
+            if (m.idmolde.HasValue)
+            {
+                mlds = MoldesController.Get(m.idmolde.Value);
+            }
+        }
+        else if (servicos.idservico != 0)
+        {
+            if (m.idservico.HasValue)
+            {
+                servicos = SC.Get(m.idservico.Value);
+            }
+        }
+        else if (produtos.idproduto != 0)
+        {
+            if (m.idproduto.HasValue)
+            {
+                produtos = CAPC.Get(m.idproduto.Value);
+            }
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
+        }
+
+        save = true;
+    }
+
+    public async Task ApagarComposto(int linha)
+    {
+        listaModelos.RemoveAt(linha -1);
     }
 }
 
