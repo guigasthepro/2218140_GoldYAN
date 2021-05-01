@@ -22,11 +22,11 @@
                     <EditForm Model="@updateP" OnValidSubmit="@Update">
                         <div class="form-group m-3 p-1">
                             <label for="cp">Codigo Profissão:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="cp" placeholder="Codigo Profissão" @bind-Value="updateP.codigo" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="cp" placeholder="Codigo Profissão" @bind-Value="updateP.codigo" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="nome">Nome:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="nome" placeholder="Nome Profissão" @bind-Value="updateP.nome" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="nome" placeholder="Nome Profissão" @bind-Value="updateP.nome" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -56,11 +56,11 @@
                     <EditForm Model="@criarP" OnValidSubmit="@Criar">
                         <div class="form-group m-3 p-1">
                             <label for="cp">Codigo Profissão:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="cp" placeholder="Código Profissão" @bind-Value="criarP.codigo" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="cp" placeholder="Código Profissão" @bind-Value="criarP.codigo" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="nome">Nome:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="nome" placeholder="Nome Profissão" @bind-Value="criarP.nome" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="nome" placeholder="Nome Profissão" @bind-Value="criarP.nome" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -105,7 +105,7 @@
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@profissao.idprofissao">@profissao.idprofissao</td>
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@profissao.codigo">@profissao.codigo</td>
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@profissao.nome">@profissao.nome</td>
-                                                    <td><button class="btn btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(profissao.idprofissao)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                    <td><button class="btn btn-sm btn-primary" @onclick="() => ModalShow(profissao.idprofissao)" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(profissao.idprofissao)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
 
                                                 </tr>
                                             }
@@ -173,6 +173,8 @@
     {
         VP.Put(updateP.idprofissao, updateP);
         showModal = false;
+        OnInitializedAsync();
+
     }
 
     public async Task Criar()
@@ -186,8 +188,9 @@
 
 
 
-    void ModalShow()
+    void ModalShow(int id)
     {
+        updateP = VP.Get(id);
         showModal = true;
     }
     void ModalCancel()

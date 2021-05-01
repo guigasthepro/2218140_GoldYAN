@@ -21,31 +21,31 @@
                     <EditForm Model="@updateFP" OnValidSubmit="@Update">
                         <div class="form-group m-3 p-1">
                             <label for="idu">ID da Familia:</label>
-                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" class="w-25 form-control" id="idu" placeholder="ID da Familia" @bind-Value="updateFP.idunidade" />
+                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" class="w-50 form-control" id="idu" placeholder="ID da Familia" @bind-Value="updateFP.idunidade" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="tipou">Tipo:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="tipou" placeholder="Tipo de Famiia" @bind-Value="updateFP.tipo" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="tipou" placeholder="Tipo de Famiia" @bind-Value="updateFP.tipo" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="codigo">Codigo:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="codigo" placeholder="Codigo da unidade" @bind-Value="updateFP.codigo" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="codigo" placeholder="Codigo da unidade" @bind-Value="updateFP.codigo" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="nf">Nome:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="nf" placeholder="Nome da Familia" @bind-Value="updateFP.nome" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="nf" placeholder="Nome da Familia" @bind-Value="updateFP.nome" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="df">Descrição:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="df" placeholder="Descrição Familia" @bind-Value="updateFP.descricao" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="df" placeholder="Descrição Familia" @bind-Value="updateFP.descricao" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="eqf">Descrição EQ:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="eqf" placeholder="Descrição EQ Familia" @bind-Value="updateFP.descricaoeq" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="eqf" placeholder="Descrição EQ Familia" @bind-Value="updateFP.descricaoeq" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="tf">Toque:</label>
-                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" class="w-25 form-control" id="tf" placeholder="Toque Familia" @bind-Value="updateFP.toque" />
+                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" class="w-50 form-control" id="tf" placeholder="Toque Familia" @bind-Value="updateFP.toque" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -75,27 +75,27 @@
                     <EditForm Model="@criarFP" OnValidSubmit="@Update">
                         <div class="form-group m-3 p-1">
                             <label for="idu">ID da Familia:</label>
-                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" class="w-25 form-control" id="idu" placeholder="ID da Familia" @bind-Value="criarFP.idunidade" />
+                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" class="w-50 form-control" id="idu" placeholder="ID da Familia" @bind-Value="criarFP.idunidade" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="tipou">Tipo:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="tipou" placeholder="Tipo de Famiia" @bind-Value="criarFP.tipo" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="tipou" placeholder="Tipo de Famiia" @bind-Value="criarFP.tipo" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="codigo">Codigo:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="codigo" placeholder="Codigo da unidade" @bind-Value="criarFP.codigo" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="codigo" placeholder="Codigo da unidade" @bind-Value="criarFP.codigo" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="nf">Nome:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="nf" placeholder="Nome da Familia" @bind-Value="criarFP.nome" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="nf" placeholder="Nome da Familia" @bind-Value="criarFP.nome" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="df">Descrição:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="df" placeholder="Descrição Familia" @bind-Value="criarFP.descricao" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="df" placeholder="Descrição Familia" @bind-Value="criarFP.descricao" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="eqf">Descrição EQ:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="eqf" placeholder="Descrição EQ Familia" @bind-Value="criarFP.descricaoeq" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="eqf" placeholder="Descrição EQ Familia" @bind-Value="criarFP.descricaoeq" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="tf">Toque:</label>
@@ -151,7 +151,7 @@
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@fp.descricao">@fp.descricao</td>
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@fp.descricaoeq">@fp.descricaoeq</td>
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@fp.toque">@fp.toque</td>
-                                                    <td><button class="btn btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(fp.idfproduto)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                    <td><button class="btn btn-sm btn-primary" @onclick="() => ModalShow(fp.idfproduto)" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(fp.idfproduto)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
                                                 </tr>
                                             }
                                         </tbody>
@@ -223,6 +223,8 @@
     {
         VFP.Put(updateFP.idfproduto, updateFP);
         showModal = false;
+        OnInitializedAsync();
+
     }
 
     public async Task Criar()
@@ -235,8 +237,9 @@
     }
 
 
-    void ModalShow()
+    void ModalShow(int id)
     {
+        updateFP = VFP.Get(id);
         showModal = true;
     }
     void ModalCancel()

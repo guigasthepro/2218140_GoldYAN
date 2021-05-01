@@ -12,6 +12,5 @@ namespace GoldYAN.Data
         public string telefone { get; set; }
         public string email { get; set; }
         public double valor  { get; set; }
-        public string servicoassociado { get; set; }
     }
 }

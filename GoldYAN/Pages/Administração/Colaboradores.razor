@@ -1,0 +1,234 @@
+﻿@page "/colaboradores"
+
+
+
+
+
+@if (showModal)
+{
+    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Atualizar Informação</h4>
+                    <button type="button" class="close" @onclick="FecharModal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <EditForm Model="@ecolaboradores" OnValidSubmit="@EditarColaborador">
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Codigo:</label>
+                            <InputText autocomplete="false" class="w-50 form-control" id="telefone" placeholder="Descrição" @bind-Value="ecolaboradores.codigo" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Nome do Colaborador:</label>
+                            <InputText autocomplete="false" class="w-50 form-control" id="telefone" placeholder="Descrição" @bind-Value="ecolaboradores.descricao" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="codigo">Telefone do Colaborador:</label>
+                            <InputText autocomplete="false" class="w-50 form-control" style="-moz-appearance: textfield;" id="codigo" placeholder="Codigo classificação" @bind-Value="ecolaboradores.telefone" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Email do Colaborador:</label>
+                            <InputText autocomplete="false" class="w-50 form-control" id="telefone" placeholder="Codigo AT" @bind-Value="ecolaboradores.email" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="email">Custo hora:</label>
+                            <InputNumber autocomplete="false" class="w-50 form-control" style="-moz-appearance: textfield;" id="email" placeholder="Inventário" @bind-Value="ecolaboradores.valor" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Atualizar</button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (showModal2)
+{
+    <div class="modal fade show" id="myModal" style="display:block; background-color:rgba(128, 128, 128, 0.5);" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Inserir Novo Colaborador</h4>
+                    <button type="button" class="close" @onclick="FecharModal2">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <EditForm Model="@ccolaboradores" OnValidSubmit="@CriarColaborador">
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Codigo:</label>
+                            <InputText autocomplete="false" class="w-50 form-control" id="telefone" placeholder="Descrição" @bind-Value="ccolaboradores.codigo" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Nome do Colaborador:</label>
+                            <InputText autocomplete="false" class="w-50 form-control" id="telefone" placeholder="Descrição" @bind-Value="ccolaboradores.descricao" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="codigo">Telefone do Colaborador:</label>
+                            <InputText autocomplete="false" class="w-50 form-control" style="-moz-appearance: textfield;" id="codigo" placeholder="Codigo classificação" @bind-Value="ccolaboradores.telefone" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="telefone">Email do Colaborador:</label>
+                            <InputText autocomplete="false" class="w-50 form-control" id="telefone" placeholder="Codigo AT" @bind-Value="ccolaboradores.email" />
+                        </div>
+                        <div class="form-group m-3 p-1">
+                            <label for="email">Custo hora:</label>
+                            <InputNumber autocomplete="false" class="w-50 form-control" style="-moz-appearance: textfield;" id="email" placeholder="Inventário" @bind-Value="ccolaboradores.valor" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Inserir</button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+<AuthorizeView Roles="Admin, Administração">
+    <Authorized>
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Listagem de Serviços</h6> <button type="submit" @onclick="@AbrirModal2" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i>&nbsp;Adicionar Colaborador</button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-sm">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Pesquisar Encomenda:<input type="search" @bind="Filter" @bind:event="oninput" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">IDEncomenda</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">IDCliente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Data</th></tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr><th rowspan="1" colspan="1">IDEncomenda</th><th rowspan="1" colspan="1">IDCliente</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Data</th></tr>
+                                        </tfoot>
+                                        <tbody>
+                                            @foreach (var colaboradores in listaColaboradores)
+                                            {
+                                                if (!IsVisible(colaboradores))
+                                                    continue;
+
+                                            <tr style="height: 1em;">
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.idcolaborador">@colaboradores.idcolaborador</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.codigo">@colaboradores.codigo</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.telefone">@colaboradores.telefone</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.email">@colaboradores.email</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.valor">@colaboradores.valor</td>
+                                                <td><button class="btn btn-sm btn-primary" @onclick="() => AbrirModal(colaboradores.idcolaborador)" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(colaboradores.idcolaborador)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+
+                                            </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <h1>Não tem acesso a esta página</h1>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+
+    List<Data.Colaboradores> listaColaboradores = new List<Data.Colaboradores>();
+    Data.Colaboradores ecolaboradores = new Data.Colaboradores();
+    Data.Colaboradores ccolaboradores = new Data.Colaboradores();
+    bool showModal = false;
+    bool showModal2 = false;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        listaColaboradores = colaboradoresController.GetAll();
+    }
+
+    void AbrirModal(int id)
+    {
+        ecolaboradores = colaboradoresController.Get(id);
+        showModal = true;
+    }
+    void FecharModal()
+    {
+        showModal = false;
+    }
+    void AbrirModal2()
+    {
+        showModal2 = true;
+    }
+    public async Task FecharModal2()
+    {
+        showModal2 = false;
+    }
+
+    public async Task CriarColaborador()
+    {
+        colaboradoresController.Post(ccolaboradores);
+        showModal = false;
+    }
+
+    public async Task EditarColaborador()
+    {
+        colaboradoresController.Put(ecolaboradores.idcolaborador, ecolaboradores);
+        showModal = false;
+
+    }
+
+    public string Filter { get; set; }
+
+    public bool IsVisible(Data.Colaboradores colaboradores)
+    {
+        if (string.IsNullOrEmpty(Filter))
+            return true;
+
+        if (colaboradores.idcolaborador.ToString().Contains(Filter) || colaboradores.email.ToString().Contains(Filter) || colaboradores.telefone.ToString().Contains(Filter))
+            return true;
+
+        return false;
+    }
+
+    public async Task Apagar(int id)
+    {
+
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            string message = colaboradoresController.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+            {
+                await js.InvokeVoidAsync("alert", @message);
+            }
+        }
+    }
+
+}

@@ -22,7 +22,7 @@
                     <EditForm Model="@updateCP" OnValidSubmit="@Update">
                         <div class="form-group m-3 p-1">
                             <label for="descricao">Descrição:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="descricao" placeholder="Nome Localização" @bind-Value="updateCP.desig_postal" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="descricao" placeholder="Nome Localização" @bind-Value="updateCP.desig_postal" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -52,7 +52,7 @@
                     <EditForm Model="@criarCP" OnValidSubmit="@Criar">
                         <div class="form-group m-3 p-1">
                             <label for="descricao">Descrição:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="descricao" placeholder="Nome Localização" @bind-Value="criarCP.desig_postal" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="descricao" placeholder="Nome Localização" @bind-Value="criarCP.desig_postal" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -98,7 +98,7 @@
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@cp.num_cod_postal">@cp.num_cod_postal</td>
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@cp.ext_cod_postal">@cp.ext_cod_postal</td>
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@cp.desig_postal">@cp.desig_postal</td>
-                                                    <td><button class="btn btn-sm btn-primary" @onclick="@ModalShow" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(cp.idcodigopostal)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                    <td><button class="btn btn-sm btn-primary" @onclick="() => ModalShow(cp.idcodigopostal)" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(cp.idcodigopostal)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
                                                 </tr>
                                             }
                                         </tbody>
@@ -166,6 +166,8 @@
     {
         VCP.Put(updateCP.idcodigopostal, updateCP);
         showModal = false;
+        OnInitializedAsync();
+
     }
 
     public async Task Criar()
@@ -178,8 +180,9 @@
     }
 
 
-    void ModalShow()
+    void ModalShow(int id)
     {
+        updateCP = VCP.Get(id);
         showModal = true;
     }
     void ModalCancel()

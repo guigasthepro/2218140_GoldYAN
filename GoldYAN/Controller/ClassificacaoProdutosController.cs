@@ -88,7 +88,7 @@ namespace GoldYAN.Controller
                     recLido.codigo = classificacaoProdutos.codigo;
                     recLido.codigoat = classificacaoProdutos.codigoat;
                     recLido.descricao = classificacaoProdutos.descricao;
-                    recLido.inventario = classificacaoProdutos.inventario;
+                    recLido.tirardoinventario = classificacaoProdutos.tirardoinventario;
 
 
                     bool updated = DBConn.Update(recLido);

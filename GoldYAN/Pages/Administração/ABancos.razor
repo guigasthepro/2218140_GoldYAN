@@ -23,11 +23,11 @@
                     <EditForm Model="@updateBanco" OnValidSubmit="@Update">
                         <div class="form-group m-3 p-1">
                             <label for="codigobanco">Codigo Banco:</label>
-                            <InputText autocomplete="false"  class="w-25 form-control" id="codigobanco" placeholder="Codigo do Banco" @bind-Value="updateBanco.codigobanco" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="codigobanco" placeholder="Codigo do Banco" @bind-Value="updateBanco.codigobanco" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="email">Nome:</label>
-                            <InputText autocomplete="false"  class="w-25 form-control" id="email" placeholder="Nome do Banco" @bind-Value="updateBanco.nome" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="email" placeholder="Nome do Banco" @bind-Value="updateBanco.nome" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -57,11 +57,11 @@
                     <EditForm Model="@criarBanco" OnValidSubmit="@Criar">
                         <div class="form-group m-3 p-1">
                             <label for="codigobanco">Codigo Banco:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="codigobanco" placeholder="Codigo do Banco" @bind-Value="criarBanco.codigobanco" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="codigobanco" placeholder="Codigo do Banco" @bind-Value="criarBanco.codigobanco" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="email">Nome:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="email" placeholder="Nome do Banco" @bind-Value="criarBanco.nome" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="email" placeholder="Nome do Banco" @bind-Value="criarBanco.nome" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -111,7 +111,7 @@
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@banco.idbanco">@banco.idbanco</td>
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@banco.codigobanco">@banco.codigobanco</td>
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@banco.nome">@banco.nome</td>
-                                                    <td><button class="btn btn-primary btn-sm" @onclick="@ModalShow" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => Apagar(banco.idbanco)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                    <td><button class="btn btn-primary btn-sm" @onclick="() => ModalShow(banco.idbanco)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => Apagar(banco.idbanco)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
                                                 </tr>
                                             }
                                         </tbody>
@@ -175,6 +175,7 @@
     {
         VB.Put(updateBanco.idbanco, updateBanco);
         showModal = false;
+        OnInitializedAsync();
     }
 
     public async Task Criar()
@@ -187,8 +188,9 @@
     }
 
 
-    void ModalShow()
+    public async Task ModalShow(int id)
     {
+        updateBanco = VB.Get(id);
         showModal = true;
     }
     void ModalCancel()

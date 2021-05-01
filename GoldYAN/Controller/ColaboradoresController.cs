@@ -72,6 +72,33 @@ namespace GoldYAN.Controller
             }
         }
 
+        [HttpPut("{id}")]
+        public ActionResult<Colaboradores> Put(int id, [FromBody] Colaboradores colaboradores)
+        {
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+
+                var recLido = DBConn.Get<Colaboradores>(id);
+
+                if (recLido != null)
+                {
+                    recLido.descricao = colaboradores.descricao;
+                    recLido.telefone = colaboradores.telefone;
+                    recLido.email = colaboradores.email;
+                    recLido.valor = colaboradores.valor;
+                    recLido.codigo = colaboradores.codigo;
+
+                    bool updated = DBConn.Update(recLido);
+
+                    return Ok(recLido);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+        }
+
         // DELETE api/<CodigoPostalController>/5
         [HttpDelete("{id}")]
         public string Delete(int id)

@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace GoldYAN.Pages.Clientes
+namespace GoldYAN.Pages.Administração
 {
     #line hidden
     using System;
@@ -97,6 +97,20 @@ using Blazored.Typeahead;
 #line hidden
 #nullable disable
 #nullable restore
+#line 13 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+using GoldYAN.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+using GoldYAN.Controller;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 15 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.IO;
 
@@ -110,29 +124,8 @@ using BlazorInputFile;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 2 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
-using GoldYAN.Controller;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
-using GoldYAN.Data;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 5 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
-           [Authorize]
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/vclientes")]
-    public partial class Vclientes : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/colaboradores")]
+    public partial class Colaboradores : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -140,37 +133,58 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 138 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
+#line 157 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Colaboradores.razor"
        
 
 
-    List<Clientes> VCS = new List<Clientes>();
-
-    Data.Clientes EClientes = new Clientes();
-    public string Filter { get; set; }
+    List<Data.Colaboradores> listaColaboradores = new List<Data.Colaboradores>();
+    Data.Colaboradores ecolaboradores = new Data.Colaboradores();
+    Data.Colaboradores ccolaboradores = new Data.Colaboradores();
     bool showModal = false;
+    bool showModal2 = false;
 
-    public string pesquisa { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        VCS = VC.Get();
-        StateHasChanged();
-
+        listaColaboradores = colaboradoresController.GetAll();
     }
 
-    public async Task Pesquisar(string valor)
+    void AbrirModal(int id)
     {
-        VCS = VC.PesquisarClientes(valor);
+        ecolaboradores = colaboradoresController.Get(id);
+        showModal = true;
+    }
+    void FecharModal()
+    {
+
+    }
+    void AbrirModal2()
+    {
+        showModal2 = true;
+    }
+    public async Task FecharModal2()
+    {
+
     }
 
-    public bool IsVisible(Clientes cliente)
+    public async Task CriarColaborador()
+    {
+
+    }
+
+    public async Task EditarColaborador()
+    {
+
+    }
+
+    public string Filter { get; set; }
+
+    public bool IsVisible(Data.Colaboradores colaboradores)
     {
         if (string.IsNullOrEmpty(Filter))
             return true;
 
-        if (cliente.Nome.Contains(Filter) || cliente.Email.ToString().Contains(Filter) || cliente.Telefone.ToString().Contains(Filter) || cliente.Nif.ToString().Contains(Filter))
-
+        if (colaboradores.idcolaborador.ToString().Contains(Filter) || colaboradores.email.ToString().Contains(Filter) || colaboradores.telefone.ToString().Contains(Filter))
             return true;
 
         return false;
@@ -178,33 +192,26 @@ using GoldYAN.Data;
 
     public async Task Apagar(int id)
     {
-        VC.Delete(id);
-    }
 
-    public async Task Editar()
-    {
-        VC.Put(EClientes.idcliente, EClientes);
-        showModal = false;
-        OnInitializedAsync();
-    }
+        bool confirmation;
 
-    public async Task ModalCancel()
-    {
-        showModal = false;
-    }
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
 
-    public async Task AbrirModal(int id)
-    {
-        EClientes = VC.Get(id);
-        showModal = true;
-
+        if (confirmation)
+        {
+            string message = colaboradoresController.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+            {
+                await js.InvokeVoidAsync("alert", @message);
+            }
+        }
     }
 
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ClientesController VC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private TipodeCompraController TCC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }

@@ -23,19 +23,19 @@
                     <EditForm Model="@updateCP" OnValidSubmit="@Update">
                         <div class="form-group m-3 p-1">
                             <label for="telefone">Descrição:</label>
-                            <InputText autocomplete="false"  class="w-25 form-control" id="telefone" placeholder="Descrição" @bind-Value="updateCP.descricao" />
+                            <InputText autocomplete="false"  class="w-50 form-control" id="telefone" placeholder="Descrição" @bind-Value="updateCP.descricao" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="codigo">Codigo:</label>
-                            <InputNumber autocomplete="false"  class="w-25 form-control" style="-moz-appearance: textfield;" id="codigo" placeholder="Codigo classificação" @bind-Value="updateCP.codigo" />
+                            <InputText autocomplete="false"  class="w-50 form-control" style="-moz-appearance: textfield;" id="codigo" placeholder="Codigo classificação" @bind-Value="updateCP.codigo" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="telefone">Codigo AT:</label>
-                            <InputText autocomplete="false"  class="w-25 form-control" id="telefone" placeholder="Codigo AT" @bind-Value="updateCP.codigoat" />
+                            <InputText autocomplete="false"  class="w-50 form-control" id="telefone" placeholder="Codigo AT" @bind-Value="updateCP.codigoat" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="email">Inventário:</label>
-                            <InputNumber autocomplete="false"  class="w-25 form-control" style="-moz-appearance: textfield;" id="email" placeholder="Inventário" @bind-Value="updateCP.inventario" />
+                            <InputCheckbox autocomplete="false"  class="w-50 form-control" style="-moz-appearance: textfield;" id="email" placeholder="Inventário" @bind-Value="updateCP.tirardoinventario" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -65,19 +65,19 @@
                     <EditForm Model="@criarCP" OnValidSubmit="@Criar">
                         <div class="form-group m-3 p-1">
                             <label for="descricao">Descrição:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="descricao" placeholder="Descrição" @bind-Value="updateCP.descricao" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="descricao" placeholder="Descrição" @bind-Value="updateCP.descricao" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="codigo">Codigo:</label>
-                            <InputNumber autocomplete="false" class="w-25 form-control" style="-moz-appearance: textfield;" id="codigo" placeholder="Codigo classificação" @bind-Value="updateCP.codigo" />
+                            <InputNumber autocomplete="false" class="w-50 form-control" style="-moz-appearance: textfield;" id="codigo" placeholder="Codigo classificação" @bind-Value="updateCP.codigo" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="codigoat">Codigo AT:</label>
-                            <InputText autocomplete="false" class="w-25 form-control" id="codigoat" placeholder="Codigo AT" @bind-Value="updateCP.codigoat" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="codigoat" placeholder="Codigo AT" @bind-Value="updateCP.codigoat" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="inventario">Inventário:</label>
-                            <InputNumber autocomplete="false" class="w-25 form-control" id="inventario" style="-moz-appearance: textfield;" placeholder="Inventário" @bind-Value="updateCP.inventario" />
+                            <InputNumber autocomplete="false" class="w-50 form-control" id="inventario" style="-moz-appearance: textfield;" placeholder="Inventário" @bind-Value="updateCP.tirardoinventario" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @onclick="@ModalCancel2">Cancelar</button>
@@ -124,8 +124,8 @@
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@cp.codigo">@cp.codigo</td>
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@cp.descricao">@cp.descricao</td>
                                                     <td style=" overflow: hidden; white-space: nowrap; " title="@cp.codigoat">@cp.codigoat</td>
-                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@cp.inventario">@cp.inventario</td>
-                                                    <td><button class="btn btn-sm btn-primary btn-sm" @onclick="@ModalShow" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger btn-sm" @onclick="() => Apagar(cp.IDClassificacao)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@cp.tirardoinventario">@cp.tirardoinventario</td>
+                                                    <td><button class="btn btn-sm btn-primary btn-sm" @onclick="() => ModalShow(cp.IDClassificacao)" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger btn-sm" @onclick="() => Apagar(cp.IDClassificacao)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
 
                                                 </tr>
                                             }
@@ -167,7 +167,7 @@
             updateCP.descricao = banco.descricao;
             updateCP.codigo = banco.codigo;
             updateCP.codigoat = banco.codigoat;
-            updateCP.inventario = banco.inventario;
+            updateCP.tirardoinventario = banco.tirardoinventario;
         }
 
     }
@@ -194,6 +194,8 @@
     {
         VCP.Put(updateCP.IDClassificacao, updateCP);
         showModal = false;
+        OnInitializedAsync();
+
     }
 
     public async Task Criar()
@@ -206,8 +208,9 @@
     }
 
 
-    void ModalShow()
+    void ModalShow(int id)
     {
+        updateCP = CPC.Get(id);
         showModal = true;
     }
     void ModalCancel()
