@@ -1,8 +1,9 @@
 ﻿@page "/users"
-@attribute [Authorize]
+@attribute [Authorize(Roles ="Admin")]
 
 
-<h3>Utilizadores</h3>
+
+
 
 <div class="container-fluid">
 
@@ -11,35 +12,33 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Listagem de Clientes</h6>
+            <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Listagem de Utilizadores</h6> <form action="/Identity/Account/register"><input class="btn btn-success btn-sm float-right" type="submit" value="Novo User" /> </form> 
         </div>
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive-sm">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Mostrar X Clientes <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select></label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Procurar:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
+                    <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Procurar:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
                         <div class="col-sm-12">
-                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                            <table class="table table-bordered table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Email</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Contacto: activate to sort column ascending" style="width: 31px;">Localidade</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Codigo Postal</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Nif</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Profissão</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">UserID</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Email</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Email Normalizado</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Contacto: activate to sort column ascending" style="width: 31px;">User Name</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Nome Normalizado</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Numero Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 110px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                <tr><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Email</th><th rowspan="1" colspan="1">Localidade</th><th rowspan="1" colspan="1">Codigo Postal</th><th rowspan="1" colspan="1">Nif</th><th rowspan="1" colspan="1">Profissão</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                <tr><th rowspan="1" colspan="1">UserID</th><th rowspan="1" colspan="1">Email</th><th rowspan="1" colspan="1">Email Normalizado</th><th rowspan="1" colspan="1">User Name</th><th rowspan="1" colspan="1">Nome Normalizado</th><th rowspan="1" colspan="1">Telemovel</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
-                                @*@foreach (var cliente in @VCS)
+                                @foreach (var users in listasp)
                                         {
-                                            <tr role="row" class="odd" id="@cliente.clienteid">
-                                                <td>@cliente.Nome</td>
-                                                <td>@cliente.Telefone</td>
-                                                <td>@cliente.Email</td>
-                                                <td>@cliente.Morada</td>
-                                                <td>@cliente.Codigopostal</td>
-                                                <td>@cliente.Nif</td>
-                                                <td>@cliente.Profissao</td>
-                                                <td><button class="btn btn-primary" style="margin-left:1rem">Editar</button><button class="btn btn-danger" style="margin-left:0.3rem">Apagar</button></td>
-                                            </tr>
-                                        }*@
-
+                                    <tr role="row" class="odd" id="@users.Id">
+                                        <td>@users.Id</td>
+                                        <td>@users.Email</td>
+                                        <td>@users.NormalizedEmail</td>
+                                        <td>@users.UserName</td>
+                                        <td>@users.NormalizedUserName</td>
+                                        <td>@users.PhoneNumber</td>
+                                        <td><button class="btn btn-primary btn-sm" style="margin-left:1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left:0.3rem">Apagar</button></td>
+                                    </tr>
+                                        }
                                 </tbody>
                             </table>
                         </div>
@@ -52,5 +51,17 @@
 </div>
 
 @code {
+
+    List<Data.aspnetusers> listasp = new List<Data.aspnetusers>();
+    Data.aspnetusers eusers = new Data.aspnetusers();
+    Data.aspnetusers cusers = new Data.aspnetusers();
+    bool showModal = false;
+    bool showModal2 = false;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        listasp = aspController.GetAll();
+    }
 
 }

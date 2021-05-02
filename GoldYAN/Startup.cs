@@ -85,6 +85,7 @@ namespace GoldYAN
             services.AddScoped<HistoricoStockController>();
             services.AddScoped<TipodeCompraController>();
             services.AddScoped<MateriasController>();
+            services.AddScoped<AspNetUsersController>();
 
 
 

@@ -94,6 +94,7 @@
 
     public async Task AdicionarStock(double stock, string tipo)
     {
+
         if (tipo == "Entrada")
         {
             Entrada += stock ;
@@ -109,14 +110,15 @@
 
         if (string.IsNullOrEmpty(Filter))
         {
-            Entrada = new double();
-            Saida = new double();
-            Stock = new double();
+
             return false;
         }
 
         if (hstock.id.Equals(Filter) || hstock.idprodutoalterado.ToString().Contains(Filter) || hstock.tipo.ToString().Contains(Filter))
         {
+            Entrada = new double();
+            Saida = new double();
+            Stock = new double();
             AdicionarStock(hstock.stockadicionado, hstock.tipo);
             return true;
         }

@@ -171,6 +171,7 @@ using BlazorInputFile;
 
     public async Task AdicionarStock(double stock, string tipo)
     {
+
         if (tipo == "Entrada")
         {
             Entrada += stock ;
@@ -186,14 +187,15 @@ using BlazorInputFile;
 
         if (string.IsNullOrEmpty(Filter))
         {
-            Entrada = new double();
-            Saida = new double();
-            Stock = new double();
+
             return false;
         }
 
         if (hstock.id.Equals(Filter) || hstock.idprodutoalterado.ToString().Contains(Filter) || hstock.tipo.ToString().Contains(Filter))
         {
+            Entrada = new double();
+            Saida = new double();
+            Stock = new double();
             AdicionarStock(hstock.stockadicionado, hstock.tipo);
             return true;
         }
@@ -214,6 +216,7 @@ using BlazorInputFile;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private TipodeCompraController TCC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AspNetUsersController aspController { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private CabecalhoComprasController CComprasC { get; set; }

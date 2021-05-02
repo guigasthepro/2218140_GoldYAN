@@ -126,7 +126,7 @@ using BlazorInputFile;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Utilizadores.razor"
-           [Authorize]
+           [Authorize(Roles ="Admin")]
 
 #line default
 #line hidden
@@ -139,9 +139,30 @@ using BlazorInputFile;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 55 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Administração\Utilizadores.razor"
+       
+
+    List<Data.aspnetusers> listasp = new List<Data.aspnetusers>();
+    Data.aspnetusers eusers = new Data.aspnetusers();
+    Data.aspnetusers cusers = new Data.aspnetusers();
+    bool showModal = false;
+    bool showModal2 = false;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        listasp = aspController.GetAll();
+    }
+
+
+#line default
+#line hidden
+#nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private TipodeCompraController TCC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HistoricoStockController hStockC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private LocalizacaoController LocalizacaoC { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AspNetUsersController aspController { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EstadosController EstadosC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ComprasController ComprasC { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private CabecalhoComprasController CComprasC { get; set; }
