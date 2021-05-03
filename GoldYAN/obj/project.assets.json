@@ -9310,23 +9310,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Guilherme Simao\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\gsimao\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Guilherme Simao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
+      "projectUniqueName": "C:\\Users\\gsimao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
       "projectName": "GoldYAN",
-      "projectPath": "C:\\Users\\Guilherme Simao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
-      "packagesPath": "C:\\Users\\Guilherme Simao\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Guilherme Simao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\obj\\",
+      "projectPath": "C:\\Users\\gsimao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
+      "packagesPath": "C:\\Users\\gsimao\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gsimao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Guilherme Simao\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gsimao\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -9422,7 +9425,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   },

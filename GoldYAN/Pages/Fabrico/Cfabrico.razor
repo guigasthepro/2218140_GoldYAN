@@ -101,32 +101,27 @@
                 </div>
             </div>
 
+
             <EditForm Model="@CCP">
                 <div class="m-3 form-group">
                     <div class="form-inline">
-                        <label for="Descricao">Peso:</label> &nbsp
-                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Peso do produto" @bind-Value="CCP.peso" />
-
-                        <label for="Descricao">Cotação:</label> &nbsp
-                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Cotação Produto" @bind-Value="CCP.cotacao" />
-
-                        <label for="Descricao">Feitio:</label> &nbsp
-                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Feitio peça" @bind-Value="CCP.feitiopeca" />
-
                         <label for="Descricao">Quantidade:</label> &nbsp
-                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade comprada" @bind-Value="CCP.updatestock" />
-
-
-                        @*<label for="Descricao">Preço Uni.:</label> &nbsp
-                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Cotação Produto" @bind-Value="CCP.cotacao" />
-
-                        <label for="Descricao">Preço total.:</label> &nbsp
-                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade na fatura" @bind-Value="CCP.updatestock" />*@
+                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Quantidade comprada" @bind-Value="CCP.stock" />
                     </div>
-
+                </div>
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="Descricao">Preco:</label> &nbsp
+                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Preco do produto" @bind-Value="CCP.preco"/>
+                    </div>
+                </div>
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="Descricao">Peso:</label> &nbsp
+                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Peso do produto" @bind-Value="CCP.peso"/>
+                    </div>
                 </div>
             </EditForm>
-
 
         }
         else
@@ -144,14 +139,6 @@
                     </BlazoredTypeahead>
                 </div>
             </div>
-
-
-
-
-
-
-
-
         }
 
 
@@ -219,37 +206,44 @@
                     </BlazoredTypeahead>
                 </div>
             </div>
-
-            <EditForm Model="@CCP">
-                <div class="m-3 form-group">
-                    <div class="form-inline">
-                        <label for="Descricao">Peso:</label> &nbsp
-                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Peso do produto" @bind-Value="produtos.peso" />
-
-                        <label for="Descricao">Quantidade:</label> &nbsp
-                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade comprada" @bind-Value="produtos.updatestock" />
-
-                    </div>
-
-                </div>
-            </EditForm>
-
-
         }
 
+        <EditForm Model="@cp" OnValidSubmit="AdicionarComposto">
+            <DataAnnotationsValidator />
 
-        <div class="m-3 form-group">
-            @if (save)
-            {
-                <button class="btn btn-primary" @onclick="EditarComposto">Editar</button>
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="Quantidade">Quantidade:</label> &nbsp
+                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="cp.quantidade" />
+                </div>
+            </div>
 
-            }
-            else
-            {
-                <button class="btn btn-primary" @onclick="AdicionarComposto">Adicionar</button>
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="peso">Peso:</label> &nbsp
+                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="cp.peso" />
+                </div>
+            </div>
 
-            }
-        </div>
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="preco">Preco:</label> &nbsp
+                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="preco" class="form-control" placeholder="@cl.valor" disabled="@Readonly" @bind-Value="cp.custo" />
+                </div>
+            </div>
+
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="apontamentos">Valor Total:</label> &nbsp
+                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="cp.custototal" />
+                </div>
+            </div>
+
+            <div class="m-3 form-group">
+                <button type="submit" class="btn btn-primary">Adicionar</button>
+            </div>
+
+        </EditForm>
     </div>
 </div>
 
@@ -264,10 +258,10 @@
                     <div class="col-sm-12">
                         <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;table-layout: fixed;">
                             <thead>
-                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 90px;">Componente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 100px;">Colaborador</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Classificação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Qtd.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 30px;">Valor.Un.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Valor Total</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Ações</th></tr>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 90px;">Componente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 100px;">Colaborador</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Classificação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Qtd.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 30px;">Valor.Un.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Valor Total</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Ações</th></tr>
                             </thead>
                             <tfoot>
-                                <tr><th rowspan="1" colspan="1">Componente</th><th rowspan="1" colspan="1">Colaborador</th><th rowspan="1" colspan="1">Classificação</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Qtd.</th><th rowspan="1" colspan="1">Valor.Un.</th><th rowspan="1" colspan="1">Valor Total</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                <tr><th rowspan="1" colspan="1">Componente</th><th rowspan="1" colspan="1">Colaborador</th><th rowspan="1" colspan="1">Classificação</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Qtd.</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Valor.Un.</th><th rowspan="1" colspan="1">Valor Total</th><th rowspan="1" colspan="1">Ações</th></tr>
                             </tfoot>
                             <tbody>
                                 @foreach (var produto in LCP)
@@ -280,6 +274,7 @@
                                             <td style="overflow: hidden; white-space: nowrap;" title="@produto.idservico">@produto.idservico</td>
                                             <td style="overflow: hidden; white-space: nowrap;" title="@produto.descricao">@produto.descricao</td>
                                             <td style="overflow: hidden; white-space: nowrap;" title="@produto.quantidade">@produto.quantidade</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.peso">@produto.peso</td>
                                             <td style="overflow: hidden; white-space: nowrap;" title="@produto.custo">@produto.custo</td>
                                             <td style="overflow: hidden; white-space: nowrap;" title="@produto.custototal">@produto.custototal</td>
                                             <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
@@ -292,6 +287,7 @@
                                             <td style="overflow: hidden; white-space: nowrap;" title="@produto.idproduto">@produto.idproduto</td>
                                             <td style="overflow: hidden; white-space: nowrap;" title="@produto.descricao">@produto.descricao</td>
                                             <td style="overflow: hidden; white-space: nowrap;" title="@produto.quantidade">@produto.quantidade</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.peso">@produto.peso</td>
                                             <td style="overflow: hidden; white-space: nowrap;" title="@produto.custo">@produto.custo</td>
                                             <td style="overflow: hidden; white-space: nowrap;" title="@produto.custototal">@produto.custototal</td>
                                             <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
@@ -356,7 +352,6 @@
     int i;
     string formadepesquisa;
     bool ProdutoNovo = true;
-    bool save = false;
 
     // Function that always runs when someone enter in the page
     protected override async Task OnInitializedAsync()
@@ -394,65 +389,12 @@
                 CCP.idunidade = unidade.idunidade;
                 CCP.idtipodeproduto = dtp.idtipoproduto;
                 CCP.idtipodepeca = dtdp.idpeca;
-
-
-
-                CCP.stockantigo = 0;
-
-
-                if (CCP.updatestock.HasValue)
-                {
-                    CCP.stocktotal = CCP.stock.GetValueOrDefault() + CCP.updatestock.Value;
-                }
-                else if (CCP.peso.HasValue)
-                {
-                    CCP.stocktotal = CCP.stock.GetValueOrDefault() + CCP.peso.Value;
-                }
-                else
-                {
-                    js.InvokeVoidAsync("alert", "Impossivel adicionar stock ao produto, o produto foi composto sem stock!");
-
-                }
-
-                if (CCP.stocktotal.HasValue)
-                {
-                    CCP.stock = CCP.stocktotal.Value;
-                }
-
-
-                if (CCP.peso.HasValue && CCP.cotacao.HasValue && CCP.updatestock.HasValue)
-                {
-                    CCP.preco = (CCP.peso.Value * CCP.cotacao.Value) + CCP.feitiopeca;
-                    CCP.custototal = CCP.preco * CCP.updatestock;
-
-                }
-                else if (CCP.peso.HasValue && CCP.cotacao.HasValue && !CCP.updatestock.HasValue)
-                {
-                    CCP.preco = (CCP.peso.Value * CCP.cotacao.Value) + CCP.feitiopeca;
-                    CCP.custototal = CCP.preco;
-                }
-                else if (CCP.updatestock.HasValue)
-                {
-                    CCP.preco = CCP.feitiopeca;
-                    CCP.custototal = CCP.preco * CCP.updatestock;
-                }
-                else
-                {
-                    js.InvokeVoidAsync("alert", "Impossivel fazer o preço, o produto foi adicionado sem preço");
-                }
-
-
                 hStock.tipocomponente = "Fabrico";
                 hStock.idcomponente = CCP.idproduto;
                 hStock.tipo = "Entrada";
                 hStock.idprodutoalterado = CCP.idproduto;
                 hStock.stockinicial = 0;
-                if(CCP.updatestock.HasValue)
-                {
-                    hStock.stockadicionado = CCP.updatestock.Value;
-                }
                 hStock.stockfinal = CCP.stock.Value;
-                hStock.datacriacao = DateTime.Now.ToShortDateString();
                 hStockC.Post(hStock);
                 hStock = new HistoricoStock();
 
@@ -464,6 +406,7 @@
 
                 for (int i = 0; i < LCP.Count; i++)
                 {
+
                     LCP[i].linha = i;
                     //Changes used product stock
 
@@ -549,10 +492,6 @@
         }
     }
 
-
-
-
-
     // Function that does the selecting in the selected buttons
     public async Task CriarProdutoNovo()
     {
@@ -574,12 +513,10 @@
         ProdutoNovo = false;
     }
 
-
-    public async Task EditarComposto()
+    // Add the compost to a list
+    public async Task AdicionarComposto()
     {
         Data.Fabrico fabricocomposto = new Data.Fabrico();
-
-        save = true;
 
         if (ProdutoNovo)
         {
@@ -593,9 +530,6 @@
                 cp.idservico = servicos.idservico;
                 cp.descricao = servicos.descricao;
                 cp.datacriacao = DateTime.Now.ToString();
-
-
-
 
                 fabricocomposto.linha = i;
                 fabricocomposto.custo = cl.valor;
@@ -696,191 +630,8 @@
                 cp.idcolaborador = cl.idcolaborador;
                 cp.idproduto = produtos.idproduto;
                 cp.descricao = produtos.descricao;
-                if(produtos.updatestock.HasValue)
-                {
-                    cp.quantidade = produtos.updatestock.Value;
-                }
                 cp.datacriacao = DateTime.Now.ToString();
 
-                fabricocomposto.linha = i;
-                fabricocomposto.custo = cl.valor;
-                fabricocomposto.idprodutos = produtos.idproduto;
-                fabricocomposto.descricao = produtos.descricao;
-                fabricocomposto.customedio = cp.customedio;
-                fabricocomposto.custototal = cp.custototal;
-                fabricocomposto.datacriacao = DateTime.Now.ToShortDateString();
-                fabricocomposto.peso = cp.peso;
-                fabricocomposto.quantidade = cp.quantidade;
-                LCP.Add(cp);
-                LCFP.Add(fabricocomposto);
-
-                cm = new CabecalhosModelos();
-                servicos = new Servicos();
-                produtos = new CabecalhoProdutos();
-                cl = new Colaboradores();
-                cp = new Produtos();
-                fabricocomposto = new Fabrico();
-
-
-            }
-            else
-            {
-                await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
-            }
-        }
-    }
-
-
-
-    // Add the compost to a list
-    public async Task AdicionarComposto()
-    {
-        Data.Fabrico fabricocomposto = new Data.Fabrico();
-
-        if (ProdutoNovo)
-        {
-            if (servicos.idservico != 0)
-            {
-                i++;
-                cp.linha = i;
-                cp.custo = cl.valor;
-                cp.idcolaborador = cl.idcolaborador;
-                cp.idproduto = CCP.idproduto;
-                cp.idservico = servicos.idservico;
-                cp.descricao = servicos.descricao;
-                cp.datacriacao = DateTime.Now.ToString();
-
-                fabricocomposto.linha = i;
-                fabricocomposto.custo = cl.valor;
-                fabricocomposto.idservico = servicos.idservico;
-                fabricocomposto.descricao = servicos.descricao;
-                fabricocomposto.customedio = cp.customedio;
-                fabricocomposto.custototal = cp.custototal;
-                fabricocomposto.datacriacao = DateTime.Now.ToShortDateString();
-                fabricocomposto.peso = cp.peso;
-                fabricocomposto.quantidade = cp.quantidade;
-
-                LCP.Add(cp);
-                LCFP.Add(fabricocomposto);
-
-                cm = new CabecalhosModelos();
-                servicos = new Servicos();
-                produtos = new CabecalhoProdutos();
-                cl = new Colaboradores();
-                cp = new Produtos();
-                fabricocomposto = new Fabrico();
-
-            }
-            else if (produtos.idproduto != 0)
-            {
-                i++;
-                cp.linha = i;
-                cp.custo = cl.valor;
-                cp.idcolaborador = cl.idcolaborador;
-                cp.idproduto = produtos.idproduto;
-                cp.descricao = produtos.descricao;
-                cp.datacriacao = DateTime.Now.ToString();
-
-                if (produtos.updatestock.HasValue)
-                {
-                    cp.quantidade = produtos.updatestock.Value;
-                }
-                else if(produtos.peso.HasValue)
-                {
-                    cp.quantidade = produtos.peso.Value;
-                }
-                else
-                {
-                    js.InvokeVoidAsync("alert", "Não foi possivel informar a quantidade a retirar!");
-                }
-                fabricocomposto.linha = i;
-                fabricocomposto.custo = cl.valor;
-                fabricocomposto.idprodutos = produtos.idproduto;
-                fabricocomposto.descricao = produtos.descricao;
-                fabricocomposto.customedio = cp.customedio;
-                fabricocomposto.custototal = cp.custototal;
-                fabricocomposto.datacriacao = DateTime.Now.ToShortDateString();
-                fabricocomposto.peso = cp.peso;
-                fabricocomposto.quantidade = cp.quantidade;
-                LCP.Add(cp);
-                LCFP.Add(fabricocomposto);
-
-                cm = new CabecalhosModelos();
-                servicos = new Servicos();
-                produtos = new CabecalhoProdutos();
-                cl = new Colaboradores();
-                cp = new Produtos();
-                fabricocomposto = new Fabrico();
-
-            }
-            else
-            {
-                await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
-            }
-        }
-        else
-        {
-
-            if (servicos.idservico != 0)
-            {
-                i++;
-                cp.linha = i;
-                cp.custo = cl.valor;
-                cp.idcolaborador = cl.idcolaborador;
-                cp.idservico = servicos.idservico;
-                cp.descricao = servicos.descricao;
-                cp.datacriacao = DateTime.Now.ToString();
-
-                fabricocomposto.linha = i;
-                fabricocomposto.custo = cl.valor;
-                fabricocomposto.idservico = servicos.idservico;
-                fabricocomposto.descricao = servicos.descricao;
-                fabricocomposto.customedio = cp.customedio;
-                fabricocomposto.custototal = cp.custototal;
-                fabricocomposto.datacriacao = DateTime.Now.ToShortDateString();
-                fabricocomposto.peso = cp.peso;
-                fabricocomposto.quantidade = cp.quantidade;
-
-                LCP.Add(cp);
-                LCFP.Add(fabricocomposto);
-
-                cm = new CabecalhosModelos();
-                servicos = new Servicos();
-                produtos = new CabecalhoProdutos();
-                CCP = new CabecalhoProdutos();
-                cl = new Colaboradores();
-                cp = new Produtos();
-                fabricocomposto = new Fabrico();
-
-            }
-            else if (produtos.idproduto != 0)
-            {
-                i++;
-                cp.linha = i;
-                if(produtos.preco.HasValue)
-                {
-                    cp.custo = produtos.preco.Value;
-                }
-                cp.idcolaborador = cl.idcolaborador;
-                cp.idproduto = produtos.idproduto;
-                cp.descricao = produtos.descricao;
-                cp.datacriacao = DateTime.Now.ToString();
-
-                if (produtos.updatestock.HasValue)
-                {
-                    cp.quantidade = produtos.updatestock.Value;
-                }
-                else if (produtos.peso.HasValue)
-                {
-                    cp.quantidade = produtos.peso.Value;
-                }
-                if (produtos.preco.HasValue)
-                {
-                    cp.custototal = produtos.preco.Value * cp.quantidade;
-                }
-
-
-                CCP.custototal += cp.custototal;
                 fabricocomposto.linha = i;
                 fabricocomposto.custo = cl.valor;
                 fabricocomposto.idprodutos = produtos.idproduto;
