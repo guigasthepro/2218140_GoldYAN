@@ -1614,3 +1614,5 @@ C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\D
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Stock\Hstock.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Administração\Colaboradores.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Administração\Colaboradores.razor.g.cs
+C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Administração\Colaboradores.razor.g.cs
+C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Administração\Colaboradores.razor.g.cs

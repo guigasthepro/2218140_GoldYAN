@@ -65,6 +65,9 @@
                                     </BlazoredTypeahead>
                                 </div>
                             </div>
+                            <div>
+                            <button type="button" @onclick="() => AtualizarLista()" class="btn btn-success">Salvar</button>
+                        </div>
                         </div>
                     </div>
 
@@ -161,7 +164,7 @@
                             </div>
 
 
-                            <EditForm Model="@m" OnValidSubmit="@AtualizarLista">
+                            <EditForm Model="@m" OnValidSubmit="() => Update(m.idmodelo,m.linha)">
                                 <DataAnnotationsValidator />
 
 
@@ -417,7 +420,16 @@
 
     public async Task AtualizarLista()
     {
+        var resultado = CMC.Put(cm.idmodelo, cm);
+        if (resultado != null)
+        {
+            js.InvokeVoidAsync("alert", "Cabeçalho atualizado com sucesso!");
+        }
+        else
+        {
+            js.InvokeVoidAsync("alert", "Cabeçalho não foi atualizado com sucesso!");
 
+        }
     }
 
     public async Task LoadData(string id, int linha)
@@ -463,14 +475,22 @@
         }
     }
 
-    public async Task Update()
+    public async Task Update(string id, int linha)
     {
 
-        CMC.Put(cm.idmodelo, cm);
-        foreach (var modelos in listaModelos)
+        listaModelos.RemoveAt(linha -1);
+        listaModelos.Insert(linha -1, m);
+
+        var resultado = MC.Put(id, linha, m);
+        if (resultado != null)
         {
+            js.InvokeVoidAsync("alert", "Cabeçalho atualizado com sucesso!");
         }
-        showModal = false;
+        else
+        {
+            js.InvokeVoidAsync("alert", "Cabeçalho não foi atualizado com sucesso!");
+
+        }
     }
 
     private async Task<IEnumerable<TipoDePeca>> ProcurarPecas(string searchText)

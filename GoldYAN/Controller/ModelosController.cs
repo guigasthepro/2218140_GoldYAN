@@ -121,11 +121,27 @@ namespace GoldYAN.Controller
 
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                var recLido = DBConn.Query<Modelos>(getsql).ToList();
+                var recLido = DBConn.QuerySingle<Modelos>(getsql);
 
                 if (recLido != null)
                 {
-                    
+                    recLido.descricao= cmodelos.descricao;
+
+                    recLido.codigo = cmodelos.codigo;
+
+                    recLido.idmolde = cmodelos.idmolde;
+
+                    recLido.idservico = cmodelos.idservico;
+
+                    recLido.idproduto = cmodelos.idproduto;
+
+                    recLido.preco = cmodelos.preco;
+
+                    recLido.valortotal = cmodelos.valortotal;
+
+                    recLido.quantidade = cmodelos.quantidade;
+
+                    recLido.peso = cmodelos.peso;
 
                     bool updated = DBConn.Update(recLido);
 
