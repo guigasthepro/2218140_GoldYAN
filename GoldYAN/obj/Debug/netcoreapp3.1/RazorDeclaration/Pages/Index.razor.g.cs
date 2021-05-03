@@ -133,7 +133,7 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 242 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Index.razor"
+#line 195 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Index.razor"
        List<Data.Clientes> infoClientesList = new List<Data.Clientes>();
 
     protected override async Task OnInitializedAsync()

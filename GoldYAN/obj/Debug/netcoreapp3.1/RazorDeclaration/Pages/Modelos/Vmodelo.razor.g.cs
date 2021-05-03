@@ -147,7 +147,7 @@ using Microsoft.EntityFrameworkCore.Internal;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 337 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Vmodelo.razor"
+#line 339 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Vmodelo.razor"
        
 
 
