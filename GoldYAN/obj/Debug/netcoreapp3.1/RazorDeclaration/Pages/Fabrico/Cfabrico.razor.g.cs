@@ -13,119 +13,119 @@ namespace GoldYAN.Pages.Fabrico
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 1 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 2 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 3 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 4 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 5 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 6 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 7 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 8 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Mvc;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 9 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 10 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 11 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 12 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Blazored.Typeahead;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 14 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Controller;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 15 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.IO;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 16 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using BlazorInputFile;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Cfabrico.razor"
+#line 2 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Cfabrico.razor"
 using GoldYAN.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Cfabrico.razor"
+#line 4 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Cfabrico.razor"
            [Authorize]
 
 #line default
@@ -140,7 +140,7 @@ using GoldYAN.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 313 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Cfabrico.razor"
+#line 317 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Cfabrico.razor"
        
 
     //Declaration of needed objects
@@ -183,6 +183,7 @@ using GoldYAN.Data;
     int i;
     string formadepesquisa;
     bool ProdutoNovo = true;
+    bool save = false;
 
     // Function that always runs when someone enter in the page
     protected override async Task OnInitializedAsync()
@@ -220,12 +221,65 @@ using GoldYAN.Data;
                 CCP.idunidade = unidade.idunidade;
                 CCP.idtipodeproduto = dtp.idtipoproduto;
                 CCP.idtipodepeca = dtdp.idpeca;
+
+
+
+                CCP.stockantigo = 0;
+
+
+                if (CCP.updatestock.HasValue)
+                {
+                    CCP.stocktotal = CCP.stock.GetValueOrDefault() + CCP.updatestock.Value;
+                }
+                else if (CCP.peso.HasValue)
+                {
+                    CCP.stocktotal = CCP.stock.GetValueOrDefault() + CCP.peso.Value;
+                }
+                else
+                {
+                    js.InvokeVoidAsync("alert", "Impossivel adicionar stock ao produto, o produto foi composto sem stock!");
+
+                }
+
+                if (CCP.stocktotal.HasValue)
+                {
+                    CCP.stock = CCP.stocktotal.Value;
+                }
+
+
+                if (CCP.peso.HasValue && CCP.cotacao.HasValue && CCP.updatestock.HasValue)
+                {
+                    CCP.preco = (CCP.peso.Value * CCP.cotacao.Value) + CCP.feitiopeca;
+                    CCP.custototal = CCP.preco * CCP.updatestock;
+
+                }
+                else if (CCP.peso.HasValue && CCP.cotacao.HasValue && !CCP.updatestock.HasValue)
+                {
+                    CCP.preco = (CCP.peso.Value * CCP.cotacao.Value) + CCP.feitiopeca;
+                    CCP.custototal = CCP.preco;
+                }
+                else if (CCP.updatestock.HasValue)
+                {
+                    CCP.preco = CCP.feitiopeca;
+                    CCP.custototal = CCP.preco * CCP.updatestock;
+                }
+                else
+                {
+                    js.InvokeVoidAsync("alert", "Impossivel fazer o preço, o produto foi adicionado sem preço");
+                }
+
+
                 hStock.tipocomponente = "Fabrico";
                 hStock.idcomponente = CCP.idproduto;
                 hStock.tipo = "Entrada";
                 hStock.idprodutoalterado = CCP.idproduto;
                 hStock.stockinicial = 0;
+                if(CCP.updatestock.HasValue)
+                {
+                    hStock.stockadicionado = CCP.updatestock.Value;
+                }
                 hStock.stockfinal = CCP.stock.Value;
+                hStock.datacriacao = DateTime.Now.ToShortDateString();
                 hStockC.Post(hStock);
                 hStock = new HistoricoStock();
 
@@ -323,6 +377,10 @@ using GoldYAN.Data;
         }
     }
 
+
+
+
+
     // Function that does the selecting in the selected buttons
     public async Task CriarProdutoNovo()
     {
@@ -344,10 +402,12 @@ using GoldYAN.Data;
         ProdutoNovo = false;
     }
 
-    // Add the compost to a list
-    public async Task AdicionarComposto()
+
+    public async Task EditarComposto()
     {
         Data.Fabrico fabricocomposto = new Data.Fabrico();
+
+        save = true;
 
         if (ProdutoNovo)
         {
@@ -361,6 +421,9 @@ using GoldYAN.Data;
                 cp.idservico = servicos.idservico;
                 cp.descricao = servicos.descricao;
                 cp.datacriacao = DateTime.Now.ToString();
+
+
+
 
                 fabricocomposto.linha = i;
                 fabricocomposto.custo = cl.valor;
@@ -461,8 +524,191 @@ using GoldYAN.Data;
                 cp.idcolaborador = cl.idcolaborador;
                 cp.idproduto = produtos.idproduto;
                 cp.descricao = produtos.descricao;
+                if(produtos.updatestock.HasValue)
+                {
+                    cp.quantidade = produtos.updatestock.Value;
+                }
                 cp.datacriacao = DateTime.Now.ToString();
 
+                fabricocomposto.linha = i;
+                fabricocomposto.custo = cl.valor;
+                fabricocomposto.idprodutos = produtos.idproduto;
+                fabricocomposto.descricao = produtos.descricao;
+                fabricocomposto.customedio = cp.customedio;
+                fabricocomposto.custototal = cp.custototal;
+                fabricocomposto.datacriacao = DateTime.Now.ToShortDateString();
+                fabricocomposto.peso = cp.peso;
+                fabricocomposto.quantidade = cp.quantidade;
+                LCP.Add(cp);
+                LCFP.Add(fabricocomposto);
+
+                cm = new CabecalhosModelos();
+                servicos = new Servicos();
+                produtos = new CabecalhoProdutos();
+                cl = new Colaboradores();
+                cp = new Produtos();
+                fabricocomposto = new Fabrico();
+
+
+            }
+            else
+            {
+                await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
+            }
+        }
+    }
+
+
+
+    // Add the compost to a list
+    public async Task AdicionarComposto()
+    {
+        Data.Fabrico fabricocomposto = new Data.Fabrico();
+
+        if (ProdutoNovo)
+        {
+            if (servicos.idservico != 0)
+            {
+                i++;
+                cp.linha = i;
+                cp.custo = cl.valor;
+                cp.idcolaborador = cl.idcolaborador;
+                cp.idproduto = CCP.idproduto;
+                cp.idservico = servicos.idservico;
+                cp.descricao = servicos.descricao;
+                cp.datacriacao = DateTime.Now.ToString();
+
+                fabricocomposto.linha = i;
+                fabricocomposto.custo = cl.valor;
+                fabricocomposto.idservico = servicos.idservico;
+                fabricocomposto.descricao = servicos.descricao;
+                fabricocomposto.customedio = cp.customedio;
+                fabricocomposto.custototal = cp.custototal;
+                fabricocomposto.datacriacao = DateTime.Now.ToShortDateString();
+                fabricocomposto.peso = cp.peso;
+                fabricocomposto.quantidade = cp.quantidade;
+
+                LCP.Add(cp);
+                LCFP.Add(fabricocomposto);
+
+                cm = new CabecalhosModelos();
+                servicos = new Servicos();
+                produtos = new CabecalhoProdutos();
+                cl = new Colaboradores();
+                cp = new Produtos();
+                fabricocomposto = new Fabrico();
+
+            }
+            else if (produtos.idproduto != 0)
+            {
+                i++;
+                cp.linha = i;
+                cp.custo = cl.valor;
+                cp.idcolaborador = cl.idcolaborador;
+                cp.idproduto = produtos.idproduto;
+                cp.descricao = produtos.descricao;
+                cp.datacriacao = DateTime.Now.ToString();
+
+                if (produtos.updatestock.HasValue)
+                {
+                    cp.quantidade = produtos.updatestock.Value;
+                }
+                else if(produtos.peso.HasValue)
+                {
+                    cp.quantidade = produtos.peso.Value;
+                }
+                else
+                {
+                    js.InvokeVoidAsync("alert", "Não foi possivel informar a quantidade a retirar!");
+                }
+                fabricocomposto.linha = i;
+                fabricocomposto.custo = cl.valor;
+                fabricocomposto.idprodutos = produtos.idproduto;
+                fabricocomposto.descricao = produtos.descricao;
+                fabricocomposto.customedio = cp.customedio;
+                fabricocomposto.custototal = cp.custototal;
+                fabricocomposto.datacriacao = DateTime.Now.ToShortDateString();
+                fabricocomposto.peso = cp.peso;
+                fabricocomposto.quantidade = cp.quantidade;
+                LCP.Add(cp);
+                LCFP.Add(fabricocomposto);
+
+                cm = new CabecalhosModelos();
+                servicos = new Servicos();
+                produtos = new CabecalhoProdutos();
+                cl = new Colaboradores();
+                cp = new Produtos();
+                fabricocomposto = new Fabrico();
+
+            }
+            else
+            {
+                await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
+            }
+        }
+        else
+        {
+
+            if (servicos.idservico != 0)
+            {
+                i++;
+                cp.linha = i;
+                cp.custo = cl.valor;
+                cp.idcolaborador = cl.idcolaborador;
+                cp.idservico = servicos.idservico;
+                cp.descricao = servicos.descricao;
+                cp.datacriacao = DateTime.Now.ToString();
+
+                fabricocomposto.linha = i;
+                fabricocomposto.custo = cl.valor;
+                fabricocomposto.idservico = servicos.idservico;
+                fabricocomposto.descricao = servicos.descricao;
+                fabricocomposto.customedio = cp.customedio;
+                fabricocomposto.custototal = cp.custototal;
+                fabricocomposto.datacriacao = DateTime.Now.ToShortDateString();
+                fabricocomposto.peso = cp.peso;
+                fabricocomposto.quantidade = cp.quantidade;
+
+                LCP.Add(cp);
+                LCFP.Add(fabricocomposto);
+
+                cm = new CabecalhosModelos();
+                servicos = new Servicos();
+                produtos = new CabecalhoProdutos();
+                CCP = new CabecalhoProdutos();
+                cl = new Colaboradores();
+                cp = new Produtos();
+                fabricocomposto = new Fabrico();
+
+            }
+            else if (produtos.idproduto != 0)
+            {
+                i++;
+                cp.linha = i;
+                if(produtos.preco.HasValue)
+                {
+                    cp.custo = produtos.preco.Value;
+                }
+                cp.idcolaborador = cl.idcolaborador;
+                cp.idproduto = produtos.idproduto;
+                cp.descricao = produtos.descricao;
+                cp.datacriacao = DateTime.Now.ToString();
+
+                if (produtos.updatestock.HasValue)
+                {
+                    cp.quantidade = produtos.updatestock.Value;
+                }
+                else if (produtos.peso.HasValue)
+                {
+                    cp.quantidade = produtos.peso.Value;
+                }
+                if (produtos.preco.HasValue)
+                {
+                    cp.custototal = produtos.preco.Value * cp.quantidade;
+                }
+
+
+                CCP.custototal += cp.custototal;
                 fabricocomposto.linha = i;
                 fabricocomposto.custo = cl.valor;
                 fabricocomposto.idprodutos = produtos.idproduto;
