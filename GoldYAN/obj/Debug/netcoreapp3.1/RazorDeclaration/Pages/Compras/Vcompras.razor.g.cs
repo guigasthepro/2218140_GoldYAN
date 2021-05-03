@@ -235,7 +235,7 @@ using BlazorInputFile;
         linhaselecionada = linha;
 
 
-        CCP = LCP[linha - 12];
+        CCP = LCP[linha];
         dtp = TPRC.Get(CCP.idtipodeproduto);
         dtdp = TPC.Get(CCP.idtipodepeca);
         ecp = CPC.Get(CCP.idclassificação);

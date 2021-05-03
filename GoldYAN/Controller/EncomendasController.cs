@@ -47,7 +47,7 @@ namespace GoldYAN.Controller
         {
             lerEncomendasComputed = new List<EncomendasComputed>();
 
-            string sql = "SELECT e.*, ce.idcliente, ce.criadopor, ce.data, c.nome, c.telefone FROM encomendas e INNER JOIN cabecalhoencomenda ce ON ce.idencomenda = e.idencomenda INNER JOIN clientes c ON c.idcliente = ce.idcliente";
+            string sql = "SELECT e.*, ce.idcliente, ce.criadopor, ce.data, ce.localizacao, ce.estado, c.nome, c.telefone FROM encomendas e INNER JOIN cabecalhoencomenda ce ON ce.idencomenda = e.idencomenda INNER JOIN clientes c ON c.idcliente = ce.idcliente";
 
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {

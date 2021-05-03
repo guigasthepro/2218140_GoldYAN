@@ -428,25 +428,26 @@
                                             continue;
                                         encomenda.idwithlinha = encomenda.idencomenda.ToString() + "/" + encomenda.linha.ToString();
 
-                                        <tr style="height: 1em;" @ondblclick="() => AbrirModal(encomenda.idwithlinha)">
-                                            <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idwithlinha">@encomenda.idwithlinha</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idcliente">@encomenda.idcliente</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.nome">@encomenda.nome</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.telefone">@encomenda.telefone</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.data">@encomenda.data</td>
-                                            <td align="center">
-                                                <div class="dropdown no-arrow">
-                                                    <a class="btn dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fas fa-cog fa-sm fa-fw text-gray-400"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                                        <div class="dropdown-header">Ações:</div>
-                                                        <li class="dropdown-item" style="list-style:none" @onclick="() => AbrirModalLocalizacao(encomenda.idencomenda)"><a class="btn btn-sm btn-warning" href="#"><i class="fas fa-check">&nbsp;</i>Lançar Localização</a></li>
-                                                        <li class="dropdown-item" style="list-style:none" @onclick="() => AbrirModalEstado(encomenda.idencomenda)"><a class="btn btn-sm btn-danger" href="#"><i class="fas fa-check">&nbsp;</i> Lançar Estado</a></li>
-                                                    </div>
+                                    <tr style="height: 1em;" @ondblclick="() => AbrirModal(encomenda.idwithlinha)">
+                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idwithlinha">@encomenda.idwithlinha</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idcliente">@encomenda.idcliente</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.nome">@encomenda.nome</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.telefone">@encomenda.telefone</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.localizacao">@encomenda.localizacao</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.data">@encomenda.data</td>
+                                        <td align="center">
+                                            <div class="dropdown no-arrow">
+                                                <a class="btn dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-cog fa-sm fa-fw text-gray-400"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                                    <div class="dropdown-header">Ações:</div>
+                                                    <li class="dropdown-item" style="list-style:none" @onclick="() => AbrirModalLocalizacao(encomenda.idencomenda)"><a class="btn btn-sm btn-warning" href="#"><i class="fas fa-check">&nbsp;</i>Lançar Localização</a></li>
+                                                    <li class="dropdown-item" style="list-style:none" @onclick="() => AbrirModalEstado(encomenda.idencomenda)"><a class="btn btn-sm btn-danger" href="#"><i class="fas fa-check">&nbsp;</i> Lançar Estado</a></li>
                                                 </div>
-                                            </td>
-                                        </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
