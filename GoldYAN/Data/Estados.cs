@@ -9,6 +9,7 @@ namespace GoldYAN.Data
     [Table("estados")]
     public class Estados
     {
+        [ExplicitKey]
         public int idestados { get; set; }
         public string descricao { get; set; }
     }

@@ -20,8 +20,8 @@ namespace GoldYAN.Data
         public string telefone { get; set; }
         public string criadopor { get; set; }
         public string apontamentos { get; set; }
-        public string localizacao { get; set; }
-        public string estado { get; set; }
+        public string idlocalizacao { get; set; }
+        public string idestado { get; set; }
         public int quantidade { get; set; }
         public string peso { get; set; }
         public double precounitario { get; set; }

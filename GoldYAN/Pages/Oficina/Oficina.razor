@@ -10,6 +10,71 @@
 @inject CabecalhoController CEC
 @attribute [Authorize]
 
+
+@if (showModal)
+{
+    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Lançar Estado</h4>
+                    <button type="button" class="close" @onclick="@FecharModal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    
+                    <div class="form-row p-sm-1">
+                        <label for="nome" class="col-sm-auto col-form-label">Colaborador:</label>
+                        <div class="col-sm-5">
+                            <BlazoredTypeahead SearchMethod="ProcurarColaborador" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="colaboradores" Placeholder="Pesquisar colaborador">
+                                <SelectedTemplate>
+                                    @context.idcolaborador (ID: @context.descricao)
+                                </SelectedTemplate>
+                                <ResultTemplate>@context.idcolaborador (ID: @context.descricao)</ResultTemplate>
+                            </BlazoredTypeahead>
+                        </div>
+                    </div>
+
+                    
+                    <div class="form-row p-sm-1">
+                        <label for="nome" class="col-sm-auto col-form-label">Localização:</label>
+                        <div class="col-sm-5">
+                            <BlazoredTypeahead SearchMethod="ProcurarLocalizacao" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="localizacao" Placeholder="Pesquisar localização">
+                                <SelectedTemplate>
+                                    @context.idlocalizacao (ID: @context.descricao)
+                                </SelectedTemplate>
+                                <ResultTemplate>@context.idlocalizacao (ID: @context.descricao)</ResultTemplate>
+                            </BlazoredTypeahead>
+                        </div>
+                    </div>
+
+
+                    <div class="form-row p-sm-1">
+                        <label for="nome" class="col-sm-auto col-form-label">Estado:</label>
+                        <div class="col-sm-5">
+                            <BlazoredTypeahead SearchMethod="ProcurarEstado" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="estado" Placeholder="Pesquisar estado">
+                                <SelectedTemplate>
+                                    @context.idestados (ID: @context.descricao)
+                                </SelectedTemplate>
+                                <ResultTemplate>@context.idestados (ID: @context.descricao)</ResultTemplate>
+                            </BlazoredTypeahead>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="FecharModal" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" @onclick="AtribuirColaborador" class="btn btn-primary">Lancar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -25,10 +90,10 @@
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">IDEncomenda</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">IDCliente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Data</th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">IDEncomenda</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">IDCliente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">IDLocalizacao</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">IDEstado</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Data</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">IdEncomenda</th><th rowspan="1" colspan="1">IDCliente</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Data</th></tr>
+                                    <tr><th rowspan="1" colspan="1">IdEncomenda</th><th rowspan="1" colspan="1">IDCliente</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">IDLocalizacao</th><th rowspan="1" colspan="1">IDEstado</th><th rowspan="1" colspan="1">Data</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
                                     @foreach (var encomenda in VEC)
@@ -42,7 +107,20 @@
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idcliente">@encomenda.idcliente</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.nome">@encomenda.nome</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.telefone">@encomenda.telefone</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idlocalizacao">@encomenda.idlocalizacao</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idestado">@encomenda.idestado</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.data">@encomenda.data</td>
+                                            <td align="center">
+                                                <div class="dropdown no-arrow">
+                                                    <a class="btn dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-cog fa-sm fa-fw text-gray-400"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                                        <div class="dropdown-header">Ações:</div>
+                                                        <li class="dropdown-item" style="list-style:none" @onclick="() => AbrirModalOficina(encomenda.idencomenda, encomenda.linha)"><a class="btn btn-sm btn-warning" href="#"><i class="fas fa-check">&nbsp;</i>Atribuir Colaborador</a></li>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                     }
                                 </tbody>
@@ -56,8 +134,21 @@
 </div>
 
 @code {
+    List<Localizacoes> listLocalizacoes = new List<Localizacoes>();
+    List<Colaboradores> listColaboradores = new List<Colaboradores>();
+    List<Estados> listEstados = new List<Estados>();
     List<EncomendasComputed> VEC = new List<EncomendasComputed>();
+
+    // Object Classes
+    Data.Estados estado = new Data.Estados();
+    Data.Localizacoes localizacao = new Data.Localizacoes();
+    Data.Colaboradores colaboradores = new Data.Colaboradores();
+
+
     public string Filter { get; set; }
+    bool showModal = false;
+    int EncomendaID = 0;
+    int EncomendaLinha = 0;
 
     protected override async Task OnInitializedAsync()
     {
@@ -74,4 +165,50 @@
 
         return false;
     }
+
+    public async Task AbrirModalOficina(int id, int linha)
+    {
+        EncomendaID = id;
+        EncomendaLinha = linha;
+        showModal = true;
+    }
+
+    public async Task FecharModal()
+    {
+        showModal = false;
+    }
+
+    public async Task AtribuirColaborador()
+    {
+        if (localizacao != null)
+        {
+            var resultado1 = EC.LancarLocalizacoes(EncomendaID, EncomendaLinha, localizacao.descricao);
+
+        }
+        if (estado != null)
+        {
+            var resultado2 = EC.LancarEstado(EncomendaID, EncomendaLinha, estado.descricao);
+        }
+        if (colaboradores != null)
+        {
+            var resultado3 = EC.AtribuirColaborador(EncomendaID, EncomendaLinha, colaboradores.descricao);
+
+        }
+    }
+
+    private async Task<IEnumerable<Colaboradores>> ProcurarColaborador(string searchText)
+    {
+        return await Task.FromResult(listColaboradores.Where(h => h.idcolaborador.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Localizacoes>> ProcurarLocalizacao(string searchText)
+    {
+        return await Task.FromResult(listLocalizacoes.Where(h => h.idlocalizacao.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Estados>> ProcurarEstado(string searchText)
+    {
+        return await Task.FromResult(listEstados.Where(h => h.idestados.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
 }

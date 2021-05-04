@@ -4,7 +4,7 @@
 }
 
 @using Microsoft.AspNetCore.Authorization
-//  attribute [Authorize(Roles = "Admin")]
+@attribute [Authorize(Roles = "Admin")]
 
 <h1>@ViewData["Title"]</h1>
 
@@ -36,12 +36,13 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Input.RoleID"></label>
+                <label asp-for="Input.RoleID">Cargo do user</label>
                 <select>
-                    @*@foreach(var role in roles)
-                    {
-
-                    }*@
+                    <option value="Administrador">Admin</option>
+                    <option value="Dev">Developer</option>
+                    <option value="Atendimento">Atendimento</option>
+                    <option value="Oficina">Oficina</option>
+                    <option value="Contabilidade">Contabilidade</option>
                 </select>
             </div>
 

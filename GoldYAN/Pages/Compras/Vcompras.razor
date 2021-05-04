@@ -208,7 +208,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-primary">Fechar</button>
+                    <button type="button" @onclick="ModalCancel" class="btn btn-primary">Fechar</button>
                 </div>
             </div>
             </div>
@@ -366,7 +366,6 @@
 
     public void AbrirModal(int id)
     {
-        i++;
         LCP = new List<CabecalhoProdutos>();
         listaCompras = ComprasC.GetAllQuery(id);
         CCompra = CComprasC.Get(id);
@@ -375,10 +374,19 @@
 
         foreach (var compra in listaCompras)
         {
+            i++;
             CCP = CAPC.Get(compra.idproduto);
-            CCP.linha = i;
-            LCP.Add(CCP);
-            CCP = new CabecalhoProdutos();
+            if (CCP == null)
+            {
+                js.InvokeVoidAsync("alert", "Não foi possivel carregar a compra!");
+            }
+            else
+            {
+                CCP.linha = i;
+                LCP.Add(CCP);
+                CCP = new CabecalhoProdutos();
+            }
+
         }
 
         showModal = true;

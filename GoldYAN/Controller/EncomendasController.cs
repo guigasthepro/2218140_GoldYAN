@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Dapper;
 using Dapper.Contrib.Extensions;
@@ -47,7 +48,7 @@ namespace GoldYAN.Controller
         {
             lerEncomendasComputed = new List<EncomendasComputed>();
 
-            string sql = "SELECT e.*, ce.idcliente, ce.criadopor, ce.data, ce.localizacao, ce.estado, c.nome, c.telefone FROM encomendas e INNER JOIN cabecalhoencomenda ce ON ce.idencomenda = e.idencomenda INNER JOIN clientes c ON c.idcliente = ce.idcliente";
+            string sql = "SELECT e.*, ce.idcliente, ce.criadopor, ce.data, c.nome, c.telefone FROM encomendas e INNER JOIN cabecalhoencomenda ce ON ce.idencomenda = e.idencomenda INNER JOIN clientes c ON c.idcliente = ce.idcliente";
 
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
@@ -80,6 +81,67 @@ namespace GoldYAN.Controller
                 return res;
             }
         }
+
+        public ActionResult<Encomendas> LancarLocalizacoes(int id, int linha, [FromBody] string localizacoes)
+        {
+            string getsql = $"UPDATE `encomendas` SET `idlocalizacao` = '{localizacoes}' WHERE `encomendas`.`idencomenda` = {id} AND `encomendas`.`linha` = {linha};";
+
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    var recLido = DBConn.QuerySingle<Encomendas>(getsql);
+                    return Ok(recLido);
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+            }
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Encomendas> LancarEstado(int id, int linha, [FromBody] string estado)
+        {
+            string getsql = $"UPDATE `encomendas` SET `idestado` = '{estado}' WHERE `encomendas`.`idencomenda` = {id} AND `encomendas`.`linha` = {linha};";
+
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    var recLido = DBConn.QuerySingle<Encomendas>(getsql);
+                    return Ok(recLido);
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+            }
+        }
+
+
+        [HttpPut("{id}")]
+        public ActionResult<Encomendas> AtribuirColaborador(int id, int linha, [FromBody] string colaborador)
+        {
+            string getsql = $"UPDATE `encomendas` SET `colaboradoratribuido` = '{colaborador}' WHERE `encomendas`.`idencomenda` = {id} AND `encomendas`.`linha` = {linha};";
+
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    var recLido = DBConn.QuerySingle<Encomendas>(getsql);
+                    return Ok(recLido);
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+            }
+        }
+
 
         // DELETE api/<CodigoPostalController>/5
         [HttpDelete("{id}")]

@@ -21,7 +21,9 @@ namespace GoldYAN.Data
         [Computed]
         public string descricao { get; set; }
         public string apontamentos { get; set; }
+        public string idlocalizacao { get; set; }
         public string idestado { get; set; }
+        public string colaboradoratribuido { get; set; }
         public int quantidade { get; set; }
         public string peso { get; set; }
         public double precounitario { get; set; }
