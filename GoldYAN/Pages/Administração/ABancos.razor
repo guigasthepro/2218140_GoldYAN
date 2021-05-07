@@ -4,11 +4,11 @@
 @using System.Threading
 @using Microsoft.Data.SqlClient
 @using Microsoft.EntityFrameworkCore
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin , Dev")]
 
 @if (showModal)
 {
-    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+    <div class="modal fade show" id="myModal" style="display:block;background-color:rgba(128, 128, 128, 0.5);" aria-modal="true" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
@@ -30,7 +30,7 @@
                             <InputText autocomplete="false" class="w-50 form-control" id="email" placeholder="Nome do Banco" @bind-Value="updateBanco.nome" />
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" @onclick="ModalCancel">Cancelar</button>
                             <button type="submit" class="btn btn-primary">Atualizar</button>
                         </div>
                     </EditForm>
@@ -64,7 +64,7 @@
                             <InputText autocomplete="false" class="w-50 form-control" id="email" placeholder="Nome do Banco" @bind-Value="criarBanco.nome" />
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" @onclick="ModalCancel2">Cancelar</button>
                             <button type="submit" class="btn btn-primary">Inserir Banco</button>
                         </div>
                     </EditForm>

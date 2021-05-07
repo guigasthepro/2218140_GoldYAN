@@ -2,11 +2,11 @@
 @inject IJSRuntime js
 @page "/familiaprodutos"
 @inject FamiliaProdutosController VFP
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin , Dev")]
 
 @if (showModal)
 {
-    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+    <div class="modal fade show" id="myModal" style="display:block ;background-color:rgba(128, 128, 128, 0.5);" aria-modal="true" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
@@ -48,7 +48,7 @@
                             <InputNumber autocomplete="false" style="-moz-appearance: textfield;" class="w-50 form-control" id="tf" placeholder="Toque Familia" @bind-Value="updateFP.toque" />
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" @onclick="ModalCancel">Cancelar</button>
                             <button type="submit" class="btn btn-primary">Atualizar</button>
                         </div>
                     </EditForm>
@@ -102,7 +102,7 @@
                             <InputNumber autocomplete="false" style="-moz-appearance: textfield;" class="w-25 form-control" id="tf" placeholder="Toque Familia" @bind-Value="criarFP.toque" />
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" @onclick="ModalCancel2">Cancelar</button>
                             <button type="submit" class="btn btn-primary">Inserir</button>
                         </div>
                     </EditForm>

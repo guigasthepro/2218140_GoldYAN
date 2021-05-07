@@ -9,7 +9,7 @@
 @if (showModal)
 {
 
-    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+    <div class="modal fade show" id="myModal" style="display:block ;background-color:rgba(128, 128, 128, 0.5);" aria-modal="true" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
@@ -54,7 +54,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" @onclick="FecharModal">Cancelar</button>
                     <button type="submit" @onclick="Update" class="btn btn-primary">Lancar</button>
                 </div>
             </div>

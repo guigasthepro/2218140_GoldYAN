@@ -1,4 +1,5 @@
 ﻿@page "/colaboradores"
+@attribute [Authorize(Roles = "Admin , Dev")]
 
 
 
@@ -6,7 +7,7 @@
 
 @if (showModal)
 {
-    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+    <div class="modal fade show" id="myModal" style="display:block;background-color:rgba(128, 128, 128, 0.5);" aria-modal="true" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
@@ -21,26 +22,26 @@
                     <EditForm Model="@ecolaboradores" OnValidSubmit="@EditarColaborador">
                         <div class="form-group m-3 p-1">
                             <label for="telefone">Codigo:</label>
-                            <InputText autocomplete="false" class="w-50 form-control" id="telefone" placeholder="Descrição" @bind-Value="ecolaboradores.codigo" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="telefone" placeholder="Codigo Colaborador" @bind-Value="ecolaboradores.codigo" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="telefone">Nome do Colaborador:</label>
-                            <InputText autocomplete="false" class="w-50 form-control" id="telefone" placeholder="Descrição" @bind-Value="ecolaboradores.descricao" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="telefone" placeholder="Nome do Colaborador" @bind-Value="ecolaboradores.descricao" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="codigo">Telefone do Colaborador:</label>
-                            <InputText autocomplete="false" class="w-50 form-control" style="-moz-appearance: textfield;" id="codigo" placeholder="Codigo classificação" @bind-Value="ecolaboradores.telefone" />
+                            <InputText autocomplete="false" class="w-50 form-control" style="-moz-appearance: textfield;" id="codigo" placeholder="Telefone do Colaborador" @bind-Value="ecolaboradores.telefone" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="telefone">Email do Colaborador:</label>
-                            <InputText autocomplete="false" class="w-50 form-control" id="telefone" placeholder="Codigo AT" @bind-Value="ecolaboradores.email" />
+                            <InputText autocomplete="false" class="w-50 form-control" id="telefone" placeholder="Email Colaborador" @bind-Value="ecolaboradores.email" />
                         </div>
                         <div class="form-group m-3 p-1">
                             <label for="email">Custo hora:</label>
-                            <InputNumber autocomplete="false" class="w-50 form-control" style="-moz-appearance: textfield;" id="email" placeholder="Inventário" @bind-Value="ecolaboradores.valor" />
+                            <InputNumber autocomplete="false" class="w-50 form-control" style="-moz-appearance: textfield;" id="email" placeholder="Custo do Colaboradors" @bind-Value="ecolaboradores.valor" />
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" @onclick="FecharModal">Cancelar</button>
                             <button type="submit" class="btn btn-primary">Atualizar</button>
                         </div>
                     </EditForm>
@@ -86,7 +87,7 @@
                             <InputNumber autocomplete="false" class="w-50 form-control" style="-moz-appearance: textfield;" id="email" placeholder="Inventário" @bind-Value="ccolaboradores.valor" />
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" @onclick="FecharModal2">Cancelar</button>
                             <button type="submit" class="btn btn-primary">Inserir</button>
                         </div>
                     </EditForm>
@@ -109,19 +110,19 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Listagem de Serviços</h6> <button type="submit" @onclick="@AbrirModal2" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i>&nbsp;Adicionar Colaborador</button>
+                    <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">Listagem de Colaboradores</h6> <button type="submit" @onclick="@AbrirModal2" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i>&nbsp;Adicionar Colaborador</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
                         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Pesquisar Encomenda:<input type="search" @bind="Filter" @bind:event="oninput" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
+                            <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Pesquisar Colaborador:<input type="search" @bind="Filter" @bind:event="oninput" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
                                 <div class="col-sm-12">
                                     <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                         <thead>
-                                            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">IDEncomenda</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">IDCliente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Data</th></tr>
+                                            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">IDColaborador</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">Codigo Colaborador</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Email</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Custo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Ações</th></tr>
                                         </thead>
                                         <tfoot>
-                                            <tr><th rowspan="1" colspan="1">IDEncomenda</th><th rowspan="1" colspan="1">IDCliente</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Data</th></tr>
+                                            <tr><th rowspan="1" colspan="1">IDColaborador</th><th rowspan="1" colspan="1">Codigo Colaborador</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Email</th><th rowspan="1" colspan="1">Custo</th><th rowspan="1" colspan="1">Ações</th></tr>
                                         </tfoot>
                                         <tbody>
                                             @foreach (var colaboradores in listaColaboradores)
@@ -129,15 +130,15 @@
                                                 if (!IsVisible(colaboradores))
                                                     continue;
 
-                                            <tr style="height: 1em;">
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.idcolaborador">@colaboradores.idcolaborador</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.codigo">@colaboradores.codigo</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.telefone">@colaboradores.telefone</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.email">@colaboradores.email</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.valor">@colaboradores.valor</td>
-                                                <td><button class="btn btn-sm btn-primary" @onclick="() => AbrirModal(colaboradores.idcolaborador)" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(colaboradores.idcolaborador)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                <tr style="height: 1em;">
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.idcolaborador">@colaboradores.idcolaborador</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.codigo">@colaboradores.codigo</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.telefone">@colaboradores.telefone</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.email">@colaboradores.email</td>
+                                                    <td style=" overflow: hidden; white-space: nowrap; " title="@colaboradores.valor">@colaboradores.valor</td>
+                                                    <td><button class="btn btn-sm btn-primary" @onclick="() => AbrirModal(colaboradores.idcolaborador)" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(colaboradores.idcolaborador)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
 
-                                            </tr>
+                                                </tr>
                                             }
                                         </tbody>
                                     </table>

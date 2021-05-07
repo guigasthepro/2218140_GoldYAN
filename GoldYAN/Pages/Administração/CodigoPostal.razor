@@ -1,13 +1,13 @@
 ﻿@using GoldYAN.Controller
 @inject IJSRuntime js
 @inject CodigoPostalController VCP
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin , Dev")]
 
 @page "/codigopostal"
 
 @if (showModal)
 {
-    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+    <div class="modal fade show" id="myModal" style="display:block;background-color:rgba(128, 128, 128, 0.5);" aria-modal="true" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 

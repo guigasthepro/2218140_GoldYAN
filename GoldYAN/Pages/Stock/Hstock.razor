@@ -13,7 +13,16 @@
         <div class="card-body">
             <div class="table-responsive-sm">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Pesquisar Movimento:<input type="search" @bind="Filter" @bind:event="oninput" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
+                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Pesquisar Movimento:</label>
+                              
+                        <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Produto">
+                            <SelectedTemplate>
+                                @context.idproduto + @context.descricao
+                            </SelectedTemplate>
+                            <ResultTemplate>@context.idproduto + @context.descricao</ResultTemplate>
+                        </BlazoredTypeahead>
+                        <button type="button" @onclick="LoadStock"></button>
+                        </div></div></div><div class="row">
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
@@ -66,6 +75,9 @@
 
 @code {
 
+    List<CabecalhoProdutos> listaCabecalhoProduto = new List<CabecalhoProdutos>();
+    Data.CabecalhoProdutos produtos = new CabecalhoProdutos();
+
     List<HistoricoStock> vhStock = new List<HistoricoStock>();
     public string Filter { get; set; }
     public double Entrada { get; set; }
@@ -76,7 +88,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        vhStock = hStockC.GetAll();
+        listaCabecalhoProduto = CAPC.GetAll();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -105,6 +117,11 @@
         }
     }
 
+    public async Task LoadStock()
+    {
+
+    }
+
     public bool IsVisible(HistoricoStock hstock)
     {
 
@@ -131,5 +148,9 @@
 
     }
 
+    private async Task<IEnumerable<CabecalhoProdutos>> ProcurarProdutos(string searchText)
+    {
+        return await Task.FromResult(listaCabecalhoProduto.Where(h => h.descricao.ToLower().Contains(searchText.ToLower()) || h.idproduto.Equals(searchText.ToLower())).ToList());
+    }
 
 }
