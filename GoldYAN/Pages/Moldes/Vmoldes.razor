@@ -15,7 +15,7 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Lançar Estado</h4>
+                    <h4 class="modal-title">Editar Molde</h4>
                     <button type="button" class="close" @onclick="FecharModal">&times;</button>
                 </div>
 
@@ -40,12 +40,6 @@
                             <InputNumber autocomplete="false" style="-moz-appearance: textfield;" class="w-25 form-control" id="gaveta" placeholder="Gaveta molde" @bind-Value="Emolde.gaveta" />
                         </div>
 
-                        @*<div class="form-group m-2 p-1">
-                            <label for="tempo">Tempo</label>
-                            <InputText class="w-25 form-control" id="tempo" placeholder="Indique o tempo que demorou (minutos)" @bind-Value="Emolde.tempo" />
-                            <ValidationMessage For="@(() => Emolde.tempo)" />
-                            </div>*@
-
                         <div class="form-group m-2 p-1">
                             <label for="peso">Peso</label>
                             <InputText class="w-25 form-control" id="peso" placeholder="Peso do molde" @bind-Value="Emolde.peso" />
@@ -55,7 +49,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" @onclick="FecharModal">Cancelar</button>
-                    <button type="submit" @onclick="Update" class="btn btn-primary">Lancar</button>
+                    <button type="submit" @onclick="Update" class="btn btn-primary">Editar</button>
                 </div>
             </div>
         </div>
@@ -79,22 +73,26 @@
                         <div class="col-sm-12">
                             <table class="table table-sm table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">IdMolde</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Gaveta</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Codigo</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Descrição</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Tipo Peça</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Tipo Produto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Gaveta</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Data Criação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">IDMoldes</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Gaveta</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                    <tr><th rowspan="1" colspan="1">Codigo</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Tipo Peça</th><th rowspan="1" colspan="1">Tipo Produto</th><th rowspan="1" colspan="1">Gaveta</th><th rowspan="1" colspan="1">Data Criação</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
                                     @foreach (var molde in @VMS)
                                     {
                                         if (!IsVisible(molde))
                                             continue;
-                                        <tr role="row" class="odd" id="@molde.idmolde">
-                                            <td>@molde.codigo</td>
-                                            <td>@molde.descricao</td>
-                                            <td>@molde.gaveta</td>
-                                            <td><button @onclick="() => LoadModal(molde.idmolde)" class="btn btn-sm btn-primary" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
-                                        </tr>
+                                    <tr role="row" class="odd" id="@molde.codigo">
+                                        <td>@molde.codigo</td>
+                                        <td>@molde.descricao</td>
+                                        <td>@molde.tipodepeça</td>
+                                        <td>@molde.tipodeproduto</td>
+                                        <td>@molde.gaveta</td>
+                                        <td>@molde.datacriacao</td>
+
+                                        <td><button @onclick="() => LoadModal(molde.idmolde)" class="btn btn-sm btn-primary" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>

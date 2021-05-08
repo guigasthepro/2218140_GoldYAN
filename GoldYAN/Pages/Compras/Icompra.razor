@@ -38,7 +38,7 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="numero">Numero:</label> &nbsp
-                    <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="numero" class="form-control" style="-moz-appearance: textfield;" placeholder="Numero Fatura" @bind-Value="CCompra.numero" />
+                    <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="numero" class="form-control" style="-moz-appearance: textfield;" placeholder="Numero Fatura" @bind-Value="CCompra.numero" />
                 </div>
             </div>
 
@@ -663,7 +663,7 @@
                     if(LCP[i].produtonovo)
                     {
                         hStock.tipocomponente = "Compra";
-                        hStock.idcomponente = LC[i].idcompra;
+                        hStock.idcomponente = CCompra.numero;
                         hStock.tipo = "Entrada";
                         hStock.stockinicial = 0;
                         if (LCP[i].updatestock.HasValue)
@@ -671,27 +671,39 @@
                             hStock.stockadicionado = LCP[i].updatestock.Value;
                         }
                         hStock.stockfinal = LCP[i].stock;
-                        hStock.datacriacao = DateTime.Now.ToShortDateString();
+                        hStock.datacriacao = DateTime.Now.ToString("dd/MM/yyyy");
                         var resutlacompra = CAPC.Post(LCP[i]);
                         hStock.idprodutoalterado = resutlacompra.idproduto;
 
                         LC[i].idcompra = resultado.idcompra;
                         LC[i].idproduto = resutlacompra.idproduto;
 
-                        ComprasC.Post(LC[i]);
+                        var resultado7 = ComprasC.Post(LC[i]);
                         hStockC.Post(hStock);
+
+                        if (resutlacompra.idproduto != 0 && resultado7.idcompra != 0)
+                        {
+                            js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
+                        }
+                        else
+                        {
+                            js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
+                        }
+
                         hStock = new HistoricoStock();
                         ecp = new ClassificacaoProdutos();
                         dtp = new TipoProduto();
                         dtdp = new TipoDePeca();
                         Compra = new Compras();
                         CCP = new CabecalhoProdutos();
+                        LCP = new List<CabecalhoProdutos>();
+
                     }
                     else
                     {
                         hStock.idprodutoalterado = LCP[i].idproduto;
                         hStock.tipocomponente = "Compra";
-                        hStock.idcomponente = LC[i].idcompra;
+                        hStock.idcomponente = CCompra.numero;
                         hStock.tipo = "Entrada";
                         if (LCP[i].updatestock.HasValue)
                         {
@@ -704,20 +716,28 @@
                         js.InvokeVoidAsync("console.log", $"{LCP[i].stock.Value}");
 
                         hStock.stockfinal = LCP[i].stock;
-                        hStock.datacriacao = DateTime.Now.ToShortDateString();
+                        hStock.datacriacao = DateTime.Now.ToString("dd/MM/yyyy");
 
-                        CAPC.Put(LCP[i].idproduto, LCP[i]);
+                        var resultado6 = CAPC.Put(LCP[i].idproduto, LCP[i]);
 
                         LC[i].idcompra = resultado.idcompra;
-                        ComprasC.Post(LC[i]);
+                        var resultado7 = ComprasC.Post(LC[i]);
                         hStockC.Post(hStock);
+                        if (resultado6.Value.idproduto != 0 && resultado7.idcompra != 0)
+                        {
+                            js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
+                        }
+                        else
+                        {
+                            js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
+                        }
                         hStock = new HistoricoStock();
                         ecp = new ClassificacaoProdutos();
                         dtp = new TipoProduto();
                         dtdp = new TipoDePeca();
                         Compra = new Compras();
                         CCP = new CabecalhoProdutos();
-
+                        LCP = new List<CabecalhoProdutos>();
 
 
 
@@ -742,7 +762,7 @@
                 if (LCP[0].produtonovo)
                 {
                     hStock.tipocomponente = "Compra";
-                    hStock.idcomponente = LC[0].idcompra;
+                    hStock.idcomponente = CCompra.numero;
                     hStock.tipo = "Entrada";
                     hStock.stockinicial = 0;
                     if (LCP[i].updatestock.HasValue)
@@ -750,28 +770,38 @@
                         hStock.stockadicionado = LCP[0].updatestock.Value;
                     }
                     hStock.stockfinal = LCP[0].stock;
-                    hStock.datacriacao = DateTime.Now.ToShortDateString();
+                    hStock.datacriacao = DateTime.Now.ToString("dd/MM/yyyy");
 
                     var resutlacompra = CAPC.Post(LCP[0]);
                     hStock.idprodutoalterado = resutlacompra.idproduto;
                     LC[0].idproduto = resutlacompra.idproduto;
 
                     LC[0].idcompra = resultado2.idcompra;
-                    ComprasC.Post(LC[0]);
+                    var resultado1 = ComprasC.Post(LC[0]);
                     hStockC.Post(hStock);
+                    if(resutlacompra.idcompra != 0 && resultado1.idcompra != 0)
+                    {
+                        js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
+                    }
+                    else
+                    {
+                        js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
+                    }
                     hStock = new HistoricoStock();
                     ecp = new ClassificacaoProdutos();
                     dtp = new TipoProduto();
                     dtdp = new TipoDePeca();
                     Compra = new Compras();
                     CCP = new CabecalhoProdutos();
+                    LCP = new List<CabecalhoProdutos>();
+
 
                 }
                 else
                 {
                     hStock.idprodutoalterado = LCP[0].idproduto;
                     hStock.tipocomponente = "Compra";
-                    hStock.idcomponente = LC[0].idcompra;
+                    hStock.idcomponente = CCompra.numero;
                     hStock.tipo = "Entrada";
                     if(LCP[0].stockantigo.HasValue)
                     {
@@ -782,10 +812,17 @@
                         hStock.stockadicionado = LCP[0].updatestock.Value;
                     }
                     hStock.stockfinal = LCP[0].stock;
-                    hStock.datacriacao = DateTime.Now.ToShortDateString();
-                    CAPC.Put(LCP[0].idproduto, LCP[0]);
+                    hStock.datacriacao = DateTime.Now.ToString("dd/MM/yyyy");
+                    var resultado5 = CAPC.Put(LCP[0].idproduto, LCP[0]);
                     LC[0].idcompra = resultado.idcompra;
-
+                    if (resultado5.Value.idcompra != 0)
+                    {
+                        js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
+                    }
+                    else
+                    {
+                        js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
+                    }
                     ComprasC.Post(LC[0]);
                     hStockC.Post(hStock);
                     hStock = new HistoricoStock();
@@ -794,6 +831,8 @@
                     dtdp = new TipoDePeca();
                     Compra = new Compras();
                     CCP = new CabecalhoProdutos();
+                    LCP = new List<CabecalhoProdutos>();
+
                 }
 
 

@@ -31,6 +31,11 @@
                 <InputText autocomplete="false" class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="email" placeholder="Email do cliente" @bind-Value="cFichaCliente.Email" />
             </div>
             <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => cFichaCliente.Email)" />
+            
+            <div class="form-group form-inline m-2 p-1">
+                <label for="morada">Localidade:</label> &nbsp;
+                <InputText autocomplete="false" class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="morada" placeholder="Localidade do cliente" @bind-Value="cFichaCliente.Localidade" />
+            </div>
 
             <div class="form-group form-inline m-2 p-1">
                 <label for="morada">Morada:</label> &nbsp;

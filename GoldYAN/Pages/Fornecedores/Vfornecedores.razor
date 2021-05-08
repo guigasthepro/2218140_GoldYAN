@@ -16,24 +16,24 @@
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Codigo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Fornecedor</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Contacto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Nif</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Localidade</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Codigo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Contacto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Localidade</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Nif</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">Codigo</th><th rowspan="1" colspan="1">Fornecedor</th><th rowspan="1" colspan="1">Contacto</th><th rowspan="1" colspan="1">Nif</th><th rowspan="1" colspan="1">Localidade</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                    <tr><th rowspan="1" colspan="1">Codigo</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Contacto</th><th rowspan="1" colspan="1">Localidade</th><th rowspan="1" colspan="1">NIF</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
                                     @foreach (var fornecedor in vFornecedor)
                                     {
                                         if (!IsVisible(fornecedor))
                                             continue;
-                                        <tr style="height: 1em;">
-                                            <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.codigo ">@fornecedor.codigo</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.nome">@fornecedor.nome</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.telefone">@fornecedor.telefone</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.nif">@fornecedor.nif</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.morada">@fornecedor.morada</td>
-                                            <td><button class="btn btn-primary btn-sm" @onclick="() => ShowModal(fornecedor.idfornecedor)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(fornecedor.idfornecedor)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
-                                        </tr>
+                                    <tr style="height: 1em;">
+                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.codigo ">@fornecedor.codigo</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.nome">@fornecedor.nome</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.telefone">@fornecedor.telefone</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.localizaçao">@fornecedor.localizaçao</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.nif">@fornecedor.nif</td>
+                                        <td><button class="btn btn-primary btn-sm" @onclick="() => ShowModal(fornecedor.idfornecedor)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(fornecedor.idfornecedor)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>

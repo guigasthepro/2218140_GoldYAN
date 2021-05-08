@@ -122,7 +122,7 @@ namespace GoldYAN.Controller
 
                 if (recLido != null)
                 {
-
+                    recLido.Localidade = cliente.Localidade;
                     recLido.Morada = cliente.Morada;
                     recLido.Moradaopcional = cliente.Moradaopcional;
                     recLido.Nif = cliente.Nif;

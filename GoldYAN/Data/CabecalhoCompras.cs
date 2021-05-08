@@ -9,7 +9,7 @@ namespace GoldYAN.Data
         public int idcompra { get; set; }
         public int idfornecedor { get; set; }
         public int idtipodecompra { get; set; }
-        public int numero { get; set; }
+        public string numero { get; set; }
         public string apontamentos { get; set; }
         public string datacriacao { get; set; }
     }

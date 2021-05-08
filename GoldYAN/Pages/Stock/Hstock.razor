@@ -13,56 +13,60 @@
         <div class="card-body">
             <div class="table-responsive-sm">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Pesquisar Movimento:</label>
+                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Pesquisar Produto:</label>
                               
-                        <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Produto">
+                        <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos"  Placeholder="Pesquisar Produto">
                             <SelectedTemplate>
                                 @context.idproduto + @context.descricao
                             </SelectedTemplate>
                             <ResultTemplate>@context.idproduto + @context.descricao</ResultTemplate>
                         </BlazoredTypeahead>
-                        <button type="button" @onclick="LoadStock"></button>
+                        <div class="form-group mt-2">
+                            <button class="btn btn-sm btn-primary" style="display:inline;" type="button" @onclick="LoadStock"><i class="fas fa-search"></i>Procurar</button>
+                        </div>
+
                         </div></div></div><div class="row">
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Tipo de Componente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">IDComponente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">IDProdutoAlterado</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Tipo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Stock Inicial</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Quantidade adicionada</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Stock Final</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Data da Compra</th></tr>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Tipo de Movimento</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Data</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Documento</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Produto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Quantidade</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Referencia Saida</th></tr>
                                 </thead>
                                 <tfoot>
-                                <tr><th rowspan="1" colspan="1">Tipo de Componente</th><th rowspan="1" colspan="1">IDComponente</th><th rowspan="1" colspan="1">Produto Alterado</th><th rowspan="1" colspan="1">Tipo</th><th rowspan="1" colspan="1">Stock Inicial</th><th rowspan="1" colspan="1">Quantidade adicionada</th><th rowspan="1" colspan="1">Stock Final</th><th rowspan="1" colspan="1">Data da Compra</th></tr>
+                                <tr><th rowspan="1" colspan="1">Tipo de Movimento</th><th rowspan="1" colspan="1">Data</th><th rowspan="1" colspan="1">Documento</th><th rowspan="1" colspan="1">Produto</th><th rowspan="1" colspan="1">Quantidade</th><th rowspan="1" colspan="1">Referencia Saida</th></tr>
                                 </tfoot>
                                 <tbody>
                                 @foreach (var stock in vhStock)
                                 {
-                                    if (!IsVisible(stock))
-                                    continue;
+
+                                    var desc = listaCabecalhoProduto.Where(h => h.idproduto.Equals(stock.idprodutoalterado)).ToList();
+
                                     <tr style="height: 1em;">
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.tipocomponente">@stock.tipocomponente</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.idcomponente">@stock.idcomponente</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.idprodutoalterado">@stock.idprodutoalterado</td>
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@stock.tipo">@stock.tipo</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.stockinicial">@stock.stockinicial</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.datacriacao">@stock.datacriacao</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.idcomponente-@stock.tipocomponente">@stock.idcomponente-@stock.tipocomponente</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.idprodutoalterado-@desc[0].descricao">@stock.idprodutoalterado-@desc[0].descricao</td>
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@stock.stockadicionado">@stock.stockadicionado</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.stockfinal">@Math.Round(stock.stockfinal.Value, 2)</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.stockinicial">@stock.datacriacao</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.referenciasaida">@stock.referenciasaida</td>
 
                                     </tr>
 
+
+                                    AdicionarStock(stock.stockadicionado, stock.tipo);
                                     CheckStock();
 
                                 }
                                 
                                 </tbody>
                             </table>
-                            <div class="float-right">
-                                <label class="">Entrada</label>
-                                <input class="" value="@Entrada" />
+                            <div class="float-right form-group row mt-3">
+                                <label class="col-form-label">Entrada:</label>  &nbsp;
+                                <input class="form-control w-25" value="@Entrada" />
 
-                                <label class="">Saida</label>
-                                <input class="" value="@Saida" />
+                                <label class="col-form-label">Saida:</label>  &nbsp;
+                                <input class="form-control w-25" value="@Saida" />
 
-                                <label class="">Stock</label>
-                                <input class="" value="@Stock" />
+                                <label class="col-form-label">Stock:</label> &nbsp;
+                                <input class="form-control w-25" value="@Stock" />
                             </div>
 
                         </div>
@@ -77,6 +81,7 @@
 
     List<CabecalhoProdutos> listaCabecalhoProduto = new List<CabecalhoProdutos>();
     Data.CabecalhoProdutos produtos = new CabecalhoProdutos();
+    Data.CabecalhoProdutos cprodutos = new CabecalhoProdutos();
 
     List<HistoricoStock> vhStock = new List<HistoricoStock>();
     public string Filter { get; set; }
@@ -89,15 +94,9 @@
     protected override async Task OnInitializedAsync()
     {
         listaCabecalhoProduto = CAPC.GetAll();
+
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            Stock = Entrada - Saida;
-        }
-    }
 
     public async Task CheckStock()
     {
@@ -119,33 +118,17 @@
 
     public async Task LoadStock()
     {
-
-    }
-
-    public bool IsVisible(HistoricoStock hstock)
-    {
-
-        if (string.IsNullOrEmpty(Filter))
+        if(produtos.idproduto != null)
         {
-
-            return false;
-        }
-
-        if (hstock.id.Equals(Filter) || hstock.idprodutoalterado.ToString().Contains(Filter) || hstock.tipo.ToString().Contains(Filter))
-        {
+            Stock = new double();
             Entrada = new double();
             Saida = new double();
-            Stock = new double();
-            AdicionarStock(hstock.stockadicionado, hstock.tipo);
-            return true;
+            vhStock = hStockC.GetAllProdutoQuery(produtos.idproduto);
         }
         else
         {
-
+            js.InvokeVoidAsync("alert", "Seleciona primeiro um produto");
         }
-
-        return false;
-
     }
 
     private async Task<IEnumerable<CabecalhoProdutos>> ProcurarProdutos(string searchText)

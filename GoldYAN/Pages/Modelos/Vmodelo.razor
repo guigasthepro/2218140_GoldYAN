@@ -305,10 +305,10 @@
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">IDModelo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">IDTipoDePeça</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">IDTipoDeProduto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Data Criação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Ações</th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">Codigo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Tipo Produto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Tipo Peça</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Data Criação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">IDModelo</th><th rowspan="1" colspan="1">IDTipoDePeça</th><th rowspan="1" colspan="1">IDTipoDeProduto</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Data Criação</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                    <tr><th rowspan="1" colspan="1">Codigo</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Tipo Produto</th><th rowspan="1" colspan="1">Tipo Peca</th><th rowspan="1" colspan="1">Data Criação</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
                                     @foreach (var modelos in LCM)
@@ -317,9 +317,9 @@
                                             continue;
                                         <tr @ondblclick="() => OpenFichaModelo(modelos.idmodelo)" style="height: 1em;">
                                             <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@modelos.idmodelo">@modelos.idmodelo</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@modelos.idtipodepeca">@modelos.idtipodepeca</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@modelos.idtipoproduto">@modelos.idtipoproduto</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@modelos.descricao">@modelos.descricao</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@modelos.idtipoproduto">@modelos.idtipoproduto</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@modelos.idtipodepeca">@modelos.idtipodepeca</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@modelos.datacriacao">@modelos.datacriacao</td>
                                             <td><button @onclick="() => OpenFichaModelo(modelos.idmodelo)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(modelos.idmodelo)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
                                         </tr>

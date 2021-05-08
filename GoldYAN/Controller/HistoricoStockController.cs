@@ -73,6 +73,20 @@ namespace GoldYAN.Controller
 
             return LerCodigos;
         }
+        public List<HistoricoStock> GetAllProdutoQuery(int id2)
+        {
+            string query = $"SELECT * FROM `historicostock` WHERE idprodutoalterado  = {id2} ";
+
+            LerCodigos = new List<HistoricoStock>();
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Query<HistoricoStock>(query).ToList();
+                LerCodigos = res;
+            }
+
+            return LerCodigos;
+        }
 
         // POST api/<CodigoPostalController>
         [HttpPost]

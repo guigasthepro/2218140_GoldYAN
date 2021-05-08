@@ -13,126 +13,126 @@ namespace GoldYAN.Pages.Compras
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 1 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 2 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 3 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 4 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 5 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 6 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 7 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 8 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Mvc;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 9 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 10 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 11 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 12 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Blazored.Typeahead;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 14 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Controller;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 15 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.IO;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 16 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using BlazorInputFile;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
+#line 2 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
 using GoldYAN.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
+#line 3 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
 using System.ComponentModel.DataAnnotations;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
+#line 5 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
            [Authorize]
 
 #line default
@@ -147,7 +147,7 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 269 "C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
+#line 269 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Icompra.razor"
        
 
     //Declaration of needed objects
@@ -545,7 +545,7 @@ using System.ComponentModel.DataAnnotations;
                     if(LCP[i].produtonovo)
                     {
                         hStock.tipocomponente = "Compra";
-                        hStock.idcomponente = LC[i].idcompra;
+                        hStock.idcomponente = CCompra.numero;
                         hStock.tipo = "Entrada";
                         hStock.stockinicial = 0;
                         if (LCP[i].updatestock.HasValue)
@@ -553,27 +553,39 @@ using System.ComponentModel.DataAnnotations;
                             hStock.stockadicionado = LCP[i].updatestock.Value;
                         }
                         hStock.stockfinal = LCP[i].stock;
-                        hStock.datacriacao = DateTime.Now.ToShortDateString();
+                        hStock.datacriacao = DateTime.Now.ToString("dd/MM/yyyy");
                         var resutlacompra = CAPC.Post(LCP[i]);
                         hStock.idprodutoalterado = resutlacompra.idproduto;
 
                         LC[i].idcompra = resultado.idcompra;
                         LC[i].idproduto = resutlacompra.idproduto;
 
-                        ComprasC.Post(LC[i]);
+                        var resultado7 = ComprasC.Post(LC[i]);
                         hStockC.Post(hStock);
+
+                        if (resutlacompra.idproduto != 0 && resultado7.idcompra != 0)
+                        {
+                            js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
+                        }
+                        else
+                        {
+                            js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
+                        }
+
                         hStock = new HistoricoStock();
                         ecp = new ClassificacaoProdutos();
                         dtp = new TipoProduto();
                         dtdp = new TipoDePeca();
                         Compra = new Compras();
                         CCP = new CabecalhoProdutos();
+                        LCP = new List<CabecalhoProdutos>();
+
                     }
                     else
                     {
                         hStock.idprodutoalterado = LCP[i].idproduto;
                         hStock.tipocomponente = "Compra";
-                        hStock.idcomponente = LC[i].idcompra;
+                        hStock.idcomponente = CCompra.numero;
                         hStock.tipo = "Entrada";
                         if (LCP[i].updatestock.HasValue)
                         {
@@ -586,20 +598,28 @@ using System.ComponentModel.DataAnnotations;
                         js.InvokeVoidAsync("console.log", $"{LCP[i].stock.Value}");
 
                         hStock.stockfinal = LCP[i].stock;
-                        hStock.datacriacao = DateTime.Now.ToShortDateString();
+                        hStock.datacriacao = DateTime.Now.ToString("dd/MM/yyyy");
 
-                        CAPC.Put(LCP[i].idproduto, LCP[i]);
+                        var resultado6 = CAPC.Put(LCP[i].idproduto, LCP[i]);
 
                         LC[i].idcompra = resultado.idcompra;
-                        ComprasC.Post(LC[i]);
+                        var resultado7 = ComprasC.Post(LC[i]);
                         hStockC.Post(hStock);
+                        if (resultado6.Value.idproduto != 0 && resultado7.idcompra != 0)
+                        {
+                            js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
+                        }
+                        else
+                        {
+                            js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
+                        }
                         hStock = new HistoricoStock();
                         ecp = new ClassificacaoProdutos();
                         dtp = new TipoProduto();
                         dtdp = new TipoDePeca();
                         Compra = new Compras();
                         CCP = new CabecalhoProdutos();
-
+                        LCP = new List<CabecalhoProdutos>();
 
 
 
@@ -624,7 +644,7 @@ using System.ComponentModel.DataAnnotations;
                 if (LCP[0].produtonovo)
                 {
                     hStock.tipocomponente = "Compra";
-                    hStock.idcomponente = LC[0].idcompra;
+                    hStock.idcomponente = CCompra.numero;
                     hStock.tipo = "Entrada";
                     hStock.stockinicial = 0;
                     if (LCP[i].updatestock.HasValue)
@@ -632,28 +652,38 @@ using System.ComponentModel.DataAnnotations;
                         hStock.stockadicionado = LCP[0].updatestock.Value;
                     }
                     hStock.stockfinal = LCP[0].stock;
-                    hStock.datacriacao = DateTime.Now.ToShortDateString();
+                    hStock.datacriacao = DateTime.Now.ToString("dd/MM/yyyy");
 
                     var resutlacompra = CAPC.Post(LCP[0]);
                     hStock.idprodutoalterado = resutlacompra.idproduto;
                     LC[0].idproduto = resutlacompra.idproduto;
 
                     LC[0].idcompra = resultado2.idcompra;
-                    ComprasC.Post(LC[0]);
+                    var resultado1 = ComprasC.Post(LC[0]);
                     hStockC.Post(hStock);
+                    if(resutlacompra.idcompra != 0 && resultado1.idcompra != 0)
+                    {
+                        js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
+                    }
+                    else
+                    {
+                        js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
+                    }
                     hStock = new HistoricoStock();
                     ecp = new ClassificacaoProdutos();
                     dtp = new TipoProduto();
                     dtdp = new TipoDePeca();
                     Compra = new Compras();
                     CCP = new CabecalhoProdutos();
+                    LCP = new List<CabecalhoProdutos>();
+
 
                 }
                 else
                 {
                     hStock.idprodutoalterado = LCP[0].idproduto;
                     hStock.tipocomponente = "Compra";
-                    hStock.idcomponente = LC[0].idcompra;
+                    hStock.idcomponente = CCompra.numero;
                     hStock.tipo = "Entrada";
                     if(LCP[0].stockantigo.HasValue)
                     {
@@ -664,10 +694,17 @@ using System.ComponentModel.DataAnnotations;
                         hStock.stockadicionado = LCP[0].updatestock.Value;
                     }
                     hStock.stockfinal = LCP[0].stock;
-                    hStock.datacriacao = DateTime.Now.ToShortDateString();
-                    CAPC.Put(LCP[0].idproduto, LCP[0]);
+                    hStock.datacriacao = DateTime.Now.ToString("dd/MM/yyyy");
+                    var resultado5 = CAPC.Put(LCP[0].idproduto, LCP[0]);
                     LC[0].idcompra = resultado.idcompra;
-
+                    if (resultado5.Value.idcompra != 0)
+                    {
+                        js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
+                    }
+                    else
+                    {
+                        js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
+                    }
                     ComprasC.Post(LC[0]);
                     hStockC.Post(hStock);
                     hStock = new HistoricoStock();
@@ -676,6 +713,8 @@ using System.ComponentModel.DataAnnotations;
                     dtdp = new TipoDePeca();
                     Compra = new Compras();
                     CCP = new CabecalhoProdutos();
+                    LCP = new List<CabecalhoProdutos>();
+
                 }
 
 

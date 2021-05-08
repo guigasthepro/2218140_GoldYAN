@@ -19,11 +19,6 @@
                 <!-- Modal body -->
                 <div class="modal-body">
 
-                    <div class="container-fluid">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Ficha do Cliente</h6>
-                            </div>
                             <EditForm class="form-group" Model="@EClientes" OnValidSubmit="Editar">
                                 <DataAnnotationsValidator />
                                 <div class="form-group form-inline m-2 p-1">
@@ -45,8 +40,13 @@
                                 <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Email)" />
 
                                 <div class="form-group form-inline m-2 p-1">
+                                    <label for="morada">Localidade:</label> &nbsp;
+                                    <InputText autocomplete="false" class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="morada" placeholder="Localidade do cliente" @bind-Value="EClientes.Localidade" />
+                                </div>
+
+                                <div class="form-group form-inline m-2 p-1">
                                     <label for="morada">Morada:</label> &nbsp;
-                                    <InputText autocomplete="false" class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="morada" placeholder="Moarada do cliente" @bind-Value="EClientes.Morada" />
+                                    <InputText autocomplete="false" class="w-25 form-control" oninput="this.value = this.value.toUpperCase()" id="morada" placeholder="Morada do cliente" @bind-Value="EClientes.Morada" />
                                 </div>
                                 <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Morada)" />
 
@@ -62,8 +62,8 @@
 
                                 <div class="form-group form-inline m-2 p-1">
                                     <label for="nif">Nif:</label> &nbsp;
-                                    <InputNumber autocomplete="false" class="w-25 form-control" id="nif" placeholder="Nif do cliente" @bind-Value="EClientes.Nif"/>
-                                    </div>
+                                    <InputNumber autocomplete="false" class="w-25 form-control" id="nif" placeholder="Nif do cliente" @bind-Value="EClientes.Nif" />
+                                </div>
                                 <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Nif)" />
 
                                 <div class="form-group form-inline m-2 p-1">
@@ -71,14 +71,7 @@
                                     <InputText autocomplete="false" class="w-25  form-control" oninput="this.value = this.value.toUpperCase()" placeholder="Profissão do cliente" id="Profissao" @bind-Value="EClientes.Profissao" />
                                 </div>
                                 <ValidationMessage class="alert alert-warning" style="color:red !important" For="@(() => EClientes.Profissao)" />
-
-                                <div class="form-group m-3">
-                                    <button type="submit" class="btn btn-primary float-right">Criar</button>
-                                    <button type="reset" style="margin-right: 0.5rem" class="btn btn-primary float-right">Cancelar</button>
-                                </div>
                             </EditForm>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -107,24 +100,25 @@
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">Nome do Cliente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">Email</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Morada</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Nif</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 90px;">Ações</th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">Codigo</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Telemovel</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Email</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Localidade</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 90px;">Nif</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 90px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">Nome do Cliente</th><th rowspan="1" colspan="1">Email</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Morada</th><th rowspan="1" colspan="1">NIF</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                    <tr><th rowspan="1" colspan="1">Codigo</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telemovel</th><th rowspan="1" colspan="1">Email</th><th rowspan="1" colspan="1">Localidade</th><th rowspan="1" colspan="1">Nif</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
                                     @foreach (var cliente in VCS)
                                     {
                                         if (!IsVisible(cliente))
                                             continue;
-                                        <tr style="height: 1em;">
-                                            <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@cliente.Nome ">@cliente.Nome</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@cliente.Email">@cliente.Email</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@cliente.Telefone">@cliente.Telefone</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@cliente.Morada">@cliente.Morada</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@cliente.Nif">@cliente.Nif</td>
-                                            <td><button class="btn btn-primary btn-sm" @onclick="() => AbrirModal(cliente.idcliente)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(cliente.idcliente)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
-                                        </tr>
+                                    <tr style="height: 1em;">
+                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@cliente.idcliente ">@cliente.idcliente</td>
+                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@cliente.Nome ">@cliente.Nome</td>
+                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@cliente.Telefone ">@cliente.Telefone</td>
+                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@cliente.Email ">@cliente.Email</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@cliente.Localidade">@cliente.Localidade</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@cliente.Nif">@cliente.Nif</td>
+                                        <td><button class="btn btn-primary btn-sm" @onclick="() => AbrirModal(cliente.idcliente)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(cliente.idcliente)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>

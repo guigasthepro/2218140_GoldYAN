@@ -400,14 +400,10 @@ C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Re
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Administração\Servicos.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Administração\Unidades.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Administração\Utilizadores.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Buttons.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Cards.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Charts.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Clientes\Cfichacliente.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Clientes\Vclientes.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Compras\Icompra.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Compras\Vcompras.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Counter.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Encomendas\Cencomenda.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Encomendas\Vencomendas.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Fornecedores\Cfornecedores.razor.g.cs
@@ -417,11 +413,6 @@ C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Re
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Moldes\Vmoldes.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Produtos\Cprodutos.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Produtos\Vprodutos.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Tables.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Utilities_animations.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Utilities_border.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Utilities_colour.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Utilities_other.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Shared\Footer.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Shared\LoginDisplay.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Shared\MainLayout.razor.g.cs
@@ -444,14 +435,10 @@ C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Re
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Administração\Servicos.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Administração\Unidades.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Administração\Utilizadores.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Buttons.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Cards.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Charts.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Clientes\Cfichacliente.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Clientes\Vclientes.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Compras\Icompra.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Compras\Vcompras.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Counter.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Encomendas\Cencomenda.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Encomendas\Vencomendas.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Fornecedores\Cfornecedores.razor.g.cs
@@ -461,11 +448,6 @@ C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Re
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Moldes\Vmoldes.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Produtos\Cprodutos.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Produtos\Vprodutos.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Tables.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Utilities_animations.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Utilities_border.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Utilities_colour.razor.g.cs
-C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Utilities_other.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Shared\Footer.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Shared\LoginDisplay.razor.g.cs
 C:\Users\GuilhermeSimao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Shared\MainLayout.razor.g.cs
@@ -790,3 +772,18 @@ C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\R
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Modelos\Vmodelo.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Oficina\Oficina.razor.g.cs
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Stock\Hstock.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\bin\Release\netcoreapp3.1\BlazorInputFile.dll
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Administração\Colaboradores.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Fabrico\Cfabrico.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Fabrico\Vfabrico.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Modelos\Cmodelo.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Modelos\Vmodelo.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Oficina\Oficina.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Stock\Hstock.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Administração\Colaboradores.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Fabrico\Cfabrico.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Fabrico\Vfabrico.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Modelos\Cmodelo.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Modelos\Vmodelo.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Oficina\Oficina.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Stock\Hstock.razor.g.cs

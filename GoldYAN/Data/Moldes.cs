@@ -14,6 +14,8 @@ namespace GoldYAN.Data
         public string tipodepeça { get; set; }
         public int gaveta { get; set; }
         public string peso { get; set; }
-        public string tipoproduto { get; set; }
+        public string tipodeproduto { get; set; }
+        public string datacriacao { get; set; }
+
     }
 }

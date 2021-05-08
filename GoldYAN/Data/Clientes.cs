@@ -16,6 +16,8 @@ namespace GoldYAN.Data
         [Required]
         public string Email { get; set; }
         [Required]
+        public string Localidade { get; set; }
+
         public string Morada { get; set; }
         public string Moradaopcional { get; set; }
         [Required]

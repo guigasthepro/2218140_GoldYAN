@@ -12,6 +12,7 @@ namespace GoldYAN.Data
         [ExplicitKey]
         public int idfabrico { get; set; }
         public string? idencomenda { get; set; }
+        public string? descricao { get; set; }
         public int idproduto { get; set; }
         public string datacriacao { get; set; }
 

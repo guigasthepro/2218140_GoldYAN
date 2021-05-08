@@ -23,9 +23,13 @@ namespace GoldYAN.Data
         public double? feitiogr  { get; set; }
         public double? feitiopeca { get; set; }
         public double? cotacao { get; set; }
+        public double? margem { get; set; }
         public double? preco { get; set; }
+        public double? pvp { get; set; }
         public double? stock { get; set; }
         public double? peso { get; set; }
+        public string datacriacao { get; set; }
+
         [Computed] public double? updatestock{ get; set; }
         [Computed] public double? stockantigo { get; set; }
         [Computed] public double? custototal { get; set; }

@@ -51,7 +51,7 @@
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="numero">Numero:</label> &nbsp
-                                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="numero" class="form-control" style="-moz-appearance: textfield;" placeholder="Numero Fatura" @bind-Value="CCompra.numero" />
+                                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="numero" class="form-control" style="-moz-appearance: textfield;" placeholder="Numero Fatura" @bind-Value="CCompra.numero" />
                                     </div>
                                 </div>
 
@@ -231,24 +231,36 @@
                         <div style="overflow: auto;" class="col-sm-12">
                             <table class="table table-bordered table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">IDCompra</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">IDFornecedor</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Numero</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 200px;">Apontamentos</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Data Criação</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 71px;">Ações</th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Fornecedor</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Tipo Documento</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 200px;">Nº Doc</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Data Criação</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 71px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">IDCompra</th><th rowspan="1" colspan="1">IDFornecedor</th><th rowspan="1" colspan="1">Numero</th><th rowspan="1" colspan="1">Apontamentos</th><th rowspan="1" colspan="1">Data Criação</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                    <tr><th rowspan="1" colspan="1">Fornecedor</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Tipo Documento</th><th rowspan="1" colspan="1">Nº Documento</th><th rowspan="1" colspan="1">Data Criação</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
                                     @foreach (var compras in listaCCompras)
                                     {
                                         if (!IsVisible(compras))
                                             continue;
-                                        <tr style="height: 1em;">
-                                            <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@compras.idcompra">@compras.idcompra</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@compras.idfornecedor">@compras.idfornecedor</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@compras.numero">@compras.numero</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@compras.apontamentos">@compras.apontamentos</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@compras.datacriacao">@compras.datacriacao</td>
-                                            <td><button @onclick="() => AbrirModal(compras.idcompra)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(compras.idcompra)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
-                                        </tr>
+
+                                        var fornecedores = listaFornecedores.Where(h => h.idfornecedor.Equals(compras.idfornecedor)).ToList();
+                                        if(compras.idtipodecompra != 0)
+                                        {
+                                            eLTDC = LTDC.Where(h => h.idtipocompra.Equals(compras.idtipodecompra)).ToList();
+                                            nomecompra = eLTDC[0].descricao;
+                                        }
+
+
+                                    <tr style="height: 1em;">
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedores[0].codigo">@fornecedores[0].codigo</td>
+                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@compras.apontamentos">@compras.apontamentos</td>
+                                        
+                                       
+
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@nomecompra">@nomecompra</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@compras.numero">@compras.numero</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@compras.datacriacao">@compras.datacriacao</td>
+                                        <td><button @onclick="() => AbrirModal(compras.idcompra)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(compras.idcompra)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
@@ -290,6 +302,8 @@
     List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
     List<CabecalhoProdutos> listaCabecalhoProduto = new List<CabecalhoProdutos>();
     List<TipodeCompra> LTDC = new List<TipodeCompra>();
+    List<TipodeCompra> eLTDC = new List<TipodeCompra>();
+
     List<HistoricoStock> LHS = new List<HistoricoStock>();
 
 
@@ -310,6 +324,8 @@
     int i;
     bool save = false;
     public string Filter { get; set; }
+    public string nomecompra { get; set; }
+
     bool ProdutoNovo = true;
     ActionResult<CabecalhoCompras> RCCompra = new CabecalhoCompras();
     public int linhaselecionada { get; set; }

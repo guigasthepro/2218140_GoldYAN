@@ -21,11 +21,8 @@ namespace GoldYAN.Data
         public int? idproduto { get; set; }
         [Required(ErrorMessage ="A quantidade não pode ser nula")]
         public double? quantidade { get; set; }
-        [Required(ErrorMessage = "A quantidade não pode ser nula")]
         public double? peso { get; set; }
-        [Required(ErrorMessage = "A quantidade não pode ser nula")]
         public double? preco { get; set; }
-        [Required(ErrorMessage = "A quantidade não pode ser nula")]
         public double? valortotal { get; set; }
         [Computed] public string formadepesquisa { get; set; }
         //[AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png", ".bmp" })]

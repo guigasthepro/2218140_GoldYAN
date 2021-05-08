@@ -390,7 +390,7 @@
                 CCP.idtipodeproduto = dtp.idtipoproduto;
                 CCP.idtipodepeca = dtdp.idpeca;
                 hStock.tipocomponente = "Fabrico";
-                hStock.idcomponente = CCP.idproduto;
+                hStock.idcomponente = CCP.idproduto.ToString();
                 hStock.tipo = "Entrada";
                 hStock.idprodutoalterado = CCP.idproduto;
                 hStock.stockinicial = 0;
@@ -418,7 +418,7 @@
                     UProduto = new CabecalhoProdutos();
                     // Adds to history
                     hStock.tipocomponente = "Fabrico";
-                    hStock.idcomponente = LCP[i].idproduto;
+                    hStock.idcomponente = LCP[i].idproduto.ToString();
                     hStock.tipo = "Saida";
                     hStock.idprodutoalterado = resultado.idproduto;
                     hStock.stockfinal = UProduto.stock.Value;
@@ -462,7 +462,7 @@
                     UProduto = new CabecalhoProdutos();
                     // Adds to history
                     hStock.tipocomponente = "Fabrico";
-                    hStock.idcomponente = LCFP[i].idprodutos.Value;
+                    hStock.idcomponente = LCFP[i].idprodutos.Value.ToString();
                     hStock.tipo = "Saida";
                     hStock.idprodutoalterado = CCP.idproduto;
                     hStock.stockfinal = UProduto.stock.Value;

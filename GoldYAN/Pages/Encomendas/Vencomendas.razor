@@ -415,10 +415,10 @@
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">IDEncomenda</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">IDCliente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">Telefone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">IDLocalizacao</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">IDEstado</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Data</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">Ações</th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">Data</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">Encomenda</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20px;">IDCliente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Nome</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">Contacto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 45px;">Localização</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">Estado</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 20px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">IdEncomenda</th><th rowspan="1" colspan="1">IDCliente</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">IDLocalizacao</th><th rowspan="1" colspan="1">IDEstado</th><th rowspan="1" colspan="1">Data</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                    <tr><th rowspan="1" colspan="1">Data</th><th rowspan="1" colspan="1">Encomenda</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">IDCliente</th><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Contacto</th><th rowspan="1" colspan="1">Loalização</th><th rowspan="1" colspan="1">Estado</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
                                     @foreach (var encomenda in VEC)
@@ -428,13 +428,16 @@
                                         encomenda.idwithlinha = encomenda.idencomenda.ToString() + "/" + encomenda.linha.ToString();
 
                                     <tr style="height: 1em;" @ondblclick="() => AbrirModal(encomenda.idwithlinha)">
-                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idwithlinha">@encomenda.idwithlinha</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idcliente">@encomenda.idcliente</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.nome">@encomenda.nome</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.telefone">@encomenda.telefone</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idlocalizacao">@encomenda.idlocalizacao</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idestado">@encomenda.idestado</td>
+
                                         <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.data">@encomenda.data</td>
+                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idwithlinha">@encomenda.idwithlinha</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idcliente">@encomenda.apontamentos</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.nome">@encomenda.idcliente</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.telefone">@encomenda.nome</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idlocalizacao">@encomenda.telefone</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idestado">@encomenda.idlocalizacao</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@encomenda.idestado">@encomenda.idestado</td>
+
                                         <td align="center">
                                             <div class="dropdown no-arrow">
                                                 <a class="btn dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -544,7 +547,7 @@
                 CCP.idtipodepeca = dtdp.idpeca;
 
                 hStock.tipocomponente = "Fabrico";
-                hStock.idcomponente = CCP.idproduto;
+                hStock.idcomponente = CCP.idproduto.ToString();
                 hStock.tipo = "Entrada";
                 hStock.idprodutoalterado = CCP.idproduto;
                 hStock.stockinicial = 0;
@@ -572,7 +575,7 @@
                     UProduto = new CabecalhoProdutos();
                     // Adds to history
                     hStock.tipocomponente = "Fabrico";
-                    hStock.idcomponente = LCP[i].idproduto;
+                    hStock.idcomponente = LCP[i].idproduto.ToString();
                     hStock.tipo = "Saida";
                     hStock.idprodutoalterado = CCP.idproduto;
                     hStock.stockfinal = UProduto.stock.Value;
@@ -613,7 +616,7 @@
                     UProduto = new CabecalhoProdutos();
                     // Adds to history
                     hStock.tipocomponente = "Fabrico";
-                    hStock.idcomponente = LCFP[i].idprodutos.Value;
+                    hStock.idcomponente = LCFP[i].idprodutos.Value.ToString();
                     hStock.tipo = "Saida";
                     hStock.idprodutoalterado = CCP.idproduto;
                     hStock.stockfinal = UProduto.stock.Value;
