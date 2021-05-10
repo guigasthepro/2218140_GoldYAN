@@ -15,6 +15,8 @@ namespace GoldYAN.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Admin, Dev, Atendimento, Oficina, Contabilidade")]
+
     public class CabecalhoComprasController : ControllerBase
     {
         // GET: api/<ComprasController>

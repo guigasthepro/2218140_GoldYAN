@@ -133,7 +133,7 @@ using Blazored.Typeahead;
 #nullable disable
 #nullable restore
 #line 15 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Cencomenda.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Atendimento, Contabilidade")]
 
 #line default
 #line hidden
@@ -147,7 +147,7 @@ using Blazored.Typeahead;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 288 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Cencomenda.razor"
+#line 279 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Encomendas\Cencomenda.razor"
        
 
     Data.Servicos servicos = new Servicos();
@@ -179,7 +179,7 @@ using Blazored.Typeahead;
         ListaClientes = CC.Get();
         ListaServicos = SC.GetAll();
         servicos.idservico = 0;
-        encomendas.datadeentrega = DateTime.Today;
+        encomendas.datadeentrega = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
     }
 
     private async Task<IEnumerable<Clientes>> ProcurarClientes(string searchText)
@@ -210,9 +210,8 @@ using Blazored.Typeahead;
             encomendas.idservico = servicos.idservico;
             encomendas.descricao = servicos.descricao;
             encomendas.codigo = servicos.codigo;
-            encomendas.precounitario = servicos.custo;
             encomendas.precototal = encomendas.precounitario * encomendas.quantidade;
-
+            encomendas.datadeentrega = encomendas.datadeentregadt.ToString("dd MM yyyy");
             //Vai buscar o utilizador que está logado
             var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
             var user = authState.User;
@@ -223,7 +222,7 @@ using Blazored.Typeahead;
 
             encomendas = new Encomendas();
             servicos = new Servicos();
-            encomendas.datadeentrega = DateTime.Today;
+            encomendas.datadeentrega = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
 
     }
@@ -232,6 +231,7 @@ using Blazored.Typeahead;
     {
         if (ListaEncomendas.Count != 0)
         {
+            cabecalhos.data = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
             var resultado = CEC.Post(cabecalhos);
             await Task.Delay(1000);
 
@@ -261,8 +261,8 @@ using Blazored.Typeahead;
         encomendas.idservico = servicos.idservico;
         encomendas.descricao = servicos.descricao;
         encomendas.codigo = servicos.codigo;
-        encomendas.precounitario = servicos.custo;
         encomendas.precototal = encomendas.precounitario * encomendas.quantidade;
+        encomendas.datadeentrega = encomendas.datadeentregadt.ToString("dd MM yyyy hh: mm");
 
         ListaEncomendas.RemoveAt(encomendas.linha - 1);
         ListaEncomendas.Insert(encomendas.linha - 1, encomendas);

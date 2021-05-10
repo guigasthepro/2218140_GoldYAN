@@ -126,7 +126,7 @@ using GoldYAN.Controller;
 #nullable disable
 #nullable restore
 #line 6 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Cmolde.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 #line default
 #line hidden

@@ -787,3 +787,5 @@ C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Re
 C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Modelos\Vmodelo.razor.g.cs
 C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Oficina\Oficina.razor.g.cs
 C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Stock\Hstock.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\RazorDeclaration\Pages\Administração\TipoDeCompra.razor.g.cs
+C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Release\netcoreapp3.1\Razor\Pages\Administração\TipoDeCompra.razor.g.cs

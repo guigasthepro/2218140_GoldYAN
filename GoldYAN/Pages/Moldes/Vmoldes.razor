@@ -4,7 +4,7 @@
 @using System.Runtime
 @inject IJSRuntime JS;
 @inject MoldesController VM
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 @if (showModal)
 {
@@ -83,16 +83,16 @@
                                     {
                                         if (!IsVisible(molde))
                                             continue;
-                                    <tr role="row" class="odd" id="@molde.codigo">
-                                        <td>@molde.codigo</td>
-                                        <td>@molde.descricao</td>
-                                        <td>@molde.tipodepeça</td>
-                                        <td>@molde.tipodeproduto</td>
-                                        <td>@molde.gaveta</td>
-                                        <td>@molde.datacriacao</td>
+                                        <tr role="row" class="odd" id="@molde.codigo">
+                                            <td>@molde.codigo</td>
+                                            <td>@molde.descricao</td>
+                                            <td>@molde.tipodepeça</td>
+                                            <td>@molde.tipodeproduto</td>
+                                            <td>@molde.gaveta</td>
+                                            <td>@molde.datacriacao</td>
 
-                                        <td><button @onclick="() => LoadModal(molde.idmolde)" class="btn btn-sm btn-primary" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
-                                    </tr>
+                                            <td><button @onclick="() => LoadModal(molde.idmolde)" class="btn btn-sm btn-primary" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Delete(molde.idmolde)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
@@ -150,4 +150,23 @@
         showModal = false;
 
     }
+
+    public async Task Delete(int id)
+    {
+
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            VM.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+        }
+        OnInitializedAsync();
+        showModal = false;
+
     }
+
+}

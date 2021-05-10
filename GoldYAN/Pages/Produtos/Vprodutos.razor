@@ -1,5 +1,5 @@
 ﻿@page "/vprodutos"
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 @if (showModal)
 {
@@ -25,7 +25,7 @@
                             <div class="m-3 form-group">
                                 <div class="form-inline">
                                     <label for="nome">Modelo:</label>
-                                    <BlazoredTypeahead SearchMethod="ProcurarModelos" PreventDefault="true" DisableClear="true" Disabled="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="cm" Placeholder="Pesquisar Modelo">
+                                    <BlazoredTypeahead SearchMethod="ProcurarModelos" PreventDefault="true" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="cm" Placeholder="Pesquisar Modelo">
                                         <SelectedTemplate>
                                             @context.descricao
                                         </SelectedTemplate>
@@ -36,11 +36,19 @@
                                 </div>
                             </div>
 
+                            <EditForm Model="@CCP">
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="Descricao">Descrição:</label> &nbsp
+                                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descrição do produto" @bind-Value="CCP.descricao" />
+                                    </div>
+                                </div>
+                            </EditForm>
 
                             <div class="m-3 form-group ">
                                 <div class="form-inline">
                                     <label for="nome" class="">Classificação de Produto:</label>
-                                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" Disabled="true" SearchMethod="ProcurarClassificação" oninput="this.value = this.value.toUpperCase()" @bind-Value="ecp" Placeholder="Pesquisar classificação">
+                                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarClassificação" oninput="this.value = this.value.toUpperCase()" @bind-Value="ecp" Placeholder="Pesquisar classificação">
                                         <SelectedTemplate>
                                             @context.codigo (Desc: @context.descricao)
                                         </SelectedTemplate>
@@ -51,21 +59,8 @@
 
                             <div class="m-3 form-group ">
                                 <div class="form-inline">
-                                    <label for="nome" class="">Unidades:</label>
-                                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" Disabled="true" SearchMethod="ProcurarUnidades" oninput="this.value = this.value.toUpperCase()" @bind-Value="unidade" Placeholder="Pesquisar unidade">
-                                        <SelectedTemplate>
-                                            @context.indice (Desc: @context.descricao)
-                                        </SelectedTemplate>
-                                        <ResultTemplate>@context.indice + @context.descricao </ResultTemplate>
-                                    </BlazoredTypeahead>
-                                </div>
-                            </div>
-
-
-                            <div class="m-3 form-group ">
-                                <div class="form-inline">
                                     <label for="nome" class="">Tipo de Produto:</label>
-                                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" Disabled="true" SearchMethod="ProcurarTipoProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo de produto">
+                                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarTipoProdutos" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo de produto">
                                         <SelectedTemplate>
                                             @context.codigo (Desc: @context.descricao)
                                         </SelectedTemplate>
@@ -77,7 +72,7 @@
                             <div class="m-3 form-group ">
                                 <div class="form-inline">
                                     <label for="nome" class="">Tipo de Peça:</label>
-                                    <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" Disabled="true" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar peça">
+                                    <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarPecas" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar peça">
                                         <SelectedTemplate>
                                             @context.codigo (Desc: @context.descricao)
                                         </SelectedTemplate>
@@ -89,7 +84,7 @@
                             <div class="m-3 form-group ">
                                 <div class="form-inline">
                                     <label for="nome" class="">Fornecedor:</label>
-                                    <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" Disabled="true" SearchMethod="ProcurarFornecedores" oninput="this.value = this.value.toUpperCase()" @bind-Value="fornecedores" Placeholder="Pesquisar fornecedor">
+                                    <BlazoredTypeahead class="" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarFornecedores" oninput="this.value = this.value.toUpperCase()" @bind-Value="fornecedores" Placeholder="Pesquisar fornecedor">
                                         <SelectedTemplate>
                                             @context.codigo (Desc: @context.nome)
                                         </SelectedTemplate>
@@ -97,6 +92,40 @@
                                     </BlazoredTypeahead>
                                 </div>
                             </div>
+
+                            <div class="m-3 form-group ">
+                                <div class="form-inline">
+                                    <label for="nome" class="">Unidades:</label>
+                                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarUnidades" oninput="this.value = this.value.toUpperCase()" @bind-Value="unidade" Placeholder="Pesquisar unidade">
+                                        <SelectedTemplate>
+                                            @context.indice (Desc: @context.descricao)
+                                        </SelectedTemplate>
+                                        <ResultTemplate>@context.indice + @context.descricao </ResultTemplate>
+                                    </BlazoredTypeahead>
+                                </div>
+                            </div>
+
+                            <EditForm Model="@CCP">
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="Descricao">Stock:</label> &nbsp
+                                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" disabled="true" placeholder="Descrição do produto" @bind-Value="CCP.stock" />
+                                    </div>
+                                </div>
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="Descricao">Preço:</label> &nbsp
+                                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" disabled="true" placeholder="Descrição do produto" @bind-Value="CCP.preco" />
+                                    </div>
+                                </div>
+                                <div class="m-3 form-group">
+                                    <div class="form-inline">
+                                        <label for="Descricao">PVP:</label> &nbsp
+                                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" disabled="true" placeholder="Descrição do produto" @bind-Value="CCP.pvp" />
+                                    </div>
+                                </div>
+                            </EditForm>
+
                         </div>
                     </div>
 
@@ -108,7 +137,7 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                        <div style="overflow: auto;"  class="col-sm-12">
+                                        <div style="overflow: auto;" class="col-sm-12">
                                             <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;table-layout: fixed;">
                                                 <thead>
                                                     <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 90px;">Componente</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 100px;">Colaborador</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Classificação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Qtd.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 30px;">Valor.Un.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 30px;">Valor Total</th></tr>
@@ -119,31 +148,31 @@
                                                 <tbody>
                                                     @foreach (var produto in LCP)
                                                     {
-                                                        <tr style="height: 1em;">
-                                                            @if (produto.idservico.HasValue)
-                                                            {
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.idservico">Servico</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.idcolaborador">@produto.idcolaborador</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.idservico">@produto.idservico</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.descricao">@produto.descricao</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.quantidade">@produto.quantidade</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.peso">@produto.peso</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.custo">@produto.custo</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.custototal">@produto.custototal</td>
-                                                            }
-                                                            else
-                                                            {
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.idproduto">Produto</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.idcolaborador">@produto.idcolaborador</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.idproduto">@produto.idproduto</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.descricao">@produto.descricao</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.quantidade">@produto.quantidade</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.peso">@produto.peso</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.custo">@produto.custo</td>
-                                                                <td style="overflow: hidden; white-space: nowrap;" title="@produto.custototal">@produto.custototal</td>
-                                                            }
+                                                    <tr style="height: 1em;">
+                                                        @if (produto.idservico.HasValue)
+                                                        {
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.idservico">Servico</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.idcolaborador">@produto.idcolaborador</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.idservico">@produto.idservico</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.descricao">@produto.descricao</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.quantidade">@Math.Round(produto.quantidade, 3)</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.peso">@produto.peso</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.custo">@Math.Round(produto.custo, 3)</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.custototal">@Math.Round(produto.custototal, 3)</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.idproduto">Produto</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.idcolaborador">@produto.idcolaborador</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.idproduto">@produto.idproduto</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.descricao">@produto.descricao</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.quantidade">@Math.Round(produto.quantidade, 3)</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.peso">@produto.peso</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.custo">@Math.Round(produto.custo, 3)</td>
+                                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.custototal">@Math.Round(produto.custototal, 3)</td>
+                                                        }
 
-                                                        </tr>
+                                                    </tr>
                                                     }
                                                 </tbody>
                                             </table>
@@ -157,7 +186,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" @onclick="ModalCancel">Cancelar</button>
-                    <button type="button" class="btn btn-primary" @onclick="AdicionarComposto">Editar</button>
+                    <button type="button" class="btn btn-primary" @onclick="EditarProduto">Editar</button>
                 </div>
 
             </div>
@@ -168,7 +197,7 @@
 
 
 
-   
+
 }
 
 <div class="container-fluid">
@@ -181,30 +210,41 @@
         <div class="card-body">
             <div class="table-responsive-sm">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search"  @bind="Filter" @bind:event="oninput" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
+                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" @bind="Filter" @bind:event="oninput" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Produto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Tipo Produto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Tipo Peça</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">PVP</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Data Criação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Produto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Classificação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Tipo Produto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Tipo Peça</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">PVP</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Data Criação</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">Produto</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Tipo Produto</th><th rowspan="1" colspan="1">Tipo Peça</th><th rowspan="1" colspan="1">PVP</th><th rowspan="1" colspan="1">Data Criação</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                    <tr><th rowspan="1" colspan="1">Produto</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Classificação</th><th rowspan="1" colspan="1">Tipo Produto</th><th rowspan="1" colspan="1">Tipo Peça</th><th rowspan="1" colspan="1">PVP</th><th rowspan="1" colspan="1">Data Criação</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
                                     @foreach (var produtos in listaCabecalhoProdutos)
                                     {
-                                        if (!IsVisible(produtos))
-                                            continue;
-                                    <tr @ondblclick="() => OpenFichaProduto(produtos.idproduto)" style="height: 1em;">
-                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@produtos.idproduto">@produtos.idproduto</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.descricao">@produtos.descricao</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodeproduto">@produtos.idtipodeproduto</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodepeca">@produtos.idtipodepeca</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.pvp">@produtos.pvp</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.datacriacao">@produtos.datacriacao</td>
-                                        <td><button @onclick="() => OpenFichaProduto(produtos.idproduto)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(produtos.idproduto)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
-                                    </tr>
+                                        if (listaCabecalhoProdutos.Count != 0)
+                                        {
+                                            if (!IsVisible(produtos))
+                                                continue;
+
+                                            var classificacao = listaClassificacaoProdutos.Where(h => h.IDClassificacao.Equals(produtos.idclassificação)).ToList();
+                                            var tipodeproduto = listaTipoProdutos.Where(h => h.idtipoproduto.Equals(produtos.idtipodeproduto)).ToList();
+                                            var tipodepeça = listaTipoDePecas.Where(h => h.idpeca.Equals(produtos.idtipodepeca)).ToList();
+
+
+                                            <tr @ondblclick="() => OpenFichaProduto(produtos.idproduto)" style="height: 1em;">
+                                                <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@produtos.idproduto">@produtos.idproduto</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.descricao">@produtos.descricao</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idclassificação - @classificacao[0].descricao">@produtos.idclassificação - @classificacao[0].descricao</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodeproduto - @tipodeproduto[0].descricao">@produtos.idtipodeproduto - @tipodeproduto[0].descricao</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodepeca - @tipodepeça[0].descricao">@produtos.idtipodepeca - @tipodepeça[0].descricao</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.pvp">@produtos.pvp</td>
+                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.datacriacao">@produtos.datacriacao</td>
+                                                <td><button @onclick="() => OpenFichaProduto(produtos.idproduto)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(produtos.idproduto)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                            </tr>
+                                        }
                                     }
+
                                 </tbody>
                             </table>
                         </div>
@@ -286,12 +326,12 @@
         ecp = CPC.Get(CCP.idclassificação);
         dtp = TPRC.Get(CCP.idtipodeproduto);
         dtdp = TPC.Get(CCP.idtipodepeca);
-        if(CCP.idfornecedor.HasValue)
+        if (CCP.idfornecedor.HasValue)
         {
             fornecedores = FC.Get(CCP.idfornecedor.Value);
         }
         LCP = PC.GetAllQuery(CCP.idproduto);
-        
+
         listaProdutos = PC.GetAllQuery(id);
         showModal = true;
     }
@@ -383,6 +423,10 @@
         Readonly = true;
         StateHasChanged();
         OnInitializedAsync();
+        if (resultado != null)
+        {
+            js.InvokeVoidAsync("alert", "Produto editado com sucesso");
+        }
         showModal = false;
     }
 
@@ -413,20 +457,17 @@
 
     public async Task Apagar(int id)
     {
-        //bool confirmation;
+        bool confirmation;
 
-        //confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
 
-        //if (confirmation)
-        //{
-        //    string message = CMC.Delete(id);
-        //    message += MC.Delete(id);
-        //    OnInitializedAsync();
-        //    Task.Delay(1000);
-        //    {
-        //        await js.InvokeVoidAsync("alert", @message);
-        //    }
-        //}
+        if (confirmation)
+        {
+            CAPC.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+
+        }
     }
 
     public async Task Update()

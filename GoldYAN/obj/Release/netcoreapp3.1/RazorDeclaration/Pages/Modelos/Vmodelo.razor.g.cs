@@ -133,7 +133,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 #nullable disable
 #nullable restore
 #line 5 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Vmodelo.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 #line default
 #line hidden
@@ -292,8 +292,8 @@ using Microsoft.EntityFrameworkCore.Internal;
     public async Task Update(string id, int linha)
     {
 
-        listaModelos.RemoveAt(linha -1);
-        listaModelos.Insert(linha -1, m);
+        listaModelos.RemoveAt(linha - 1);
+        listaModelos.Insert(linha - 1, m);
 
         var resultado = MC.Put(id, linha, m);
         if (resultado != null)

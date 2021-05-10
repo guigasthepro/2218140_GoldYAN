@@ -18,6 +18,7 @@ namespace GoldYAN.Data
         public string localizacao { get; set; }
         public string estado { get; set; }
         public string criadopor { get; set; }
+        public string data { get; set; }
 
 
 

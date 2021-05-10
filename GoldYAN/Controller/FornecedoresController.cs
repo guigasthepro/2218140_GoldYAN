@@ -3,6 +3,7 @@ using System.Linq;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
@@ -13,6 +14,8 @@ namespace GoldYAN.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Admin, Dev, Atendimento, Oficina, Contabilidade")]
+
     public class FornecedoresController : ControllerBase
     {
         // GET: api/<PresentesController>

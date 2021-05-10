@@ -1,4 +1,5 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -16,7 +17,7 @@ namespace GoldYAN.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize("Admin")]
+    [Authorize("Admin, Dev")]
     public class AspNetUsersController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -98,14 +99,17 @@ namespace GoldYAN.Controller
 
         // DELETE api/<CodigoPostalController>/5
         [HttpDelete("{id}")]
-        public string Delete(int id)
+        public string Delete(string id)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
+                string query = $"DELETE FROM `aspnetuserroles` WHERE UserId = '{id}'";
+
                 var res = DBConn.Get<aspnetusers>(id);
                 if (res != null)
                 {
                     DBConn.Delete(res);
+                    DBConn.Query(query);
                     return "Item foi apagado com sucesso";
                 }
                 else

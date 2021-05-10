@@ -14,6 +14,7 @@ using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,6 +22,8 @@ namespace GoldYAN.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Admin, Dev, Atendimento, Oficina, Contabilidade")]
+
     public class HistoricoStockController : ControllerBase
     {
         List<HistoricoStock> LerCodigos = new List<HistoricoStock>();

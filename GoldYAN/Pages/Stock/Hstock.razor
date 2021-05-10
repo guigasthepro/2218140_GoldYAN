@@ -1,5 +1,5 @@
 ﻿@page "/hstock"
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 
 <div class="container-fluid">
@@ -13,60 +13,65 @@
         <div class="card-body">
             <div class="table-responsive-sm">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Pesquisar Produto:</label>
-                              
-                        <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos"  Placeholder="Pesquisar Produto">
-                            <SelectedTemplate>
-                                @context.idproduto + @context.descricao
-                            </SelectedTemplate>
-                            <ResultTemplate>@context.idproduto + @context.descricao</ResultTemplate>
-                        </BlazoredTypeahead>
-                        <div class="form-group mt-2">
-                            <button class="btn btn-sm btn-primary" style="display:inline;" type="button" @onclick="LoadStock"><i class="fas fa-search"></i>Procurar</button>
-                        </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="dataTables_length" id="dataTable_length">
+                                <label>Pesquisar Produto:</label>
 
-                        </div></div></div><div class="row">
+                                <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Produto">
+                                    <SelectedTemplate>
+                                        @context.idproduto + @context.descricao
+                                    </SelectedTemplate>
+                                    <ResultTemplate>@context.idproduto + @context.descricao</ResultTemplate>
+                                </BlazoredTypeahead>
+                                <div class="form-group mt-2">
+                                    <button class="btn btn-sm btn-primary" style="display:inline;" type="button" @onclick="LoadStock"><i class="fas fa-search"></i>Procurar</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div><div class="row">
                         <div class="col-sm-12">
                             <table class="table table-bordered table-hover table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Tipo de Movimento</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Data</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Documento</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Produto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Quantidade</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Referencia Saida</th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Tipo de Movimento</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Data</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Documento</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Produto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Quantidade</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Referencia Saida</th></tr>
                                 </thead>
                                 <tfoot>
-                                <tr><th rowspan="1" colspan="1">Tipo de Movimento</th><th rowspan="1" colspan="1">Data</th><th rowspan="1" colspan="1">Documento</th><th rowspan="1" colspan="1">Produto</th><th rowspan="1" colspan="1">Quantidade</th><th rowspan="1" colspan="1">Referencia Saida</th></tr>
+                                    <tr><th rowspan="1" colspan="1">Tipo de Movimento</th><th rowspan="1" colspan="1">Data</th><th rowspan="1" colspan="1">Documento</th><th rowspan="1" colspan="1">Produto</th><th rowspan="1" colspan="1">Quantidade</th><th rowspan="1" colspan="1">Referencia Saida</th></tr>
                                 </tfoot>
                                 <tbody>
-                                @foreach (var stock in vhStock)
-                                {
+                                    @foreach (var stock in vhStock)
+                                    {
 
-                                    var desc = listaCabecalhoProduto.Where(h => h.idproduto.Equals(stock.idprodutoalterado)).ToList();
+                                        var desc = listaCabecalhoProduto.Where(h => h.idproduto.Equals(stock.idprodutoalterado)).ToList();
 
-                                    <tr style="height: 1em;">
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.tipo">@stock.tipo</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.datacriacao">@stock.datacriacao</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.idcomponente-@stock.tipocomponente">@stock.idcomponente-@stock.tipocomponente</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.idprodutoalterado-@desc[0].descricao">@stock.idprodutoalterado-@desc[0].descricao</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.stockadicionado">@stock.stockadicionado</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@stock.referenciasaida">@stock.referenciasaida</td>
+                                        <tr style="height: 1em;">
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@stock.tipo">@stock.tipo</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@stock.datacriacao">@stock.datacriacao</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@stock.idcomponente-@stock.tipocomponente">@stock.idcomponente-@stock.tipocomponente</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@stock.idprodutoalterado-@desc[0].descricao">@stock.idprodutoalterado-@desc[0].descricao</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@stock.stockadicionado">@Math.Round(stock.stockadicionado,3)</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@stock.referenciasaida">@stock.referenciasaida</td>
 
-                                    </tr>
+                                        </tr>
 
 
-                                    AdicionarStock(stock.stockadicionado, stock.tipo);
-                                    CheckStock();
+                                        AdicionarStock(stock.stockadicionado, stock.tipo);
+                                        CheckStock();
 
-                                }
-                                
+                                    }
+
                                 </tbody>
                             </table>
                             <div class="float-right form-group row mt-3">
                                 <label class="col-form-label">Entrada:</label>  &nbsp;
-                                <input class="form-control w-25" value="@Entrada" />
+                                <input class="form-control w-25" value="@Math.Round(Entrada)" />
 
                                 <label class="col-form-label">Saida:</label>  &nbsp;
-                                <input class="form-control w-25" value="@Saida" />
+                                <input class="form-control w-25" value="@Math.Round(Saida,3)" />
 
                                 <label class="col-form-label">Stock:</label> &nbsp;
-                                <input class="form-control w-25" value="@Stock" />
+                                <input class="form-control w-25" value="@Math.Round(Stock,3)" />
                             </div>
 
                         </div>
@@ -108,7 +113,7 @@
 
         if (tipo == "Entrada")
         {
-            Entrada += stock ;
+            Entrada += stock;
         }
         else
         {
@@ -118,7 +123,7 @@
 
     public async Task LoadStock()
     {
-        if(produtos.idproduto != null)
+        if (produtos.idproduto != null)
         {
             Stock = new double();
             Entrada = new double();

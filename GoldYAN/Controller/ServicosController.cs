@@ -13,11 +13,14 @@ using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GoldYAN.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Admin, Dev, Atendimento, Oficina, Contabilidade")]
+
     public class ServicosController : Microsoft.AspNetCore.Mvc.Controller
     {
         // GET: ServicosController

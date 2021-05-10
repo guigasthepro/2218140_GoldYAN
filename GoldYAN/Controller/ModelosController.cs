@@ -5,6 +5,7 @@ using System.Linq;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -16,6 +17,8 @@ namespace GoldYAN.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Admin, Dev, Atendimento, Oficina, Contabilidade")]
+
     public class ModelosController : ControllerBase
     {
         List<Modelos> LerCodigos = new List<Modelos>();

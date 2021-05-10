@@ -126,7 +126,7 @@ using BlazorInputFile;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Vcompras.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 #line default
 #line hidden
@@ -140,7 +140,7 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 275 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Vcompras.razor"
+#line 283 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Compras\Vcompras.razor"
        
 
     List<CabecalhoProdutos> listaCabecalhoProdutos = new List<CabecalhoProdutos>();
@@ -293,10 +293,18 @@ using BlazorInputFile;
 
     public async Task EditarComposto()
     {
-        CCP.idclassificação = ecp.IDClassificacao;
-        CCP.idtipodeproduto = dtp.idtipoproduto;
-        CCP.idtipodepeca = dtdp.idpeca;
-
+        if (ecp != null)
+        {
+            CCP.idclassificação = ecp.IDClassificacao;
+        }
+        if (dtp != null)
+        {
+            CCP.idtipodeproduto = dtp.idtipoproduto;
+        }
+        if (dtdp != null)
+        {
+            CCP.idtipodepeca = dtdp.idpeca;
+        }
         hStock = LHS[CCP.linha - 1];
 
         hStock.stockinicial = hStock.stockfinal.Value - hStock.stockadicionado;
@@ -356,19 +364,30 @@ using BlazorInputFile;
             js.InvokeVoidAsync("alert", "Impossivel fazer o preço, o produto foi adicionado sem preço");
         }
 
-
-
         if (CCP.preco.HasValue)
         {
             Compra.preco = CCP.preco.Value;
+            if (CCP.margem.HasValue)
+            {
+                CCP.preco = CCP.preco * CCP.margem;
+                CCP.pvp = CCP.preco * 1.23;
+            }
+            else
+            {
+                CCP.pvp = CCP.preco * 1.23;
+            }
         }
 
 
-        LCP.RemoveAt(CCP.linha -1);
+        LCP.RemoveAt(CCP.linha - 1);
         LCP.Insert(CCP.linha - 1, CCP);
         CAPC.Put(CCP.idproduto, CCP);
-        ComprasC.Put(Compra.idcompra, Compra.linha, Compra);
+        var resultado = ComprasC.Put(Compra.idcompra, Compra.linha, Compra);
         hStockC.Put(hStock.id, hStock);
+        if (resultado != null)
+        {
+            js.InvokeVoidAsync("alert", "Composto da compra editado com sucesso");
+        }
 
     }
 
@@ -378,6 +397,10 @@ using BlazorInputFile;
         CCompra.idfornecedor = fornecedores.idfornecedor;
         CCompra.idtipodecompra = TDC.idtipocompra;
         RCCompra = CComprasC.Put(CCompra.idcompra, CCompra);
+        if (RCCompra != null)
+        {
+            js.InvokeVoidAsync("alert", "Cabeçalho da compra editado com sucesso");
+        }
     }
 
     // Function that does the selecting in the selected buttons

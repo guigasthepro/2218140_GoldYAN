@@ -133,7 +133,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 #nullable disable
 #nullable restore
 #line 11 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Oficina\Oficina.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Oficina ")]
 
 #line default
 #line hidden
@@ -168,6 +168,9 @@ using Microsoft.EntityFrameworkCore.Internal;
     protected override async Task OnInitializedAsync()
     {
         VEC = EC.GetWithInner();
+        listColaboradores = colaboradoresController.GetAll();
+        listEstados = EstadosC.GetAll();
+        listLocalizacoes = LocalizacaoC.GetAll();
     }
 
     public bool IsVisible(EncomendasComputed encomendas)

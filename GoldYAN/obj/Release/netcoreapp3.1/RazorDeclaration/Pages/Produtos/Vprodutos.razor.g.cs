@@ -126,7 +126,7 @@ using BlazorInputFile;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Produtos\Vprodutos.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 #line default
 #line hidden
@@ -140,7 +140,7 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 218 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Produtos\Vprodutos.razor"
+#line 258 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Produtos\Vprodutos.razor"
        
     Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
     Data.Servicos servicos = new Servicos();
@@ -212,12 +212,12 @@ using BlazorInputFile;
         ecp = CPC.Get(CCP.idclassificação);
         dtp = TPRC.Get(CCP.idtipodeproduto);
         dtdp = TPC.Get(CCP.idtipodepeca);
-        if(CCP.idfornecedor.HasValue)
+        if (CCP.idfornecedor.HasValue)
         {
             fornecedores = FC.Get(CCP.idfornecedor.Value);
         }
         LCP = PC.GetAllQuery(CCP.idproduto);
-        
+
         listaProdutos = PC.GetAllQuery(id);
         showModal = true;
     }
@@ -309,6 +309,10 @@ using BlazorInputFile;
         Readonly = true;
         StateHasChanged();
         OnInitializedAsync();
+        if (resultado != null)
+        {
+            js.InvokeVoidAsync("alert", "Produto editado com sucesso");
+        }
         showModal = false;
     }
 
@@ -339,20 +343,17 @@ using BlazorInputFile;
 
     public async Task Apagar(int id)
     {
-        //bool confirmation;
+        bool confirmation;
 
-        //confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
 
-        //if (confirmation)
-        //{
-        //    string message = CMC.Delete(id);
-        //    message += MC.Delete(id);
-        //    OnInitializedAsync();
-        //    Task.Delay(1000);
-        //    {
-        //        await js.InvokeVoidAsync("alert", @message);
-        //    }
-        //}
+        if (confirmation)
+        {
+            CAPC.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+
+        }
     }
 
     public async Task Update()

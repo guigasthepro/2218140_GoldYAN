@@ -132,7 +132,7 @@ using System;
 #nullable disable
 #nullable restore
 #line 6 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Modelos\Cmodelo.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 #line default
 #line hidden
@@ -249,7 +249,7 @@ using System;
             m.preco = cl.valor;
 
             listaModelos.RemoveAt(m.linha);
-            listaModelos.Insert(m.linha,m);
+            listaModelos.Insert(m.linha, m);
 
             m = new Modelos();
             servicos = new Servicos();
@@ -455,7 +455,7 @@ using System;
 
     public async Task ApagarComposto(int linha)
     {
-        listaModelos.RemoveAt(linha -1);
+        listaModelos.RemoveAt(linha - 1);
     }
 
 #line default

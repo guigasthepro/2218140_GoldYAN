@@ -8,7 +8,7 @@
 @inject ServicosController SC
 @inject EncomendasController EC
 @inject CabecalhoController CEC
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, Dev, Oficina ")]
 
 
 @if (showModal)
@@ -25,7 +25,7 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    
+
                     <div class="form-row p-sm-1">
                         <label for="nome" class="col-sm-auto col-form-label">Colaborador:</label>
                         <div class="col-sm-5">
@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="form-row p-sm-1">
                         <label for="nome" class="col-sm-auto col-form-label">Localização:</label>
                         <div class="col-sm-5">
@@ -151,6 +151,9 @@
     protected override async Task OnInitializedAsync()
     {
         VEC = EC.GetWithInner();
+        listColaboradores = colaboradoresController.GetAll();
+        listEstados = EstadosC.GetAll();
+        listLocalizacoes = LocalizacaoC.GetAll();
     }
 
     public bool IsVisible(EncomendasComputed encomendas)

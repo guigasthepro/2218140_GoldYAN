@@ -1,5 +1,5 @@
 ﻿@page "/vfornecedores"
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 <div class="container-fluid">
 
@@ -26,14 +26,14 @@
                                     {
                                         if (!IsVisible(fornecedor))
                                             continue;
-                                    <tr style="height: 1em;">
-                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.codigo ">@fornecedor.codigo</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.nome">@fornecedor.nome</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.telefone">@fornecedor.telefone</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.localizaçao">@fornecedor.localizaçao</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.nif">@fornecedor.nif</td>
-                                        <td><button class="btn btn-primary btn-sm" @onclick="() => ShowModal(fornecedor.idfornecedor)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(fornecedor.idfornecedor)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
-                                    </tr>
+                                        <tr style="height: 1em;">
+                                            <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.codigo ">@fornecedor.codigo</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.nome">@fornecedor.nome</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.telefone">@fornecedor.telefone</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.localizaçao">@fornecedor.localizaçao</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedor.nif">@fornecedor.nif</td>
+                                            <td><button class="btn btn-primary btn-sm" @onclick="() => ShowModal(fornecedor.idfornecedor)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(fornecedor.idfornecedor)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>

@@ -133,13 +133,18 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 91 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Index.razor"
-       List<Data.Clientes> infoClientesList = new List<Data.Clientes>();
+#line 48 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Index.razor"
+       
+    List<Data.Clientes> infoClientesList = new List<Data.Clientes>();
+    List<Data.Cabecalho> infoEncomenda = new List<Data.Cabecalho>();
 
     protected override async Task OnInitializedAsync()
     {
         infoClientesList = CC.InfoCliente(DateTime.Now.ToShortDateString());
-    } 
+        infoEncomenda = EC.InfoEncomendas(DateTime.Now.ToString("dd MM yyy"));
+
+    }
+    
 
 #line default
 #line hidden

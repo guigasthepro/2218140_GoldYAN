@@ -126,7 +126,7 @@ using BlazorInputFile;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 #line default
 #line hidden
@@ -140,7 +140,7 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 46 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
+#line 45 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
        
     Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
     Data.Servicos servicos = new Servicos();
@@ -160,6 +160,8 @@ using BlazorInputFile;
     List<Fornecedores> listaFornecedores = new List<Fornecedores>();
     List<Servicos> ListaServicos = new List<Servicos>();
     List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
+    List<Fabrico> listaFabrico = new List<Fabrico>();
+
     List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
     List<CabecalhoProdutos> listaCabecalhoProdutos = new List<CabecalhoProdutos>();
     List<Data.Produtos> listaProdutos = new List<Produtos>();
@@ -177,6 +179,7 @@ using BlazorInputFile;
     bool Readonly = true;
     bool ReadonlyCabecalho = true;
     int i;
+    int iencoemnda;
     string formadepesquisa;
     public string Filter { get; set; }
 
@@ -219,44 +222,22 @@ using BlazorInputFile;
     public async Task LoadData(int linha)
     {
 
-        //m = listaProdutos[linha - 1];
-
-        //js.InvokeVoidAsync("console.log", $"{m}");
-
-
-        //if (m.idmolde.HasValue)
-        //{
-        //    mlds = MoldesController.Get(m.idmolde.Value);
-
-        //}
-        //else if (m.idservico.HasValue)
-        //{
-        //    servicos = SC.Get(m.idservico.Value);
-        //}
-        //else if (m.idproduto != 0)
-        //{
-        //    //mlds = .Get(m.idmolde.Value);
-        //}
-        //cl = colaboradoresController.Get(m.idcolaborador);
-
     }
 
-    public async Task Apagar(int id)
+    public async Task Apagar(int idfabrico, int idproduto)
     {
-        //bool confirmation;
+        bool confirmation;
 
-        //confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
 
-        //if (confirmation)
-        //{
-        //    string message = CMC.Delete(id);
-        //    message += MC.Delete(id);
-        //    OnInitializedAsync();
-        //    Task.Delay(1000);
-        //    {
-        //        await js.InvokeVoidAsync("alert", @message);
-        //    }
-        //}
+        if (confirmation)
+        {
+            listaFabrico = FBCC.GetAllQuery(idfabrico);
+
+            OnInitializedAsync();
+            Task.Delay(1000);
+
+        }
     }
 
     public async Task Update()

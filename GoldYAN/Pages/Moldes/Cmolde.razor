@@ -3,7 +3,7 @@
 @using GoldYAN.Controller
 @inject IJSRuntime JsRuntime
 @inject MoldesController CM
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 <div class="container-fluid">
     <div class="card shadow mb-4">

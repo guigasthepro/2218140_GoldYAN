@@ -2,7 +2,7 @@
 @using GoldYAN.Data
 @using System.ComponentModel.DataAnnotations
 @inject IJSRuntime JsRuntime
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -21,7 +21,7 @@
                 </BlazoredTypeahead>
             </div>
         </div>
-        
+
         <div class="m-3 form-group ">
             <div class="form-inline">
                 <label for="nome" class="">Tipo de compra:</label>
@@ -78,7 +78,7 @@
                 <div class="m-3 form-group">
                     <div class="form-inline">
                         <label for="Descricao">Descrição:</label> &nbsp
-                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descrição do Produto" @bind-Value="CCP.descricao"/>
+                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descrição do Produto" @bind-Value="CCP.descricao" />
                     </div>
                 </div>
             </EditForm>
@@ -134,14 +134,9 @@
                         <label for="Descricao">Quantidade:</label> &nbsp
                         <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade comprada" @bind-Value="CCP.updatestock" />
 
-
-                        @*<label for="Descricao">Preço Uni.:</label> &nbsp
-                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Cotação Produto" @bind-Value="CCP.cotacao" />
-
-                            <label for="Descricao">Preço total.:</label> &nbsp
-                            <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade na fatura" @bind-Value="CCP.updatestock" />*@
+                        <label for="Descricao">Margem:</label> &nbsp
+                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade comprada" @bind-Value="CCP.margem" />
                     </div>
-
                 </div>
             </EditForm>
             <div class="m-3 form-group">
@@ -177,17 +172,19 @@
                 <div class="m-3 form-group">
                     <div class="form-inline">
                         <label for="Descricao">Peso:</label> &nbsp
-                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Peso comprado" @bind-Value="CCP.peso" />
+                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Peso do produto" @bind-Value="CCP.peso" />
 
                         <label for="Descricao">Cotação:</label> &nbsp
                         <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Cotação Produto" @bind-Value="CCP.cotacao" />
 
                         <label for="Descricao">Feitio:</label> &nbsp
-                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Feitio Peça" @bind-Value="CCP.feitiopeca" />
+                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Feitio peça" @bind-Value="CCP.feitiopeca" />
 
                         <label for="Descricao">Quantidade:</label> &nbsp
-                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade na fatura" @bind-Value="CCP.updatestock" />
+                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade comprada" @bind-Value="CCP.updatestock" />
 
+                        <label for="Descricao">Margem:</label> &nbsp
+                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Margem Produto" @bind-Value="CCP.margem" />
                     </div>
                 </div>
             </EditForm>
@@ -223,27 +220,28 @@
                         <div class="col-sm-12">
                             <table class="table table-bordered table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">IdProduto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">IDFornecedor</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Stock</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Cotação</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Preco</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Preço Total</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Ações</th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">IdProduto</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">IDFornecedor</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">Descrição</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Stock</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Peso</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170px;">Cotação</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Preco</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Preço Total</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">PVP</th><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 101px;">Ações</th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">IdProduto</th><th rowspan="1" colspan="1">IDFornecedor</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Stock</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Cotação</th><th rowspan="1" colspan="1">Preco</th><th rowspan="1" colspan="1">Preço Total</th><th rowspan="1" colspan="1">Ações</th></tr>
+                                    <tr><th rowspan="1" colspan="1">IdProduto</th><th rowspan="1" colspan="1">IDFornecedor</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Stock</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Cotação</th><th rowspan="1" colspan="1">Preco</th><th rowspan="1" colspan="1">Preço Total</th><th rowspan="1" colspan="1">PVP</th><th rowspan="1" colspan="1">Ações</th></tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach (var produtos in LCP)
+                                    @for (int i = 0; i < LCP.Count; i++)
                                     {
-                                        if (!IsVisible(produtos))
+                                        if (!IsVisible(LCP[i]))
                                             continue;
                                         <tr style="height: 1em;">
-                                            <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@produtos.idproduto">@produtos.idproduto</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idfornecedor">@produtos.idfornecedor</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.descricao">@produtos.descricao</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.updatestock">@produtos.updatestock</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.peso">@produtos.peso</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.cotacao">@produtos.cotacao</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.preco">@produtos.preco</td>
-                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.custototal">@produtos.custototal</td>
+                                            <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@LCP[i].idproduto">@LCP[i].idproduto</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@LCP[i].idfornecedor">@LCP[i].idfornecedor</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@LCP[i].descricao">@LCP[i].descricao</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@LCP[i].updatestock">@LCP[i].updatestock</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@LCP[i].peso">@LCP[i].peso</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@LCP[i].cotacao">@LCP[i].cotacao</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@LCP[i].preco">@LCP[i].preco</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@LCP[i].custototal">@LCP[i].custototal</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@LCP[i].pvp">@LCP[i].pvp</td>
 
-                                            <td><button @onclick="() => OpenFichaProduto(produtos.idproduto, produtos.linha)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(produtos.linha)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                            <td><button @onclick="() => OpenFichaProduto(LCP[i - 1 ].idproduto,LCP[i - 1].linha)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(LCP[i].linha)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
                                         </tr>
                                     }
                                 </tbody>
@@ -341,7 +339,7 @@
         listaTipoDePecas = TPC.GetAll();
         listaTipoProdutos = TPRC.GetAll();
         listaCabecalhoProduto = CAPC.GetAll();
-
+        colaboradores = colaboradoresController.GetAll();
         LTDC = TCC.GetAll();
         // Initial Values in CFabrico Page
 
@@ -378,7 +376,7 @@
         linhaselecionada = linha;
         if (ProdutoNovo)
         {
-            CCP = LCP[linha];
+            CCP = LCP[linha - 1];
             dtp = TPRC.Get(CCP.idtipodeproduto);
             dtdp = TPC.Get(CCP.idtipodepeca);
             ecp = CPC.Get(CCP.idclassificação);
@@ -401,10 +399,18 @@
         {
             i++;
             CCP.produtonovo = true;
-            CCP.idclassificação = ecp.IDClassificacao;
-            CCP.idtipodeproduto = dtp.idtipoproduto;
-            CCP.idtipodepeca = dtdp.idpeca;
-
+            if (ecp != null)
+            {
+                CCP.idclassificação = ecp.IDClassificacao;
+            }
+            if (dtp != null)
+            {
+                CCP.idtipodeproduto = dtp.idtipoproduto;
+            }
+            if (dtdp != null)
+            {
+                CCP.idtipodepeca = dtdp.idpeca;
+            }
 
             CCP.stockantigo = 0;
 
@@ -458,6 +464,15 @@
             if (CCP.preco.HasValue)
             {
                 Compra.preco = CCP.preco.Value;
+                if (CCP.margem.HasValue)
+                {
+                    CCP.preco = CCP.preco * CCP.margem;
+                    CCP.pvp = CCP.preco * 1.23;
+                }
+                else
+                {
+                    CCP.pvp = CCP.preco * 1.23;
+                }
             }
 
             LCP.Add(CCP);
@@ -478,7 +493,7 @@
             CCP.idtipodeproduto = dtp.idtipoproduto;
             CCP.idtipodepeca = dtdp.idpeca;
 
-            if(CCP.stock.HasValue)
+            if (CCP.stock.HasValue)
             {
                 CCP.stockantigo = CCP.stock.GetValueOrDefault();
             }
@@ -532,6 +547,15 @@
             if (CCP.preco.HasValue)
             {
                 Compra.preco = CCP.preco.Value;
+                if (CCP.margem.HasValue)
+                {
+                    CCP.preco = CCP.preco * CCP.margem;
+                    CCP.pvp = CCP.preco * 1.23;
+                }
+                else
+                {
+                    CCP.pvp = CCP.preco * 1.23;
+                }
             }
 
             LCP.Add(CCP);
@@ -552,11 +576,18 @@
         CCP = LCP[linhaselecionada - 1];
         Compra = LC[linhaselecionada - 1];
         i++;
-
-        CCP.idclassificação = ecp.IDClassificacao;
-        CCP.idtipodeproduto = dtp.idtipoproduto;
-        CCP.idtipodepeca = dtdp.idpeca;
-
+        if (ecp != null)
+        {
+            CCP.idclassificação = ecp.IDClassificacao;
+        }
+        if (dtp != null)
+        {
+            CCP.idtipodeproduto = dtp.idtipoproduto;
+        }
+        if (dtdp != null)
+        {
+            CCP.idtipodepeca = dtdp.idpeca;
+        }
         if (CCP.updatestock.HasValue)
         {
             Compra.quantidade = CCP.updatestock.GetValueOrDefault();
@@ -565,7 +596,7 @@
 
         if (LCP[linhaselecionada - 1].updatestock.HasValue)
         {
-            hStock.stockadicionado = LCP[linhaselecionada -1].updatestock.Value;
+            hStock.stockadicionado = LCP[linhaselecionada - 1].updatestock.Value;
         }
 
 
@@ -624,6 +655,15 @@
         if (CCP.preco.HasValue)
         {
             Compra.preco = CCP.preco.Value;
+            if (CCP.margem.HasValue)
+            {
+                CCP.preco = CCP.preco * CCP.margem;
+                CCP.pvp = CCP.preco * 1.23;
+            }
+            else
+            {
+                CCP.pvp = CCP.preco * 1.23;
+            }
         }
 
         custototalsomado = custototalsomado - LCP[linhaselecionada - 1].custototal.Value;
@@ -660,7 +700,7 @@
             {
                 for (int i = 0; i < LCP.Count; i++)
                 {
-                    if(LCP[i].produtonovo)
+                    if (LCP[i].produtonovo)
                     {
                         hStock.tipocomponente = "Compra";
                         hStock.idcomponente = CCompra.numero;
@@ -681,22 +721,23 @@
                         var resultado7 = ComprasC.Post(LC[i]);
                         hStockC.Post(hStock);
 
-                        if (resutlacompra.idproduto != 0 && resultado7.idcompra != 0)
-                        {
-                            js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
-                        }
-                        else
-                        {
-                            js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
-                        }
+                        //if (resutlacompra.idproduto != 0 && resultado7.idcompra != 0)
+                        //{
+                        //    js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
+                        //}
+                        //else
+                        //{
+                        //    js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
+                        //}
 
-                        hStock = new HistoricoStock();
-                        ecp = new ClassificacaoProdutos();
-                        dtp = new TipoProduto();
-                        dtdp = new TipoDePeca();
-                        Compra = new Compras();
-                        CCP = new CabecalhoProdutos();
-                        LCP = new List<CabecalhoProdutos>();
+                        //hStock = new HistoricoStock();
+                        //ecp = new ClassificacaoProdutos();
+                        //dtp = new TipoProduto();
+                        //dtdp = new TipoDePeca();
+                        //Compra = new Compras();
+                        //CCP = new CabecalhoProdutos();
+                        //LCP = new List<CabecalhoProdutos>();
+
 
                     }
                     else
@@ -723,21 +764,21 @@
                         LC[i].idcompra = resultado.idcompra;
                         var resultado7 = ComprasC.Post(LC[i]);
                         hStockC.Post(hStock);
-                        if (resultado6.Value.idproduto != 0 && resultado7.idcompra != 0)
-                        {
-                            js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
-                        }
-                        else
-                        {
-                            js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
-                        }
-                        hStock = new HistoricoStock();
-                        ecp = new ClassificacaoProdutos();
-                        dtp = new TipoProduto();
-                        dtdp = new TipoDePeca();
-                        Compra = new Compras();
-                        CCP = new CabecalhoProdutos();
-                        LCP = new List<CabecalhoProdutos>();
+                        //if (resultado7.idcompra != 0)
+                        //{
+                        //    js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
+                        //}
+                        //else
+                        //{
+                        //    js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
+                        //}
+                        //hStock = new HistoricoStock();
+                        //ecp = new ClassificacaoProdutos();
+                        //dtp = new TipoProduto();
+                        //dtdp = new TipoDePeca();
+                        //Compra = new Compras();
+                        //CCP = new CabecalhoProdutos();
+                        //LCP = new List<CabecalhoProdutos>();
 
 
 
@@ -765,7 +806,7 @@
                     hStock.idcomponente = CCompra.numero;
                     hStock.tipo = "Entrada";
                     hStock.stockinicial = 0;
-                    if (LCP[i].updatestock.HasValue)
+                    if (LCP[0].updatestock.HasValue)
                     {
                         hStock.stockadicionado = LCP[0].updatestock.Value;
                     }
@@ -777,23 +818,23 @@
                     LC[0].idproduto = resutlacompra.idproduto;
 
                     LC[0].idcompra = resultado2.idcompra;
-                    var resultado1 = ComprasC.Post(LC[0]);
+                    var resultado7 = ComprasC.Post(LC[0]);
                     hStockC.Post(hStock);
-                    if(resutlacompra.idcompra != 0 && resultado1.idcompra != 0)
-                    {
-                        js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
-                    }
-                    else
-                    {
-                        js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
-                    }
-                    hStock = new HistoricoStock();
-                    ecp = new ClassificacaoProdutos();
-                    dtp = new TipoProduto();
-                    dtdp = new TipoDePeca();
-                    Compra = new Compras();
-                    CCP = new CabecalhoProdutos();
-                    LCP = new List<CabecalhoProdutos>();
+                    //if(resutlacompra.idcompra != 0 && resultado1.idcompra != 0)
+                    //{
+                    //    js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
+                    //}
+                    //else
+                    //{
+                    //    js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
+                    //}
+                    //hStock = new HistoricoStock();
+                    //ecp = new ClassificacaoProdutos();
+                    //dtp = new TipoProduto();
+                    //dtdp = new TipoDePeca();
+                    //Compra = new Compras();
+                    //CCP = new CabecalhoProdutos();
+                    //LCP = new List<CabecalhoProdutos>();
 
 
                 }
@@ -803,7 +844,7 @@
                     hStock.tipocomponente = "Compra";
                     hStock.idcomponente = CCompra.numero;
                     hStock.tipo = "Entrada";
-                    if(LCP[0].stockantigo.HasValue)
+                    if (LCP[0].stockantigo.HasValue)
                     {
                         hStock.stockinicial = LCP[0].stockantigo.Value;
                     }
@@ -815,58 +856,31 @@
                     hStock.datacriacao = DateTime.Now.ToString("dd/MM/yyyy");
                     var resultado5 = CAPC.Put(LCP[0].idproduto, LCP[0]);
                     LC[0].idcompra = resultado.idcompra;
-                    if (resultado5.Value.idcompra != 0)
-                    {
-                        js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
-                    }
-                    else
-                    {
-                        js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
-                    }
-                    ComprasC.Post(LC[0]);
+                    //if (resultado5.Value.idcompra != 0)
+                    //{
+                    //    js.InvokeVoidAsync("alert", "Compra inserida com sucesso");
+                    //}
+                    //else
+                    //{
+                    //    js.InvokeVoidAsync("alert", "Compra inserida sem sucesso");
+                    //}
+                    var resultado7 = ComprasC.Post(LC[0]);
                     hStockC.Post(hStock);
-                    hStock = new HistoricoStock();
-                    ecp = new ClassificacaoProdutos();
-                    dtp = new TipoProduto();
-                    dtdp = new TipoDePeca();
-                    Compra = new Compras();
-                    CCP = new CabecalhoProdutos();
-                    LCP = new List<CabecalhoProdutos>();
 
                 }
 
-
-
-                //for (int i = 0; i < LCP.Count; i++)
-                //{
-                //    hStock.idprodutoalterado = LCP[i].idproduto;
-                //    hStock.tipocomponente = "Compra";
-                //    hStock.idcomponente = LC[i].idcompra;
-                //    hStock.tipo = "Entrada";
-                //    if (LCP[i].updatestock.HasValue)
-                //    {
-                //        hStock.stockinicial = LCP[i].stockantigo.Value;
-                //    }
-                //    if (LCP[i].updatestock.HasValue)
-                //    {
-                //        hStock.stockadicionado = LCP[i].updatestock.Value;
-                //    }
-                //    js.InvokeVoidAsync("console.log", $"{LCP[i].stock.Value}");
-
-                //    hStock.stockfinal = LCP[i].stock;
-                //    hStock.datacriacao = DateTime.Now.ToShortDateString();
-
-                //    CAPC.Put(LCP[i].idproduto, LCP[i]);
-
-                //    LC[i].idcompra = resultado.idcompra;
-                //    ComprasC.Post(LC[i]);
-                //    hStockC.Post(hStock);
-                //    hStock = new HistoricoStock();
-
-                //}
-
-
             }
+            hStock = new HistoricoStock();
+            ecp = new ClassificacaoProdutos();
+            dtp = new TipoProduto();
+            dtdp = new TipoDePeca();
+            Compra = new Compras();
+            CCP = new CabecalhoProdutos();
+            LCP = new List<CabecalhoProdutos>();
+            TDC = new TipodeCompra();
+            CCompra = new CabecalhoCompras();
+            fornecedores = new Fornecedores();
+
         }
         else
         {
@@ -983,4 +997,4 @@
         return await Task.FromResult(LTDC.Where(h => h.idtipocompra.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
-    }
+}

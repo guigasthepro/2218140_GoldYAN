@@ -1,6 +1,6 @@
 ﻿@page "/vcompras"
 @inject IJSRuntime JsRuntime
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 @if (showModal)
 {
@@ -152,6 +152,9 @@
 
                                         <label for="Descricao">Quantidade:</label> &nbsp
                                         <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Quantidade comprada" @bind-Value="CCP.updatestock" />
+
+                                        <label for="Descricao">Margem:</label> &nbsp
+                                        <InputNumber autocomplete="false" oninput="this.value = this.value.toUpperCase()" style="-moz-appearance: textfield;" id="Descricao" class="form-control" placeholder="Margem Produto" @bind-Value="CCP.margem" />
                                     </div>
                                 </div>
 
@@ -211,8 +214,8 @@
                     <button type="button" @onclick="ModalCancel" class="btn btn-primary">Fechar</button>
                 </div>
             </div>
-            </div>
         </div>
+    </div>
 
 }
 
@@ -241,26 +244,31 @@
                                     {
                                         if (!IsVisible(compras))
                                             continue;
-
                                         var fornecedores = listaFornecedores.Where(h => h.idfornecedor.Equals(compras.idfornecedor)).ToList();
-                                        if(compras.idtipodecompra != 0)
+
+                                        if (listaCCompras.Count != 0)
                                         {
-                                            eLTDC = LTDC.Where(h => h.idtipocompra.Equals(compras.idtipodecompra)).ToList();
-                                            nomecompra = eLTDC[0].descricao;
+                                            if (compras.idtipodecompra != 0)
+                                            {
+                                                eLTDC = LTDC.Where(h => h.idtipocompra.Equals(compras.idtipodecompra)).ToList();
+                                                nomecompra = eLTDC[0].descricao;
+
+                                            }
                                         }
+                                        else
+                                        { }
+                                        <tr style="height: 1em;">
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedores[0].codigo">@fornecedores[0].codigo</td>
+                                            <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@compras.apontamentos">@compras.apontamentos</td>
 
 
-                                    <tr style="height: 1em;">
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@fornecedores[0].codigo">@fornecedores[0].codigo</td>
-                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@compras.apontamentos">@compras.apontamentos</td>
-                                        
-                                       
 
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@nomecompra">@nomecompra</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@compras.numero">@compras.numero</td>
-                                        <td style=" overflow: hidden; white-space: nowrap; " title="@compras.datacriacao">@compras.datacriacao</td>
-                                        <td><button @onclick="() => AbrirModal(compras.idcompra)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(compras.idcompra)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
-                                    </tr>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@nomecompra">@nomecompra</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@compras.numero">@compras.numero</td>
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@compras.datacriacao">@compras.datacriacao</td>
+                                            <td><button @onclick="() => AbrirModal(compras.idcompra)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(compras.idcompra)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                        </tr>
+                                        nomecompra = new string("");
                                     }
                                 </tbody>
                             </table>
@@ -424,10 +432,18 @@
 
     public async Task EditarComposto()
     {
-        CCP.idclassificação = ecp.IDClassificacao;
-        CCP.idtipodeproduto = dtp.idtipoproduto;
-        CCP.idtipodepeca = dtdp.idpeca;
-
+        if (ecp != null)
+        {
+            CCP.idclassificação = ecp.IDClassificacao;
+        }
+        if (dtp != null)
+        {
+            CCP.idtipodeproduto = dtp.idtipoproduto;
+        }
+        if (dtdp != null)
+        {
+            CCP.idtipodepeca = dtdp.idpeca;
+        }
         hStock = LHS[CCP.linha - 1];
 
         hStock.stockinicial = hStock.stockfinal.Value - hStock.stockadicionado;
@@ -487,19 +503,30 @@
             js.InvokeVoidAsync("alert", "Impossivel fazer o preço, o produto foi adicionado sem preço");
         }
 
-
-
         if (CCP.preco.HasValue)
         {
             Compra.preco = CCP.preco.Value;
+            if (CCP.margem.HasValue)
+            {
+                CCP.preco = CCP.preco * CCP.margem;
+                CCP.pvp = CCP.preco * 1.23;
+            }
+            else
+            {
+                CCP.pvp = CCP.preco * 1.23;
+            }
         }
 
 
-        LCP.RemoveAt(CCP.linha -1);
+        LCP.RemoveAt(CCP.linha - 1);
         LCP.Insert(CCP.linha - 1, CCP);
         CAPC.Put(CCP.idproduto, CCP);
-        ComprasC.Put(Compra.idcompra, Compra.linha, Compra);
+        var resultado = ComprasC.Put(Compra.idcompra, Compra.linha, Compra);
         hStockC.Put(hStock.id, hStock);
+        if (resultado != null)
+        {
+            js.InvokeVoidAsync("alert", "Composto da compra editado com sucesso");
+        }
 
     }
 
@@ -509,6 +536,10 @@
         CCompra.idfornecedor = fornecedores.idfornecedor;
         CCompra.idtipodecompra = TDC.idtipocompra;
         RCCompra = CComprasC.Put(CCompra.idcompra, CCompra);
+        if (RCCompra != null)
+        {
+            js.InvokeVoidAsync("alert", "Cabeçalho da compra editado com sucesso");
+        }
     }
 
     // Function that does the selecting in the selected buttons

@@ -3,7 +3,7 @@
 @using GoldYAN.Data
 @using GoldYAN.Controller
 @using System
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 
 <div class="container-fluid">
@@ -30,7 +30,7 @@
         <div class="m-3 form-group ">
             <div class="form-inline">
                 <label for="nome" class="">Tipo de Produto:</label>
-                <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarTipoProdutos" DisableClear="true" EnableDropDown="true"  oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo de produto">
+                <BlazoredTypeahead class="col-sm-5" SearchMethod="ProcurarTipoProdutos" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtp" Placeholder="Pesquisar tipo de produto">
                     <SelectedTemplate>
                         @context.idtipoproduto (Desc: @context.descricao)
                     </SelectedTemplate>
@@ -42,7 +42,7 @@
         <div class="m-3 form-group ">
             <div class="form-inline">
                 <label for="nome" class="">Tipo de Peça:</label>
-                <BlazoredTypeahead class="" SearchMethod="ProcurarPecas" DisableClear="true" EnableDropDown="true"  oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar tipo de peça">
+                <BlazoredTypeahead class="" SearchMethod="ProcurarPecas" DisableClear="true" EnableDropDown="true" oninput="this.value = this.value.toUpperCase()" @bind-Value="dtdp" Placeholder="Pesquisar tipo de peça">
                     <SelectedTemplate>
                         @context.codigo (Desc: @context.descricao)
                     </SelectedTemplate>
@@ -211,52 +211,52 @@
                             <tbody>
                                 @foreach (var modelo in listaModelos)
                                 {
-                                <tr style="height: 1em;">
-                                    @if (modelo.idmolde.HasValue)
-                                    {
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">Molde</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">@modelo.idmolde</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@cl.valor</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
-                                        <td><button class="btn btn-primary btn-sm" @onclick="() => AbrirModal(modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => ApagarComposto(modelo.linha)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                    <tr style="height: 1em;">
+                                        @if (modelo.idmolde.HasValue)
+                                        {
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">Molde</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idmolde">@modelo.idmolde</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.preco">@cl.valor</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
+                                            <td><button class="btn btn-primary btn-sm" @onclick="() => AbrirModal(modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => ApagarComposto(modelo.linha)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
 
 
-                                    }
-                                    else if (modelo.idservico.HasValue)
-                                    {
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">Servico</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">@modelo.idservico</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@cl.valor">@cl.valor</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
-                                        <td><button class="btn btn-primary btn-sm" @onclick="() => AbrirModal(modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => ApagarComposto(modelo.linha)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                        }
+                                        else if (modelo.idservico.HasValue)
+                                        {
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">Servico</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idservico">@modelo.idservico</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@cl.valor">@cl.valor</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
+                                            <td><button class="btn btn-primary btn-sm" @onclick="() => AbrirModal(modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => ApagarComposto(modelo.linha)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
 
-                                    }
-                                    else
-                                    {
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">Produto</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">@modelo.idproduto</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@cl.valor">@cl.valor</td>
-                                        <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
-                                        <td><button class="btn btn-primary btn-sm" @onclick="() => AbrirModal(modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => ApagarComposto(modelo.linha)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                        }
+                                        else
+                                        {
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">Produto</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idcolaborador">@modelo.idcolaborador</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.idproduto">@modelo.idproduto</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.codigo">@modelo.codigo</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.descricao">@modelo.descricao</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.quantidade">@modelo.quantidade</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.peso">@modelo.peso</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@cl.valor">@cl.valor</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@modelo.valortotal">@modelo.valortotal</td>
+                                            <td><button class="btn btn-primary btn-sm" @onclick="() => AbrirModal(modelo.linha)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" @onclick="() => ApagarComposto(modelo.linha)" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
 
-                                    }
+                                        }
 
-                                </tr>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
@@ -374,7 +374,7 @@
             m.preco = cl.valor;
 
             listaModelos.RemoveAt(m.linha);
-            listaModelos.Insert(m.linha,m);
+            listaModelos.Insert(m.linha, m);
 
             m = new Modelos();
             servicos = new Servicos();
@@ -580,7 +580,7 @@
 
     public async Task ApagarComposto(int linha)
     {
-        listaModelos.RemoveAt(linha -1);
+        listaModelos.RemoveAt(linha - 1);
     }
 }
 

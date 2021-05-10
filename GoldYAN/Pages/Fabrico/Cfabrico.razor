@@ -1,7 +1,7 @@
 ﻿@page "/cfabrico"
 @using GoldYAN.Data
 @inject IJSRuntime JsRuntime
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -18,7 +18,7 @@
             <div class="m-3 form-group">
                 <div class="form-inline">
                     <label for="datatransação">Data Transação:</label> &nbsp
-                    <InputText autocomplete="false"  oninput="this.value = this.value.toUpperCase()" id="datatransação" disabled="true" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CF.datacriacao" />
+                    <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="datatransação" disabled="true" class="form-control" placeholder="Ainda não selecionado" @bind-Value="CF.datacriacao" />
                 </div>
             </div>
         </EditForm>
@@ -33,11 +33,13 @@
 
         @if (ProdutoNovo)
         {
+
+
             <EditForm Model="@CCP">
                 <div class="m-3 form-group">
                     <div class="form-inline">
                         <label for="Descricao">Descrição:</label> &nbsp
-                        <InputText autocomplete="false" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descrição produto" @bind-Value="CCP.descricao" />
+                        <InputText oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Descrição do produto" @bind-Value="CCP.descricao" />
                     </div>
                 </div>
             </EditForm>
@@ -52,19 +54,6 @@
                     </BlazoredTypeahead>
                 </div>
             </div>
-
-            <div class="m-3 form-group ">
-                <div class="form-inline">
-                    <label for="nome" class="">Unidades:</label>
-                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarUnidades" oninput="this.value = this.value.toUpperCase()" @bind-Value="unidade" Placeholder="Pesquisar unidade">
-                        <SelectedTemplate>
-                            @context.indice (Desc: @context.descricao)
-                        </SelectedTemplate>
-                        <ResultTemplate>@context.indice + @context.descricao </ResultTemplate>
-                    </BlazoredTypeahead>
-                </div>
-            </div>
-
 
             <div class="m-3 form-group ">
                 <div class="form-inline">
@@ -101,27 +90,43 @@
                 </div>
             </div>
 
+            <div class="m-3 form-group ">
+                <div class="form-inline">
+                    <label for="nome" class="">Unidades:</label>
+                    <BlazoredTypeahead class="col-sm-5" DisableClear="true" EnableDropDown="true" SearchMethod="ProcurarUnidades" oninput="this.value = this.value.toUpperCase()" @bind-Value="unidade" Placeholder="Pesquisar unidade">
+                        <SelectedTemplate>
+                            @context.indice (Desc: @context.descricao)
+                        </SelectedTemplate>
+                        <ResultTemplate>@context.indice + @context.descricao </ResultTemplate>
+                    </BlazoredTypeahead>
+                </div>
+            </div>
+
 
             <EditForm Model="@CCP">
+
                 <div class="m-3 form-group">
                     <div class="form-inline">
                         <label for="Descricao">Quantidade:</label> &nbsp
-                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Quantidade comprada" @bind-Value="CCP.stock" />
+                        <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Quantidade do produto" @bind-Value="CCP.updatestock" />
                     </div>
                 </div>
                 <div class="m-3 form-group">
                     <div class="form-inline">
-                        <label for="Descricao">Preco:</label> &nbsp
-                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Preco do produto" @bind-Value="CCP.preco"/>
+                        <label for="Descricao">Feitio:</label> &nbsp
+                        <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Feitio do produto" @bind-Value="CCP.feitiopeca" />
                     </div>
                 </div>
                 <div class="m-3 form-group">
                     <div class="form-inline">
-                        <label for="Descricao">Peso:</label> &nbsp
-                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Peso do produto" @bind-Value="CCP.peso"/>
+                        <label for="Descricao">Margem:</label> &nbsp
+                        <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Margem do produto" @bind-Value="CCP.margem" />
                     </div>
                 </div>
+
             </EditForm>
+
+
 
         }
         else
@@ -137,6 +142,18 @@
                         </NotFoundTemplate>
                         <ResultTemplate>@context.idproduto + @context.descricao</ResultTemplate>
                     </BlazoredTypeahead>
+
+                    <EditForm Model="@CCP">
+
+                        <div class="m-3 form-group">
+                            <div class="form-inline">
+                                <label for="Descricao">Quantidade:</label> &nbsp
+                                <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Quantidade Fabricada" @bind-Value="CCP.updatestock" />
+                            </div>
+                        </div>
+
+                    </EditForm>
+
                 </div>
             </div>
         }
@@ -170,9 +187,8 @@
                 <div class="form-inline">
                     <label for="Descricao">Componente:</label> &nbsp
                     <InputSelect @bind-Value="@cp.formadepesquisa">
-                        <option selected>------</option>
+                        <option selected>Produtos</option>
                         <option>Serviço</option>
-                        <option>Produtos</option>
                     </InputSelect>
                 </div>
             </div>
@@ -192,6 +208,38 @@
                     </BlazoredTypeahead>
                 </div>
             </div>
+
+            <div class="m-3 form-group">
+                <div class="form-inline">
+                    <label for="nome">Colaborador:</label>
+                    <BlazoredTypeahead SearchMethod="ProcurarColaboradores" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="cl" Placeholder="Pesquisar Colaborador">
+                        <SelectedTemplate>
+                            @context.codigo + @context.descricao
+                        </SelectedTemplate>
+                        <ResultTemplate>@context.codigo + @context.descricao</ResultTemplate>
+                    </BlazoredTypeahead>
+                </div>
+            </div>
+
+            <EditForm Model="@cp" OnValidSubmit="AdicionarComposto">
+                <DataAnnotationsValidator />
+
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="preco">Preco:</label> &nbsp
+                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="preco" class="form-control" placeholder="Preço do Colaborador" disabled="@Readonly" @bind-Value="cl.valor" />
+                    </div>
+                </div>
+
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="Quantidade">Quantidade:</label> &nbsp
+                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="cp.quantidade" />
+                    </div>
+                </div>
+
+            </EditForm>
+
         }
         else
         {
@@ -206,44 +254,41 @@
                     </BlazoredTypeahead>
                 </div>
             </div>
+
+            <EditForm Model="@cp" OnValidSubmit="AdicionarComposto">
+                <DataAnnotationsValidator />
+
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="preco">Preco:</label> &nbsp
+                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="preco" class="form-control" placeholder="@produtos.preco" disabled="@Readonly" @bind-Value="produtos.preco" />
+                    </div>
+                </div>
+
+                <div class="m-3 form-group">
+                    <div class="form-inline">
+                        <label for="Quantidade">Quantidade:</label> &nbsp
+                        <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="cp.quantidade" />
+                    </div>
+                </div>
+
+            </EditForm>
+
         }
 
-        <EditForm Model="@cp" OnValidSubmit="AdicionarComposto">
-            <DataAnnotationsValidator />
-
+        @if (save)
+        {
             <div class="m-3 form-group">
-                <div class="form-inline">
-                    <label for="Quantidade">Quantidade:</label> &nbsp
-                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="cp.quantidade" />
-                </div>
+                <button type="submit" @onclick="EditarComposto" class="btn btn-primary">Editar</button>
             </div>
-
+        }
+        else
+        {
             <div class="m-3 form-group">
-                <div class="form-inline">
-                    <label for="peso">Peso:</label> &nbsp
-                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="peso" class="form-control" placeholder="Peso" disabled="@Readonly" @bind-Value="cp.peso" />
-                </div>
+                <button type="submit" @onclick="AdicionarComposto" class="btn btn-primary">Adicionar</button>
             </div>
+        }
 
-            <div class="m-3 form-group">
-                <div class="form-inline">
-                    <label for="preco">Preco:</label> &nbsp
-                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="preco" class="form-control" placeholder="@cl.valor" disabled="@Readonly" @bind-Value="cp.custo" />
-                </div>
-            </div>
-
-            <div class="m-3 form-group">
-                <div class="form-inline">
-                    <label for="apontamentos">Valor Total:</label> &nbsp
-                    <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="apontamentos" class="form-control" placeholder="Apontamentos para o serviço" disabled="@Readonly" @bind-Value="cp.custototal" />
-                </div>
-            </div>
-
-            <div class="m-3 form-group">
-                <button type="submit" class="btn btn-primary">Adicionar</button>
-            </div>
-
-        </EditForm>
     </div>
 </div>
 
@@ -264,33 +309,33 @@
                                 <tr><th rowspan="1" colspan="1">Componente</th><th rowspan="1" colspan="1">Colaborador</th><th rowspan="1" colspan="1">Classificação</th><th rowspan="1" colspan="1">Descrição</th><th rowspan="1" colspan="1">Qtd.</th><th rowspan="1" colspan="1">Peso</th><th rowspan="1" colspan="1">Valor.Un.</th><th rowspan="1" colspan="1">Valor Total</th><th rowspan="1" colspan="1">Ações</th></tr>
                             </tfoot>
                             <tbody>
-                                @foreach (var produto in LCP)
+                                @for (int i = 0; i < LCP.Count; i++)
                                 {
                                     <tr style="height: 1em;">
-                                        @if (produto.idservico.HasValue)
+                                        @if (LCP[i].idservico.HasValue)
                                         {
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.idservico">Servico</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.idcolaborador">@produto.idcolaborador</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.idservico">@produto.idservico</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.descricao">@produto.descricao</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.quantidade">@produto.quantidade</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.peso">@produto.peso</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.custo">@produto.custo</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.custototal">@produto.custototal</td>
-                                            <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].idservico">Servico</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].idcolaborador">@LCP[i].idcolaborador</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].idservico">@LCP[i].idservico</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].descricao">@LCP[i].descricao</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].quantidade">@LCP[i].quantidade</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].peso">@LCP[i].peso</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].custo">@LCP[i].custo</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].custototal">@LCP[i].custototal</td>
+                                            <td><button class="btn btn-primary btn-sm" @onclick="() => LoadData(i)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => ApagarItemLista(i)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
 
                                         }
                                         else
                                         {
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.idproduto">Produto</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.idcolaborador">@produto.idcolaborador</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.idproduto">@produto.idproduto</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.descricao">@produto.descricao</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.quantidade">@produto.quantidade</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.peso">@produto.peso</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.custo">@produto.custo</td>
-                                            <td style="overflow: hidden; white-space: nowrap;" title="@produto.custototal">@produto.custototal</td>
-                                            <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem">Editar</button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem">Apagar</button></td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].idproduto">Produto</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].idcolaborador">@LCP[i].idcolaborador</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].idproduto">@LCP[i].idproduto</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].descricao">@LCP[i].descricao</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].quantidade">@LCP[i].quantidade</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].peso">@LCP[i].peso</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].custo">@LCP[i].custo</td>
+                                            <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].custototal">@LCP[i].custototal</td>
+                                            <td><button class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
 
                                         }
 
@@ -330,6 +375,7 @@
     Data.HistoricoStock hStock = new Data.HistoricoStock();
     Data.Produtos RProduto = new Data.Produtos();
     Data.CabecalhoProdutos UProduto = new Data.CabecalhoProdutos();
+    List<Data.Produtos> GProduto = new List<Data.Produtos>();
 
     // Declaration of needed lists
     List<Unidades> listaUnidades = new List<Unidades>();
@@ -352,6 +398,10 @@
     int i;
     string formadepesquisa;
     bool ProdutoNovo = true;
+    string idencomendaselecionada;
+    int iencomenda;
+    bool save = false;
+
 
     // Function that always runs when someone enter in the page
     protected override async Task OnInitializedAsync()
@@ -366,6 +416,11 @@
         listaTipoProdutos = TPRC.GetAll();
         ListaServicos = SC.GetAll();
         listaCabecalhoProduto = CAPC.GetAll();
+        CCP.produtonovo = true;
+        colaboradores = colaboradoresController.GetAll();
+        CCP.preco = 0;
+        CCP.stock = 0;
+        CCP.custototal = 0;
 
         // Initial Values in CFabrico Page
         var res = CAPC.GetMaxID();
@@ -379,111 +434,298 @@
     {
         if (LCP.Count != 0)
         {
-            if (ProdutoNovo)
+            if (CCP.produtonovo)
             {
                 //Vai buscar o utilizador que está logado
                 var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
                 var user = authState.User;
+
                 CCP.idmodelo = cm.idmodelo;
                 CCP.idclassificação = ecp.IDClassificacao;
                 CCP.idunidade = unidade.idunidade;
                 CCP.idtipodeproduto = dtp.idtipoproduto;
                 CCP.idtipodepeca = dtdp.idpeca;
-                hStock.tipocomponente = "Fabrico";
-                hStock.idcomponente = CCP.idproduto.ToString();
+                CCP.idfornecedor = fornecedores.idfornecedor;
+                CCP.preco = CCP.custototal;
+
+                if (CCP.updatestock.HasValue)
+                {
+                    CCP.stock = CCP.updatestock.Value;
+                }
+
+
+                //if (CCP.peso.HasValue && CCP.cotacao.HasValue && CCP.updatestock.HasValue)
+                //{
+                //    CCP.preco = (CCP.peso.Value * CCP.cotacao.Value) + CCP.feitiopeca;
+                //    CCP.custototal = CCP.preco * CCP.updatestock;
+
+                //}
+                //else if (CCP.peso.HasValue && CCP.cotacao.HasValue && !CCP.updatestock.HasValue)
+                //{
+                //    CCP.preco = (CCP.peso.Value * CCP.cotacao.Value) + CCP.feitiopeca;
+                //    CCP.custototal = CCP.preco;
+                //}
+                //else if (CCP.updatestock.HasValue)
+                //{
+                //    CCP.preco = CCP.feitiopeca;
+                //    CCP.custototal = CCP.preco * CCP.updatestock;
+                //}
+                //else
+                //{
+                //    js.InvokeVoidAsync("alert", "Impossivel fazer o preço, o produto vai ser criado sem preço");
+                //}
+
+
+
+
+                hStock.tipocomponente = "FAB";
                 hStock.tipo = "Entrada";
-                hStock.idprodutoalterado = CCP.idproduto;
                 hStock.stockinicial = 0;
-                hStock.stockfinal = CCP.stock.Value;
-                hStockC.Post(hStock);
-                hStock = new HistoricoStock();
+
+                if (CCP.updatestock.HasValue)
+                {
+                    hStock.stockadicionado = CCP.updatestock.Value;
+                }
+                if (CCP.stock.HasValue)
+                {
+                    hStock.stockfinal = CCP.stock.Value;
+                }
+                hStock.datacriacao = DateTime.Now.ToString("dd/MM/yyyy H:mm");
+
+                if (CCP.preco.HasValue)
+                {
+                    if (CCP.margem.HasValue)
+                    {
+                        CCP.preco = CCP.preco * CCP.margem;
+                        CCP.pvp = CCP.preco * 1.23;
+                    }
+                    else
+                    {
+                        CCP.pvp = CCP.preco * 1.23;
+                    }
+                }
 
                 var resultado = CAPC.Post(CCP);
                 await Task.Delay(1000);
+
                 CF.idproduto = resultado.idproduto;
+                CF.idencomenda = idencomendaselecionada;
+
                 var resultado2 = CFC.Post(CF);
+                hStock.idcomponente = resultado2.idfabrico.ToString();
+                hStock.idprodutoalterado = resultado.idproduto;
+                hStockC.Post(hStock);
+                hStock = new HistoricoStock();
                 await Task.Delay(1000);
+
 
                 for (int i = 0; i < LCP.Count; i++)
                 {
+                    LCP[i].linha = i + 1;
+                    LCP[i].idproduto = resultado.idproduto;
+                    if (LCP[i].idprodutos != 0)
+                    {
 
-                    LCP[i].linha = i;
-                    //Changes used product stock
+                        UProduto = CAPC.Get(LCP[i].idprodutos.Value);
+                        if (UProduto.stock.HasValue)
+                        {
+                            hStock.stockinicial = UProduto.stock.Value;
+                        }
+                        UProduto.stock = UProduto.stock - LCP[i].quantidade;
+                        hStock.stockadicionado = LCP[i].quantidade;
+                        CAPC.Put(UProduto.idproduto, UProduto);
+                        // Adds to history
+                        hStock.tipocomponente = "FAB";
+                        hStock.idcomponente = resultado2.idfabrico.ToString();
+                        hStock.tipo = "Saida";
+                        if (LCP[i].idprodutos.HasValue)
+                        {
+                            hStock.idprodutoalterado = LCP[i].idprodutos.Value;
+                        }
+                        hStock.datacriacao = DateTime.Now.ToString("dd/MM/yyyy H:mm");
+                        hStock.referenciasaida = resultado.idproduto.ToString() + "-" + resultado.descricao;
+                        var resultado4 = hStockC.Post(hStock);
+                        hStock = new HistoricoStock();
+                        if (UProduto.stock.HasValue)
+                        {
+                            hStock.stockfinal = UProduto.stock.Value;
+                        }
+                        UProduto = new CabecalhoProdutos();
 
-                    UProduto = CAPC.Get(LCP[i].idproduto);
-                    hStock.stockinicial = UProduto.stock.Value;
-                    UProduto.stock = UProduto.stock - LCP[i].quantidade;
-                    CAPC.Put(UProduto.idproduto, UProduto);
-                    hStock.stockfinal = UProduto.stock.Value;
-                    UProduto = new CabecalhoProdutos();
-                    // Adds to history
-                    hStock.tipocomponente = "Fabrico";
-                    hStock.idcomponente = LCP[i].idproduto.ToString();
-                    hStock.tipo = "Saida";
-                    hStock.idprodutoalterado = resultado.idproduto;
-                    hStock.stockfinal = UProduto.stock.Value;
-                    hStockC.Post(hStock);
-                    hStock = new HistoricoStock();
-                    PC.Post(LCP[i]);
+                    }
                     LCFP[i].idfabrico = resultado2.idfabrico;
-                    FBCC.Post(LCFP[i]);
+
+
+
+                    var resultado3 = PC.Post(LCP[i]);
+
+                    LCFP[i].idfabrico = resultado2.idfabrico;
+                    var resultado5 = FBCC.Post(LCFP[i]);
+
+                    if (resultado.idproduto != 0 && resultado2.idfabrico != 0)
+                    {
+                        js.InvokeVoidAsync("alert", "Fabrico criado com sucesso!");
+                    }
+
                 }
 
-                servicos = new Servicos();
-                produtos = new CabecalhoProdutos();
-                cl = new Colaboradores();
-                CCP = new CabecalhoProdutos();
-                cm = new CabecalhosModelos();
-                dtp = new TipoProduto();
-                dtdp = new TipoDePeca();
+                LCFP = new List<Fabrico>();
                 LCP = new List<Produtos>();
-                Readonly = false;
-                StateHasChanged();
-                OnInitializedAsync();
+                CCP = new CabecalhoProdutos();
+                hStock = new HistoricoStock();
+                produtos = new CabecalhoProdutos();
+                cp = new Produtos();
+                CF = new CabecalhoFabrico();
+                cm = new CabecalhosModelos();
+                servicos = new Servicos();
+                cl = new Colaboradores();
+                ecp = new ClassificacaoProdutos();
+                unidade = new Unidades();
+                dtdp = new TipoDePeca();
+                dtp = new TipoProduto();
+                fornecedores = new Fornecedores();
             }
             else
             {
-                CF.idproduto = CCP.idproduto;
-                var resultado = CFC.Post(CF);
-                await Task.Delay(1000);
-
-                for (int i = 0; i < LCFP.Count; i++)
+                //Vai buscar o utilizador que está logado
+                var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+                var user = authState.User;
+                CCP.preco = CCP.custototal;
+                if(CCP.stock.HasValue)
                 {
-                    //Product List
+                    CCP.stockantigo = CCP.stock.Value;
+                    hStock.stockinicial = CCP.stockantigo.Value;
+                }
 
-                    // Fabrico List
-                    //Changes used product stock
 
-                    UProduto = CAPC.Get(LCFP[i].idprodutos.Value);
-                    hStock.stockinicial = UProduto.stock.Value;
-                    UProduto.stock = UProduto.stock - LCFP[i].quantidade;
-                    CAPC.Put(UProduto.idproduto, UProduto);
-                    hStock.stockfinal = UProduto.stock.Value;
-                    UProduto = new CabecalhoProdutos();
-                    // Adds to history
-                    hStock.tipocomponente = "Fabrico";
-                    hStock.idcomponente = LCFP[i].idprodutos.Value.ToString();
-                    hStock.tipo = "Saida";
-                    hStock.idprodutoalterado = CCP.idproduto;
-                    hStock.stockfinal = UProduto.stock.Value;
-                    hStockC.Post(hStock);
-                    hStock = new HistoricoStock();
-                    LCFP[i].idfabrico = CF.idfabrico;
-                    FBCC.Post(LCFP[i]);
+                if (CCP.updatestock.HasValue)
+                {
+                    CCP.stocktotal = CCP.stockantigo + CCP.updatestock.Value;
+                }
+                else if (CCP.peso.HasValue)
+                {
+                    CCP.stocktotal = CCP.stockantigo + CCP.peso.Value;
+                }
+                else
+                {
+                    js.InvokeVoidAsync("alert", "Impossivel adicionar stock ao produto, o produto foi composto sem stock!");
 
                 }
 
-                servicos = new Servicos();
-                produtos = new CabecalhoProdutos();
-                cl = new Colaboradores();
-                CCP = new CabecalhoProdutos();
-                cm = new CabecalhosModelos();
-                dtp = new TipoProduto();
-                dtdp = new TipoDePeca();
+                if (CCP.stocktotal.HasValue)
+                {
+                    CCP.stock = CCP.stocktotal.Value;
+                }
+
+                hStock.tipocomponente = "FAB";
+                hStock.tipo = "Entrada";
+
+                if (CCP.updatestock.HasValue)
+                {
+                    hStock.stockadicionado = CCP.updatestock.Value;
+                }
+                if (CCP.stock.HasValue)
+                {
+                    hStock.stockfinal = CCP.stock.Value;
+                }
+                hStock.datacriacao = DateTime.Now.ToString("dd/MM/yyyy H:mm");
+
+                if (CCP.preco.HasValue)
+                {
+                    if (CCP.margem.HasValue)
+                    {
+                        CCP.preco = CCP.preco * CCP.margem;
+                        CCP.pvp = CCP.preco * 1.23;
+                    }
+                    else
+                    {
+                        CCP.pvp = CCP.preco * 1.23;
+                    }
+                }
+
+                var resultado = CAPC.Put(CCP.idproduto, CCP);
+                await Task.Delay(1000);
+
+                CF.idproduto = CCP.idproduto;
+                CF.idencomenda = idencomendaselecionada;
+
+                var resultado2 = CFC.Post(CF);
+                hStock.idcomponente = resultado2.idfabrico.ToString();
+                hStock.idprodutoalterado = CCP.idproduto;
+                hStockC.Post(hStock);
+                hStock = new HistoricoStock();
+                await Task.Delay(1000);
+                GProduto = PC.GetAllQuery(CCP.idproduto);
+                var maxlinha = GProduto.Max(z => z.linha);
+
+                for (int i = 0; i < LCP.Count; i++)
+                {
+                    LCP[i].linha = maxlinha;
+                    maxlinha = maxlinha + 1;
+                    LCP[i].linha = LCP[i].linha + 1;
+
+                    LCP[i].idproduto = CCP.idproduto;
+                    if (LCP[i].idprodutos != 0)
+                    {
+
+                        UProduto = CAPC.Get(LCP[i].idprodutos.Value);
+                        if (UProduto.stock.HasValue)
+                        {
+                            hStock.stockinicial = UProduto.stock.Value;
+                        }
+                        UProduto.stock = UProduto.stock - LCP[i].quantidade;
+                        hStock.stockadicionado = LCP[i].quantidade;
+                        CAPC.Put(UProduto.idproduto, UProduto);
+                        // Adds to history
+                        hStock.tipocomponente = "FAB";
+                        hStock.idcomponente = resultado2.idfabrico.ToString();
+                        hStock.tipo = "Saida";
+                        if (LCP[i].idprodutos.HasValue)
+                        {
+                            hStock.idprodutoalterado = LCP[i].idprodutos.Value;
+                        }
+                        hStock.datacriacao = DateTime.Now.ToString("dd/MM/yyyy H:mm");
+                        hStock.referenciasaida = CCP.idproduto.ToString() + "-" + CCP.descricao;
+                        var resultado4 = hStockC.Post(hStock);
+                        hStock = new HistoricoStock();
+                        if (UProduto.stock.HasValue)
+                        {
+                            hStock.stockfinal = UProduto.stock.Value;
+                        }
+                        UProduto = new CabecalhoProdutos();
+
+                    }
+                    LCFP[i].idfabrico = resultado2.idfabrico;
+
+
+
+                    var resultado3 = PC.Post(LCP[i]);
+
+                    LCFP[i].idfabrico = resultado2.idfabrico;
+                    var resultado5 = FBCC.Post(LCFP[i]);
+
+                    if (resultado2.idfabrico != 0)
+                    {
+                        js.InvokeVoidAsync("alert", "Fabrico criado com sucesso!");
+                    }
+
+                }
+
+                LCFP = new List<Fabrico>();
                 LCP = new List<Produtos>();
-                Readonly = false;
-                StateHasChanged();
-                OnInitializedAsync();
+                CCP = new CabecalhoProdutos();
+                hStock = new HistoricoStock();
+                produtos = new CabecalhoProdutos();
+                cp = new Produtos();
+                CF = new CabecalhoFabrico();
+                cm = new CabecalhosModelos();
+                servicos = new Servicos();
+                cl = new Colaboradores();
+                ecp = new ClassificacaoProdutos();
+                unidade = new Unidades();
+                dtdp = new TipoDePeca();
+                dtp = new TipoProduto();
+                fornecedores = new Fornecedores();
             }
         }
         else
@@ -491,6 +733,122 @@
             await js.InvokeVoidAsync("alert", "Impossível criar a encomenda, por favor, insira bem os dados da encomenda!");
         }
     }
+
+
+    public async Task EditarComposto()
+    {
+        Data.Fabrico fabricocomposto = new Data.Fabrico();
+
+        if (servicos.idservico != 0)
+        {
+            i++;
+            cp.linha = i;
+            cp.custo = cl.valor;
+            cp.idcolaborador = cl.idcolaborador;
+            cp.idservico = servicos.idservico;
+            cp.descricao = servicos.descricao;
+            cp.datacriacao = DateTime.Now.ToString();
+            if (servicos.custo != 0)
+            {
+                cp.custo = servicos.custo;
+                cp.custototal = cp.custo * cp.quantidade;
+                CCP.custototal += cp.quantidade * produtos.preco;
+            }
+            fabricocomposto.linha = i;
+            fabricocomposto.custo = cl.valor;
+            fabricocomposto.idservico = servicos.idservico;
+            fabricocomposto.descricao = servicos.descricao;
+            fabricocomposto.customedio = cp.customedio;
+            fabricocomposto.custototal = cp.custototal;
+            fabricocomposto.datacriacao = DateTime.Now.ToShortDateString();
+            fabricocomposto.peso = cp.peso;
+            fabricocomposto.quantidade = cp.quantidade;
+
+            LCP.RemoveAt(iencomenda);
+            LCP.Insert(iencomenda, cp);
+
+            LCFP.RemoveAt(iencomenda);
+            LCFP.Insert(iencomenda, fabricocomposto);
+
+            cm = new CabecalhosModelos();
+            servicos = new Servicos();
+            produtos = new CabecalhoProdutos();
+            cl = new Colaboradores();
+            cp = new Produtos();
+            fabricocomposto = new Fabrico();
+
+        }
+        else if (produtos.idproduto != 0)
+        {
+            i++;
+            cp.linha = i;
+            cp.custo = cl.valor;
+            cp.idcolaborador = cl.idcolaborador;
+            cp.idprodutos = produtos.idproduto;
+            cp.descricao = produtos.descricao;
+            cp.datacriacao = DateTime.Now.ToString();
+            if (produtos.peso.HasValue)
+            {
+                cp.peso = produtos.peso.Value;
+
+            }
+            if (produtos.preco.HasValue)
+            {
+                cp.custo = produtos.preco.Value;
+                cp.custototal = cp.custo * cp.quantidade;
+                CCP.custototal += cp.custototal;
+            }
+            fabricocomposto.linha = i;
+            fabricocomposto.custo = cl.valor;
+            fabricocomposto.idprodutos = produtos.idproduto;
+            fabricocomposto.descricao = produtos.descricao;
+            fabricocomposto.customedio = cp.customedio;
+            fabricocomposto.custototal = cp.custototal;
+            fabricocomposto.datacriacao = DateTime.Now.ToShortDateString();
+            fabricocomposto.peso = cp.peso;
+            fabricocomposto.quantidade = cp.quantidade;
+
+            LCP.RemoveAt(iencomenda);
+            LCP.Insert(iencomenda, cp);
+
+            LCFP.RemoveAt(iencomenda);
+            LCFP.Insert(iencomenda, fabricocomposto);
+
+            cm = new CabecalhosModelos();
+            servicos = new Servicos();
+            produtos = new CabecalhoProdutos();
+            cl = new Colaboradores();
+            cp = new Produtos();
+            fabricocomposto = new Fabrico();
+
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
+        }
+    }
+
+    public async Task ApagarItemLista(int i)
+    {
+        LCP.RemoveAt(i);
+    }
+
+
+    public async Task LoadData(int i)
+    {
+        iencomenda = i;
+        cp = LCP[i];
+        if (cp.idprodutos.HasValue)
+        {
+            produtos = CAPC.Get(cp.idprodutos.Value);
+        }
+        else
+        {
+            servicos = SC.Get(cp.idservico.Value);
+        }
+        save = true;
+    }
+
 
     // Function that does the selecting in the selected buttons
     public async Task CriarProdutoNovo()
@@ -500,14 +858,17 @@
         LCP = new List<Produtos>();
         produtos = new CabecalhoProdutos();
         ProdutoNovo = true;
+        CCP.preco = 0;
+        CCP.stock = 0;
+        CCP.produtonovo = true;
         listaCabecalhoProduto = CAPC.GetAll();
-        CCP.idproduto = 6;
     }
 
     // Function that does the selecting in the selected buttons
     public async Task UsarProdutoExistente()
     {
         CCP = new CabecalhoProdutos();
+        CCP.produtonovo = false;
         LCP = new List<Produtos>();
         produtos = new CabecalhoProdutos();
         ProdutoNovo = false;
@@ -518,7 +879,7 @@
     {
         Data.Fabrico fabricocomposto = new Data.Fabrico();
 
-        if (ProdutoNovo)
+        if (CCP.produtonovo)
         {
             if (servicos.idservico != 0)
             {
@@ -526,10 +887,19 @@
                 cp.linha = i;
                 cp.custo = cl.valor;
                 cp.idcolaborador = cl.idcolaborador;
-                cp.idproduto = CCP.idproduto;
                 cp.idservico = servicos.idservico;
                 cp.descricao = servicos.descricao;
                 cp.datacriacao = DateTime.Now.ToString();
+                CCP.produtonovo = true;
+                cp.datacriacao = DateTime.Now.ToString();
+                if (servicos.custo != 0)
+                {
+                    cp.custo = servicos.custo;
+                    cp.custototal = cl.valor * cp.quantidade;
+
+                    CCP.custototal = CCP.custototal.Value + (cp.quantidade * cl.valor);
+                }
+
 
                 fabricocomposto.linha = i;
                 fabricocomposto.custo = cl.valor;
@@ -552,16 +922,27 @@
                 fabricocomposto = new Fabrico();
 
             }
-            else if (CCP.idproduto != 0)
+            else if (produtos.idproduto != 0)
             {
                 i++;
                 cp.linha = i;
                 cp.custo = cl.valor;
                 cp.idcolaborador = cl.idcolaborador;
-                cp.idproduto = produtos.idproduto;
+                cp.idprodutos = produtos.idproduto;
                 cp.descricao = produtos.descricao;
                 cp.datacriacao = DateTime.Now.ToString();
+                CCP.produtonovo = true;
+                if (produtos.peso.HasValue)
+                {
+                    cp.peso = produtos.peso.Value;
 
+                }
+                if (produtos.preco.HasValue)
+                {
+                    cp.custo = produtos.preco.Value;
+                    cp.custototal = cp.custo * cp.quantidade;
+                    CCP.custototal = CCP.custototal + cp.custototal;
+                }
                 fabricocomposto.linha = i;
                 fabricocomposto.custo = cl.valor;
                 fabricocomposto.idprodutos = produtos.idproduto;
@@ -598,8 +979,23 @@
                 cp.idcolaborador = cl.idcolaborador;
                 cp.idservico = servicos.idservico;
                 cp.descricao = servicos.descricao;
+                CCP.produtonovo = false;
                 cp.datacriacao = DateTime.Now.ToString();
+                if (servicos.custo != 0)
+                {
+                    cp.custo = servicos.custo;
+                    cp.custototal = cp.custo * cp.quantidade;
+                    if (CCP.preco.HasValue)
+                    {
+                        CCP.custototal = CCP.custototal + (cp.quantidade * cl.valor);
 
+                    }
+                    else
+                    {
+                        CCP.custototal = CCP.custototal + (cp.quantidade * cl.valor);
+
+                    }
+                }
                 fabricocomposto.linha = i;
                 fabricocomposto.custo = cl.valor;
                 fabricocomposto.idservico = servicos.idservico;
@@ -616,7 +1012,6 @@
                 cm = new CabecalhosModelos();
                 servicos = new Servicos();
                 produtos = new CabecalhoProdutos();
-                CCP = new CabecalhoProdutos();
                 cl = new Colaboradores();
                 cp = new Produtos();
                 fabricocomposto = new Fabrico();
@@ -628,10 +1023,30 @@
                 cp.linha = i;
                 cp.custo = cl.valor;
                 cp.idcolaborador = cl.idcolaborador;
-                cp.idproduto = produtos.idproduto;
+                CCP.produtonovo = false;
+                cp.idprodutos = produtos.idproduto;
                 cp.descricao = produtos.descricao;
                 cp.datacriacao = DateTime.Now.ToString();
+                if (produtos.peso.HasValue)
+                {
+                    cp.peso = produtos.peso.Value;
 
+                }
+                if (produtos.preco.HasValue)
+                {
+                    cp.custo = produtos.preco.Value;
+                    cp.custototal = cp.custo * cp.quantidade;
+                    if (CCP.preco.HasValue)
+                    {
+                        CCP.custototal = CCP.custototal + cp.custototal;
+
+                    }
+                    else
+                    {
+                        CCP.custototal = CCP.custototal + cp.custototal;
+
+                    }
+                }
                 fabricocomposto.linha = i;
                 fabricocomposto.custo = cl.valor;
                 fabricocomposto.idprodutos = produtos.idproduto;

@@ -126,7 +126,7 @@ using GoldYAN.Data;
 #nullable disable
 #nullable restore
 #line 5 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Vclientes.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Atendimento, Contabilidade")]
 
 #line default
 #line hidden
@@ -178,7 +178,18 @@ using GoldYAN.Data;
 
     public async Task Apagar(int id)
     {
-        VC.Delete(id);
+
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            VC.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+        }
+
     }
 
     public async Task Editar()

@@ -133,7 +133,7 @@ using System.Runtime;
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Moldes\Vmoldes.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 #line default
 #line hidden
@@ -193,7 +193,25 @@ using System.Runtime;
         showModal = false;
 
     }
-    
+
+    public async Task Delete(int id)
+    {
+
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            VM.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+        }
+        OnInitializedAsync();
+        showModal = false;
+
+    }
+
 
 #line default
 #line hidden

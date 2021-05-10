@@ -41,7 +41,7 @@
                                             <td>@users.UserName</td>
                                             <td>@users.NormalizedUserName</td>
                                             <td>@users.PhoneNumber</td>
-                                            <td><button class="btn btn-primary btn-sm" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-danger btn-sm" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+                                            <td><button class="btn btn-danger btn-sm" @onclick="() => ApagarUser(users.Id)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
                                         </tr>
                                     }
                                 </tbody>
@@ -80,6 +80,21 @@
             return true;
 
         return false;
+    }
+
+    public async Task ApagarUser(string id)
+    {
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            aspController.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+
+        }
     }
 
 

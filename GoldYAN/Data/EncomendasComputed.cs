@@ -22,12 +22,14 @@ namespace GoldYAN.Data
         public string apontamentos { get; set; }
         public string idlocalizacao { get; set; }
         public string idestado { get; set; }
+        public int idproduto { get; set; }
+        public string colaboradoratribuido { get; set; }
         public int quantidade { get; set; }
         public string peso { get; set; }
         public double precounitario { get; set; }
         public double precototal { get; set; }
-        public DateTime datadeentrega { get; set; }
-        public DateTime data { get; set; }
+        public string datadeentrega { get; set; }
+        public string data { get; set; }
 
     }
 }

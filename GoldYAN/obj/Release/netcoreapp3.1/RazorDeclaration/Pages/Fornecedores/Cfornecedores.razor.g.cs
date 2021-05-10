@@ -126,7 +126,7 @@ using GoldYAN.Data;
 #nullable disable
 #nullable restore
 #line 4 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fornecedores\Cfornecedores.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 #line default
 #line hidden

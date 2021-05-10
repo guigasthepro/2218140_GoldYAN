@@ -168,6 +168,21 @@ using BlazorInputFile;
         return false;
     }
 
+    public async Task ApagarUser(string id)
+    {
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            aspController.Delete(id);
+            OnInitializedAsync();
+            Task.Delay(1000);
+
+        }
+    }
+
 
 
 #line default

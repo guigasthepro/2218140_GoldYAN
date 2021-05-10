@@ -1,5 +1,5 @@
 ﻿@page "/vfabrico"
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 <div class="container-fluid">
 
@@ -25,12 +25,11 @@
                                     {
                                         if (!IsVisible(fabrico))
                                             continue;
-                                        <tr @ondblclick="() => OpenFichaProduto(fabrico.idproduto)" style="height: 1em;">
+                                        <tr style="height: 1em;">
                                             <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@fabrico.datacriacao">@fabrico.datacriacao</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@fabrico.idencomenda">@fabrico.idencomenda</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@fabrico.descricao">@fabrico.descricao</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@fabrico.idproduto">@fabrico.idproduto</td>
-                                            <td><button class="btn btn-primary btn-sm" @onclick="() => OpenFichaProduto(fabrico.idproduto)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(produtos.idproduto)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
                                         </tr>
                                     }
                                 </tbody>
@@ -62,6 +61,8 @@
     List<Fornecedores> listaFornecedores = new List<Fornecedores>();
     List<Servicos> ListaServicos = new List<Servicos>();
     List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
+    List<Fabrico> listaFabrico = new List<Fabrico>();
+
     List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
     List<CabecalhoProdutos> listaCabecalhoProdutos = new List<CabecalhoProdutos>();
     List<Data.Produtos> listaProdutos = new List<Produtos>();
@@ -79,6 +80,7 @@
     bool Readonly = true;
     bool ReadonlyCabecalho = true;
     int i;
+    int iencoemnda;
     string formadepesquisa;
     public string Filter { get; set; }
 
@@ -121,44 +123,22 @@
     public async Task LoadData(int linha)
     {
 
-        //m = listaProdutos[linha - 1];
-
-        //js.InvokeVoidAsync("console.log", $"{m}");
-
-
-        //if (m.idmolde.HasValue)
-        //{
-        //    mlds = MoldesController.Get(m.idmolde.Value);
-
-        //}
-        //else if (m.idservico.HasValue)
-        //{
-        //    servicos = SC.Get(m.idservico.Value);
-        //}
-        //else if (m.idproduto != 0)
-        //{
-        //    //mlds = .Get(m.idmolde.Value);
-        //}
-        //cl = colaboradoresController.Get(m.idcolaborador);
-
     }
 
-    public async Task Apagar(int id)
+    public async Task Apagar(int idfabrico, int idproduto)
     {
-        //bool confirmation;
+        bool confirmation;
 
-        //confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
 
-        //if (confirmation)
-        //{
-        //    string message = CMC.Delete(id);
-        //    message += MC.Delete(id);
-        //    OnInitializedAsync();
-        //    Task.Delay(1000);
-        //    {
-        //        await js.InvokeVoidAsync("alert", @message);
-        //    }
-        //}
+        if (confirmation)
+        {
+            listaFabrico = FBCC.GetAllQuery(idfabrico);
+
+            OnInitializedAsync();
+            Task.Delay(1000);
+
+        }
     }
 
     public async Task Update()

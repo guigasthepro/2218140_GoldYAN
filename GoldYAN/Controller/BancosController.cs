@@ -15,7 +15,7 @@ namespace GoldYAN.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    [Authorize("Admin, Dev, Atendimento, Oficina, Contabilidade")]
 
     public class BancosController : ControllerBase
     {

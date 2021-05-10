@@ -18,6 +18,8 @@ namespace GoldYAN.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Admin, Dev, Atendimento, Oficina, Contabilidade")]
+
     public class FabricoController : ControllerBase
     {
         List<Fabrico> LerCodigos = new List<Fabrico>();
@@ -49,9 +51,9 @@ namespace GoldYAN.Controller
         }
 
         [HttpGet("{id}")]
-        public List<Fabrico> GetAllQuery(string id)
+        public List<Fabrico> GetAllQuery(int id)
         {
-            string query = $"SELECT * FROM `modelos` WHERE idmodelo = '{id}'";
+            string query = $"SELECT * FROM `fabricos` WHERE idfabrico = '{id}'";
 
             LerCodigos = new List<Fabrico>();
 

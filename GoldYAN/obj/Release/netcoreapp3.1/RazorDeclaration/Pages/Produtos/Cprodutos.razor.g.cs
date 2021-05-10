@@ -126,7 +126,7 @@ using GoldYAN.Data;
 #nullable disable
 #nullable restore
 #line 4 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Produtos\Cprodutos.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 #line default
 #line hidden
@@ -187,35 +187,35 @@ using GoldYAN.Data;
     public async Task CriarProduto()
     {
 
-            //Vai buscar o utilizador que está logado
-            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-            var user = authState.User;
-            CCP.idmodelo = cm.idmodelo;
-            CCP.idclassificação = ecp.IDClassificacao;
-            CCP.idunidade = unidade.idunidade;
-            CCP.idtipodeproduto = dtp.idtipoproduto;
-            CCP.idtipodepeca = dtdp.idpeca;
-            CCP.idfornecedor = fornecedores.idfornecedor;
+        //Vai buscar o utilizador que está logado
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        CCP.idmodelo = cm.idmodelo;
+        CCP.idclassificação = ecp.IDClassificacao;
+        CCP.idunidade = unidade.idunidade;
+        CCP.idtipodeproduto = dtp.idtipoproduto;
+        CCP.idtipodepeca = dtdp.idpeca;
+        CCP.idfornecedor = fornecedores.idfornecedor;
 
-            var resultado = CAPC.Post(CCP);
-            await Task.Delay(1000);
+        var resultado = CAPC.Post(CCP);
+        await Task.Delay(1000);
 
-            if (resultado != null)
-            {
-                js.InvokeVoidAsync("Alert", "Cabecalho do produto criado com sucesso!");
-            }
+        if (resultado != null)
+        {
+            js.InvokeVoidAsync("Alert", "Cabecalho do produto criado com sucesso!");
+        }
 
-            servicos = new Servicos();
-            produtos = new Produtos();
-            cl = new Colaboradores();
-            CCP = new CabecalhoProdutos();
-            cm = new CabecalhosModelos();
-            dtp = new TipoProduto();
-            dtdp = new TipoDePeca();
-            LCP = new List<Produtos>();
+        servicos = new Servicos();
+        produtos = new Produtos();
+        cl = new Colaboradores();
+        CCP = new CabecalhoProdutos();
+        cm = new CabecalhosModelos();
+        dtp = new TipoProduto();
+        dtdp = new TipoDePeca();
+        LCP = new List<Produtos>();
 
-            StateHasChanged();
-            OnInitializedAsync();
+        StateHasChanged();
+        OnInitializedAsync();
 
     }
 
@@ -223,7 +223,7 @@ using GoldYAN.Data;
 
     public async Task LoadModeloData()
     {
-        if(cm.idmodelo.Length > 0)
+        if (cm.idmodelo.Length > 0)
         {
             var res = CMC.Get(cm.idmodelo);
             dtdp = TPC.Get(res.idtipodepeca.Value);

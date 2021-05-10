@@ -14,6 +14,8 @@ namespace GoldYAN.Data
         [Computed] public string descricao { get; set; }
         public int idcolaborador { get; set; }
         public double quantidade { get; set; }
+        public double feitio { get; set; }
+        public double cotacao { get; set; }
         public double custo { get; set; }
         public double peso { get; set; }
         public double custototal { get; set; }

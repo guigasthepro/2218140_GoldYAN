@@ -140,7 +140,7 @@ using Microsoft.EntityFrameworkCore;
 #nullable disable
 #nullable restore
 #line 8 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Clientes\Cfichacliente.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Atendimento, Contabilidade")]
 
 #line default
 #line hidden

@@ -126,7 +126,7 @@ using BlazorInputFile;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Stock\Hstock.razor"
-           [Authorize]
+           [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 #line default
 #line hidden
@@ -140,7 +140,7 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 80 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Stock\Hstock.razor"
+#line 85 "C:\Users\GuilhermeSimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Stock\Hstock.razor"
        
 
     List<CabecalhoProdutos> listaCabecalhoProduto = new List<CabecalhoProdutos>();
@@ -172,7 +172,7 @@ using BlazorInputFile;
 
         if (tipo == "Entrada")
         {
-            Entrada += stock ;
+            Entrada += stock;
         }
         else
         {
@@ -182,7 +182,7 @@ using BlazorInputFile;
 
     public async Task LoadStock()
     {
-        if(produtos.idproduto != null)
+        if (produtos.idproduto != null)
         {
             Stock = new double();
             Entrada = new double();

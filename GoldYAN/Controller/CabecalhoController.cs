@@ -8,11 +8,14 @@ using Dapper.Contrib.Extensions;
 using GoldYAN.Data;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GoldYAN.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Admin, Dev, Atendimento, Oficina, Contabilidade")]
+
     public class CabecalhoController : Microsoft.AspNetCore.Mvc.Controller
     {
         // GET: CabecalhoController

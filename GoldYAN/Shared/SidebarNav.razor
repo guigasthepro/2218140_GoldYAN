@@ -24,129 +24,149 @@
         Menus do Software
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClientes" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-users fa-cog"></i>
-            <span>Clientes</span>
-        </a>
-        <div id="collapseClientes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="cfichacliente">Criar ficha de clientes</a>
-                <a class="collapse-item" href="vclientes">Ver fichas de clientes</a>
+    <AuthorizeView Roles="Admin, Dev, Atendimento, Contabilidade">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClientes" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-users fa-cog"></i>
+                <span>Clientes</span>
+            </a>
+            <div id="collapseClientes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="cfichacliente">Criar ficha de clientes</a>
+                    <a class="collapse-item" href="vclientes">Ver fichas de clientes</a>
+                </div>
             </div>
-        </div>
-    </li>
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEncomendas" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="far fa-list-alt fa-cog"></i>
-            <span>Encomendas</span>
-        </a>
-        <div id="collapseEncomendas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="cencomenda">Criar encomenda</a>
-                <a class="collapse-item" href="vencomendas">Ver encomendas</a>
-            </div>
-        </div>
-    </li>
+        </li>
+    </AuthorizeView>
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFabrico" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-gem fa-cog"></i>
-            <span>Fabrico</span>
-        </a>
-        <div id="collapseFabrico" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="cfabrico">Criar Fabrico</a>
-                <a class="collapse-item" href="vfabrico">Ver Fabricos</a>
+    <AuthorizeView Roles="Admin, Dev, Atendimento, Contabilidade">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEncomendas" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="far fa-list-alt fa-cog"></i>
+                <span>Encomendas</span>
+            </a>
+            <div id="collapseEncomendas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="cencomenda">Criar encomenda</a>
+                    <a class="collapse-item" href="vencomendas">Ver encomendas</a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
+    </AuthorizeView>
+    <!-- Nav Item - Pages Collapse Menu -->
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOficina" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-pencil-ruler fa-cog"></i>
-            <span>Oficina</span>
-        </a>
-        <div id="collapseOficina" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="oficina">Gestão de encomendas</a>
+    <AuthorizeView Roles="Admin, Dev, Contabilidade">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFabrico" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-gem fa-cog"></i>
+                <span>Fabrico</span>
+            </a>
+            <div id="collapseFabrico" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="cfabrico">Criar Fabrico</a>
+                    <a class="collapse-item" href="vfabrico">Ver Fabricos</a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
+    </AuthorizeView>
+    <AuthorizeView Roles="Admin, Dev, Oficina">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOficina" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-pencil-ruler fa-cog"></i>
+                <span>Oficina</span>
+            </a>
+            <div id="collapseOficina" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="oficina">Gestão de encomendas</a>
+                </div>
+            </div>
+        </li>
+    </AuthorizeView>
+
+    <AuthorizeView Roles="Admin, Dev, Contabilidade">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFornecedores" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="far fa-user fa-cog"></i>
+                <span>Fornecedores</span>
+            </a>
+            <div id="collapseFornecedores" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="cfornecedores">Criar Fornecedor</a>
+                    <a class="collapse-item" href="vfornecedores">Ver Fornecedores</a>
+                </div>
+            </div>
+        </li>
+    </AuthorizeView>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Pages Collapse Menu -->
+    <AuthorizeView Roles="Admin,Dev,Contabilidade">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-shopping-basket fa-cog"></i>
+                <span>Compras</span>
+            </a>
+            <div id="collapseCompras" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="icompra">Inserir compra</a>
+                    <a class="collapse-item" href="vcompras">Ver compras</a>
+                </div>
+            </div>
+        </li>
+    </AuthorizeView>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <AuthorizeView Roles="Admin, Dev, Contabilidade">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProdutos" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-tags fa-cog"></i>
+                <span>Produtos</span>
+            </a>
+            <div id="collapseProdutos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="cprodutos">Criar produto</a>
+                    <a class="collapse-item" href="vprodutos">Ver produtos</a>
+                    <a class="collapse-item" href="hstock">Movimentos Stock</a>
+                </div>
+            </div>
+        </li>
+    </AuthorizeView>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFornecedores" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="far fa-user fa-cog"></i>
-            <span>Fornecedores</span>
-        </a>
-        <div id="collapseFornecedores" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="cfornecedores">Criar Fornecedor</a>
-                <a class="collapse-item" href="vfornecedores">Ver Fornecedores</a>
+    <AuthorizeView Roles="Admin, Dev, Contabilidade">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseModelos" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-list-ul fa-cog"></i>
+                <span>Modelos</span>
+            </a>
+            <div id="collapseModelos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="cmodelo">Criar modelos</a>
+                    <a class="collapse-item" href="vmodelo">Ver modelos</a>
+                </div>
             </div>
-        </div>
-    </li>
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-shopping-basket fa-cog"></i>
-            <span>Compras</span>
-        </a>
-        <div id="collapseCompras" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="icompra">Inserir compra</a>
-                <a class="collapse-item" href="vcompras">Ver compras</a>
+        </li>
+    </AuthorizeView>
+
+    <AuthorizeView Roles="Admin, Dev, Contabilidade">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMoldes" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-folder fa-cog"></i>
+                <span>Moldes</span>
+            </a>
+            <div id="collapseMoldes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="cmoldes">Criar molde</a>
+                    <a class="collapse-item" href="vmoldes">Ver moldes</a>
+                </div>
             </div>
-        </div>
-    </li>
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProdutos" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-tags fa-cog"></i>
-            <span>Produtos</span>
-        </a>
-        <div id="collapseProdutos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="cprodutos">Criar produto</a>
-                <a class="collapse-item" href="vprodutos">Ver produtos</a>
-            </div>
-        </div>
-    </li>
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseModelos" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-list-ul fa-cog"></i>
-            <span>Modelos</span>
-        </a>
-        <div id="collapseModelos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="cmodelo">Criar modelos</a>
-                <a class="collapse-item" href="vmodelo">Ver modelos</a>
-            </div>
-        </div>
-    </li>
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMoldes" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-folder fa-cog"></i>
-            <span>Moldes</span>
-        </a>
-        <div id="collapseMoldes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="cmoldes">Criar molde</a>
-                <a class="collapse-item" href="vmoldes">Ver moldes</a>
-            </div>
-        </div>
-    </li>
+        </li>
+    </AuthorizeView>
 
     <hr class="sidebar-divider">
 
 
 
 
-    <AuthorizeView Roles="Admin">
+    <AuthorizeView Roles="Admin, Dev">
         <div class="sidebar-heading">
             Administração
         </div>
