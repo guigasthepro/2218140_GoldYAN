@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\GuilhermeSimao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj": {}
+    "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj": {}
   },
   "projects": {
-    "C:\\Users\\GuilhermeSimao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj": {
+    "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\GuilhermeSimao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
+        "projectUniqueName": "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
         "projectName": "GoldYAN",
-        "projectPath": "C:\\Users\\GuilhermeSimao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
+        "projectPath": "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
         "packagesPath": "C:\\Users\\GuilhermeSimao\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\GuilhermeSimao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\obj\\",
+        "outputPath": "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\GuilhermeSimao\\AppData\\Roaming\\NuGet\\NuGet.Config",

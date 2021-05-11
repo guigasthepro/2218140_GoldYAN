@@ -232,16 +232,37 @@
                                             var tipodepeça = listaTipoDePecas.Where(h => h.idpeca.Equals(produtos.idtipodepeca)).ToList();
 
 
-                                            <tr @ondblclick="() => OpenFichaProduto(produtos.idproduto)" style="height: 1em;">
-                                                <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@produtos.idproduto">@produtos.idproduto</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.descricao">@produtos.descricao</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idclassificação - @classificacao[0].descricao">@produtos.idclassificação - @classificacao[0].descricao</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodeproduto - @tipodeproduto[0].descricao">@produtos.idtipodeproduto - @tipodeproduto[0].descricao</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodepeca - @tipodepeça[0].descricao">@produtos.idtipodepeca - @tipodepeça[0].descricao</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.pvp">@produtos.pvp</td>
-                                                <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.datacriacao">@produtos.datacriacao</td>
-                                                <td><button @onclick="() => OpenFichaProduto(produtos.idproduto)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(produtos.idproduto)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
-                                            </tr>
+                                    <tr @ondblclick="() => OpenFichaProduto(produtos.idproduto)" style="height: 1em;">
+                                        <td class="sorting_1" style=" overflow: hidden; white-space: nowrap; " title="@produtos.idproduto">@produtos.idproduto</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.descricao">@produtos.descricao</td>
+                                        @if (produtos.idclassificação != 0)
+                                        {
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idclassificação - @classificacao[0].descricao">@produtos.idclassificação - @classificacao[0].descricao</td>
+                                        }
+                                        else
+                                        {
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="0">0</td>
+                                        }
+                                        @if (produtos.idtipodeproduto != 0)
+                                        {
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodeproduto - @tipodeproduto[0].descricao">@produtos.idtipodeproduto - @tipodeproduto[0].descricao</td>
+                                        }
+                                        else
+                                        {
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="0">0</td>
+                                        }
+                                        @if (produtos.idtipodepeca != 0)
+                                        {
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.idtipodepeca - @tipodepeça[0].descricao">@produtos.idtipodepeca - @tipodepeça[0].descricao</td>
+                                        }
+                                        else
+                                        {
+                                            <td style=" overflow: hidden; white-space: nowrap; " title="0">0</td>
+                                        }
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.pvp">@produtos.pvp</td>
+                                        <td style=" overflow: hidden; white-space: nowrap; " title="@produtos.datacriacao">@produtos.datacriacao</td>
+                                        <td><button @onclick="() => OpenFichaProduto(produtos.idproduto)" class="btn btn-primary btn-sm" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => Apagar(produtos.idproduto)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                    </tr>
                                         }
                                     }
 

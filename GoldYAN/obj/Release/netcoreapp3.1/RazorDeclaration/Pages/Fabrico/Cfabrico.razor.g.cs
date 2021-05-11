@@ -309,6 +309,7 @@ using GoldYAN.Data;
                 {
                     LCP[i].linha = i + 1;
                     LCP[i].idproduto = resultado.idproduto;
+                    LCP[i].idfabrico = resultado2.idfabrico;
                     if (LCP[i].idprodutos != 0)
                     {
 
@@ -449,6 +450,7 @@ using GoldYAN.Data;
                     LCP[i].linha = maxlinha;
                     maxlinha = maxlinha + 1;
                     LCP[i].linha = LCP[i].linha + 1;
+                    LCP[i].idfabrico = resultado2.idfabrico;
 
                     LCP[i].idproduto = CCP.idproduto;
                     if (LCP[i].idprodutos != 0)

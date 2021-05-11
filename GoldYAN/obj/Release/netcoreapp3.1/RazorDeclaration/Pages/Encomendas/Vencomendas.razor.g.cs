@@ -327,6 +327,7 @@ using Microsoft.EntityFrameworkCore.Internal;
             {
                 LCP[i].linha = i + 1;
                 LCP[i].idproduto = resultado.idproduto;
+                LCP[i].idfabrico = resultado2.idfabrico;
                 if (LCP[i].idprodutos != 0)
                 {
                     if(LCP[i].idprodutos.HasValue)

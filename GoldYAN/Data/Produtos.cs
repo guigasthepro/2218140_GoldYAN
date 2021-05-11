@@ -11,6 +11,7 @@ namespace GoldYAN.Data
         public int linha { get; set; }
         public int ?idservico { get; set; }
         public int ?idprodutos { get; set; }
+        public int? idfabrico { get; set; }
         [Computed] public string descricao { get; set; }
         public int idcolaborador { get; set; }
         public double quantidade { get; set; }

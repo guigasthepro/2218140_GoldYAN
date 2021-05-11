@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PJRCkrDUay8mB7G981hWIL4T1sdVzbp9MJGZVVtkBL0jbcOXwmntZifvrUvlYXoUrjzmqSGOCX61MNvt92fqSg==",
+  "dgSpecHash": "pWU5uBI7EwFTSJPzYKMaJu5SOwYznw96YyV2kDlYqVj+d4GZT336lu6s1yln2Ga6eEdW7824jCY9L1HT7eioLw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\GuilhermeSimao\\Source\\Repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
+  "projectFilePath": "C:\\Users\\GuilhermeSimao\\source\\repos\\guigasthepro\\2218140_GoldYAN\\GoldYAN\\GoldYAN.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\GuilhermeSimao\\.nuget\\packages\\blazored.typeahead\\4.5.1\\blazored.typeahead.4.5.1.nupkg.sha512",
     "C:\\Users\\GuilhermeSimao\\.nuget\\packages\\blazorinputfile\\0.2.0\\blazorinputfile.0.2.0.nupkg.sha512",
