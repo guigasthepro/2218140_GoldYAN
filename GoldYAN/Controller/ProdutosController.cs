@@ -57,10 +57,26 @@ namespace GoldYAN.Controller
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public List<Produtos> GetAllQuery(int id)
         {
             string query = $"SELECT * FROM `produtos` WHERE idproduto = '{id}'";
+
+            lerFamilias = new List<Produtos>();
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Query<Produtos>(query).ToList();
+                lerFamilias = res;
+            }
+
+            return lerFamilias;
+        }
+
+        [HttpGet("{id}")]
+        public List<Produtos> GetProdutosWithFabric(int id, int fabrico)
+        {
+            string query = $"SELECT * FROM `produtos` WHERE idproduto = '{id}' AND idfabrico {fabrico}";
 
             lerFamilias = new List<Produtos>();
 
