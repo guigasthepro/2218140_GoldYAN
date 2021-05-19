@@ -83,8 +83,12 @@
     public async Task ClientCreate()
     {
         cFichaCliente.Datacriacao = DateTime.Now.ToShortDateString();
-        CC.Post(cFichaCliente);
+        var resultado = CC.Post(cFichaCliente);
         Esperar();
+        if (resultado != null)
+        {
+            js.InvokeVoidAsync("alert","Cliente criado com sucesso!");
+        }
         cFichaCliente = new Clientes();
 
     }
