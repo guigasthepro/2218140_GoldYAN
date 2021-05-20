@@ -160,5 +160,26 @@ namespace GoldYAN.Controller
                 }
             }
         }
+
+        [HttpDelete("{id}")]
+        public string DeleteFabricos(int id, int idprodutos)
+        {
+
+            string query = $" DELETE FROM `fabrico` WHERE idfabrico = {id} AND idprodutos = {idprodutos} ";
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Get<Fabrico>(id);
+                if (res != null)
+                {
+                    DBConn.Query<Fabrico>(query);
+                    return "Item foi apagado com sucesso";
+                }
+                else
+                {
+                    return "Item foi apagado com sucesso";
+                }
+            }
+        }
     }
 }

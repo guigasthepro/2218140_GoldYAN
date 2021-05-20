@@ -74,9 +74,9 @@ namespace GoldYAN.Controller
         }
 
         [HttpGet("{id}")]
-        public List<Produtos> GetProdutosWithFabric(int id, int fabrico)
+        public List<Produtos> GetProdutosWithFabric(int id, int idprodutos, int fabrico)
         {
-            string query = $"SELECT * FROM `produtos` WHERE idproduto = '{id}' AND idfabrico {fabrico}";
+            string query = $"SELECT * FROM `produtos` WHERE idproduto = {id} AND idprodutos = {idprodutos} AND idfabrico {fabrico}";
 
             lerFamilias = new List<Produtos>();
 
@@ -182,6 +182,27 @@ namespace GoldYAN.Controller
             else
             {
                 return "Erro";
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public string DeleteProdutos(int id, int idfabrico)
+        {
+
+            string query = $" DELETE FROM `produtos` WHERE idprodutos = {id} AND idfabrico = {idfabrico} ";
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Get<Produtos>(id);
+                if (res != null)
+                {
+                    DBConn.Query<Produtos>(query);
+                    return "Item foi apagado com sucesso";
+                }
+                else
+                {
+                    return "Item foi apagado com sucesso";
+                }
             }
         }
     }

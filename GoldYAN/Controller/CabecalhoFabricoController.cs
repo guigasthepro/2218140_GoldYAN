@@ -51,9 +51,9 @@ namespace GoldYAN.Controller
         }
 
         [HttpGet("{id}")]
-        public List<CabecalhoFabrico> GetAllQuery(string id)
+        public List<CabecalhoFabrico> GetAllQuery(int id)
         {
-            string query = $"SELECT * FROM `modelos` WHERE idmodelo = '{id}'";
+            string query = $"SELECT * FROM `modelos` WHERE idmodelo = {id}";
 
             LerCodigos = new List<CabecalhoFabrico>();
 
@@ -144,7 +144,7 @@ namespace GoldYAN.Controller
 
         // DELETE api/<CodigoPostalController>/5
         [HttpDelete("{id}")]
-        public string Delete(string id)
+        public string Delete(int id)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {

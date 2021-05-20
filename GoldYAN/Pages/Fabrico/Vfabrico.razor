@@ -30,6 +30,8 @@
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@fabrico.idencomenda">@fabrico.idencomenda</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@fabrico.descricao">@fabrico.descricao</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@fabrico.idproduto">@fabrico.idproduto</td>
+                                            <td><button disabled="disabled" class="btn btn-sm btn-primary" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(fabrico.idfabrico)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+
                                         </tr>
                                     }
                                 </tbody>
@@ -62,13 +64,14 @@
     List<Servicos> ListaServicos = new List<Servicos>();
     List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
     List<Fabrico> listaFabrico = new List<Fabrico>();
-
+    List<HistoricoStock> listaHistoricoStocks = new List<HistoricoStock>();
     List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
     List<CabecalhoProdutos> listaCabecalhoProdutos = new List<CabecalhoProdutos>();
     List<Data.Produtos> listaProdutos = new List<Produtos>();
     List<CabecalhosModelos> listacabecalhoModeloControllers = new List<CabecalhosModelos>();
     List<Colaboradores> colaboradores = new List<Colaboradores>();
     List<CabecalhoFabrico> listaCabecalhoFabrico = new List<CabecalhoFabrico>();
+    List<CabecalhoFabrico> listCFabrico = new List<CabecalhoFabrico>();
 
 
     //For input values
@@ -125,7 +128,7 @@
 
     }
 
-    public async Task Apagar(int idfabrico, int idproduto)
+    public async Task Apagar(int idfabrico)
     {
         bool confirmation;
 
@@ -134,7 +137,38 @@
         if (confirmation)
         {
             listaFabrico = FBCC.GetAllQuery(idfabrico);
-
+            for (int i = 0; i < listaFabrico.Count; i++)
+            {
+                if (listaFabrico[i].idprodutos.HasValue)
+                {
+                    listaHistoricoStocks = hStockC.GetAllQuery(idfabrico, listaFabrico[i].idprodutos.Value);
+                    CCP = CAPC.Get(listaFabrico[i].idprodutos.Value);
+                    if (listaHistoricoStocks.Count != 0)
+                    {
+                        if (listaHistoricoStocks[0].tipo == "Entrada")
+                        {
+                            CCP.stock = CCP.stock - listaHistoricoStocks[0].stockadicionado;
+                            CAPC.Put(CCP.idproduto, CCP);
+                        }
+                        else
+                        {
+                            CCP.stock = CCP.stock + listaHistoricoStocks[0].stockadicionado;
+                            CAPC.Put(CCP.idproduto, CCP);
+                        }
+                    }
+                }
+                if (listaFabrico[i].idprodutos.HasValue)
+                {
+                    PC.DeleteProdutos(listaFabrico[i].idprodutos.Value, listaFabrico[i].idfabrico);
+                    FBCC.DeleteFabricos(idfabrico, listaFabrico[i].idprodutos.Value);
+                    hStockC.DeleteUsingFabricos(listaFabrico[i].idprodutos.Value, idfabrico);
+                }
+            }
+            var resultado = CFC.Delete(idfabrico);
+            if (resultado != null)
+            {
+                js.InvokeVoidAsync("alert", "Fabrico apagado com sucesso");
+            }
             OnInitializedAsync();
             Task.Delay(1000);
 

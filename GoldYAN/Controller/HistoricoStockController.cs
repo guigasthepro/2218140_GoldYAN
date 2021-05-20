@@ -152,5 +152,20 @@ namespace GoldYAN.Controller
                 }
             }
         }
+
+        [HttpDelete("{id}")]
+        public void DeleteUsingFabricos(int idproduto, int idfabrico)
+        {
+
+            string query = $" DELETE FROM `historicostock` WHERE idcomponente = {idfabrico} AND idprodutoalterado = {idproduto} ";
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+
+                    DBConn.Query<HistoricoStock>(query);
+
+            }
+        }
+
     }
 }
