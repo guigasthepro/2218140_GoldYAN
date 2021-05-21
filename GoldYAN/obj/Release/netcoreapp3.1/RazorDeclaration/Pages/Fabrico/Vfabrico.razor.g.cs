@@ -140,7 +140,7 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 45 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
+#line 47 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
        
     Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
     Data.Servicos servicos = new Servicos();
@@ -225,7 +225,7 @@ using BlazorInputFile;
 
     }
 
-    public async Task Apagar(int idfabrico, int idproduto)
+    public async Task Apagar(int idfabrico)
     {
         bool confirmation;
 

@@ -30,7 +30,7 @@
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@fabrico.idencomenda">@fabrico.idencomenda</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@fabrico.descricao">@fabrico.descricao</td>
                                             <td style=" overflow: hidden; white-space: nowrap; " title="@fabrico.idproduto">@fabrico.idproduto</td>
-                                            <td><button disabled="disabled" class="btn btn-sm btn-primary" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(fabrico.idfabrico)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
+                                            <td><button disabled="disabled" class="btn btn-sm btn-primary" style="margin-left:1rem"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-danger" @onclick="() => Apagar(fabrico.idfabrico, fabrico.idproduto)" style="margin-left:0.3rem"><i class="fas fa-trash"></i></button></td>
 
                                         </tr>
                                     }
@@ -128,7 +128,7 @@
 
     }
 
-    public async Task Apagar(int idfabrico)
+    public async Task Apagar(int idfabrico, int idproduto)
     {
         bool confirmation;
 
@@ -163,7 +163,29 @@
                     FBCC.DeleteFabricos(idfabrico, listaFabrico[i].idprodutos.Value);
                     hStockC.DeleteUsingFabricos(listaFabrico[i].idprodutos.Value, idfabrico);
                 }
+                
             }
+            CCP = new CabecalhoProdutos();
+            listaHistoricoStocks = new List<HistoricoStock>();
+
+            CCP = CAPC.Get(idproduto);
+            listaHistoricoStocks = hStockC.GetAllQuery(idfabrico, idproduto);
+
+            if (CCP != null)
+            {
+                if (listaHistoricoStocks[0].tipo == "Entrada")
+                {
+                    CCP.stock = CCP.stock - listaHistoricoStocks[0].stockadicionado;
+                    CAPC.Put(CCP.idproduto, CCP);
+                }
+                else
+                {
+                    CCP.stock = CCP.stock + listaHistoricoStocks[0].stockadicionado;
+                    CAPC.Put(CCP.idproduto, CCP);
+                }
+            }
+            CAPC.Put(CCP.idproduto, CCP);
+
             var resultado = CFC.Delete(idfabrico);
             if (resultado != null)
             {
