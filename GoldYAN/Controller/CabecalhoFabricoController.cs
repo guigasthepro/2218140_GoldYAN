@@ -85,11 +85,11 @@ namespace GoldYAN.Controller
 
         // GET api/<CodigoPostalController>/5
         [HttpGet("{id}")]
-        public Fabrico Get(string id)
+        public CabecalhoFabrico Get(int id)
         {
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {
-                var res = DBConn.Get<Fabrico>(id);
+                var res = DBConn.Get<CabecalhoFabrico>(id);
                 return res;
             }
         }

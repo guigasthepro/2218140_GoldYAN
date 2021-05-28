@@ -140,7 +140,7 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 47 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
+#line 400 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
        
     Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
     Data.Servicos servicos = new Servicos();
@@ -151,8 +151,20 @@ using BlazorInputFile;
     Data.TipoProduto dtp = new TipoProduto();
     Data.Produtos cp = new Produtos();
     Data.Fornecedores fornecedores = new Data.Fornecedores();
+    Data.CabecalhoFabrico cfabrico = new Data.CabecalhoFabrico();
     Data.ClassificacaoProdutos ecp = new Data.ClassificacaoProdutos();
+    Data.CabecalhoFabrico CF = new Data.CabecalhoFabrico();
+    Data.Fabrico F = new Data.Fabrico();
     Data.Unidades unidade = new Data.Unidades();
+    Data.IDMaximo IDMaximo = new Data.IDMaximo();
+    Data.HistoricoStock hStock = new Data.HistoricoStock();
+    Data.Produtos RProduto = new Data.Produtos();
+    Data.CabecalhoProdutos UProduto = new Data.CabecalhoProdutos();
+    List<Data.Produtos> GProduto = new List<Data.Produtos>();
+
+
+    List<Data.Fabrico> LCFP = new List<Fabrico>();
+
 
 
     List<Unidades> listaUnidades = new List<Unidades>();
@@ -220,12 +232,13 @@ using BlazorInputFile;
     }
 
 
-    public async Task LoadData(int linha)
+    public async Task LoadData(int idfabrico)
     {
-
+        cfabrico = CFC.Get(idfabrico);
+        listaFabrico = FBCC.GetAllQuery(idfabrico);
     }
 
-    public async Task Apagar(int idfabrico)
+    public async Task Apagar(int idfabrico, int idproduto)
     {
         bool confirmation;
 
@@ -260,7 +273,29 @@ using BlazorInputFile;
                     FBCC.DeleteFabricos(idfabrico, listaFabrico[i].idprodutos.Value);
                     hStockC.DeleteUsingFabricos(listaFabrico[i].idprodutos.Value, idfabrico);
                 }
+
             }
+            CCP = new CabecalhoProdutos();
+            listaHistoricoStocks = new List<HistoricoStock>();
+
+            CCP = CAPC.Get(idproduto);
+            listaHistoricoStocks = hStockC.GetAllQuery(idfabrico, idproduto);
+
+            if (CCP != null)
+            {
+                if (listaHistoricoStocks[0].tipo == "Entrada")
+                {
+                    CCP.stock = CCP.stock - listaHistoricoStocks[0].stockadicionado;
+                    CAPC.Put(CCP.idproduto, CCP);
+                }
+                else
+                {
+                    CCP.stock = CCP.stock + listaHistoricoStocks[0].stockadicionado;
+                    CAPC.Put(CCP.idproduto, CCP);
+                }
+            }
+            CAPC.Put(CCP.idproduto, CCP);
+
             var resultado = CFC.Delete(idfabrico);
             if (resultado != null)
             {

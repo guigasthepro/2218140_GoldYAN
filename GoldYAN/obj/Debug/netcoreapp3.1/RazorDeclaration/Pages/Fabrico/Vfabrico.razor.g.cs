@@ -13,119 +13,119 @@ namespace GoldYAN.Pages.Fabrico
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 1 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 2 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 3 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 4 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 5 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 6 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 7 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 8 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.AspNetCore.Mvc;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 9 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 10 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 11 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 12 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using Blazored.Typeahead;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 13 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 14 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using GoldYAN.Controller;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 15 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using System.IO;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
+#line 16 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\_Imports.razor"
 using BlazorInputFile;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
+#line 2 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
            [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
 #line default
@@ -140,7 +140,7 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 45 "C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
+#line 400 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
        
     Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
     Data.Servicos servicos = new Servicos();
@@ -151,8 +151,20 @@ using BlazorInputFile;
     Data.TipoProduto dtp = new TipoProduto();
     Data.Produtos cp = new Produtos();
     Data.Fornecedores fornecedores = new Data.Fornecedores();
+    Data.CabecalhoFabrico cfabrico = new Data.CabecalhoFabrico();
     Data.ClassificacaoProdutos ecp = new Data.ClassificacaoProdutos();
+    Data.CabecalhoFabrico CF = new Data.CabecalhoFabrico();
+    Data.Fabrico F = new Data.Fabrico();
     Data.Unidades unidade = new Data.Unidades();
+    Data.IDMaximo IDMaximo = new Data.IDMaximo();
+    Data.HistoricoStock hStock = new Data.HistoricoStock();
+    Data.Produtos RProduto = new Data.Produtos();
+    Data.CabecalhoProdutos UProduto = new Data.CabecalhoProdutos();
+    List<Data.Produtos> GProduto = new List<Data.Produtos>();
+
+
+    List<Data.Fabrico> LCFP = new List<Fabrico>();
+
 
 
     List<Unidades> listaUnidades = new List<Unidades>();
@@ -161,13 +173,14 @@ using BlazorInputFile;
     List<Servicos> ListaServicos = new List<Servicos>();
     List<TipoDePeca> listaTipoDePecas = new List<TipoDePeca>();
     List<Fabrico> listaFabrico = new List<Fabrico>();
-
+    List<HistoricoStock> listaHistoricoStocks = new List<HistoricoStock>();
     List<TipoProduto> listaTipoProdutos = new List<TipoProduto>();
     List<CabecalhoProdutos> listaCabecalhoProdutos = new List<CabecalhoProdutos>();
     List<Data.Produtos> listaProdutos = new List<Produtos>();
     List<CabecalhosModelos> listacabecalhoModeloControllers = new List<CabecalhosModelos>();
     List<Colaboradores> colaboradores = new List<Colaboradores>();
     List<CabecalhoFabrico> listaCabecalhoFabrico = new List<CabecalhoFabrico>();
+    List<CabecalhoFabrico> listCFabrico = new List<CabecalhoFabrico>();
 
 
     //For input values
@@ -219,9 +232,10 @@ using BlazorInputFile;
     }
 
 
-    public async Task LoadData(int linha)
+    public async Task LoadData(int idfabrico)
     {
-
+        cfabrico = CFC.Get(idfabrico);
+        listaFabrico = FBCC.GetAllQuery(idfabrico);
     }
 
     public async Task Apagar(int idfabrico, int idproduto)
@@ -233,7 +247,60 @@ using BlazorInputFile;
         if (confirmation)
         {
             listaFabrico = FBCC.GetAllQuery(idfabrico);
+            for (int i = 0; i < listaFabrico.Count; i++)
+            {
+                if (listaFabrico[i].idprodutos.HasValue)
+                {
+                    listaHistoricoStocks = hStockC.GetAllQuery(idfabrico, listaFabrico[i].idprodutos.Value);
+                    CCP = CAPC.Get(listaFabrico[i].idprodutos.Value);
+                    if (listaHistoricoStocks.Count != 0)
+                    {
+                        if (listaHistoricoStocks[0].tipo == "Entrada")
+                        {
+                            CCP.stock = CCP.stock - listaHistoricoStocks[0].stockadicionado;
+                            CAPC.Put(CCP.idproduto, CCP);
+                        }
+                        else
+                        {
+                            CCP.stock = CCP.stock + listaHistoricoStocks[0].stockadicionado;
+                            CAPC.Put(CCP.idproduto, CCP);
+                        }
+                    }
+                }
+                if (listaFabrico[i].idprodutos.HasValue)
+                {
+                    PC.DeleteProdutos(listaFabrico[i].idprodutos.Value, listaFabrico[i].idfabrico);
+                    FBCC.DeleteFabricos(idfabrico, listaFabrico[i].idprodutos.Value);
+                    hStockC.DeleteUsingFabricos(listaFabrico[i].idprodutos.Value, idfabrico);
+                }
 
+            }
+            CCP = new CabecalhoProdutos();
+            listaHistoricoStocks = new List<HistoricoStock>();
+
+            CCP = CAPC.Get(idproduto);
+            listaHistoricoStocks = hStockC.GetAllQuery(idfabrico, idproduto);
+
+            if (CCP != null)
+            {
+                if (listaHistoricoStocks[0].tipo == "Entrada")
+                {
+                    CCP.stock = CCP.stock - listaHistoricoStocks[0].stockadicionado;
+                    CAPC.Put(CCP.idproduto, CCP);
+                }
+                else
+                {
+                    CCP.stock = CCP.stock + listaHistoricoStocks[0].stockadicionado;
+                    CAPC.Put(CCP.idproduto, CCP);
+                }
+            }
+            CAPC.Put(CCP.idproduto, CCP);
+
+            var resultado = CFC.Delete(idfabrico);
+            if (resultado != null)
+            {
+                js.InvokeVoidAsync("alert", "Fabrico apagado com sucesso");
+            }
             OnInitializedAsync();
             Task.Delay(1000);
 
