@@ -1,7 +1,7 @@
 ﻿@page "/vfabrico"
 @attribute [Authorize(Roles = "Admin, Dev, Contabilidade")]
 
-@if (showModal3)
+@if (showModal)
 {
     <div class="container-fluid">
         <div class="card shadow mb-4">
@@ -218,13 +218,13 @@
                     </div>
                 </div>
 
-                <EditForm Model="@cp" OnValidSubmit="AdicionarComposto">
+                <EditForm Model="@cp" OnValidSubmit="EditarComposto">
                     <DataAnnotationsValidator />
 
                     <div class="m-3 form-group">
                         <div class="form-inline">
                             <label for="preco">Preco:</label> &nbsp
-                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="preco" class="form-control" placeholder="@produtos.preco" disabled="@Readonly" @bind-Value="produtos.preco" />
+                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="preco" class="form-control" placeholder="@produtos.custo" disabled="@Readonly" @bind-Value="produtos.custo" />
                         </div>
                     </div>
 
@@ -238,19 +238,11 @@
                 </EditForm>
 
             }
-
-            @if (save)
-            {
                 <div class="m-3 form-group">
                     <button type="submit" @onclick="EditarComposto" class="btn btn-primary">Editar</button>
                 </div>
-            }
-            else
-            {
-                <div class="m-3 form-group">
-                    <button type="submit" @onclick="AdicionarComposto" class="btn btn-primary">Adicionar</button>
-                </div>
-            }
+            
+
 
         </div>
     </div>
@@ -434,10 +426,7 @@
 
     public void ApagarItemLista(int id)
     {
-        //cm = CMC.Get(id);
-        //dtp = TPRC.Get(cm.idtipoproduto.Value);
-        dtdp = TPC.Get(cm.idtipodepeca.Value);
-        //listaModelos = MC.GetAllQuery(id);
+        LCP.RemoveAt(id);
         showModal = true;
     }
 
@@ -573,9 +562,9 @@
         return await Task.FromResult(ListaServicos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
-    private async Task<IEnumerable<TipoProduto>> ProcurarProdutos(string searchText)
+    private async Task<IEnumerable<Produtos>> ProcurarProdutos(string searchText)
     {
-        return await Task.FromResult(listaTipoProdutos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+        return await Task.FromResult(listaProdutos.Where(h => h.idproduto.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
     private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)
@@ -605,16 +594,13 @@
 
 
 
-    public async Task ApagarItemLista(int i)
-    {
-        LCP.RemoveAt(i);
-    }
+
 
 
 
     public async Task ModalCancel3()
     {
-        showModal3 = false;
+        showModal = false;
     }
 
 
