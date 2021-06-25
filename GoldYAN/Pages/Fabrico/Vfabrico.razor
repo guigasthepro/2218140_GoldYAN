@@ -31,9 +31,6 @@
                 <h6 style="display: inline" class="m-0 font-weight-bold text-primary">Cabeçalho Produto</h6><div style="display: inline" class="float-right"></div>
             </div>
 
-
-
-
                 <EditForm Model="@CCP">
                     <div class="m-3 form-group">
                         <div class="form-inline">
@@ -184,7 +181,7 @@
                     </div>
                 </div>
 
-                <EditForm Model="@cp" OnValidSubmit="AdicionarComposto">
+                <EditForm Model="@cp" OnValidSubmit="EditarComposto">
                     <DataAnnotationsValidator />
 
                     <div class="m-3 form-group">
@@ -316,7 +313,7 @@
         <div class="card-body">
             <div class="table-responsive-sm">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
+                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Pesquisar Fabrico:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
                         <div class="col-sm-12">
                             <table class="table table-bordered table-sm dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
@@ -352,8 +349,8 @@
 @code {
     Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
     Data.Servicos servicos = new Servicos();
-    Data.Produtos produtos = new Produtos();
-    Data.CabecalhosModelos cm = new CabecalhosModelos();
+    Data.CabecalhoProdutos = new Produtos();
+    Data.CabecalhosModelos cm = new CabecalhoProdutos();
     Data.Colaboradores cl = new Colaboradores();
     Data.TipoDePeca dtdp = new TipoDePeca();
     Data.TipoProduto dtp = new TipoProduto();
@@ -400,7 +397,7 @@
     bool Readonly = true;
     bool ReadonlyCabecalho = true;
     int i;
-    int iencoemnda;
+    int iencomenda;
     string formadepesquisa;
     public string Filter { get; set; }
 
@@ -432,29 +429,104 @@
 
     public void OpenFichaProduto(int id)
     {
-        //cm = CMC.Get(id);
-        //dtp = TPRC.Get(cm.idtipoproduto.Value);
+        CF = CFC.Get(id);
+        
         dtdp = TPC.Get(cm.idtipodepeca.Value);
         //listaModelos = MC.GetAllQuery(id);
         showModal = true;
     }
 
-    public void AdicionarComposto(int id)
+    public async Task EditarComposto()
     {
-        //cm = CMC.Get(id);
-        //dtp = TPRC.Get(cm.idtipoproduto.Value);
-        dtdp = TPC.Get(cm.idtipodepeca.Value);
-        //listaModelos = MC.GetAllQuery(id);
-        showModal = true;
-    }
+        Data.Fabrico fabricocomposto = new Data.Fabrico();
 
-    public void EditarComposto(int id)
-    {
-        //cm = CMC.Get(id);
-        //dtp = TPRC.Get(cm.idtipoproduto.Value);
-        dtdp = TPC.Get(cm.idtipodepeca.Value);
-        //listaModelos = MC.GetAllQuery(id);
-        showModal = true;
+        if (servicos.idservico != 0)
+        {
+            i++;
+            cp.linha = i;
+            cp.custo = cl.valor;
+            cp.idcolaborador = cl.idcolaborador;
+            cp.idservico = servicos.idservico;
+            cp.descricao = servicos.descricao;
+            cp.datacriacao = DateTime.Now.ToString();
+            if (servicos.custo != 0)
+            {
+                cp.custo = servicos.custo;
+                cp.custototal = cp.custo * cp.quantidade;
+                CCP.custototal += cp.quantidade * produtos.preco;
+            }
+            fabricocomposto.linha = i;
+            fabricocomposto.custo = cl.valor;
+            fabricocomposto.idservico = servicos.idservico;
+            fabricocomposto.descricao = servicos.descricao;
+            fabricocomposto.customedio = cp.customedio;
+            fabricocomposto.custototal = cp.custototal;
+            fabricocomposto.datacriacao = DateTime.Now.ToShortDateString();
+            fabricocomposto.peso = cp.peso;
+            fabricocomposto.quantidade = cp.quantidade;
+
+            LCP.RemoveAt(iencomenda);
+            LCP.Insert(iencomenda, cp);
+
+            LCFP.RemoveAt(iencomenda);
+            LCFP.Insert(iencomenda, fabricocomposto);
+
+            cm = new CabecalhosModelos();
+            servicos = new Servicos();
+            produtos = new CabecalhoProdutos();
+            cl = new Colaboradores();
+            cp = new Produtos();
+            fabricocomposto = new Fabrico();
+
+        }
+        else if (produtos.idproduto != 0)
+        {
+            i++;
+            cp.linha = i;
+            cp.custo = cl.valor;
+            cp.idcolaborador = cl.idcolaborador;
+            cp.idprodutos = produtos.idproduto;
+            cp.descricao = produtos.descricao;
+            cp.datacriacao = DateTime.Now.ToString();
+            if (produtos.peso.HasValue)
+            {
+                cp.peso = produtos.peso.Value;
+
+            }
+            if (produtos.preco.HasValue)
+            {
+                cp.custo = produtos.preco.Value;
+                cp.custototal = cp.custo * cp.quantidade;
+                CCP.custototal += cp.custototal;
+            }
+            fabricocomposto.linha = i;
+            fabricocomposto.custo = cl.valor;
+            fabricocomposto.idprodutos = produtos.idproduto;
+            fabricocomposto.descricao = produtos.descricao;
+            fabricocomposto.customedio = cp.customedio;
+            fabricocomposto.custototal = cp.custototal;
+            fabricocomposto.datacriacao = DateTime.Now.ToShortDateString();
+            fabricocomposto.peso = cp.peso;
+            fabricocomposto.quantidade = cp.quantidade;
+
+            LCP.RemoveAt(iencomenda);
+            LCP.Insert(iencomenda, cp);
+
+            LCFP.RemoveAt(iencomenda);
+            LCFP.Insert(iencomenda, fabricocomposto);
+
+            cm = new CabecalhosModelos();
+            servicos = new Servicos();
+            produtos = new CabecalhoProdutos();
+            cl = new Colaboradores();
+            cp = new Produtos();
+            fabricocomposto = new Fabrico();
+
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Impossivél adicionar, por favor verifique os campos!");
+        }
     }
 
     void ModalShow()

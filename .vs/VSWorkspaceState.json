@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\GoldYAN"
+    "\\GoldYAN",
+    "\\GoldYAN\\Pages",
+    "\\GoldYAN\\Pages\\Fabrico"
   ],
-  "SelectedNode": "\\GoldYAN\\GoldYAN.sln",
+  "SelectedNode": "\\GoldYAN\\Pages\\Fabrico\\Vfabrico.razor",
   "PreviewInSolutionExplorer": false
 }
