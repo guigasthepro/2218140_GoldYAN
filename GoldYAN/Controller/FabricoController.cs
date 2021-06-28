@@ -53,7 +53,7 @@ namespace GoldYAN.Controller
         [HttpGet("{id}")]
         public List<Fabrico> GetAllQuery(int id)
         {
-            string query = $"SELECT * FROM `fabricos` WHERE idfabrico = '{id}'";
+            string query = $"SELECT * FROM `fabrico` WHERE idfabrico = '{id}'";
 
             LerCodigos = new List<Fabrico>();
 

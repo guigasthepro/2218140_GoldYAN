@@ -89,6 +89,20 @@ namespace GoldYAN.Controller
             return lerFamilias;
         }
 
+        public Produtos GetProdutoWithLinha(int id, int linha)
+        {
+            string query = $"SELECT * FROM `produtos` WHERE idproduto = '{id}' AND linha = '{linha}'";
+
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.QueryFirstOrDefault<Produtos>(query);
+                return res;
+            }
+
+
+        }
+
         // POST api/<FamiliaProdutosController>
         [HttpPost]
         public Produtos Post([FromBody] Produtos familiaProdutos)
@@ -101,6 +115,7 @@ namespace GoldYAN.Controller
                 return res;
             }
         }
+
 
         [HttpPut("{id}")]
         public ActionResult<Produtos> Put(int id, int linha, [FromBody] Produtos familiaProdutos)
