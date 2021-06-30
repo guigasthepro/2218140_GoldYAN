@@ -281,7 +281,7 @@
                                                                 <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].peso">@LCP[i].peso</td>
                                                                 <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].custo">@LCP[i].custo</td>
                                                                 <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].custototal">@LCP[i].custototal</td>
-                                                                <td><button class="btn btn-primary btn-sm" @onclick="() => LoadLista(i)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => ApagarItemLista(i, LCP[i].idproduto, LCP[i].linha)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                                <td><button class="btn btn-primary btn-sm" @onclick="() => LoadLista(i)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => ApagarItemLista(7, 1)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
 
                                                             }
                                                             else
@@ -294,7 +294,7 @@
                                                                 <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].peso">@LCP[i].peso</td>
                                                                 <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].custo">@LCP[i].custo</td>
                                                                 <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].custototal">@LCP[i].custototal</td>
-                                                                <td><button class="btn btn-primary btn-sm" @onclick="() => LoadLista(i)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => ApagarItemLista(i, LCP[i].idproduto, LCP[i].linha)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                                <td><button class="btn btn-primary btn-sm" @onclick="() => LoadLista(i)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => ApagarItemLista(7, 1)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
 
                                                             }
 
@@ -436,9 +436,8 @@
 
 
 
-    public async Task ApagarItemLista(int id, int idproduto, int linha)
+    public async Task ApagarItemLista(int idproduto, int linha)
     {
-        LCP.RemoveAt(id);
         bool confirmation;
 
         confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
@@ -447,6 +446,7 @@
         {
             PC.DeleteByLinha(idproduto, linha);
             FBCC.DeleteFabricos(CF.idfabrico, idproduto);
+            //LCP.RemoveAt(id - 1);
             OnInitializedAsync();
 
         }

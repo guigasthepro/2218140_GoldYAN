@@ -216,9 +216,8 @@ using BlazorInputFile;
 
 
 
-    public async Task ApagarItemLista(int id, int idproduto, int linha)
+    public async Task ApagarItemLista(int idproduto, int linha)
     {
-        LCP.RemoveAt(id);
         bool confirmation;
 
         confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
@@ -227,6 +226,7 @@ using BlazorInputFile;
         {
             PC.DeleteByLinha(idproduto, linha);
             FBCC.DeleteFabricos(CF.idfabrico, idproduto);
+            //LCP.RemoveAt(id - 1);
             OnInitializedAsync();
 
         }
