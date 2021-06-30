@@ -140,12 +140,12 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 349 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
+#line 364 "C:\Users\gsimao\source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\Pages\Fabrico\Vfabrico.razor"
        
     Data.CabecalhoProdutos CCP = new CabecalhoProdutos();
     Data.Servicos servicos = new Servicos();
-    Data.CabecalhoProdutos = new Produtos();
-    Data.CabecalhosModelos cm = new CabecalhoProdutos();
+    Data.CabecalhoProdutos produtos = new CabecalhoProdutos();
+    Data.CabecalhosModelos cm = new CabecalhosModelos();
     Data.Colaboradores cl = new Colaboradores();
     Data.TipoDePeca dtdp = new TipoDePeca();
     Data.TipoProduto dtp = new TipoProduto();
@@ -216,16 +216,26 @@ using BlazorInputFile;
 
 
 
-    public void ApagarItemLista(int id)
+    public async Task ApagarItemLista(int id, int idproduto, int linha)
     {
         LCP.RemoveAt(id);
-        showModal = true;
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            PC.DeleteByLinha(idproduto, linha);
+            FBCC.DeleteFabricos(CF.idfabrico, idproduto);
+            OnInitializedAsync();
+
+        }
     }
 
     public void OpenFichaProduto(int id)
     {
         CF = CFC.Get(id);
-        
+
         dtdp = TPC.Get(cm.idtipodepeca.Value);
         //listaModelos = MC.GetAllQuery(id);
         showModal = true;
@@ -310,6 +320,10 @@ using BlazorInputFile;
             LCFP.RemoveAt(iencomenda);
             LCFP.Insert(iencomenda, fabricocomposto);
 
+            PC.Put(cp.idproduto, cp.linha, cp);
+            FBCC.Put(fabricocomposto.idfabrico, fabricocomposto.linha, fabricocomposto);
+
+
             cm = new CabecalhosModelos();
             servicos = new Servicos();
             produtos = new CabecalhoProdutos();
@@ -336,8 +350,20 @@ using BlazorInputFile;
 
     public async Task LoadData(int idfabrico)
     {
-        cfabrico = CFC.Get(idfabrico);
+        CF = CFC.Get(idfabrico);
+        CCP = CAPC.Get(CF.idproduto);
+        unidade = UC.Get(CCP.idunidade);
+        ecp = CPC.Get(CCP.idclassificação);
+        dtp = TPRC.Get(CCP.idtipodeproduto);
+        dtdp = TPC.Get(CCP.idtipodepeca);
+        LCP = PC.GetAllQuery(CF.idproduto);
+        if(CCP.idfornecedor.HasValue)
+        {
+            fornecedores = FC.Get(CCP.idfornecedor.Value);
+        }
+        unidade = UC.Get(CCP.idunidade);
         listaFabrico = FBCC.GetAllQuery(idfabrico);
+        showModal = true;
     }
 
     public async Task Apagar(int idfabrico, int idproduto)
@@ -409,15 +435,45 @@ using BlazorInputFile;
         }
     }
 
-    public async Task Update()
+    public async Task LoadLista(int i)
     {
+        cp = new Produtos();
+        cp = PC.GetProdutoWithLinha(LCP[i - 1].idproduto, LCP[i - 1].linha);
+        if(cp.idservico.HasValue)
+        {
+            servicos = SC.Get(cp.idservico.Value);
+            cl = colaboradoresController.Get(cp.idcolaborador);
+            cp.formadepesquisa = "Serviço";
+        }
+        else
+        {
+            produtos = CAPC.Get(cp.idproduto);
+            cp.formadepesquisa = "";
+        }
 
-        //CMC.Put(cm.idmodelo, cm);
-        //foreach (var modelos in listaModelos)
-        //{
-        //}
-        //showModal = false;
+
     }
+
+    public async Task SalvarCabecalho()
+    {
+        try
+        {
+            CCP.idmodelo = cm.idmodelo;
+            CCP.idclassificação = ecp.IDClassificacao;
+            CCP.idunidade = unidade.idunidade;
+            CCP.idtipodeproduto = dtp.idtipoproduto;
+            CCP.idtipodepeca = dtdp.idpeca;
+            CCP.idfornecedor = fornecedores.idfornecedor;
+            CCP.preco = CCP.custototal;
+            CAPC.Put(CCP.idproduto, CCP);
+            js.InvokeVoidAsync("alert", "Atualizou o cabeçalho do produto com suceso!");
+        }
+        catch
+        {
+            js.InvokeVoidAsync("alert", "Erro ao editar o cabeçalho");
+        }
+    }
+
 
     private async Task<IEnumerable<TipoDePeca>> ProcurarPecas(string searchText)
     {
@@ -429,9 +485,9 @@ using BlazorInputFile;
         return await Task.FromResult(ListaServicos.Where(h => h.codigo.ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
-    private async Task<IEnumerable<Produtos>> ProcurarProdutos(string searchText)
+    private async Task<IEnumerable<CabecalhoProdutos>> ProcurarProdutos(string searchText)
     {
-        return await Task.FromResult(listaProdutos.Where(h => h.idproduto.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
+        return await Task.FromResult(listaCabecalhoProdutos.Where(h => h.idproduto.ToString().ToLower().Contains(searchText.ToLower()) || h.descricao.ToLower().Contains(searchText.ToLower())).ToList());
     }
 
     private async Task<IEnumerable<Colaboradores>> ProcurarColaboradores(string searchText)

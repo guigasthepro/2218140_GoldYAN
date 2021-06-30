@@ -119,9 +119,9 @@ namespace GoldYAN.Controller
         }
 
         [HttpPut]
-        public ActionResult<Fabrico> Put(string id, int linha, [FromBody] Fabrico cmodelos)
+        public ActionResult<Fabrico> Put(int id, int linha, [FromBody] Fabrico cmodelos)
         {
-            string getsql = $"SELECT* FROM `modelos` WHERE idmodelo = '{id}' AND linha = '{linha}';";
+            string getsql = $"SELECT* FROM `fabrico` WHERE idfabrico = '{id}' AND linha = '{linha}';";
 
             using (MySqlConnection DBConn = new MySqlConnection(connectionString))
             {

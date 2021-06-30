@@ -2,9 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\GoldYAN",
+    "\\GoldYAN\\Areas",
+    "\\GoldYAN\\Areas\\Identity",
+    "\\GoldYAN\\Areas\\Identity\\Pages",
+    "\\GoldYAN\\Areas\\Identity\\Pages\\Account",
     "\\GoldYAN\\Pages",
     "\\GoldYAN\\Pages\\Fabrico"
   ],
-  "SelectedNode": "\\GoldYAN\\Pages\\Fabrico\\Vfabrico.razor",
+  "SelectedNode": "\\GoldYAN\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
   "PreviewInSolutionExplorer": false
 }

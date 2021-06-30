@@ -220,5 +220,25 @@ namespace GoldYAN.Controller
                 }
             }
         }
+
+        public string DeleteByLinha(int id, int linha)
+        {
+
+            string query = $" DELETE FROM `produtos` WHERE idproduto = {id} AND linha = {linha} ";
+
+            using (MySqlConnection DBConn = new MySqlConnection(connectionString))
+            {
+                var res = DBConn.Get<Produtos>(id);
+                if (res != null)
+                {
+                    DBConn.Query<Produtos>(query);
+                    return "Item foi apagado com sucesso";
+                }
+                else
+                {
+                    return "Item foi apagado com sucesso";
+                }
+            }
+        }
     }
 }

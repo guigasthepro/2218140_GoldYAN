@@ -16,7 +16,7 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">EDITAR MODELO</h4>
+                    <h4 class="modal-title">EDITAR FABRICO</h4>
                     <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
                 </div>
 
@@ -123,13 +123,13 @@
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="Descricao">Feitio:</label> &nbsp
-                                        <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Feitio do produto" @bind-Value="CCP.feitiopeca" />
+                                        <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" disabled="true" class="form-control" placeholder="Feitio do produto" @bind-Value="CCP.feitiopeca" />
                                     </div>
                                 </div>
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="Descricao">Margem:</label> &nbsp
-                                        <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" class="form-control" placeholder="Margem do produto" @bind-Value="CCP.margem" />
+                                        <InputNumber oninput="this.value = this.value.toUpperCase()" id="Descricao" disabled="true" class="form-control" placeholder="Margem do produto" @bind-Value="CCP.margem" />
                                     </div>
                                 </div>
                             </EditForm>
@@ -167,7 +167,7 @@
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="nome">Serviço:</label>
-                                        <BlazoredTypeahead SearchMethod="ProcurarServicos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="servicos" Placeholder="Pesquisar Serviço">
+                                        <BlazoredTypeahead SearchMethod="ProcurarServicos" DisableClear="true" EnableDropDown="true"  oninput="this.value = this.value.toUpperCase()" @bind-Value="servicos" Placeholder="Pesquisar Serviço">
                                             <SelectedTemplate>
                                                 @context.descricao
                                             </SelectedTemplate>
@@ -179,7 +179,7 @@
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="nome">Colaborador:</label>
-                                        <BlazoredTypeahead SearchMethod="ProcurarColaboradores" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="cl" Placeholder="Pesquisar Colaborador">
+                                        <BlazoredTypeahead SearchMethod="ProcurarColaboradores" DisableClear="true" EnableDropDown="true"  oninput="this.value = this.value.toUpperCase()" @bind-Value="cl" Placeholder="Pesquisar Colaborador">
                                             <SelectedTemplate>
                                                 @context.codigo + @context.descricao
                                             </SelectedTemplate>
@@ -194,14 +194,14 @@
                                     <div class="m-3 form-group">
                                         <div class="form-inline">
                                             <label for="preco">Preco:</label> &nbsp
-                                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="preco" class="form-control" placeholder="Preço do Colaborador" disabled="@Readonly" @bind-Value="cl.valor" />
+                                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="preco" class="form-control" placeholder="Preço do Colaborador" @bind-Value="cl.valor" />
                                         </div>
                                     </div>
 
                                     <div class="m-3 form-group">
                                         <div class="form-inline">
                                             <label for="Quantidade">Quantidade:</label> &nbsp
-                                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="cp.quantidade" />
+                                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="Quantidade" class="form-control" placeholder="Quantidade" @bind-Value="cp.quantidade" />
                                         </div>
                                     </div>
 
@@ -213,7 +213,7 @@
                                 <div class="m-3 form-group">
                                     <div class="form-inline">
                                         <label for="nome">Produtos:</label>
-                                        <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true" Disabled="@Readonly" oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Produto">
+                                        <BlazoredTypeahead SearchMethod="ProcurarProdutos" DisableClear="true" EnableDropDown="true"  oninput="this.value = this.value.toUpperCase()" @bind-Value="produtos" Placeholder="Pesquisar Produto">
                                             <SelectedTemplate>
                                                 @context.idproduto + @context.descricao
                                             </SelectedTemplate>
@@ -228,14 +228,14 @@
                                     <div class="m-3 form-group">
                                         <div class="form-inline">
                                             <label for="preco">Preco:</label> &nbsp
-                                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="preco" class="form-control" placeholder="@produtos.preco" disabled="@Readonly" @bind-Value="produtos.preco" />
+                                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="preco" class="form-control" placeholder="@produtos.preco"  @bind-Value="produtos.preco" />
                                         </div>
                                     </div>
 
                                     <div class="m-3 form-group">
                                         <div class="form-inline">
                                             <label for="Quantidade">Quantidade:</label> &nbsp
-                                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="Quantidade" class="form-control" placeholder="Quantidade" disabled="@Readonly" @bind-Value="cp.quantidade" />
+                                            <InputNumber autocomplete="false" style="-moz-appearance: textfield;" id="Quantidade" class="form-control" placeholder="Quantidade"  @bind-Value="cp.quantidade" />
                                         </div>
                                     </div>
 
@@ -281,7 +281,7 @@
                                                                 <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].peso">@LCP[i].peso</td>
                                                                 <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].custo">@LCP[i].custo</td>
                                                                 <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].custototal">@LCP[i].custototal</td>
-                                                                <td><button class="btn btn-primary btn-sm" @onclick="() => LoadLista(i)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => ApagarItemLista(i)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                                <td><button class="btn btn-primary btn-sm" @onclick="() => LoadLista(i)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => ApagarItemLista(i, LCP[i].idproduto, LCP[i].linha)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
 
                                                             }
                                                             else
@@ -294,7 +294,7 @@
                                                                 <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].peso">@LCP[i].peso</td>
                                                                 <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].custo">@LCP[i].custo</td>
                                                                 <td style="overflow: hidden; white-space: nowrap;" title="@LCP[i].custototal">@LCP[i].custototal</td>
-                                                                <td><button class="btn btn-primary btn-sm" @onclick="() => LoadLista(i)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => ApagarItemLista(i)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
+                                                                <td><button class="btn btn-primary btn-sm" @onclick="() => LoadLista(i)" style="margin-left: 1rem"><i class="fas fa-pen"></i></button><button @onclick="() => ApagarItemLista(i, LCP[i].idproduto, LCP[i].linha)" class="btn btn-danger btn-sm" style="margin-left: 0.3rem"><i class="fas fa-trash"></i></button></td>
 
                                                             }
 
@@ -311,7 +311,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" @onclick="ModalCancel" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -436,10 +436,20 @@
 
 
 
-    public void ApagarItemLista(int id)
+    public async Task ApagarItemLista(int id, int idproduto, int linha)
     {
         LCP.RemoveAt(id);
-        showModal = true;
+        bool confirmation;
+
+        confirmation = await js.InvokeAsync<bool>("confirm", "Quer mesmo apagar?");
+
+        if (confirmation)
+        {
+            PC.DeleteByLinha(idproduto, linha);
+            FBCC.DeleteFabricos(CF.idfabrico, idproduto);
+            OnInitializedAsync();
+
+        }
     }
 
     public void OpenFichaProduto(int id)
@@ -530,6 +540,10 @@
             LCFP.RemoveAt(iencomenda);
             LCFP.Insert(iencomenda, fabricocomposto);
 
+            PC.Put(cp.idproduto, cp.linha, cp);
+            FBCC.Put(fabricocomposto.idfabrico, fabricocomposto.linha, fabricocomposto);
+
+
             cm = new CabecalhosModelos();
             servicos = new Servicos();
             produtos = new CabecalhoProdutos();
@@ -563,6 +577,11 @@
         dtp = TPRC.Get(CCP.idtipodeproduto);
         dtdp = TPC.Get(CCP.idtipodepeca);
         LCP = PC.GetAllQuery(CF.idproduto);
+        if(CCP.idfornecedor.HasValue)
+        {
+            fornecedores = FC.Get(CCP.idfornecedor.Value);
+        }
+        unidade = UC.Get(CCP.idunidade);
         listaFabrico = FBCC.GetAllQuery(idfabrico);
         showModal = true;
     }
@@ -638,21 +657,43 @@
 
     public async Task LoadLista(int i)
     {
+        cp = new Produtos();
         cp = PC.GetProdutoWithLinha(LCP[i - 1].idproduto, LCP[i - 1].linha);
+        if(cp.idservico.HasValue)
+        {
+            servicos = SC.Get(cp.idservico.Value);
+            cl = colaboradoresController.Get(cp.idcolaborador);
+            cp.formadepesquisa = "Serviço";
+        }
+        else
+        {
+            produtos = CAPC.Get(cp.idproduto);
+            cp.formadepesquisa = "";
+        }
+
 
     }
 
     public async Task SalvarCabecalho()
     {
-        CCP.idmodelo = cm.idmodelo;
-        CCP.idclassificação = ecp.IDClassificacao;
-        CCP.idunidade = unidade.idunidade;
-        CCP.idtipodeproduto = dtp.idtipoproduto;
-        CCP.idtipodepeca = dtdp.idpeca;
-        CCP.idfornecedor = fornecedores.idfornecedor;
-        CCP.preco = CCP.custototal;
-        CAPC.Put(CCP.idproduto, CCP);
+        try
+        {
+            CCP.idmodelo = cm.idmodelo;
+            CCP.idclassificação = ecp.IDClassificacao;
+            CCP.idunidade = unidade.idunidade;
+            CCP.idtipodeproduto = dtp.idtipoproduto;
+            CCP.idtipodepeca = dtdp.idpeca;
+            CCP.idfornecedor = fornecedores.idfornecedor;
+            CCP.preco = CCP.custototal;
+            CAPC.Put(CCP.idproduto, CCP);
+            js.InvokeVoidAsync("alert", "Atualizou o cabeçalho do produto com suceso!");
+        }
+        catch
+        {
+            js.InvokeVoidAsync("alert", "Erro ao editar o cabeçalho");
+        }
     }
+
 
     private async Task<IEnumerable<TipoDePeca>> ProcurarPecas(string searchText)
     {
