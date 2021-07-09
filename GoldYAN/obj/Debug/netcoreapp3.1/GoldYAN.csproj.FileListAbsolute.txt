@@ -1,4 +1,3 @@
-C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\GoldYAN.csprojAssemblyReference.cache
 C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\GoldYAN.AssemblyInfoInputs.cache
 C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\GoldYAN.AssemblyInfo.cs
 C:\Users\Guilherme Simao\source\repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\GoldYAN.csproj.CoreCompileInputs.cache
@@ -1616,3 +1615,6 @@ C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\D
 C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Administração\Colaboradores.razor.g.cs
 C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Administração\Colaboradores.razor.g.cs
 C:\Users\gsimao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Administração\Colaboradores.razor.g.cs
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\GoldYAN.csproj.AssemblyReference.cache
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Administração\TipoDeCompra.razor.g.cs
+C:\Users\Guilherme Simao\Source\Repos\guigasthepro\2218140_GoldYAN\GoldYAN\obj\Debug\netcoreapp3.1\Razor\Pages\Administração\TipoDeCompra.razor.g.cs

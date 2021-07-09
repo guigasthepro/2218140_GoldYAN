@@ -92,12 +92,12 @@ namespace GoldYAN.Areas.Identity.Pages.Account
                 {
                     try
                     {
-                        var result1 = await _userManager.AddToRoleAsync(user, "Administrador");
+                        var result1 = await _userManager.AddToRoleAsync(user, Input.RoleID );
 
                     }
                     catch
                     {
-                        _userManager.DeleteAsync(user);
+                        
                     }
                     _logger.LogInformation("Foi criado um novo utilizador!");
 
